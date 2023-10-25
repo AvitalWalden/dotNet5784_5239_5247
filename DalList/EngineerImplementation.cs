@@ -6,20 +6,23 @@ using System.Collections.Generic;
 
 public class EngineerImplementation : IEngineer
 {
+    // This method is used to create a new Engineer
     public int Create(Engineer item)
     {
-        //for entities with normal id (not auto id)
+        // Check if an Engineer with the same ID already exists
         if (Read(item.Id) is not null)
             throw new Exception($"Engineer with ID={item.Id} already exists");
         DataSource.Engineers.Add(item);
         return item.Id;
     }
 
+    // This method is used to delete an Engineer by ID
     public void Delete(int id)
     {
+        // Check if there are any Tasks associated with the Engineer
         for (int i = 0; i < DataSource.Tasks.Count; i++)
         {
-            if(DataSource.Tasks[i].Engineerld == id) 
+            if (DataSource.Tasks[i].Engineerld == id) 
             { 
                 throw new Exception($"Engineer with ID={id} cannot be deleted");
             }
@@ -34,7 +37,7 @@ public class EngineerImplementation : IEngineer
             throw new Exception($"Engineer with ID={id} not exists");
         }
     }
-
+    // This method is used to read an Engineer by ID
     public Engineer? Read(int id)
     {
         if (DataSource.Engineers.Exists(engineer => engineer.Id == id))
@@ -49,11 +52,13 @@ public class EngineerImplementation : IEngineer
         return null;
     }
 
+    // This method is used to read all Engineers
     public List<Engineer> ReadAll()
     {
         return new List<Engineer>(DataSource.Engineers);
     }
 
+    // This method is used to update the engineer 
     public void Update(Engineer item)
     {
         if(DataSource.Engineers.Exists(engineer => engineer.Id == item.Id))

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 
 public class TaskImplementation : ITask
 {
+    // This method is used to create a new Task
     public int Create(Task item)
     {
         //for entities with auto id
@@ -15,6 +16,7 @@ public class TaskImplementation : ITask
         return id;
     }
 
+    // This method is used to delete a Task by ID
     public void Delete(int id)
     {
         for (int i = 0; i < DataSource.Dependencies.Count; i++)
@@ -34,6 +36,7 @@ public class TaskImplementation : ITask
         }
     }
 
+    // This method is used to read a Task by ID
     public Task? Read(int id)
     {
         if (DataSource.Tasks.Exists(task => task.Id == id))
@@ -47,11 +50,13 @@ public class TaskImplementation : ITask
         return null;
     }
 
+    // This method is used to read all Tasks
     public List<Task> ReadAll()
     {
         return new List<Task>(DataSource.Tasks);
     }
 
+    // This method is used to update the task 
     public void Update(Task item)
     {
         if (DataSource.Tasks.Exists(task => task.Id == item.Id))
