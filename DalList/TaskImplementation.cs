@@ -17,7 +17,21 @@ public class TaskImplementation : ITask
 
     public void Delete(int id)
     {
-        throw new Exception($"Task with ID={id} cannot be deleted");
+        for (int i = 0; i < DataSource.Dependencies.Count; i++)
+        {
+            if (DataSource.Dependencies[i].DependentTask == id || DataSource.Dependencies[i].DependsOnTask == id)
+            {
+                throw new Exception($"Task with ID={id} cannot be deleted");
+            }
+        }
+        if (Read(id) is not null)
+        {
+            DataSource.Tasks.RemoveAt(id);
+        }
+        else
+        {
+            throw new Exception($"Task with ID={id} not exists");
+        }
     }
 
     public Task? Read(int id)

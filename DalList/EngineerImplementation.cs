@@ -17,7 +17,22 @@ public class EngineerImplementation : IEngineer
 
     public void Delete(int id)
     {
-        throw new NotImplementedException();
+        for (int i = 0; i < DataSource.Tasks.Count; i++)
+        {
+            if(DataSource.Tasks[i].Engineerld == id) 
+            { 
+                throw new Exception($"Engineer with ID={id} cannot be deleted");
+            }
+        }
+        if (Read(id) is not null)
+        {
+            DataSource.Tasks.RemoveAt(id);
+
+        }
+        else
+        {
+            throw new Exception($"Engineer with ID={id} not exists");
+        }
     }
 
     public Engineer? Read(int id)

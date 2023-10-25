@@ -16,7 +16,7 @@ public class DependencyImplementation : IDependency
 
     public void Delete(int id)
     {
-        throw new NotImplementedException();
+        throw new Exception($"Dependency with ID={id} cannot be deleted");
     }
 
     public Dependency? Read(int id)
