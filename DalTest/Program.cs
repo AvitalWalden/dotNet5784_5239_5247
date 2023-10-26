@@ -2,6 +2,7 @@
 using DO;
 using DalApi;
 using System.Security.Cryptography;
+using System.Threading.Tasks;
 
 namespace DalTest
 {
@@ -12,7 +13,7 @@ namespace DalTest
         private static IDependency? s_dalDependency = new DependencyImplementation();
 
         // The function create a new task.
-        public static void createTask()
+        public static void CreateTask()
         {
             Console.WriteLine("Enter a description of the task");
             string description = Console.ReadLine()!;
@@ -46,10 +47,9 @@ namespace DalTest
         }
         
         // The function update a task.
-        public static void updateTask()
+        public static void UpdateTask()
         {
-            Console.WriteLine("Enter a ID of the task");
-            Console.WriteLine("Enter a task ID");
+            Console.WriteLine("Enter a task's ID");
             int idTask = int.Parse(Console.ReadLine()!);
             if (s_dalTask!.Read(idTask) != null)
             {
@@ -99,8 +99,8 @@ namespace DalTest
 
         }
 
-        // The function read all tasks
-        public static void readAllTask()
+        // The function read all tasks.
+        public static void ReadAllTasks()
         {
             List<DO.Task> tasks = s_dalTask!.ReadAll(); // ????/ DO.Task ????
             foreach (var task in tasks)
@@ -109,8 +109,8 @@ namespace DalTest
             }
         }
 
-        // The function read a Task by ID
-        public static void readTask(int idTask)
+        // The function read a Task by ID.
+        public static void ReadTask(int idTask)
         {
             if (s_dalTask!.Read(idTask) == null) ////////////////////////////////////מה זה הסימן קריאה כאן חוזר לי מהפונקציה הזו ערך ריק האם הסימן קריאה משפיעה
             {
@@ -123,7 +123,7 @@ namespace DalTest
         }
 
         // The function delete a task.
-        public static void deleteTask(int idTaskDelete)  /// ?? האם מותר למחוק משימה
+        public static void DeleteTask(int idTaskDelete)  /// ?? האם מותר למחוק משימה
         {
             try
             {
@@ -136,8 +136,8 @@ namespace DalTest
             }
         }
 
-        // The function of the tasks
-        public static void task()
+        // The function of the tasks.
+        public static void Tasks()
         {
             Console.WriteLine("To add a task press a");
             Console.WriteLine("To read a task press b");
@@ -147,29 +147,162 @@ namespace DalTest
             char ch = char.Parse(Console.ReadLine()!);
             switch (ch)
             {
-                case 'a': // Create a new task
-                    createTask();
+                case 'a': // Create a new task.
+                    CreateTask();
                     break;
-                case 'b': // Read a Task by ID
+                case 'b': // Read a Task by ID.
                     Console.WriteLine("Enter a task ID");
                     int idTask = int.Parse(Console.ReadLine()!);
-                    readTask(idTask);
+                    ReadTask(idTask);
                     break;
-                case 'c': // Read all tasks
-                    readAllTask();
+                case 'c': // Read all tasks.
+                    ReadAllTasks();
                     break;
                 case 'd': // Update a task.
-                    updateTask();
+                    UpdateTask();
                     break;
                 case 'e': // Delete a task. //???????????????????// האם מותר למחוק משימה
                     Console.WriteLine("Enter a task ID");
                     int idTaskDelete = int.Parse(Console.ReadLine()!);
-                    deleteTask(idTaskDelete);
+                    DeleteTask(idTaskDelete);
                     break;
                 default:
                     break;
             }
         }
+
+        // The function create a new engineer.
+        public static void CreateEngineer()
+        {
+            Console.WriteLine("Enter the engineer's id");
+            int id = int.Parse(Console.ReadLine()!);
+            Console.WriteLine("Enter the engineer's name");
+            string name = Console.ReadLine()!;
+            Console.WriteLine("Enter the engineer's email");
+            string email = Console.ReadLine()!;
+            Console.WriteLine("Enter the level of the task:");
+            Console.WriteLine("For expert press 0");
+            Console.WriteLine("For junior press 1");
+            Console.WriteLine("For rookie press 2");
+            int level = int.Parse(Console.ReadLine()!);
+            Console.WriteLine("Enter the engineer's cost");
+            double cost = double.Parse(Console.ReadLine()!);
+            /////////////////// מה זה האם הזימון טוב??
+            DO.Engineer newEngineer = new DO.Engineer(id, name, email, (EngineerExperience)level, cost);
+            Console.WriteLine(s_dalEngineer!.Create(newEngineer)); // Input the new id of the task.
+        }
+
+        // The function update a engineer.
+        public static void UpdateEngineer()
+        {
+            Console.WriteLine("Enter a engineer's ID");
+            int idEngineer = int.Parse(Console.ReadLine()!);
+            if (s_dalEngineer!.Read(idEngineer) != null)
+            {
+                Console.WriteLine(idEngineer);
+            }
+            else
+            {
+                Console.WriteLine("Engineer with ID={idEngineer} not exists");/////////////////////////שחוזר לי ערך ריק, לזרוק שגיאה או להדפיס הודעה
+            }
+            Console.WriteLine("Enter the engineer's id");
+            int id = int.Parse(Console.ReadLine()!);
+            Console.WriteLine("Enter the engineer's name");
+            string name = Console.ReadLine()!;
+            Console.WriteLine("Enter the engineer's email");
+            string email = Console.ReadLine()!;
+            Console.WriteLine("Enter the level of the task:");
+            Console.WriteLine("For expert press 0");
+            Console.WriteLine("For junior press 1");
+            Console.WriteLine("For rookie press 2");
+            int level = int.Parse(Console.ReadLine()!);
+            Console.WriteLine("Enter the engineer's cost");
+            double cost = double.Parse(Console.ReadLine()!);
+            /////////////////// מה זה האם הזימון טוב??
+            DO.Engineer newEngineer = new DO.Engineer(id, name, email, (EngineerExperience)level, cost);
+            try
+            {
+                s_dalEngineer!.Update(newEngineer); // Input the new id of the task.
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine(ex);
+            }
+
+        }
+
+        // The function read a engineer by ID.
+        public static void ReadEngineer(int idEngineer)
+        {
+            if (s_dalEngineer!.Read(idEngineer) == null) ////////////////////////////////////מה זה הסימן קריאה כאן חוזר לי מהפונקציה הזו ערך ריק האם הסימן קריאה משפיעה
+            {
+                Console.WriteLine("Engineer with ID={idTask} not exists");/////////////////////////שחוזר לי ערך ריק, לזרוק שגיאה או להדפיס הודעה
+            }
+            else
+            {
+                Console.WriteLine(s_dalEngineer!.Read(idEngineer));
+            }
+        }
+
+        // The function read all the engineers.
+        public static void ReadAllEngineers()
+        {
+            List<DO.Engineer> engineers = s_dalEngineer!.ReadAll(); // ????/ DO.Task ????
+            foreach (var engineer in engineers)
+            {
+                Console.WriteLine(engineer);
+            }
+        }
+
+        // The function delete a engineer.
+        public static void DeleteEngineer(int idEngineerDelete)
+        {
+            try
+            {
+                s_dalEngineer!.Delete(idEngineerDelete); // Input the new id of the task.
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+        }
+
+        // The function of the engineer
+        public static void Engineers()
+        {
+            Console.WriteLine("To add an engineer press a");
+            Console.WriteLine("To read an engineer press b");
+            Console.WriteLine("To read all engineers press c");
+            Console.WriteLine("To update an engineer press d");
+            Console.WriteLine("To delete an engineer press e"); //??????????????? האם אפשר למחוק
+            char ch = char.Parse(Console.ReadLine()!);
+            switch (ch)
+            {
+                case 'a': // Create a new engineer.
+                    CreateEngineer();
+                    break;
+                case 'b': // Read a engineer by ID
+                    Console.WriteLine("Enter a engineer's id");
+                    int idEngineer = int.Parse(Console.ReadLine()!);
+                    ReadEngineer(idEngineer);
+                    break;
+                case 'c': // Read all engineers.
+                    ReadAllEngineers();
+                    break;
+                case 'd': // Update a engineer.
+                    UpdateEngineer();
+                    break;
+                case 'e': // Delete a engineer. //???????????????????// האם מותר למחוק משימה
+                    Console.WriteLine("Enter a engineer's ID");
+                    int idEngineerDelete = int.Parse(Console.ReadLine()!);
+                    DeleteEngineer(idEngineerDelete);
+                    break;
+                default:
+                    break;
+            }
+        }
+
         static void Main(string[] args)
         {
             try
@@ -185,16 +318,10 @@ namespace DalTest
                     switch (choose)
                     {
                         case 1:
-                            task();//doing this function
+                            Tasks();//doing this function
                             break;
                         case 2:
-                            Console.WriteLine("To add an engineer press a");
-                            Console.WriteLine("To read an engineer press b");
-                            Console.WriteLine("To read all engineers press c");
-                            Console.WriteLine("To update an engineer press d");
-                            Console.WriteLine("To delete an engineer press e"); //??????????????? האם אפשר למחוק
-                            //ch = char.Parse(Console.ReadLine()!);
-                            //  InfoOfOrder(x); //doing this function 
+                            Engineers(); //doing this function 
                             break;
                         case 3:
                             Console.WriteLine("To add depency between tasks press a");
