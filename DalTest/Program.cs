@@ -14,6 +14,63 @@ namespace DalTest
         // The function create a new task.
         public static void createTask()
         {
+            Console.WriteLine("Enter a description of the task");
+            string description = Console.ReadLine()!;
+            Console.WriteLine("Enter an alias of the task");
+            string alias = Console.ReadLine()!;
+            Console.WriteLine("Enter task start date");
+            DateTime? startDate = DateTime.Parse(Console.ReadLine()!); //צריך להוריד את את !
+            Console.WriteLine("Enter task schedule date");
+            DateTime? scheduleDate = DateTime.Parse(Console.ReadLine()!);  //צריך להוריד את את !
+            Console.WriteLine("Enter task forecast date");
+            DateTime? forecastDate = DateTime.Parse(Console.ReadLine()!);  //צריך להוריד את את !
+            Console.WriteLine("Enter task deadline date");
+            DateTime? deadlineDate = DateTime.Parse(Console.ReadLine()!);  //צריך להוריד את את !
+            Console.WriteLine("Enter task complete date");
+            DateTime? completeDate = DateTime.Parse(Console.ReadLine()!);  //צריך להוריד את את !
+            Console.WriteLine("Enter product description of the task");
+            string? productDescription = Console.ReadLine()!;
+            Console.WriteLine("Enter remarks of the task");
+            string? remarks = Console.ReadLine();
+            Console.WriteLine("Enter the id of the engineer");
+            int? engineerId = int.Parse(Console.ReadLine()!); //צריך להוריד את את !
+            DateTime CreatedAt = DateTime.Now;  //????????????????????? איפה מהתחלים
+            Console.WriteLine("Enter the level of the task:");
+            Console.WriteLine("For expert press 0");
+            Console.WriteLine("For junior press 1");
+            Console.WriteLine("For rookie press 2");
+            int level = int.Parse(Console.ReadLine()!);
+            /////////////////// מה זה האם הזימון טוב??
+            DO.Task newTask = new DO.Task(0, description, alias, false, CreatedAt, startDate, scheduleDate, forecastDate, deadlineDate, completeDate, productDescription, remarks, engineerId, (EngineerExperience)level);
+            Console.WriteLine(s_dalTask!.Create(newTask)); // Input the new id of the task.
+        }
+
+        // Read all tasks
+        public static void readAllTask()
+        {
+            List<DO.Task> tasks = s_dalTask!.ReadAll(); // ????/ DO.Task ????
+            foreach (var task in tasks)
+            {
+                Console.WriteLine(task);
+            }
+        }
+
+        // Read a Task by ID
+        public static void readTask(int idTask)
+        {
+            if (s_dalTask!.Read(idTask) == null) ////////////////////////////////////מה זה הסימן קריאה כאן חוזר לי מהפונקציה הזו ערך ריק האם הסימן קריאה משפיעה
+            {
+                Console.WriteLine("Task with ID={idTask} not exists");/////////////////////////שחוזר לי ערך ריק, לזרוק שגיאה או להדפיס הודעה
+            }
+            else
+            {
+                Console.WriteLine(s_dalTask!.Read(idTask));
+            }
+        }
+
+        //function of the tasks
+        public static void task()
+        {
             Console.WriteLine("To add a task press a");
             Console.WriteLine("To read a task press b");
             Console.WriteLine("To read all tasks press c");
@@ -22,40 +79,16 @@ namespace DalTest
             char ch = char.Parse(Console.ReadLine()!);
             switch (ch)
             {
-                case 'a': //create a new task
-                    Console.WriteLine("Enter a description of the task");
-                    string description = Console.ReadLine()!;
-                    Console.WriteLine("Enter an alias of the task");
-                    string alias = Console.ReadLine()!;
-                    Console.WriteLine("Enter task start date");
-                    DateTime? startDate = DateTime.Parse(Console.ReadLine()!); //צריך להוריד את את !
-                    Console.WriteLine("Enter task schedule date");
-                    DateTime? scheduleDate = DateTime.Parse(Console.ReadLine()!);  //צריך להוריד את את !
-                    Console.WriteLine("Enter task forecast date");
-                    DateTime? forecastDate = DateTime.Parse(Console.ReadLine()!);  //צריך להוריד את את !
-                    Console.WriteLine("Enter task deadline date");
-                    DateTime? deadlineDate = DateTime.Parse(Console.ReadLine()!);  //צריך להוריד את את !
-                    Console.WriteLine("Enter task complete date");
-                    DateTime? completeDate = DateTime.Parse(Console.ReadLine()!);  //צריך להוריד את את !
-                    Console.WriteLine("Enter product description of the task");
-                    string? productDescription = Console.ReadLine()!;
-                    Console.WriteLine("Enter remarks of the task");
-                    string? remarks = Console.ReadLine();
-                    Console.WriteLine("Enter the id of the engineer");
-                    int? engineerId = int.Parse(Console.ReadLine()!); //צריך להוריד את את !
-                    DateTime CreatedAt = DateTime.Now;  //????????????????????? איפה מהתחלים
-                    Console.WriteLine("Enter the level of the task:");
-                    Console.WriteLine("For expert press 0");
-                    Console.WriteLine("For junior press 1");
-                    Console.WriteLine("For rookie press 2");
-                    int level = int.Parse(Console.ReadLine()!);
-                    /////////////////// מה זה האם הזימון טוב??
-                    DO.Task newTask = new DO.Task(0,description, alias, false, CreatedAt, startDate, scheduleDate, forecastDate, deadlineDate, completeDate,productDescription,remarks,engineerId, (EngineerExperience)level);
-                    Console.WriteLine(s_dalTask!.Create(newTask));
+                case 'a': // Create a new task
+                    createTask();
                     break;
-                case 'b':
+                case 'b': // Read a Task by ID
+                    Console.WriteLine("Enter a task ID");
+                    int idTask = int.Parse(Console.ReadLine()!);
+                    readTask(idTask);
                     break;
-                case 'c':
+                case 'c': // Read all tasks
+                    readAllTask();
                     break;
                 case 'd':
                     break;
@@ -64,7 +97,7 @@ namespace DalTest
                 default:
                     break;
             }
-            
+
 
 
         }
@@ -100,10 +133,11 @@ namespace DalTest
                             Console.WriteLine("To read all depency between tasks press c");
                             Console.WriteLine("To update depency between tasks press d");
                             Console.WriteLine("To delete depency between tasks press e"); //??????????????? האם אפשר למחוק
-                           // ch = char.Parse(Console.ReadLine()!);
-                            //  InfoOfOrderItem(x);//doing this function 
+                                                                                          // ch = char.Parse(Console.ReadLine()!);
+                                                                                          //  InfoOfOrderItem(x);//doing this function 
                             break;
-                        default: Console.WriteLine("The number entered is invalid");
+                        default:
+                            Console.WriteLine("The number entered is invalid");
                             break;
                     }
                     Console.WriteLine("enter a number");
