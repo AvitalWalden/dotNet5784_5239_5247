@@ -22,7 +22,7 @@ namespace DalTest
             char ch = char.Parse(Console.ReadLine()!);
             switch (ch)
             {
-                case 'a':
+                case 'a': //create a new task
                     Console.WriteLine("Enter a description of the task");
                     string description = Console.ReadLine()!;
                     Console.WriteLine("Enter an alias of the task");
@@ -51,7 +51,7 @@ namespace DalTest
                     int level = int.Parse(Console.ReadLine()!);
                     /////////////////// מה זה האם הזימון טוב??
                     DO.Task newTask = new DO.Task(0,description, alias, false, CreatedAt, startDate, scheduleDate, forecastDate, deadlineDate, completeDate,productDescription,remarks,engineerId, (EngineerExperience)level);
-                    s_dalTask!.Create(newTask);
+                    Console.WriteLine(s_dalTask!.Create(newTask));
                     break;
                 case 'b':
                     break;
