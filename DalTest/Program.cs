@@ -10,7 +10,18 @@ namespace DalTest
         private static IEngineer? s_dalEngineer = new EngineerImplementation();
         private static ITask? s_dalTask = new TaskImplementation();
         private static IDependency? s_dalDependency = new DependencyImplementation();
-
+        public static void readTask(int idTask)
+        {
+            //read a Task by ID
+            if (s_dalTask!.Read(idTask) == null) ////////////////////////////////////מה זה הסימן קריאה כאן חוזר לי מהפונקציה הזו ערך ריק האם הסימן קריאה משפיעה
+            {
+                Console.WriteLine("Task with ID={idTask} not exists");/////////////////////////שחוזר לי ערך ריק, לזרוק שגיאה או להדפיס הודעה
+            }
+            else
+            {
+                Console.WriteLine(s_dalTask!.Read(idTask));
+            }
+        }
         //function of the tasks
         public static void task()
         {
@@ -54,6 +65,9 @@ namespace DalTest
                     Console.WriteLine(s_dalTask!.Create(newTask));
                     break;
                 case 'b':
+                    Console.WriteLine("Enter a task ID");
+                    int idTask = int.Parse(Console.ReadLine()!);
+                    readTask(idTask);
                     break;
                 case 'c':
                     break;
