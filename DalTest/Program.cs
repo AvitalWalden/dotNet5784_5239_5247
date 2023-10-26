@@ -2,6 +2,7 @@
 using DO;
 using DalApi;
 using System.Security.Cryptography;
+using System.Reflection.Emit;
 
 namespace DalTest
 {
@@ -170,6 +171,125 @@ namespace DalTest
                     break;
             }
         }
+
+        // The function create a new dependency.
+        public static void CreatDependency()
+        {
+            Console.WriteLine("Enter ID number of pending task");
+            int? dependentTask = int.Parse(Console.ReadLine()!);
+            Console.WriteLine("Enter ID number of a previous assignment");
+            int? dependsOnTask = int.Parse(Console.ReadLine()!);
+            /////////////////// מה זה האם הזימון טוב??
+            DO.Dependency newDependency = new DO.Dependency(0, dependentTask, dependsOnTask);
+            Console.WriteLine(s_dalDependency!.Create(newDependency)); // Input the new id of the new dependency.
+        }
+
+        // The function update a dependency.
+        public static void updateDependency()
+        {
+            Console.WriteLine("Enter a dependency's ID");
+            int idDependency = int.Parse(Console.ReadLine()!);
+            if (s_dalTask!.Read(idDependency) != null)
+            {
+                Console.WriteLine(idDependency);
+            }
+            else
+            {
+                Console.WriteLine("Dependency with ID={idDependency} not exists");/////////////////////////שחוזר לי ערך ריק, לזרוק שגיאה או להדפיס הודעה
+            }
+            Console.WriteLine("Enter ID number of pending task");
+            int? dependentTask = int.Parse(Console.ReadLine()!);
+            Console.WriteLine("Enter ID number of a previous assignment");
+            int? dependsOnTask = int.Parse(Console.ReadLine()!);
+            /////////////////// מה זה האם הזימון טוב??
+            DO.Dependency newDependency = new DO.Dependency(0, dependentTask, dependsOnTask);
+            try
+            {
+                s_dalDependency!.Update(newDependency); // Input the new id of the dependency.
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine(ex);
+            }
+
+        }
+
+        // The function read all Dependencies
+        public static void readAllDependencies()
+        {
+            List<DO.Dependency> dependencies = s_dalDependency!.ReadAll(); // ????/ DO.Task ????
+            foreach (var dependency in dependencies)
+            {
+                Console.WriteLine(dependency);
+            }
+        }
+
+        // The function read a dependency by ID
+        public static void readDependency(int idDependency)
+        {
+            if (s_dalTask!.Read(idDependency) == null) ////////////////////////////////////מה זה הסימן קריאה כאן חוזר לי מהפונקציה הזו ערך ריק האם הסימן קריאה משפיעה
+            {
+                Console.WriteLine("Dependency with ID={idDependency} not exists");/////////////////////////שחוזר לי ערך ריק, לזרוק שגיאה או להדפיס הודעה
+            }
+            else
+            {
+                Console.WriteLine(s_dalTask!.Read(idDependency));
+            }
+        }
+
+        // The function delete a dependency.
+        public static void deleteDependency(int idDependency)
+        {
+            try
+            {
+                s_dalDependency!.Delete(idDependency); 
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine(ex);
+            }
+        }
+
+        // The function of the Dependencies
+        public static void Dependencies()
+        {
+            Console.WriteLine("To add depency between tasks press a");
+            Console.WriteLine("To read depency between tasks press b");
+            Console.WriteLine("To read all depency between tasks press c");
+            Console.WriteLine("To update depency between tasks press d");
+            Console.WriteLine("To delete depency between tasks press e"); //??????????????? האם אפשר למחוק
+                                                                          // ch = char.Parse(Console.ReadLine()!);
+                                                                          //  InfoOfOrderItem(x);//doing this function 
+            char ch = char.Parse(Console.ReadLine()!);
+            switch (ch)
+            {
+                case 'a': // Create a new Dependency
+                    CreatDependency();
+                    break;
+                case 'b': // Read a dependency by ID
+                    Console.WriteLine("Enter a dependency ID");
+                    int idDependency = int.Parse(Console.ReadLine()!);
+                    readDependency(idDependency);
+                    break;
+                case 'c': // Read all Dependencies
+                    readAllDependencies();
+                    break;
+                case 'd': // Update a dependency.
+                    updateDependency();
+                    break;
+                case 'e': // Delete a dependency. //???????????????????// האם מותר למחוק משימה
+                    Console.WriteLine("Enter a Dependency ID");
+                    int idDependencyDelete = int.Parse(Console.ReadLine()!);
+                    deleteDependency(idDependencyDelete);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+
         static void Main(string[] args)
         {
             try
@@ -197,13 +317,7 @@ namespace DalTest
                             //  InfoOfOrder(x); //doing this function 
                             break;
                         case 3:
-                            Console.WriteLine("To add depency between tasks press a");
-                            Console.WriteLine("To read depency between tasks press b");
-                            Console.WriteLine("To read all depency between tasks press c");
-                            Console.WriteLine("To update depency between tasks press d");
-                            Console.WriteLine("To delete depency between tasks press e"); //??????????????? האם אפשר למחוק
-                                                                                          // ch = char.Parse(Console.ReadLine()!);
-                                                                                          //  InfoOfOrderItem(x);//doing this function 
+                            Dependencies();
                             break;
                         default:
                             Console.WriteLine("The number entered is invalid");
