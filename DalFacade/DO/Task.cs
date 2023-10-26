@@ -21,7 +21,7 @@ public record Task
     string Description,
     string Alias,
     bool Milestone = false,
-    //DateTime CreatedAt = DateTime.Now,
+    DateTime? CreatedAt = null, //?????????????????????= DateTime.Now, בעקרון לא צריך סימן ?
     DateTime? Start = null,
     DateTime? ScheduledDate = null,
     DateTime? ForecastDate = null,
