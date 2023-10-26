@@ -45,7 +45,7 @@ namespace DalTest
             Console.WriteLine(s_dalTask!.Create(newTask)); // Input the new id of the task.
         }
         
-        // The function update a new task.
+        // The function update a task.
         public static void updateTask()
         {
             Console.WriteLine("Enter a ID of the task");
@@ -99,7 +99,7 @@ namespace DalTest
 
         }
 
-        // Read all tasks
+        // The function read all tasks
         public static void readAllTask()
         {
             List<DO.Task> tasks = s_dalTask!.ReadAll(); // ????/ DO.Task ????
@@ -109,7 +109,7 @@ namespace DalTest
             }
         }
 
-        // Read a Task by ID
+        // The function read a Task by ID
         public static void readTask(int idTask)
         {
             if (s_dalTask!.Read(idTask) == null) ////////////////////////////////////מה זה הסימן קריאה כאן חוזר לי מהפונקציה הזו ערך ריק האם הסימן קריאה משפיעה
@@ -122,7 +122,21 @@ namespace DalTest
             }
         }
 
-        //function of the tasks
+        // The function delete a task.
+        public static void deleteTask(int idTaskDelete)  /// ?? האם מותר למחוק משימה
+        {
+            try
+            {
+                s_dalTask!.Delete(idTaskDelete); // Input the new id of the task.
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine(ex);
+            }
+        }
+
+        // The function of the tasks
         public static void task()
         {
             Console.WriteLine("To add a task press a");
@@ -144,9 +158,13 @@ namespace DalTest
                 case 'c': // Read all tasks
                     readAllTask();
                     break;
-                case 'd': updateTask();
+                case 'd': // Update a task.
+                    updateTask();
                     break;
-                case 'e':
+                case 'e': // Delete a task. //???????????????????// האם מותר למחוק משימה
+                    Console.WriteLine("Enter a task ID");
+                    int idTaskDelete = int.Parse(Console.ReadLine()!);
+                    deleteTask(idTaskDelete);
                     break;
                 default:
                     break;
