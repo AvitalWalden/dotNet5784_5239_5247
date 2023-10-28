@@ -42,10 +42,7 @@ public class TaskImplementation : ITask
         if (DataSource.Tasks.Exists(task => task.Id == id))
         {
             Task? task = DataSource.Tasks.Find(task => task.Id == id);
-            if (task is not null)
-            {
-                return task;
-            }
+            return task;
         }
         return null;
     }

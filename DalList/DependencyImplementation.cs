@@ -33,11 +33,7 @@ public class DependencyImplementation : IDependency
         {
             // Find the dependency with the given ID
             Dependency? dependency = DataSource.Dependencies.Find(dependency => dependency.Id == id);
-            // If the dependency is not null, return it
-            if (dependency is not null)
-            {
-                return dependency;
-            }
+            return dependency;
         }
         // Return null if no dependency with the given ID is found
         return null;

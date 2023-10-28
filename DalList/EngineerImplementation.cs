@@ -43,11 +43,7 @@ public class EngineerImplementation : IEngineer
         if (DataSource.Engineers.Exists(engineer => engineer.Id == id))
         {
             Engineer? engineer = DataSource.Engineers.Find(engineer => engineer.Id == id);
-            if (engineer is not null)
-            {
-                return engineer;
-
-            }
+            return engineer;
         }
         return null;
     }

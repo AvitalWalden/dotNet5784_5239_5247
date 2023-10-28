@@ -391,8 +391,7 @@ namespace DalTest
             Console.WriteLine("To read depency between tasks press b");
             Console.WriteLine("To read all depency between tasks press c");
             Console.WriteLine("To update depency between tasks press d");
-            Console.WriteLine("To delete depency between tasks press e"); //??????????????? האם אפשר למחוק
-                                                                          
+            Console.WriteLine("To delete depency between tasks press e"); //??????????????? האם אפשר למחוק                                                      
             char ch = char.Parse(Console.ReadLine()!);
             switch (ch)
             {
