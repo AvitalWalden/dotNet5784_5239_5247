@@ -3,7 +3,7 @@
 //Professional level of engineering
 public enum EngineerExperience
 {
-    Expert,
-    Junior, 
-    Rookie
+    EXPERT,
+    JUNIOR, 
+    ROOKIE
 }

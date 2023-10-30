@@ -21,7 +21,7 @@ public class TaskImplementation : ITask
     {
         for (int i = 0; i < DataSource.Dependencies.Count; i++)
         {
-            if (DataSource.Dependencies[i].DependentTask == id || DataSource.Dependencies[i].DependsOnTask == id)
+            if (DataSource.Dependencies[i]?.DependentTask == id || DataSource.Dependencies[i]?.DependsOnTask == id)
             {
                 throw new Exception($"Task with ID={id} cannot be deleted");
             }
@@ -39,9 +39,9 @@ public class TaskImplementation : ITask
     // This method is used to read a Task by ID
     public Task? Read(int id)
     {
-        if (DataSource.Tasks.Exists(task => task.Id == id))
+        if (DataSource.Tasks.Exists(task => task?.Id == id))
         {
-            Task? task = DataSource.Tasks.Find(task => task.Id == id);
+            Task? task = DataSource.Tasks.Find(task => task?.Id == id);
             return task;
         }
         return null;
@@ -56,9 +56,9 @@ public class TaskImplementation : ITask
     // This method is used to update the task 
     public void Update(Task item)
     {
-        if (DataSource.Tasks.Exists(task => task.Id == item.Id))
+        if (DataSource.Tasks.Exists(task => task?.Id == item.Id))
         {
-            Task? task = DataSource.Tasks.Find(task => task.Id == item.Id);
+            Task? task = DataSource.Tasks.Find(task => task?.Id == item.Id);
             if (task is not null)
             {
                 DataSource.Tasks.Remove(task);

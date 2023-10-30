@@ -22,7 +22,7 @@ public class EngineerImplementation : IEngineer
         // Check if there are any Tasks associated with the Engineer
         for (int i = 0; i < DataSource.Tasks.Count; i++)
         {
-            if (DataSource.Tasks[i].Engineerld == id) 
+            if (DataSource.Tasks[i]?.Engineerld == id) 
             { 
                 throw new Exception($"Engineer with ID={id} cannot be deleted");
             }
@@ -40,9 +40,9 @@ public class EngineerImplementation : IEngineer
     // This method is used to read an Engineer by ID
     public Engineer? Read(int id)
     {
-        if (DataSource.Engineers.Exists(engineer => engineer.Id == id))
+        if (DataSource.Engineers.Exists(engineer => engineer?.Id == id))
         {
-            Engineer? engineer = DataSource.Engineers.Find(engineer => engineer.Id == id);
+            Engineer? engineer = DataSource.Engineers.Find(engineer => engineer?.Id == id);
             return engineer;
         }
         return null;
@@ -57,9 +57,9 @@ public class EngineerImplementation : IEngineer
     // This method is used to update the engineer 
     public void Update(Engineer item)
     {
-        if(DataSource.Engineers.Exists(engineer => engineer.Id == item.Id))
+        if(DataSource.Engineers.Exists(engineer => engineer?.Id == item.Id))
         {
-            Engineer? engineer = DataSource.Engineers.Find(engineer => engineer.Id == item.Id);
+            Engineer? engineer = DataSource.Engineers.Find(engineer => engineer?.Id == item.Id);
             if (engineer is not null)
             {
                 DataSource.Engineers.Remove(engineer);

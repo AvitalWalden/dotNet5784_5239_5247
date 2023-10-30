@@ -29,10 +29,10 @@ public class DependencyImplementation : IDependency
     public Dependency? Read(int id)
     {   
         // Check if a dependency with the given ID exists
-        if (DataSource.Dependencies.Exists(dependency => dependency.Id == id))
+        if (DataSource.Dependencies.Exists(dependency => dependency?.Id == id))
         {
             // Find the dependency with the given ID
-            Dependency? dependency = DataSource.Dependencies.Find(dependency => dependency.Id == id);
+            Dependency? dependency = DataSource.Dependencies.Find(dependency => dependency?.Id == id);
             return dependency;
         }
         // Return null if no dependency with the given ID is found
@@ -50,10 +50,10 @@ public class DependencyImplementation : IDependency
     public void Update(Dependency item)
     {
         // Check if a dependency with the given ID exists
-        if (DataSource.Dependencies.Exists(dependency => dependency.Id == item.Id))
+        if (DataSource.Dependencies.Exists(dependency => dependency?.Id == item.Id))
         {
             // Find the dependency with the given ID
-            Dependency? dependency = DataSource.Dependencies.Find(dependency => dependency.Id == item.Id);
+            Dependency? dependency = DataSource.Dependencies.Find(dependency => dependency?.Id == item.Id);
             // If the dependency is not null, remove it from the list and add the updated item
             if (dependency is not null)
             {

@@ -75,13 +75,13 @@ public static class Initialization
             double _cost;
             switch (_level) //????????????????????????????????? מה המחיר לשעה של כל אחד
             {
-                case EngineerExperience.Expert:
+                case EngineerExperience.EXPERT:
                     _cost = 450;
                     break;
-                case EngineerExperience.Junior:
+                case EngineerExperience.JUNIOR:
                     _cost = 200;
                     break;
-                case EngineerExperience.Rookie:
+                case EngineerExperience.ROOKIE:
                     _cost = 100;
                     break;
                 default:

@@ -21,28 +21,27 @@ namespace DalTest
             Console.WriteLine("Enter an alias of the task");
             string alias = Console.ReadLine()!;
             Console.WriteLine("Enter task start date");
-            DateTime? startDate = DateTime.Parse(Console.ReadLine()!); //צריך להוריד את את !
+            DateTime? startDate = DateTime.Parse(Console.ReadLine() ?? throw new Exception("The entered value is incorrect"));
             Console.WriteLine("Enter task schedule date");
-            DateTime? scheduleDate = DateTime.Parse(Console.ReadLine()!);  //צריך להוריד את את !
+            DateTime? scheduleDate = DateTime.Parse(Console.ReadLine() ?? throw new Exception("The entered value is incorrect"));
             Console.WriteLine("Enter task forecast date");
-            DateTime? forecastDate = DateTime.Parse(Console.ReadLine()!);  //צריך להוריד את את !
+            DateTime? forecastDate = DateTime.Parse(Console.ReadLine() ?? throw new Exception("The entered value is incorrect"));
             Console.WriteLine("Enter task deadline date");
-            DateTime? deadlineDate = DateTime.Parse(Console.ReadLine()!);  //צריך להוריד את את !
+            DateTime? deadlineDate = DateTime.Parse(Console.ReadLine() ?? throw new Exception("The entered value is incorrect"));
             Console.WriteLine("Enter task complete date");
-            DateTime? completeDate = DateTime.Parse(Console.ReadLine()!);  //צריך להוריד את את !
+            DateTime? completeDate = DateTime.Parse(Console.ReadLine() ?? throw new Exception("The entered value is incorrect"));
             Console.WriteLine("Enter product description of the task");
-            string? productDescription = Console.ReadLine()!;
+            string? productDescription = Console.ReadLine() ?? throw new Exception("The entered value is incorrect");
             Console.WriteLine("Enter remarks of the task");
-            string? remarks = Console.ReadLine();
+            string? remarks = Console.ReadLine() ?? throw new Exception("The entered value is incorrect");
             Console.WriteLine("Enter the id of the engineer");
-            int? engineerId = int.Parse(Console.ReadLine()!); //צריך להוריד את את !
-            DateTime CreatedAt = DateTime.Now;  //????????????????????? איפה מהתחלים
+            int? engineerId = int.Parse(Console.ReadLine() ?? throw new Exception("The entered value is incorrect"));
+            DateTime CreatedAt = DateTime.Now;
             Console.WriteLine("Enter the level of the task:");
             Console.WriteLine("For expert press 0");
             Console.WriteLine("For junior press 1");
             Console.WriteLine("For rookie press 2");
             int level = int.Parse(Console.ReadLine()!);
-            /////////////////// מה זה האם הזימון טוב??
             DO.Task newTask = new DO.Task(0, description, alias, false, CreatedAt, startDate, scheduleDate, forecastDate, deadlineDate, completeDate, productDescription, remarks, engineerId, (EngineerExperience)level);
             Console.WriteLine(s_dalTask!.Create(newTask)); // Input the new id of the task.
         }
@@ -51,42 +50,41 @@ namespace DalTest
         public static void UpdateTask()
         {
             Console.WriteLine("Enter a task's ID");
-            int idTask = int.Parse(Console.ReadLine()!);
-            if (s_dalTask!.Read(idTask) != null)
+            int idTask = int.Parse(Console.ReadLine() ?? throw new Exception("The entered value is incorrect"));
+            if (s_dalTask?.Read(idTask) != null)
             {
                 Console.WriteLine(idTask);
             }
             else 
             {
-                Console.WriteLine("Task with ID={idTask} not exists");/////////////////////////שחוזר לי ערך ריק, לזרוק שגיאה או להדפיס הודעה
+                throw new Exception("Task with ID={idTask} not exists");
             }
             Console.WriteLine("Enter a description of the task");
-            string description = Console.ReadLine()!;
+            string description = Console.ReadLine() ?? throw new Exception("The entered value is incorrect");
             Console.WriteLine("Enter an alias of the task");
-            string alias = Console.ReadLine()!;
+            string alias = Console.ReadLine() ?? throw new Exception("The entered value is incorrect");
             Console.WriteLine("Enter task start date");
-            DateTime? startDate = DateTime.Parse(Console.ReadLine()!); //צריך להוריד את את !
+            DateTime? startDate = DateTime.Parse(Console.ReadLine() ?? throw new Exception("The entered value is incorrect"));
             Console.WriteLine("Enter task schedule date");
-            DateTime? scheduleDate = DateTime.Parse(Console.ReadLine()!);  //צריך להוריד את את !
+            DateTime? scheduleDate = DateTime.Parse(Console.ReadLine() ?? throw new Exception("The entered value is incorrect"));
             Console.WriteLine("Enter task forecast date");
-            DateTime? forecastDate = DateTime.Parse(Console.ReadLine()!);  //צריך להוריד את את !
+            DateTime? forecastDate = DateTime.Parse(Console.ReadLine() ?? throw new Exception("The entered value is incorrect"));
             Console.WriteLine("Enter task deadline date");
-            DateTime? deadlineDate = DateTime.Parse(Console.ReadLine()!);  //צריך להוריד את את !
+            DateTime? deadlineDate = DateTime.Parse(Console.ReadLine() ?? throw new Exception("The entered value is incorrect"));
             Console.WriteLine("Enter task complete date");
-            DateTime? completeDate = DateTime.Parse(Console.ReadLine()!);  //צריך להוריד את את !
+            DateTime? completeDate = DateTime.Parse(Console.ReadLine() ?? throw new Exception("The entered value is incorrect"));
             Console.WriteLine("Enter product description of the task");
-            string? productDescription = Console.ReadLine()!;
+            string? productDescription = Console.ReadLine() ?? throw new Exception("The entered value is incorrect");
             Console.WriteLine("Enter remarks of the task");
             string? remarks = Console.ReadLine();
             Console.WriteLine("Enter the id of the engineer");
-            int? engineerId = int.Parse(Console.ReadLine()!); //צריך להוריד את את !
-            DateTime CreatedAt = DateTime.Now;  //????????????????????? איפה מהתחלים
+            int? engineerId = int.Parse(Console.ReadLine() ?? throw new Exception("The entered value is incorrect"));
+            DateTime CreatedAt = DateTime.Now;
             Console.WriteLine("Enter the level of the task:");
             Console.WriteLine("For expert press 0");
             Console.WriteLine("For junior press 1");
             Console.WriteLine("For rookie press 2");
-            int level = int.Parse(Console.ReadLine()!);
-            /////////////////// מה זה האם הזימון טוב??
+            int level = int.Parse(Console.ReadLine() ?? throw new Exception("The entered value is incorrect"));
             DO.Task newTask = new DO.Task(0, description, alias, false, CreatedAt, startDate, scheduleDate, forecastDate, deadlineDate, completeDate, productDescription, remarks, engineerId, (EngineerExperience)level);
             try
             {
@@ -103,7 +101,7 @@ namespace DalTest
         // The function read all tasks.
         public static void ReadAllTasks()
         {
-            List<DO.Task> tasks = s_dalTask!.ReadAll(); // ????/ DO.Task ????
+            List<DO.Task> tasks = s_dalTask!.ReadAll(); //?????????????????!!
             foreach (var task in tasks)
             {
                 Console.WriteLine(task);
@@ -113,13 +111,13 @@ namespace DalTest
         // The function read a Task by ID.
         public static void ReadTask(int idTask)
         {
-            if (s_dalTask!.Read(idTask) == null) ////////////////////////////////////מה זה הסימן קריאה כאן חוזר לי מהפונקציה הזו ערך ריק האם הסימן קריאה משפיעה
+            if (s_dalTask?.Read(idTask) == null)
             {
-                Console.WriteLine("Task with ID={idTask} not exists");/////////////////////////שחוזר לי ערך ריק, לזרוק שגיאה או להדפיס הודעה
+                throw new Exception("Task with ID={idTask} not exists");
             }
             else
             {
-                Console.WriteLine(s_dalTask!.Read(idTask));
+                Console.WriteLine(s_dalTask?.Read(idTask));
             }
         }
 
@@ -128,7 +126,7 @@ namespace DalTest
         {
             try
             {
-                s_dalTask!.Delete(idTaskDelete); // Input the new id of the task.
+                s_dalTask?.Delete(idTaskDelete); // Input the new id of the task.
             }
             catch (Exception ex)
             {
@@ -144,8 +142,8 @@ namespace DalTest
             Console.WriteLine("To read a task press b");
             Console.WriteLine("To read all tasks press c");
             Console.WriteLine("To update a task press d");
-            Console.WriteLine("To delete a task press e"); //??????????????? האם אפשר למחוק
-            char ch = char.Parse(Console.ReadLine()!);
+            Console.WriteLine("To delete a task press e");
+            char ch = char.Parse(Console.ReadLine() ?? throw new Exception("The entered value is incorrect"));
             switch (ch)
             {
                 case 'a': // Create a new task.
@@ -162,7 +160,7 @@ namespace DalTest
                 case 'd': // Update a task.
                     UpdateTask();
                     break;
-                case 'e': // Delete a task. //???????????????????// האם מותר למחוק משימה
+                case 'e': // Delete a task. 
                     Console.WriteLine("Enter a task ID");
                     int idTaskDelete = int.Parse(Console.ReadLine()!);
                     DeleteTask(idTaskDelete);
@@ -176,21 +174,20 @@ namespace DalTest
         public static void CreateEngineer()
         {
             Console.WriteLine("Enter the engineer's id");
-            int id = int.Parse(Console.ReadLine()!);
+            int id = int.Parse(Console.ReadLine() ?? throw new Exception("The entered value is incorrect"));
             Console.WriteLine("Enter the engineer's name");
-            string name = Console.ReadLine()!;
+            string name = Console.ReadLine() ?? throw new Exception("The entered value is incorrect");
             Console.WriteLine("Enter the engineer's email");
-            string email = Console.ReadLine()!;
+            string email = Console.ReadLine() ?? throw new Exception("The entered value is incorrect");
             Console.WriteLine("Enter the level of the task:");
             Console.WriteLine("For expert press 0");
             Console.WriteLine("For junior press 1");
             Console.WriteLine("For rookie press 2");
-            int level = int.Parse(Console.ReadLine()!);
+            int level = int.Parse(Console.ReadLine() ?? throw new Exception("The entered value is incorrect"));
             Console.WriteLine("Enter the engineer's cost");
-            double cost = double.Parse(Console.ReadLine()!);
-            /////////////////// מה זה האם הזימון טוב??
+            double cost = double.Parse(Console.ReadLine() ?? throw new Exception("The entered value is incorrect"));
             DO.Engineer newEngineer = new DO.Engineer(id, name, email, (EngineerExperience)level, cost);
-            Console.WriteLine(s_dalEngineer!.Create(newEngineer)); // Input the new id of the task.
+            Console.WriteLine(s_dalEngineer!.Create(newEngineer));
         }
 
         // The function update a engineer.
@@ -198,32 +195,31 @@ namespace DalTest
         {
             Console.WriteLine("Enter a engineer's ID");
             int idEngineer = int.Parse(Console.ReadLine()!);
-            if (s_dalEngineer!.Read(idEngineer) != null)
+            if (s_dalEngineer?.Read(idEngineer) != null)
             {
                 Console.WriteLine(idEngineer);
             }
             else
             {
-                Console.WriteLine("Engineer with ID={idEngineer} not exists");/////////////////////////שחוזר לי ערך ריק, לזרוק שגיאה או להדפיס הודעה
+                throw new Exception("Engineer with ID={idEngineer} not exists");
             }
             Console.WriteLine("Enter the engineer's id");
-            int id = int.Parse(Console.ReadLine()!);
+            int id = int.Parse(Console.ReadLine() ?? throw new Exception("The entered value is incorrect"));
             Console.WriteLine("Enter the engineer's name");
-            string name = Console.ReadLine()!;
+            string name = Console.ReadLine() ?? throw new Exception("The entered value is incorrect");
             Console.WriteLine("Enter the engineer's email");
-            string email = Console.ReadLine()!;
+            string email = Console.ReadLine() ?? throw new Exception("The entered value is incorrect");
             Console.WriteLine("Enter the level of the task:");
             Console.WriteLine("For expert press 0");
             Console.WriteLine("For junior press 1");
             Console.WriteLine("For rookie press 2");
-            int level = int.Parse(Console.ReadLine()!);
+            int level = int.Parse(Console.ReadLine() ?? throw new Exception("The entered value is incorrect"));
             Console.WriteLine("Enter the engineer's cost");
-            double cost = double.Parse(Console.ReadLine()!);
-            /////////////////// מה זה האם הזימון טוב??
+            double cost = double.Parse(Console.ReadLine() ?? throw new Exception("The entered value is incorrect"));
             DO.Engineer newEngineer = new DO.Engineer(id, name, email, (EngineerExperience)level, cost);
             try
             {
-                s_dalEngineer!.Update(newEngineer); // Input the new id of the task.
+                s_dalEngineer?.Update(newEngineer);
             }
             catch (Exception ex)
             {
@@ -236,20 +232,20 @@ namespace DalTest
         // The function read a engineer by ID.
         public static void ReadEngineer(int idEngineer)
         {
-            if (s_dalEngineer!.Read(idEngineer) == null) ////////////////////////////////////מה זה הסימן קריאה כאן חוזר לי מהפונקציה הזו ערך ריק האם הסימן קריאה משפיעה
+            if (s_dalEngineer?.Read(idEngineer) == null)
             {
-                Console.WriteLine("Engineer with ID={idTask} not exists");/////////////////////////שחוזר לי ערך ריק, לזרוק שגיאה או להדפיס הודעה
+                throw new Exception("Engineer with ID={idTask} not exists");
             }
             else
             {
-                Console.WriteLine(s_dalEngineer!.Read(idEngineer));
+                Console.WriteLine(s_dalEngineer?.Read(idEngineer));
             }
         }
 
         // The function read all the engineers.
         public static void ReadAllEngineers()
         {
-            List<DO.Engineer> engineers = s_dalEngineer!.ReadAll(); // ????/ DO.Task ????
+            List<DO.Engineer> engineers = s_dalEngineer!.ReadAll();  //?????????????????!!
             foreach (var engineer in engineers)
             {
                 Console.WriteLine(engineer);
@@ -261,7 +257,7 @@ namespace DalTest
         {
             try
             {
-                s_dalEngineer!.Delete(idEngineerDelete); // Input the new id of the task.
+                s_dalEngineer?.Delete(idEngineerDelete); // Input the new id of the task.
             }
             catch (Exception ex)
             {
@@ -276,8 +272,8 @@ namespace DalTest
             Console.WriteLine("To read an engineer press b");
             Console.WriteLine("To read all engineers press c");
             Console.WriteLine("To update an engineer press d");
-            Console.WriteLine("To delete an engineer press e"); //??????????????? האם אפשר למחוק
-            char ch = char.Parse(Console.ReadLine()!);
+            Console.WriteLine("To delete an engineer press e");
+            char ch = char.Parse(Console.ReadLine() ?? throw new Exception("The entered value is incorrect"));
             switch (ch)
             {
                 case 'a': // Create a new engineer.
@@ -294,7 +290,7 @@ namespace DalTest
                 case 'd': // Update a engineer.
                     UpdateEngineer();
                     break;
-                case 'e': // Delete a engineer. //???????????????????// האם מותר למחוק משימה
+                case 'e': // Delete a engineer.
                     Console.WriteLine("Enter a engineer's ID");
                     int idEngineerDelete = int.Parse(Console.ReadLine()!);
                     DeleteEngineer(idEngineerDelete);
@@ -308,12 +304,11 @@ namespace DalTest
         public static void CreatDependency()
         {
             Console.WriteLine("Enter ID number of pending task");
-            int? dependentTask = int.Parse(Console.ReadLine()!);
+            int? dependentTask = int.Parse(Console.ReadLine() ?? throw new Exception("The entered value is incorrect"));
             Console.WriteLine("Enter ID number of a previous assignment");
-            int? dependsOnTask = int.Parse(Console.ReadLine()!);
-            /////////////////// מה זה האם הזימון טוב??
+            int? dependsOnTask = int.Parse(Console.ReadLine() ?? throw new Exception("The entered value is incorrect"));
             DO.Dependency newDependency = new DO.Dependency(0, dependentTask, dependsOnTask);
-            Console.WriteLine(s_dalDependency!.Create(newDependency)); // Input the new id of the new dependency.
+            Console.WriteLine(s_dalDependency?.Create(newDependency)); // Input the new id of the new dependency.
         }
 
         // The function update a dependency.
@@ -327,17 +322,16 @@ namespace DalTest
             }
             else
             {
-                Console.WriteLine("Dependency with ID={idDependency} not exists");/////////////////////////שחוזר לי ערך ריק, לזרוק שגיאה או להדפיס הודעה
+                throw new Exception("Dependency with ID={idDependency} not exists");
             }
             Console.WriteLine("Enter ID number of pending task");
-            int? dependentTask = int.Parse(Console.ReadLine()!);
+            int? dependentTask = int.Parse(Console.ReadLine() ?? throw new Exception("The entered value is incorrect"));
             Console.WriteLine("Enter ID number of a previous assignment");
-            int? dependsOnTask = int.Parse(Console.ReadLine()!);
-            /////////////////// מה זה האם הזימון טוב??
+            int? dependsOnTask = int.Parse(Console.ReadLine() ?? throw new Exception("The entered value is incorrect"));
             DO.Dependency newDependency = new DO.Dependency(0, dependentTask, dependsOnTask);
             try
             {
-                s_dalDependency!.Update(newDependency); // Input the new id of the dependency.
+                s_dalDependency?.Update(newDependency); // Input the new id of the dependency.
             }
             catch (Exception ex)
             {
@@ -350,7 +344,7 @@ namespace DalTest
         // The function read all Dependencies.
         public static void readAllDependencies()
         {
-            List<DO.Dependency> dependencies = s_dalDependency!.ReadAll(); // ????/ DO.Task ????
+            List<DO.Dependency> dependencies = s_dalDependency!.ReadAll();  //?????????????????!!
             foreach (var dependency in dependencies)
             {
                 Console.WriteLine(dependency);
@@ -360,13 +354,13 @@ namespace DalTest
         // The function read a dependency by ID.
         public static void readDependency(int idDependency)
         {
-            if (s_dalTask!.Read(idDependency) == null) ////////////////////////////////////מה זה הסימן קריאה כאן חוזר לי מהפונקציה הזו ערך ריק האם הסימן קריאה משפיעה
+            if (s_dalTask?.Read(idDependency) == null)
             {
-                Console.WriteLine("Dependency with ID={idDependency} not exists");/////////////////////////שחוזר לי ערך ריק, לזרוק שגיאה או להדפיס הודעה
+                throw new Exception("Dependency with ID={idDependency} not exists");
             }
             else
             {
-                Console.WriteLine(s_dalTask!.Read(idDependency));
+                Console.WriteLine(s_dalTask?.Read(idDependency));
             }
         }
 
@@ -375,7 +369,7 @@ namespace DalTest
         {
             try
             {
-                s_dalDependency!.Delete(idDependency); 
+                s_dalDependency?.Delete(idDependency); 
             }
             catch (Exception ex)
             {
@@ -391,7 +385,7 @@ namespace DalTest
             Console.WriteLine("To read depency between tasks press b");
             Console.WriteLine("To read all depency between tasks press c");
             Console.WriteLine("To update depency between tasks press d");
-            Console.WriteLine("To delete depency between tasks press e"); //??????????????? האם אפשר למחוק                                                      
+            Console.WriteLine("To delete depency between tasks press e");                                                      
             char ch = char.Parse(Console.ReadLine()!);
             switch (ch)
             {
@@ -409,7 +403,7 @@ namespace DalTest
                 case 'd': // Update a dependency.
                     updateDependency();
                     break;
-                case 'e': // Delete a dependency. //???????????????????// האם מותר למחוק משימה
+                case 'e': // Delete a dependency.
                     Console.WriteLine("Enter a Dependency ID");
                     int idDependencyDelete = int.Parse(Console.ReadLine()!);
                     deleteDependency(idDependencyDelete);
