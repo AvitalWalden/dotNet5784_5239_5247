@@ -43,7 +43,7 @@ public class DependencyImplementation : IDependency
     public List<Dependency> ReadAll()
     {
         // Return a new list containing all dependencies in the DataSource
-        return new List<Dependency>(DataSource.Dependencies);
+        return new List<Dependency>(DataSource.Dependencies!);
     }
 
     // This method is used to update a dependency

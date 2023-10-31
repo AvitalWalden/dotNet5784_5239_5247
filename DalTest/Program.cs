@@ -101,7 +101,7 @@ namespace DalTest
         // The function read all tasks.
         public static void ReadAllTasks()
         {
-            List<DO.Task> tasks = s_dalTask!.ReadAll(); //?????????????????!!
+            List<DO.Task> tasks = s_dalTask?.ReadAll() ?? throw new Exception("There are no tasks.");
             foreach (var task in tasks)
             {
                 Console.WriteLine(task);
@@ -122,7 +122,7 @@ namespace DalTest
         }
 
         // The function delete a task.
-        public static void DeleteTask(int idTaskDelete)  /// ?? האם מותר למחוק משימה
+        public static void DeleteTask(int idTaskDelete)
         {
             try
             {
@@ -245,7 +245,7 @@ namespace DalTest
         // The function read all the engineers.
         public static void ReadAllEngineers()
         {
-            List<DO.Engineer> engineers = s_dalEngineer!.ReadAll();  //?????????????????!!
+            List<DO.Engineer> engineers = s_dalEngineer?.ReadAll() ?? throw new Exception("There are no engineers.");
             foreach (var engineer in engineers)
             {
                 Console.WriteLine(engineer);
@@ -344,7 +344,7 @@ namespace DalTest
         // The function read all Dependencies.
         public static void readAllDependencies()
         {
-            List<DO.Dependency> dependencies = s_dalDependency!.ReadAll();  //?????????????????!!
+            List<DO.Dependency> dependencies = s_dalDependency?.ReadAll() ?? throw new Exception("There are no dependencies.");
             foreach (var dependency in dependencies)
             {
                 Console.WriteLine(dependency);

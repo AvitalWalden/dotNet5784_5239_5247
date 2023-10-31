@@ -50,7 +50,7 @@ public class TaskImplementation : ITask
     // This method is used to read all Tasks
     public List<Task> ReadAll()
     {
-        return new List<Task>(DataSource.Tasks);
+        return new List<Task>(DataSource.Tasks!);
     }
 
     // This method is used to update the task 
