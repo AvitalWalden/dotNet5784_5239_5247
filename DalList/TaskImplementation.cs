@@ -19,15 +19,22 @@ public class TaskImplementation : ITask
     // This method is used to delete a Task by ID
     public void Delete(int id)
     {
-        for (int i = 0; i < DataSource.Dependencies.Count; i++)
-        {
-            if (DataSource.Dependencies[i]?.DependentTask == id || DataSource.Dependencies[i]?.DependsOnTask == id)
-            {
-                throw new Exception($"Task with ID={id} cannot be deleted");
-            }
-        }
         if (Read(id) is not null)
         {
+            for (int i = 0; i < DataSource.Dependencies.Count; i++)
+            {
+                if (DataSource.Dependencies[i]?.DependsOnTask == id)
+                {
+                   throw new Exception($"Task with ID={id} cannot be deleted");
+                }
+            }
+            for (int i = 0;i < DataSource.Dependencies.Count;i++)
+            {
+                if (DataSource.Dependencies[i]?.DependentTask == id)
+                {
+                    DataSource.Dependencies.RemoveAt(DataSource.Dependencies[i]!.Id);
+                }
+            }
             DataSource.Tasks.RemoveAt(id);
         }
         else
