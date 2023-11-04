@@ -21,7 +21,7 @@ public record Task
     string Description,
     string Alias,
     bool Milestone = false,
-    DateTime? CreatedAt = null,
+    //DateTime? CreatedAt = null,
     DateTime? Start = null,
     DateTime? ScheduledDate = null,
     DateTime? ForecastDate = null,
@@ -31,4 +31,12 @@ public record Task
     string? Remarks = null,
     int? Engineerld = null,
     EngineerExperience? CopmlexityLevel = null
-);
+)
+{
+    public Task() : this(0, "", "") { } //empty ctor for stage 3
+
+    /// <summary>
+    /// CreatedAt - create date of the current task record
+    /// </summary>
+    public DateTime CreatedAt => DateTime.Now; //get only
+}

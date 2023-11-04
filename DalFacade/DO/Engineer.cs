@@ -14,4 +14,17 @@ public record Engineer
     string Email,
     EngineerExperience level,
     double cost
-);
+)
+{
+    public Engineer() : this(0, "", "", EngineerExperience.JUNIOR, 0) { }
+}
+
+
+//public Engineer(int Id, string Name, string Email, EngineerExperience level, double cost)
+//{
+//    this.Id = Id;
+//    this.Name = Name;
+//    this.Email = Email;
+//    this.level = level;
+//    this.cost = cost;
+//}
