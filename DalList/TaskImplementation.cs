@@ -25,10 +25,10 @@ public class TaskImplementation : ITask
             {
                 if (DataSource.Dependencies[i]?.DependsOnTask == id)
                 {
-                    throw new Exception($"Task with ID={id} cannot be deleted");
+                   throw new Exception($"Task with ID={id} cannot be deleted");
                 }
             }
-            for (int i = 0; i < DataSource.Dependencies.Count; i++)
+            for (int i = 0;i < DataSource.Dependencies.Count;i++)
             {
                 if (DataSource.Dependencies[i]?.DependentTask == id)
                 {
