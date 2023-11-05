@@ -35,6 +35,23 @@ public record Task
 {
     public Task() : this(0, "", "") { } //empty ctor for stage 3
 
+    public Task(int Id, string Description, string Alias, bool Milestone, DateTime? Start, DateTime? ScheduledDate, DateTime? ForecastDate, DateTime? Deadline, DateTime? Complete, string? ProductDescription, string? Remarks, int? Engineerld, EngineerExperience? CopmlexityLevel) :this()
+    {
+        this.Id = Id;
+        this.Description = Description;
+        this.Alias = Alias;
+        this.Milestone = Milestone;
+        this.Start = Start;
+        this.ScheduledDate = ScheduledDate;
+        this.ForecastDate = ForecastDate;
+        this.Deadline = Deadline;
+        this.Complete = Complete;
+        this.ProductDescription = ProductDescription;
+        this.Remarks = Remarks;
+        this.Engineerld = Engineerld;
+        this.CopmlexityLevel = CopmlexityLevel;
+    }
+
     /// <summary>
     /// CreatedAt - create date of the current task record
     /// </summary>

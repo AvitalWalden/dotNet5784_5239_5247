@@ -96,7 +96,41 @@ public static class Initialization
     // Create 100 tasks
     private static void createTasks() //לא עשינו פומקציית אתחול
     {
-        
+        (string, string)[] detailsTask = 
+        {
+            ("Homework exercise 1 in algorithms","algorithms"),
+            ("Homework exercise 2 in algorithms","algorithms"),
+            ("Homework exercise 3 in algorithms","algorithms"),
+            ("Homework in the introduction to information assurance exercise 1","mlm"),
+            ("Reading the material in databases","databases"),
+            ("Homework in the introduction to information assurance Exercise 2","mlm"),
+            ("Project on the web about React","web"),
+            ("Homework in databases exercise 1","databases"),
+            ("Learn to examine databases","databases"),
+            ("Homework in logic exercise 1","logic"),
+        };
+        List<Engineer> allEngineer = s_dalEngineer!.ReadAll();
+
+        //for (int i = 0; i < detailsTask.Length; i++)
+        //{
+        //    Set other task properties as needed
+        //    Task newTask = new(
+        //        0,
+        //        detailsTask[i].Item1,
+        //        detailsTask[i].Item2,
+        //        false, // Milestone 
+        //               DateTime.Now, //???????????? האם זה בתור תכונה
+        //        null, // Start Date (you can adjust this)
+        //        null, // ScheduledDate (you can adjust this)
+        //        null, // DeadLine (you can adjust this)
+        //        null, // Complete (you can adjust this)
+        //        "Product description for " + detailsTask[i].Item1,
+        //        "Remarks for " + detailsTask[i].Item1,
+        //        allEngineer[i].Id,
+        //        allEngineer[i].level
+        //    );
+        //    s_dalTask!.Create(newTask);
+        //}
     }
 
     // Create 250 dependencies
