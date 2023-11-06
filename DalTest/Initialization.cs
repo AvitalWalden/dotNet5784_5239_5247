@@ -11,11 +11,6 @@ public static class Initialization
 
     private static readonly Random s_rand = new();
 
-    private static IEngineer? dalEngineer;
-    private static ITask? dalTask;
-    private static IDependency? dalDependency;
-
-
     // Create 40 engineers
     private static void createEngineers()
     {
@@ -73,7 +68,7 @@ public static class Initialization
             string _email = detailsEngineer[i].Item2;
             EngineerExperience _level = (EngineerExperience)(_id % Enum.GetNames<EngineerExperience>().Count());
             double _cost;
-            switch (_level) //????????????????????????????????? מה המחיר לשעה של כל אחד
+            switch (_level) 
             {
                 case EngineerExperience.EXPERT:
                     _cost = 450;
@@ -136,19 +131,19 @@ public static class Initialization
     // Create 250 dependencies
     private static void createDependencies() //לא עשינו פומקציית אתחול
     {
-        for (int i = 0; i < 150; i++)
-        {
-
-        }
+        Dependency dependency = new Dependency(0, 0,1);
+        s_dalDependency!.Create(dependency);
+        Dependency dependency1 = new Dependency(0, 3, 5);
+        s_dalDependency!.Create(dependency);
     }
     //?????????????????????????????????//, לא אמרו שמקבלים פרמטרים
-    public static void Do(IEngineer? s_dalEngineer, ITask? s_dalTask, IDependency? s_dalDependency)
+    public static void Do(IEngineer? dalEngineer, ITask? dalTask, IDependency? dalDependency)
     {
         s_dalDependency = dalDependency ?? throw new NullReferenceException("DAL can not be null!");
         s_dalEngineer = dalEngineer ?? throw new NullReferenceException("DAL can not be null!");
         s_dalTask = dalTask ?? throw new NullReferenceException("DAL can not be null!");
-        createDependencies();
         createEngineers();
         createTasks();
+        createDependencies();
     }
 }

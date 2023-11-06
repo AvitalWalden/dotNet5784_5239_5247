@@ -416,8 +416,7 @@ namespace DalTest
 
         static void Main(string[] args)
         {
-            try
-            {
+           
                 Initialization.Do(s_dalEngineer, s_dalTask, s_dalDependency);
                 Console.WriteLine("For a task press 1");
                 Console.WriteLine("For an engineer press 2");
@@ -426,29 +425,31 @@ namespace DalTest
                 int choose = int.Parse(Console.ReadLine()!);
                 while (choose != 0)
                 {
-                    switch (choose)
-                    {
-                        case 1:
-                            Tasks();//doing this function
-                            break;
-                        case 2:
-                            Engineers(); //doing this function 
-                            break;
-                        case 3:
-                            Dependencies();
-                            break;
-                        default:
-                            Console.WriteLine("The number entered is invalid");
-                            break;
-                    }
-                    Console.WriteLine("enter a number");
-                    choose = int.Parse(Console.ReadLine()!);
+                      try
+                      {
+                            switch (choose)
+                            {
+                                case 1:
+                                    Tasks();//doing this function
+                                    break;
+                                case 2:
+                                    Engineers(); //doing this function 
+                                    break;
+                                case 3:
+                                    Dependencies();
+                                    break;
+                                default:
+                                    Console.WriteLine("The number entered is invalid");
+                                    break;
+                            }
+                            Console.WriteLine("enter a number");
+                            choose = int.Parse(Console.ReadLine()!);
+                      }
+                      catch (Exception ex)
+                      {
+                           Console.WriteLine(ex);
+                      }   
                 }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
-            }
         }
     }
 }
