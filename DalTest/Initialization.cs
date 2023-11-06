@@ -71,7 +71,7 @@ public static class Initialization
             while (s_dalEngineer!.Read(_id) != null);
             string _name = detailsEngineer[i].Item1;
             string _email = detailsEngineer[i].Item2;
-            EngineerExperience _level = (EngineerExperience)(_id % 3);
+            EngineerExperience _level = (EngineerExperience)(_id % Enum.GetNames<EngineerExperience>().Count());
             double _cost;
             switch (_level) //????????????????????????????????? מה המחיר לשעה של כל אחד
             {
@@ -109,28 +109,28 @@ public static class Initialization
             ("Learn to examine databases","databases"),
             ("Homework in logic exercise 1","logic"),
         };
-        List<Engineer> allEngineer = s_dalEngineer!.ReadAll();
+        List<Engineer> allEngineer = s_dalEngineer!.ReadAll();//????????
 
-        //for (int i = 0; i < detailsTask.Length; i++)
-        //{
-        //    Set other task properties as needed
-        //    Task newTask = new(
-        //        0,
-        //        detailsTask[i].Item1,
-        //        detailsTask[i].Item2,
-        //        false, // Milestone 
-        //               DateTime.Now, //???????????? האם זה בתור תכונה
-        //        null, // Start Date (you can adjust this)
-        //        null, // ScheduledDate (you can adjust this)
-        //        null, // DeadLine (you can adjust this)
-        //        null, // Complete (you can adjust this)
-        //        "Product description for " + detailsTask[i].Item1,
-        //        "Remarks for " + detailsTask[i].Item1,
-        //        allEngineer[i].Id,
-        //        allEngineer[i].level
-        //    );
-        //    s_dalTask!.Create(newTask);
-        //}
+        for (int i = 0; i < detailsTask.Length; i++)
+        {
+            //Set other task properties as needed
+            Task newTask = new(
+                0,
+                detailsTask[i].Item1,
+                detailsTask[i].Item2,
+                false, // Milestone 
+                null, // Start Date (you can adjust this)
+                null, // ScheduledDate (you can adjust this)
+                null, // DeadLine (you can adjust this)
+                null, // Complete (you can adjust this)
+                null, // Complete (you can adjust this)
+                "Product description for " + detailsTask[i].Item1,
+                "Remarks for " + detailsTask[i].Item2,
+                allEngineer[i].Id,
+                allEngineer[i].level
+            );
+            s_dalTask!.Create(newTask);
+        }
     }
 
     // Create 250 dependencies
