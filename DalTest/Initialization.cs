@@ -136,7 +136,6 @@ public static class Initialization
         Dependency dependency1 = new Dependency(0, 3, 5);
         s_dalDependency!.Create(dependency);
     }
-    //?????????????????????????????????//, לא אמרו שמקבלים פרמטרים
     public static void Do(IEngineer? dalEngineer, ITask? dalTask, IDependency? dalDependency)
     {
         s_dalDependency = dalDependency ?? throw new NullReferenceException("DAL can not be null!");

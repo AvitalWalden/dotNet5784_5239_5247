@@ -198,17 +198,15 @@ namespace DalTest
         public static void UpdateEngineer()
         {
             Console.WriteLine("Enter a engineer's ID");
-            int idEngineer = int.Parse(Console.ReadLine()!);
-            if (s_dalEngineer?.Read(idEngineer) != null)
+            int id = int.Parse(Console.ReadLine() ?? throw new Exception("The entered value is incorrect"));
+            if (s_dalEngineer?.Read(id) != null)
             {
-                Console.WriteLine(idEngineer);
+                Console.WriteLine(s_dalEngineer?.Read(id));
             }
             else
             {
                 throw new Exception("Engineer with ID={idEngineer} not exists");
             }
-            Console.WriteLine("Enter the engineer's id");
-            int id = int.Parse(Console.ReadLine() ?? throw new Exception("The entered value is incorrect"));
             Console.WriteLine("Enter the engineer's name");
             string name = Console.ReadLine() ?? throw new Exception("The entered value is incorrect");
             Console.WriteLine("Enter the engineer's email");
@@ -324,9 +322,9 @@ namespace DalTest
         {
             Console.WriteLine("Enter a dependency's ID");
             int idDependency = int.Parse(Console.ReadLine()!);
-            if (s_dalTask!.Read(idDependency) != null)
+            if (s_dalDependency!.Read(idDependency) != null)
             {
-                Console.WriteLine(idDependency);
+                Console.WriteLine(s_dalDependency!.Read(idDependency));
             }
             else
             {

@@ -27,9 +27,10 @@ public class EngineerImplementation : IEngineer
                 throw new Exception($"Engineer with ID={id} cannot be deleted");
             }
         }
-        if (Read(id) is not null)
+        Engineer? engneerToDelete = Read(id);
+        if (engneerToDelete is not null)
         {
-            DataSource.Tasks.RemoveAt(id);
+            DataSource.Engineers.Remove(engneerToDelete);
 
         }
         else
