@@ -59,10 +59,11 @@ namespace DalTest
             {
                 throw new Exception("Task with ID={idTask} not exists");
             }
+            DO.Task? updateTask = s_dalTask?.Read(idTask);
             Console.WriteLine("Enter a description of the task");
-            string description = Console.ReadLine() ?? throw new Exception("The entered value is incorrect");
+            string description = Console.ReadLine() ?? updateTask!.Description;
             Console.WriteLine("Enter an alias of the task");
-            string alias = Console.ReadLine() ?? throw new Exception("The entered value is incorrect");
+            string alias = Console.ReadLine() ?? updateTask!.Alias;
             Console.WriteLine("Enter task start date");
             DateTime? startDate = DateTime.Parse(Console.ReadLine() ?? throw new Exception("The entered value is incorrect"));
             Console.WriteLine("Enter task schedule date");
@@ -74,7 +75,7 @@ namespace DalTest
             Console.WriteLine("Enter task complete date");
             DateTime? completeDate = DateTime.Parse(Console.ReadLine() ?? throw new Exception("The entered value is incorrect"));
             Console.WriteLine("Enter product description of the task");
-            string? productDescription = Console.ReadLine() ?? throw new Exception("The entered value is incorrect");
+            string? productDescription = Console.ReadLine() ?? updateTask!.ProductDescription;
             Console.WriteLine("Enter remarks of the task");
             string? remarks = Console.ReadLine();
             Console.WriteLine("Enter the id of the engineer");
