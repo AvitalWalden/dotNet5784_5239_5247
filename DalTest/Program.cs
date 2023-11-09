@@ -233,7 +233,7 @@ namespace DalTest
             Console.WriteLine("For rookie press 2");
             int level = int.Parse(Console.ReadLine()!);
             Console.WriteLine("Enter the engineer's cost");
-            if (level != 1 || level != 2 || level != 3)
+            if (level != 0 || level != 1 || level != 2)
             { level = (int)updateEngineer.level!; }
             double cost = double.Parse(Console.ReadLine()!);
             DO.Engineer newEngineer = new DO.Engineer(id, name, email, (EngineerExperience)level, cost);
