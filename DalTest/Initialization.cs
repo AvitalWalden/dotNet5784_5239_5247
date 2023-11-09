@@ -118,7 +118,6 @@ public static class Initialization
                 null, // ScheduledDate (you can adjust this)
                 null, // DeadLine (you can adjust this)
                 null, // Complete (you can adjust this)
-                null, // Complete (you can adjust this)
                 "Product description for " + detailsTask[i].Item1,
                 "Remarks for " + detailsTask[i].Item2,
                 allEngineer[i].Id,

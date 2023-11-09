@@ -22,8 +22,6 @@ namespace DalTest
             string alias = Console.ReadLine()!;
             Console.WriteLine("Enter task start date");
             DateTime? startDate = DateTime.Parse(Console.ReadLine()!);
-            Console.WriteLine("Enter task schedule date");
-            DateTime? scheduleDate = DateTime.Parse(Console.ReadLine()!);
             Console.WriteLine("Enter task forecast date");
             DateTime? forecastDate = DateTime.Parse(Console.ReadLine()!);
             Console.WriteLine("Enter task deadline date");
@@ -42,7 +40,7 @@ namespace DalTest
             Console.WriteLine("For junior press 1");
             Console.WriteLine("For rookie press 2");
             int level = int.Parse(Console.ReadLine()!);
-            DO.Task newTask = new DO.Task(0, description, alias, false, startDate, scheduleDate, forecastDate, deadlineDate, completeDate, productDescription, remarks, engineerId, (EngineerExperience)level);
+            DO.Task newTask = new DO.Task(0, description, alias, false, startDate, forecastDate, deadlineDate, completeDate, productDescription, remarks, engineerId, (EngineerExperience)level);
             Console.WriteLine(s_dalTask!.Create(newTask)); // Input the new id of the task.
         }
         
@@ -76,10 +74,6 @@ namespace DalTest
             DateTime? startDate = DateTime.Parse(Console.ReadLine()!);
             if (!startDate.HasValue) // If the input was incorrect or not entered
             {  startDate = updateTask.Start; }
-            Console.WriteLine("Enter task schedule date");
-            DateTime? scheduleDate = DateTime.Parse(Console.ReadLine()!);
-            if (!scheduleDate.HasValue) // If the input was incorrect or not entered
-            { scheduleDate = updateTask.Start; }
             Console.WriteLine("Enter task forecast date");
             DateTime? forecastDate = DateTime.Parse(Console.ReadLine()!);
             if (!forecastDate.HasValue) // If the input was incorrect or not entered
@@ -96,7 +90,7 @@ namespace DalTest
             string? productDescription = Console.ReadLine()!;
             if (productDescription == "" || productDescription == null)
             {
-                productDescription = updateTask.ProductDescription;
+                productDescription = updateTask.Deliverables;
             }
             Console.WriteLine("Enter remarks of the task");
             string? remarks = Console.ReadLine()!;
@@ -116,7 +110,7 @@ namespace DalTest
             int level = int.Parse(Console.ReadLine()!);
             if (level !=  1 || level != 2 || level != 3 )
             { level = (int)updateTask.CopmlexityLevel!; }
-            DO.Task newTask = new DO.Task(idTask, description, alias, false, startDate, scheduleDate, forecastDate, deadlineDate, completeDate, productDescription, remarks, engineerId, (EngineerExperience)level);
+            DO.Task newTask = new DO.Task(idTask, description, alias, false, startDate, forecastDate, deadlineDate, completeDate, productDescription, remarks, engineerId, (EngineerExperience)level);
             try
             {
                 s_dalTask!.Update(newTask); // Input the new id of the task.
@@ -410,13 +404,13 @@ namespace DalTest
         // The function read a dependency by ID.
         public static void readDependency(int idDependency)
         {
-            if (s_dalTask?.Read(idDependency) == null)
+            if (s_dalDependency?.Read(idDependency) == null)
             {
                 throw new Exception($"Dependency with ID={idDependency} not exists");
             }
             else
             {
-                Console.WriteLine(s_dalTask?.Read(idDependency));
+                Console.WriteLine(s_dalDependency?.Read(idDependency));
             }
         }
 

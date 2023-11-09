@@ -11,7 +11,7 @@
 /// <param name="ForecastDate">Estimated date of completion the task</param>
 /// <param name="Deadline">Final date for completion the task</param>
 /// <param name="Complete">Task completion date</param>
-/// <param name="ProductDescription">Product (a string describing the product)</param>
+/// <param name="Deliverables">Product (a string describing the product)</param>
 /// <param name="Remarks">Notes of the task</param>
 /// <param name="Engineerld">The ID of the engineer assigned to the task</param>
 /// <param name="CopmlexityLevel">Difficulty level of the task</param>
@@ -21,13 +21,11 @@ public record Task
     string Description,
     string Alias,
     bool Milestone = false,
-    //DateTime? CreatedAt = null,
     DateTime? Start = null,
-    DateTime? ScheduledDate = null,
     DateTime? ForecastDate = null,
     DateTime? Deadline = null,
     DateTime? Complete = null,
-    string? ProductDescription = null,
+    string? Deliverables = null,
     string? Remarks = null,
     int? Engineerld = null,
     EngineerExperience? CopmlexityLevel = null
