@@ -61,9 +61,17 @@ namespace DalTest
             }
             DO.Task updateTask = s_dalTask?.Read(idTask)!;
             Console.WriteLine("Enter a description of the task");
-            string description = Console.ReadLine() ?? updateTask.Description;
+            string description = Console.ReadLine()!;
+            if (description == "" || description == null)
+            {
+                description = updateTask.Description;
+            }
             Console.WriteLine("Enter an alias of the task");
-            string alias = Console.ReadLine() ?? updateTask.Alias;
+            string alias = Console.ReadLine()!;
+            if (alias == "" || alias == null)
+            {
+                alias = updateTask.Alias;
+            }
             Console.WriteLine("Enter task start date");
             DateTime? startDate = DateTime.Parse(Console.ReadLine()!);
             if (!startDate.HasValue) // If the input was incorrect or not entered
@@ -85,12 +93,20 @@ namespace DalTest
             if (!deadlineDate.HasValue) // If the input was incorrect or not entered
             { deadlineDate = updateTask.Complete; }
             Console.WriteLine("Enter product description of the task");
-            string? productDescription = Console.ReadLine() ?? updateTask.ProductDescription;
+            string? productDescription = Console.ReadLine()!;
+            if (productDescription == "" || productDescription == null)
+            {
+                productDescription = updateTask.ProductDescription;
+            }
             Console.WriteLine("Enter remarks of the task");
-            string? remarks = Console.ReadLine() ?? updateTask.Remarks; ;
+            string? remarks = Console.ReadLine()!;
+            if (remarks == "" || remarks == null)
+            {
+                remarks = updateTask.Remarks;
+            }
             Console.WriteLine("Enter the id of the engineer");
             int? engineerId = int.Parse(Console.ReadLine()!);
-            if (!engineerId.HasValue)
+            if (engineerId == null)
             {  engineerId = updateTask.Engineerld;}
             DateTime CreatedAt = DateTime.Now;
             Console.WriteLine("Enter the level of the task:");
@@ -224,9 +240,17 @@ namespace DalTest
             }
             Engineer updateEngineer = s_dalEngineer?.Read(id)!;
             Console.WriteLine("Enter the engineer's name");
-            string name = Console.ReadLine() ?? updateEngineer.Name;
+            string name = Console.ReadLine()!;
+            if (name == "" || name == null)
+            {
+                name = updateEngineer.Name;
+            }
             Console.WriteLine("Enter the engineer's email");
-            string email = Console.ReadLine() ?? updateEngineer.Email;
+            string email = Console.ReadLine()!;
+            if (email == "" || email == null)
+            {
+                email = updateEngineer.Email;
+            }
             Console.WriteLine("Enter the level of the task:");
             Console.WriteLine("For expert press 0");
             Console.WriteLine("For junior press 1");
