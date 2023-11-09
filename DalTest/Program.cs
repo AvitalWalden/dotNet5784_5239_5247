@@ -21,21 +21,21 @@ namespace DalTest
             Console.WriteLine("Enter an alias of the task");
             string alias = Console.ReadLine()!;
             Console.WriteLine("Enter task start date");
-            DateTime? startDate = DateTime.Parse(Console.ReadLine() ?? throw new Exception("The entered value is incorrect"));
+            DateTime? startDate = DateTime.Parse(Console.ReadLine()!);
             Console.WriteLine("Enter task schedule date");
-            DateTime? scheduleDate = DateTime.Parse(Console.ReadLine() ?? throw new Exception("The entered value is incorrect"));
+            DateTime? scheduleDate = DateTime.Parse(Console.ReadLine()!);
             Console.WriteLine("Enter task forecast date");
-            DateTime? forecastDate = DateTime.Parse(Console.ReadLine() ?? throw new Exception("The entered value is incorrect"));
+            DateTime? forecastDate = DateTime.Parse(Console.ReadLine()!);
             Console.WriteLine("Enter task deadline date");
-            DateTime? deadlineDate = DateTime.Parse(Console.ReadLine() ?? throw new Exception("The entered value is incorrect"));
+            DateTime? deadlineDate = DateTime.Parse(Console.ReadLine()!);
             Console.WriteLine("Enter task complete date");
-            DateTime? completeDate = DateTime.Parse(Console.ReadLine() ?? throw new Exception("The entered value is incorrect"));
+            DateTime? completeDate = DateTime.Parse(Console.ReadLine()!);
             Console.WriteLine("Enter product description of the task");
-            string? productDescription = Console.ReadLine() ?? throw new Exception("The entered value is incorrect");
+            string? productDescription = Console.ReadLine()!;
             Console.WriteLine("Enter remarks of the task");
-            string? remarks = Console.ReadLine() ?? throw new Exception("The entered value is incorrect");
+            string? remarks = Console.ReadLine()!;
             Console.WriteLine("Enter the id of the engineer");
-            int? engineerId = int.Parse(Console.ReadLine() ?? throw new Exception("The entered value is incorrect"));
+            int? engineerId = int.Parse(Console.ReadLine()!);
             DateTime CreatedAt = DateTime.Now;
             Console.WriteLine("Enter the level of the task:");
             Console.WriteLine("For expert press 0");
@@ -50,42 +50,54 @@ namespace DalTest
         public static void UpdateTask()
         {
             Console.WriteLine("Enter a task's ID");
-            int idTask = int.Parse(Console.ReadLine() ?? throw new Exception("The entered value is incorrect"));
+            int idTask = int.Parse(Console.ReadLine()!);
             if (s_dalTask?.Read(idTask) != null)
             {
                 Console.WriteLine(s_dalTask?.Read(idTask));
             }
             else 
             {
-                throw new Exception("Task with ID={idTask} not exists");
+                throw new Exception($"Task with ID={idTask} not exists");
             }
-            DO.Task? updateTask = s_dalTask?.Read(idTask);
+            DO.Task updateTask = s_dalTask?.Read(idTask)!;
             Console.WriteLine("Enter a description of the task");
-            string description = Console.ReadLine() ?? updateTask!.Description;
+            string description = Console.ReadLine() ?? updateTask.Description;
             Console.WriteLine("Enter an alias of the task");
-            string alias = Console.ReadLine() ?? updateTask!.Alias;
+            string alias = Console.ReadLine() ?? updateTask.Alias;
             Console.WriteLine("Enter task start date");
-            DateTime? startDate = DateTime.Parse(Console.ReadLine() ?? throw new Exception("The entered value is incorrect"));
+            DateTime? startDate = DateTime.Parse(Console.ReadLine()!);
+            if (!startDate.HasValue) // If the input was incorrect or not entered
+            {  startDate = updateTask.Start; }
             Console.WriteLine("Enter task schedule date");
-            DateTime? scheduleDate = DateTime.Parse(Console.ReadLine() ?? throw new Exception("The entered value is incorrect"));
+            DateTime? scheduleDate = DateTime.Parse(Console.ReadLine()!);
+            if (!scheduleDate.HasValue) // If the input was incorrect or not entered
+            { scheduleDate = updateTask.Start; }
             Console.WriteLine("Enter task forecast date");
-            DateTime? forecastDate = DateTime.Parse(Console.ReadLine() ?? throw new Exception("The entered value is incorrect"));
+            DateTime? forecastDate = DateTime.Parse(Console.ReadLine()!);
+            if (!forecastDate.HasValue) // If the input was incorrect or not entered
+            { forecastDate = updateTask.ForecastDate; }
             Console.WriteLine("Enter task deadline date");
-            DateTime? deadlineDate = DateTime.Parse(Console.ReadLine() ?? throw new Exception("The entered value is incorrect"));
+            DateTime? deadlineDate = DateTime.Parse(Console.ReadLine()!);
+            if (!deadlineDate.HasValue) // If the input was incorrect or not entered
+            { deadlineDate = updateTask.Deadline; }
             Console.WriteLine("Enter task complete date");
-            DateTime? completeDate = DateTime.Parse(Console.ReadLine() ?? throw new Exception("The entered value is incorrect"));
+            DateTime? completeDate = DateTime.Parse(Console.ReadLine()!);
+            if (!deadlineDate.HasValue) // If the input was incorrect or not entered
+            { deadlineDate = updateTask.Complete; }
             Console.WriteLine("Enter product description of the task");
-            string? productDescription = Console.ReadLine() ?? updateTask!.ProductDescription;
+            string? productDescription = Console.ReadLine() ?? updateTask.ProductDescription;
             Console.WriteLine("Enter remarks of the task");
-            string? remarks = Console.ReadLine();
+            string? remarks = Console.ReadLine() ?? updateTask.Remarks; ;
             Console.WriteLine("Enter the id of the engineer");
-            int? engineerId = int.Parse(Console.ReadLine() ?? throw new Exception("The entered value is incorrect"));
+            int? engineerId = int.Parse(Console.ReadLine()!);
+            if (!engineerId.HasValue)
+            {  engineerId = updateTask.Engineerld;}
             DateTime CreatedAt = DateTime.Now;
             Console.WriteLine("Enter the level of the task:");
             Console.WriteLine("For expert press 0");
             Console.WriteLine("For junior press 1");
             Console.WriteLine("For rookie press 2");
-            int level = int.Parse(Console.ReadLine() ?? throw new Exception("The entered value is incorrect"));
+            int level = int.Parse(Console.ReadLine()!);
             DO.Task newTask = new DO.Task(idTask, description, alias, false, startDate, scheduleDate, forecastDate, deadlineDate, completeDate, productDescription, remarks, engineerId, (EngineerExperience)level);
             try
             {
@@ -114,7 +126,7 @@ namespace DalTest
         {
             if (s_dalTask?.Read(idTask) == null)
             {
-                throw new Exception("Task with ID={idTask} not exists");
+                throw new Exception($"Task with ID={idTask} not exists");
             }
             else
             {
@@ -179,18 +191,18 @@ namespace DalTest
         public static void CreateEngineer()
         {
             Console.WriteLine("Enter the engineer's id");
-            int id = int.Parse(Console.ReadLine() ?? throw new Exception("The entered value is incorrect"));
+            int id = int.Parse(Console.ReadLine()!);
             Console.WriteLine("Enter the engineer's name");
-            string name = Console.ReadLine() ?? throw new Exception("The entered value is incorrect");
+            string name = Console.ReadLine()!;
             Console.WriteLine("Enter the engineer's email");
-            string email = Console.ReadLine() ?? throw new Exception("The entered value is incorrect");
+            string email = Console.ReadLine()!;
             Console.WriteLine("Enter the level of the task:");
             Console.WriteLine("For expert press 0");
             Console.WriteLine("For junior press 1");
             Console.WriteLine("For rookie press 2");
-            int level = int.Parse(Console.ReadLine() ?? throw new Exception("The entered value is incorrect"));
+            int level = int.Parse(Console.ReadLine()!);
             Console.WriteLine("Enter the engineer's cost");
-            double cost = double.Parse(Console.ReadLine() ?? throw new Exception("The entered value is incorrect"));
+            double cost = double.Parse(Console.ReadLine()!);
             DO.Engineer newEngineer = new DO.Engineer(id, name, email, (EngineerExperience)level, cost);
             Console.WriteLine(s_dalEngineer!.Create(newEngineer));
         }
@@ -199,26 +211,27 @@ namespace DalTest
         public static void UpdateEngineer()
         {
             Console.WriteLine("Enter a engineer's ID");
-            int id = int.Parse(Console.ReadLine() ?? throw new Exception("The entered value is incorrect"));
-            if (s_dalEngineer?.Read(id) != null)
+                int id = int.Parse(Console.ReadLine()!);
+                if (s_dalEngineer?.Read(id) != null)
             {
                 Console.WriteLine(s_dalEngineer?.Read(id));
             }
             else
             {
-                throw new Exception("Engineer with ID={idEngineer} not exists");
+                throw new Exception($"Engineer with ID={id} not exists");
             }
+            Engineer updateEngineer = s_dalEngineer?.Read(id)!;
             Console.WriteLine("Enter the engineer's name");
-            string name = Console.ReadLine() ?? throw new Exception("The entered value is incorrect");
+            string name = Console.ReadLine() ?? updateEngineer.Name;
             Console.WriteLine("Enter the engineer's email");
-            string email = Console.ReadLine() ?? throw new Exception("The entered value is incorrect");
+            string email = Console.ReadLine() ?? updateEngineer.Email;
             Console.WriteLine("Enter the level of the task:");
             Console.WriteLine("For expert press 0");
             Console.WriteLine("For junior press 1");
             Console.WriteLine("For rookie press 2");
-            int level = int.Parse(Console.ReadLine() ?? throw new Exception("The entered value is incorrect"));
+            int level = int.Parse(Console.ReadLine()!);
             Console.WriteLine("Enter the engineer's cost");
-            double cost = double.Parse(Console.ReadLine() ?? throw new Exception("The entered value is incorrect"));
+            double cost = double.Parse(Console.ReadLine()!);
             DO.Engineer newEngineer = new DO.Engineer(id, name, email, (EngineerExperience)level, cost);
             try
             {
@@ -237,7 +250,7 @@ namespace DalTest
         {
             if (s_dalEngineer?.Read(idEngineer) == null)
             {
-                throw new Exception("Engineer with ID={idTask} not exists");
+                throw new Exception($"Engineer with ID={idEngineer} not exists");
             }
             else
             {
@@ -311,9 +324,9 @@ namespace DalTest
         public static void CreatDependency()
         {
             Console.WriteLine("Enter ID number of pending task");
-            int? dependentTask = int.Parse(Console.ReadLine() ?? throw new Exception("The entered value is incorrect"));
+            int? dependentTask = int.Parse(Console.ReadLine()!);
             Console.WriteLine("Enter ID number of a previous assignment");
-            int? dependsOnTask = int.Parse(Console.ReadLine() ?? throw new Exception("The entered value is incorrect"));
+            int? dependsOnTask = int.Parse(Console.ReadLine()!);
             DO.Dependency newDependency = new DO.Dependency(0, dependentTask, dependsOnTask);
             Console.WriteLine(s_dalDependency?.Create(newDependency)); // Input the new id of the new dependency.
         }
@@ -329,12 +342,12 @@ namespace DalTest
             }
             else
             {
-                throw new Exception("Dependency with ID={idDependency} not exists");
+                throw new Exception($"Dependency with ID={idDependency} not exists");
             }
             Console.WriteLine("Enter ID number of pending task");
-            int? dependentTask = int.Parse(Console.ReadLine() ?? throw new Exception("The entered value is incorrect"));
+            int? dependentTask = int.Parse(Console.ReadLine()!);
             Console.WriteLine("Enter ID number of a previous assignment");
-            int? dependsOnTask = int.Parse(Console.ReadLine() ?? throw new Exception("The entered value is incorrect"));
+            int? dependsOnTask = int.Parse(Console.ReadLine()!);
             DO.Dependency newDependency = new DO.Dependency(0, dependentTask, dependsOnTask);
             try
             {
@@ -363,7 +376,7 @@ namespace DalTest
         {
             if (s_dalTask?.Read(idDependency) == null)
             {
-                throw new Exception("Dependency with ID={idDependency} not exists");
+                throw new Exception($"Dependency with ID={idDependency} not exists");
             }
             else
             {
@@ -440,13 +453,13 @@ namespace DalTest
                             switch (choose)
                             {
                                 case 1:
-                                    Tasks();//doing this function
+                                    Tasks();
                                     break;
                                 case 2:
-                                    Engineers(); //doing this function 
+                                    Engineers();
                                     break;
                                 case 3:
-                                    Dependencies();
+                                    Dependencies(); 
                                     break;
                                 default:
                                     Console.WriteLine("The number entered is invalid");
