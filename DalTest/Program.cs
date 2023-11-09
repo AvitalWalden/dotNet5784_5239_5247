@@ -170,32 +170,40 @@ namespace DalTest
             Console.WriteLine("To delete a task press e");
             Console.WriteLine("To exit press f");
             char ch = char.Parse(Console.ReadLine() ?? throw new Exception("The entered value is incorrect"));
-            switch (ch)
+            try
             {
-                case 'a': // Create a new task.
-                    CreateTask();
-                    break;
-                case 'b': // Read a Task by ID.
-                    Console.WriteLine("Enter a task ID");
-                    int idTask = int.Parse(Console.ReadLine()!);
-                    ReadTask(idTask);
-                    break;
-                case 'c': // Read all tasks.
-                    ReadAllTasks();
-                    break;
-                case 'd': // Update a task.
-                    UpdateTask();
-                    break;
-                case 'e': // Delete a task. 
-                    Console.WriteLine("Enter a task ID");
-                    int idTaskDelete = int.Parse(Console.ReadLine()!);
-                    DeleteTask(idTaskDelete);
-                    break;
-                case 'f': 
-                   break;
-                default:
-                    Console.WriteLine("The letter entered is invalid");
-                    break;
+                switch (ch)
+                {
+                    case 'a': // Create a new task.
+                        CreateTask();
+                        break;
+                    case 'b': // Read a Task by ID.
+                        Console.WriteLine("Enter a task ID");
+                        int idTask = int.Parse(Console.ReadLine()!);
+                        ReadTask(idTask);
+                        break;
+                    case 'c': // Read all tasks.
+                        ReadAllTasks();
+                        break;
+                    case 'd': // Update a task.
+                        UpdateTask();
+                        break;
+                    case 'e': // Delete a task. 
+                        Console.WriteLine("Enter a task ID");
+                        int idTaskDelete = int.Parse(Console.ReadLine()!);
+                        DeleteTask(idTaskDelete);
+                        break;
+                    case 'f':
+                        break;
+                    default:
+                        Console.WriteLine("The letter entered is invalid");
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine(ex); ;
             }
         }
 
@@ -313,32 +321,40 @@ namespace DalTest
             Console.WriteLine("To delete an engineer press e");
             Console.WriteLine("To exit press f");
             char ch = char.Parse(Console.ReadLine() ?? throw new Exception("The entered value is incorrect"));
-            switch (ch)
+            try
             {
-                case 'a': // Create a new engineer.
-                    CreateEngineer();
-                    break;
-                case 'b': // Read a engineer by ID
-                    Console.WriteLine("Enter a engineer's id");
-                    int idEngineer = int.Parse(Console.ReadLine()!);
-                    ReadEngineer(idEngineer);
-                    break;
-                case 'c': // Read all engineers.
-                    ReadAllEngineers();
-                    break;
-                case 'd': // Update a engineer.
-                    UpdateEngineer();
-                    break;
-                case 'e': // Delete a engineer.
-                    Console.WriteLine("Enter a engineer's ID");
-                    int idEngineerDelete = int.Parse(Console.ReadLine()!);
-                    DeleteEngineer(idEngineerDelete);
-                    break;
-                case 'f':
-                    break;
-                default:
-                    Console.WriteLine("The letter entered is invalid");
-                    break;
+                switch (ch)
+                {
+                    case 'a': // Create a new engineer.
+                        CreateEngineer();
+                        break;
+                    case 'b': // Read a engineer by ID
+                        Console.WriteLine("Enter a engineer's id");
+                        int idEngineer = int.Parse(Console.ReadLine()!);
+                        ReadEngineer(idEngineer);
+                        break;
+                    case 'c': // Read all engineers.
+                        ReadAllEngineers();
+                        break;
+                    case 'd': // Update a engineer.
+                        UpdateEngineer();
+                        break;
+                    case 'e': // Delete a engineer.
+                        Console.WriteLine("Enter a engineer's ID");
+                        int idEngineerDelete = int.Parse(Console.ReadLine()!);
+                        DeleteEngineer(idEngineerDelete);
+                        break;
+                    case 'f':
+                        break;
+                    default:
+                        Console.WriteLine("The letter entered is invalid");
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine(ex); ;
             }
         }
 
@@ -438,31 +454,39 @@ namespace DalTest
             Console.WriteLine("To delete depency between tasks press e");
             Console.WriteLine("To exit press f");
             char ch = char.Parse(Console.ReadLine()!);
-            switch (ch)
+            try
             {
-                case 'a': // Create a new Dependency
-                    CreatDependency();
-                    break;
-                case 'b': // Read a dependency by ID
-                    Console.WriteLine("Enter a dependency ID");
-                    int idDependency = int.Parse(Console.ReadLine()!);
-                    readDependency(idDependency);
-                    break;
-                case 'c': // Read all Dependencies
-                    readAllDependencies();
-                    break;
-                case 'd': // Update a dependency.
-                    updateDependency();
-                    break;
-                case 'e': // Delete a dependency.
-                    Console.WriteLine("Enter a Dependency ID");
-                    int idDependencyDelete = int.Parse(Console.ReadLine()!);
-                    deleteDependency(idDependencyDelete);
-                    break;
-                case 'f':
-                    break;
-                default:
-                    break;
+                switch (ch)
+                {
+                    case 'a': // Create a new Dependency
+                        CreatDependency();
+                        break;
+                    case 'b': // Read a dependency by ID
+                        Console.WriteLine("Enter a dependency ID");
+                        int idDependency = int.Parse(Console.ReadLine()!);
+                        readDependency(idDependency);
+                        break;
+                    case 'c': // Read all Dependencies
+                        readAllDependencies();
+                        break;
+                    case 'd': // Update a dependency.
+                        updateDependency();
+                        break;
+                    case 'e': // Delete a dependency.
+                        Console.WriteLine("Enter a Dependency ID");
+                        int idDependencyDelete = int.Parse(Console.ReadLine()!);
+                        deleteDependency(idDependencyDelete);
+                        break;
+                    case 'f':
+                        break;
+                    default:
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine(ex); ;
             }
         }
 
@@ -476,37 +500,38 @@ namespace DalTest
                 Console.WriteLine("For depency between tasks press 3");
                 Console.WriteLine("To exit press 0");
                 int choose = int.Parse(Console.ReadLine()!);
-                while (choose != 0)
+                try
                 {
-                      try
-                      {
-                            switch (choose)
-                            {
-                                case 1:
-                                    Tasks();
-                                    break;
-                                case 2:
-                                    Engineers();
-                                    break;
-                                case 3:
-                                    Dependencies(); 
-                                    break;
-                                default:
-                                    Console.WriteLine("The number entered is invalid");
-                                    break;
-                            }
-                            Console.WriteLine("enter a number:");
-                            Console.WriteLine("For a task press 1");
-                            Console.WriteLine("For an engineer press 2");
-                            Console.WriteLine("For depency between tasks press 3");
-                            Console.WriteLine("To exit press 0");
-                            choose = int.Parse(Console.ReadLine()!);
-                      }
-                      catch (Exception ex)
-                      {
-                           Console.WriteLine(ex);
-                      }   
+                    while (choose != 0)
+                    {
+                        switch (choose)
+                        {
+                            case 1:
+                                Tasks();
+                                break;
+                            case 2:
+                                Engineers();
+                                break;
+                            case 3:
+                                Dependencies();
+                                break;
+                            default:
+                                Console.WriteLine("The number entered is invalid");
+                                break;
+                        }
+                        Console.WriteLine("enter a number:");
+                        Console.WriteLine("For a task press 1");
+                        Console.WriteLine("For an engineer press 2");
+                        Console.WriteLine("For depency between tasks press 3");
+                        Console.WriteLine("To exit press 0");
+                        choose = int.Parse(Console.ReadLine()!);
+                    }
                 }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex);
+                }
+          
         }
     }
 }
