@@ -98,6 +98,8 @@ namespace DalTest
             Console.WriteLine("For junior press 1");
             Console.WriteLine("For rookie press 2");
             int level = int.Parse(Console.ReadLine()!);
+            if (level !=  1 || level != 2 || level != 3 )
+            { level = (int)updateTask.CopmlexityLevel!; }
             DO.Task newTask = new DO.Task(idTask, description, alias, false, startDate, scheduleDate, forecastDate, deadlineDate, completeDate, productDescription, remarks, engineerId, (EngineerExperience)level);
             try
             {
@@ -231,6 +233,8 @@ namespace DalTest
             Console.WriteLine("For rookie press 2");
             int level = int.Parse(Console.ReadLine()!);
             Console.WriteLine("Enter the engineer's cost");
+            if (level != 1 || level != 2 || level != 3)
+            { level = (int)updateEngineer.level!; }
             double cost = double.Parse(Console.ReadLine()!);
             DO.Engineer newEngineer = new DO.Engineer(id, name, email, (EngineerExperience)level, cost);
             try
@@ -344,10 +348,18 @@ namespace DalTest
             {
                 throw new Exception($"Dependency with ID={idDependency} not exists");
             }
+            Dependency updateDependency = s_dalDependency!.Read(idDependency)!;
             Console.WriteLine("Enter ID number of pending task");
             int? dependentTask = int.Parse(Console.ReadLine()!);
+            if(dependentTask == null) {
+                dependentTask = updateDependency.DependentTask;
+            }
             Console.WriteLine("Enter ID number of a previous assignment");
             int? dependsOnTask = int.Parse(Console.ReadLine()!);
+            if (dependsOnTask == null)
+            {
+                dependsOnTask = updateDependency.DependsOnTask;
+            }
             DO.Dependency newDependency = new DO.Dependency(0, dependentTask, dependsOnTask);
             try
             {
