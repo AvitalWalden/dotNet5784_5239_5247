@@ -531,7 +531,6 @@ namespace DalTest
                 {
                     Console.WriteLine(ex);
                 }
-          
         }
     }
 }
