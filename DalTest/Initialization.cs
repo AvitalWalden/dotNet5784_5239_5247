@@ -133,8 +133,12 @@ public static class Initialization
     {
         Dependency dependency = new Dependency(0, 0,1);
         s_dalDependency!.Create(dependency);
-        Dependency dependency1 = new Dependency(0, 3, 5);
+        Dependency dependency1 = new Dependency(0, 1, 2);
         s_dalDependency!.Create(dependency1);
+        Dependency dependency2 = new Dependency(0, 3, 5);
+        s_dalDependency!.Create(dependency2);
+        Dependency dependency3 = new Dependency(0, 4, 6);
+        s_dalDependency!.Create(dependency3);
     }
     public static void Do(IEngineer? dalEngineer, ITask? dalTask, IDependency? dalDependency)
     {
