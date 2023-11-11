@@ -7,7 +7,6 @@
 /// <param name="Alias">nickname of the task</param>
 /// <param name="Milestone">Milestone (Boolean)</param>
 /// <param name="Start">Creation date of the task</param>
-/// <param name="ScheduledDate">Start date of the task</param>
 /// <param name="ForecastDate">Estimated date of completion the task</param>
 /// <param name="Deadline">Final date for completion the task</param>
 /// <param name="Complete">Task completion date</param>

@@ -1,6 +1,7 @@
 ﻿namespace DalTest;
 using DalApi;
 using DO;
+using System.Data;
 using System.Security.Cryptography;
 
 public static class Initialization
@@ -114,10 +115,10 @@ public static class Initialization
                 detailsTask[i].Item1,
                 detailsTask[i].Item2,
                 false, // Milestone 
-                null, // Start Date (you can adjust this)
-                null, // ScheduledDate (you can adjust this)
-                null, // DeadLine (you can adjust this)
-                null, // Complete (you can adjust this)
+                DateTime.Now.AddDays(i * 5).AddDays(i + 1), // Start Date 
+                DateTime.Now.AddDays(i * 5).AddDays(i + 2), // ScheduledDate date
+                DateTime.Now.AddDays(i * 5).AddDays(i + 3), // DeadLine date
+                DateTime.Now.AddDays(i * 5).AddDays(i + 4), // Complete date
                 "Product description for " + detailsTask[i].Item1,
                 "Remarks for " + detailsTask[i].Item2,
                 allEngineer[i].Id,
@@ -128,7 +129,7 @@ public static class Initialization
     }
 
     // Create 250 dependencies
-    private static void createDependencies() //לא עשינו פומקציית אתחול
+    private static void createDependencies()
     {
         Dependency dependency = new Dependency(0, 0,1);
         s_dalDependency!.Create(dependency);
