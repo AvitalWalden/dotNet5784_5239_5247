@@ -4,7 +4,7 @@ using DO;
 using System.Collections;
 using System.Collections.Generic;
 
-public class EngineerImplementation : IEngineer
+internal class EngineerImplementation : IEngineer
 {
     // This method is used to create a new Engineer
     public int Create(Engineer item)

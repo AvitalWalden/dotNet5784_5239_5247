@@ -4,7 +4,7 @@ using DO;
 using System.Collections;
 using System.Collections.Generic;
 
-public class TaskImplementation : ITask
+internal class TaskImplementation : ITask
 {
     // This method is used to create a new Task
     public int Create(Task item)

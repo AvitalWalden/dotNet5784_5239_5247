@@ -9,9 +9,10 @@ namespace DalTest
 {
     internal class Program
     {
-        private static IEngineer? s_dalEngineer = new EngineerImplementation();
-        private static ITask? s_dalTask = new TaskImplementation();
-        private static IDependency? s_dalDependency = new DependencyImplementation();
+        //private static IEngineer? s_dalEngineer = new EngineerImplementation();
+        //private static ITask? s_dalTask = new TaskImplementation();
+        //private static IDependency? s_dalDependency = new DependencyImplementation();
+        static readonly IDal s_dal = new DalList(); //stage 2
 
         // The function create a new task.
         public static void CreateTask()
@@ -41,7 +42,7 @@ namespace DalTest
             Console.WriteLine("For rookie press 2");
             int level = int.Parse(Console.ReadLine()!);
             DO.Task newTask = new DO.Task(0, description, alias, false, startDate, forecastDate, deadlineDate, completeDate, productDescription, remarks, engineerId, (EngineerExperience)level);
-            Console.WriteLine(s_dalTask!.Create(newTask)); // Input the new id of the task.
+            Console.WriteLine(s_dal!.Task.Create(newTask)); // Input the new id of the task.
         }
         
         // The function update a task.
@@ -49,15 +50,15 @@ namespace DalTest
         {
             Console.WriteLine("Enter a task's ID");
             int idTask = int.Parse(Console.ReadLine()!);
-            if (s_dalTask?.Read(idTask) != null)
+            if (s_dal?.Task.Read(idTask) != null)
             {
-                Console.WriteLine(s_dalTask?.Read(idTask));
+                Console.WriteLine(s_dal?.Task.Read(idTask));
             }
             else 
             {
                 throw new Exception($"Task with ID={idTask} not exists");
             }
-            DO.Task updateTask = s_dalTask?.Read(idTask)!;
+            DO.Task updateTask = s_dal?.Task.Read(idTask)!;
             Console.WriteLine("Enter a description of the task");
             string description = Console.ReadLine()!;
             if (description == "" || description == null)
@@ -113,7 +114,7 @@ namespace DalTest
             DO.Task newTask = new DO.Task(idTask, description, alias, false, startDate, forecastDate, deadlineDate, completeDate, productDescription, remarks, engineerId, (EngineerExperience)level);
             try
             {
-                s_dalTask!.Update(newTask); // Input the new id of the task.
+                s_dal?.Task.Update(newTask); // Input the new id of the task.
             }
             catch (Exception ex)
             {
@@ -126,7 +127,7 @@ namespace DalTest
         // The function read all tasks.
         public static void ReadAllTasks()
         {
-            List<DO.Task> tasks = s_dalTask?.ReadAll() ?? throw new Exception("There are no tasks.");
+            List<DO.Task> tasks = s_dal?.Task.ReadAll() ?? throw new Exception("There are no tasks.");
             foreach (var task in tasks)
             {
                 Console.WriteLine(task);
@@ -136,13 +137,13 @@ namespace DalTest
         // The function read a Task by ID.
         public static void ReadTask(int idTask)
         {
-            if (s_dalTask?.Read(idTask) == null)
+            if (s_dal?.Task.Read(idTask) == null)
             {
                 throw new Exception($"Task with ID={idTask} not exists");
             }
             else
             {
-                Console.WriteLine(s_dalTask?.Read(idTask));
+                Console.WriteLine(s_dal?.Task.Read(idTask));
             }
         }
 
@@ -151,7 +152,7 @@ namespace DalTest
         {
             try
             {
-                s_dalTask?.Delete(idTaskDelete); // Input the new id of the task.
+                s_dal?.Task.Delete(idTaskDelete); // Input the new id of the task.
             }
             catch (Exception ex)
             {
@@ -224,7 +225,7 @@ namespace DalTest
             Console.WriteLine("Enter the engineer's cost");
             double cost = double.Parse(Console.ReadLine()!);
             DO.Engineer newEngineer = new DO.Engineer(id, name, email, (EngineerExperience)level, cost);
-            Console.WriteLine(s_dalEngineer!.Create(newEngineer));
+            Console.WriteLine(s_dal!.Engineer.Create(newEngineer));
         }
 
         // The function update a engineer.
@@ -232,15 +233,15 @@ namespace DalTest
         {
             Console.WriteLine("Enter a engineer's ID");
                 int id = int.Parse(Console.ReadLine()!);
-                if (s_dalEngineer?.Read(id) != null)
+                if (s_dal?.Engineer.Read(id) != null)
             {
-                Console.WriteLine(s_dalEngineer?.Read(id));
+                Console.WriteLine(s_dal?.Engineer.Read(id));
             }
             else
             {
                 throw new Exception($"Engineer with ID={id} not exists");
             }
-            Engineer updateEngineer = s_dalEngineer?.Read(id)!;
+            Engineer updateEngineer = s_dal?.Engineer.Read(id)!;
             Console.WriteLine("Enter the engineer's name");
             string name = Console.ReadLine()!;
             if (name == "" || name == null)
@@ -265,7 +266,7 @@ namespace DalTest
             DO.Engineer newEngineer = new DO.Engineer(id, name, email, (EngineerExperience)level, cost);
             try
             {
-                s_dalEngineer?.Update(newEngineer);
+                s_dal?.Engineer.Update(newEngineer);
             }
             catch (Exception ex)
             {
@@ -278,20 +279,20 @@ namespace DalTest
         // The function read a engineer by ID.
         public static void ReadEngineer(int idEngineer)
         {
-            if (s_dalEngineer?.Read(idEngineer) == null)
+            if (s_dal?.Engineer.Read(idEngineer) == null)
             {
                 throw new Exception($"Engineer with ID={idEngineer} not exists");
             }
             else
             {
-                Console.WriteLine(s_dalEngineer?.Read(idEngineer));
+                Console.WriteLine(s_dal?.Engineer.Read(idEngineer));
             }
         }
 
         // The function read all the engineers.
         public static void ReadAllEngineers()
         {
-            List<DO.Engineer> engineers = s_dalEngineer?.ReadAll() ?? throw new Exception("There are no engineers.");
+            List<DO.Engineer> engineers = s_dal?.Engineer.ReadAll() ?? throw new Exception("There are no engineers.");
             foreach (var engineer in engineers)
             {
                 Console.WriteLine(engineer);
@@ -303,7 +304,7 @@ namespace DalTest
         {
             try
             {
-                s_dalEngineer?.Delete(idEngineerDelete); // Input the new id of the task.
+                s_dal?.Engineer.Delete(idEngineerDelete); // Input the new id of the task.
             }
             catch (Exception ex)
             {
@@ -366,7 +367,7 @@ namespace DalTest
             Console.WriteLine("Enter ID number of a previous assignment");
             int? dependsOnTask = int.Parse(Console.ReadLine()!);
             DO.Dependency newDependency = new DO.Dependency(0, dependentTask, dependsOnTask);
-            Console.WriteLine(s_dalDependency?.Create(newDependency)); // Input the new id of the new dependency.
+            Console.WriteLine(s_dal?.Dependency.Create(newDependency)); // Input the new id of the new dependency.
         }
 
         // The function update a dependency.
@@ -374,15 +375,15 @@ namespace DalTest
         {
             Console.WriteLine("Enter a dependency's ID");
             int idDependency = int.Parse(Console.ReadLine()!);
-            if (s_dalDependency!.Read(idDependency) != null)
+            if (s_dal!.Dependency.Read(idDependency) != null)
             {
-                Console.WriteLine(s_dalDependency!.Read(idDependency));
+                Console.WriteLine(s_dal!.Dependency.Read(idDependency));
             }
             else
             {
                 throw new Exception($"Dependency with ID={idDependency} not exists");
             }
-            Dependency updateDependency = s_dalDependency!.Read(idDependency)!;
+            Dependency updateDependency = s_dal!.Dependency.Read(idDependency)!;
             Console.WriteLine("Enter ID number of pending task");
             int? dependentTask = int.Parse(Console.ReadLine()!);
             if(dependentTask == null) {
@@ -397,7 +398,7 @@ namespace DalTest
             DO.Dependency newDependency = new DO.Dependency(0, dependentTask, dependsOnTask);
             try
             {
-                s_dalDependency?.Update(newDependency); // Input the new id of the dependency.
+                s_dal?.Dependency.Update(newDependency); // Input the new id of the dependency.
             }
             catch (Exception ex)
             {
@@ -410,7 +411,7 @@ namespace DalTest
         // The function read all Dependencies.
         public static void readAllDependencies()
         {
-            List<DO.Dependency> dependencies = s_dalDependency?.ReadAll() ?? throw new Exception("There are no dependencies.");
+            List<DO.Dependency> dependencies = s_dal?.Dependency.ReadAll() ?? throw new Exception("There are no dependencies.");
             foreach (var dependency in dependencies)
             {
                 Console.WriteLine(dependency);
@@ -420,13 +421,13 @@ namespace DalTest
         // The function read a dependency by ID.
         public static void readDependency(int idDependency)
         {
-            if (s_dalDependency?.Read(idDependency) == null)
+            if (s_dal?.Dependency.Read(idDependency) == null)
             {
                 throw new Exception($"Dependency with ID={idDependency} not exists");
             }
             else
             {
-                Console.WriteLine(s_dalDependency?.Read(idDependency));
+                Console.WriteLine(s_dal?.Dependency.Read(idDependency));
             }
         }
 
@@ -435,7 +436,7 @@ namespace DalTest
         {
             try
             {
-                s_dalDependency?.Delete(idDependency); 
+                s_dal?.Dependency.Delete(idDependency); 
             }
             catch (Exception ex)
             {
@@ -494,7 +495,8 @@ namespace DalTest
         static void Main(string[] args)
         {
            
-                Initialization.Do(s_dalEngineer, s_dalTask, s_dalDependency);
+                //Initialization.Do(s_dalEngineer, s_dalTask, s_dalDependency);
+                Initialization.Do(s_dal); //stage 2
                 Console.WriteLine("For a task press 1");
                 Console.WriteLine("For an engineer press 2");
                 Console.WriteLine("For depency between tasks press 3");

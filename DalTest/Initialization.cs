@@ -6,9 +6,10 @@ using System.Security.Cryptography;
 
 public static class Initialization
 {
-    private static IEngineer? s_dalEngineer;
-    private static ITask? s_dalTask;
-    private static IDependency? s_dalDependency;
+    //private static IEngineer? s_dalEngineer;
+    //private static ITask? s_dalTask;
+    //private static IDependency? s_dalDependency;
+    private static IDal? s_dal; //stage 2
 
     private static readonly Random s_rand = new();
 
@@ -64,7 +65,7 @@ public static class Initialization
             int _id;
             do
                 _id = s_rand.Next(MIN_ID, MAX_ID);
-            while (s_dalEngineer!.Read(_id) != null);
+            while (s_dal!.Engineer.Read(_id) != null);
             string _name = detailsEngineer[i].Item1;
             string _email = detailsEngineer[i].Item2;
             EngineerExperience _level = (EngineerExperience)(_id % Enum.GetNames<EngineerExperience>().Count());
@@ -85,7 +86,7 @@ public static class Initialization
                     break;
             }
             Engineer newEngineer = new(_id, _name, _email, _level, _cost);
-            s_dalEngineer!.Create(newEngineer);
+            s_dal!.Engineer.Create(newEngineer);
         }
     }
 
@@ -105,7 +106,7 @@ public static class Initialization
             ("Learn to examine databases","databases"),
             ("Homework in logic exercise 1","logic"),
         };
-        List<Engineer> allEngineer = s_dalEngineer!.ReadAll();//????????
+        List<Engineer> allEngineer = s_dal!.Engineer.ReadAll();//????????
 
         for (int i = 0; i < detailsTask.Length; i++)
         {
@@ -124,7 +125,7 @@ public static class Initialization
                 allEngineer[i].Id,
                 allEngineer[i].level
             );
-            s_dalTask!.Create(newTask);
+            s_dal!.Task.Create(newTask);
         }
     }
 
@@ -132,19 +133,20 @@ public static class Initialization
     private static void createDependencies()
     {
         Dependency dependency = new Dependency(0, 0,1);
-        s_dalDependency!.Create(dependency);
+        s_dal!.Dependency.Create(dependency);
         Dependency dependency1 = new Dependency(0, 1, 2);
-        s_dalDependency!.Create(dependency1);
+        s_dal!.Dependency.Create(dependency1);
         Dependency dependency2 = new Dependency(0, 3, 5);
-        s_dalDependency!.Create(dependency2);
+        s_dal!.Dependency.Create(dependency2);
         Dependency dependency3 = new Dependency(0, 4, 6);
-        s_dalDependency!.Create(dependency3);
+        s_dal!.Dependency.Create(dependency3);
     }
-    public static void Do(IEngineer? dalEngineer, ITask? dalTask, IDependency? dalDependency)
+    public static void Do(IDal dal)
     {
-        s_dalDependency = dalDependency ?? throw new NullReferenceException("DAL can not be null!");
-        s_dalEngineer = dalEngineer ?? throw new NullReferenceException("DAL can not be null!");
-        s_dalTask = dalTask ?? throw new NullReferenceException("DAL can not be null!");
+        //s_dalDependency = dalDependency ?? throw new NullReferenceException("DAL can not be null!");
+        //s_dalEngineer = dalEngineer ?? throw new NullReferenceException("DAL can not be null!");
+        //s_dalTask = dalTask ?? throw new NullReferenceException("DAL can not be null!");
+        s_dal = dal ?? throw new NullReferenceException("DAL object can not be null!"); //stage 2
         createEngineers();
         createTasks();
         createDependencies();
