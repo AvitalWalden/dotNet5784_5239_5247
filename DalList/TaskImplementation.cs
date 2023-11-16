@@ -22,60 +22,43 @@ internal class TaskImplementation : ITask
         Task? taskToDelete = Read(id);
         if (taskToDelete is not null)
         {
-            for (int i = 0; i < DataSource.Dependencies.Count; i++)
-            {
-                if (DataSource.Dependencies[i]?.DependsOnTask == id)
-                {
-                   throw new Exception($"Task with ID ={id} cannot be deleted");
-                }
-            }
-            for (int i = 0;i < DataSource.Dependencies.Count;i++)
-            {
-                if (DataSource.Dependencies[i]?.DependentTask == id)
-                {
-                    DataSource.Dependencies.Remove(DataSource.Dependencies[i]);
-                }
-            }
+            if (DataSource.Dependencies.Any(dependency => dependency?.DependsOnTask == id))
+                throw new Exception($"Task with ID={id} cannot be deleted");
+
+            DataSource.Dependencies.RemoveAll(dependency => dependency?.DependentTask == id);
             DataSource.Tasks.Remove(taskToDelete);
         }
         else
         {
-            throw new Exception($"Task with ID={id} not exists");
+            throw new Exception($"Task with ID={id} does not exist");
         }
     }
 
     // This method is used to read a Task by ID
     public Task? Read(int id)
     {
-        if (DataSource.Tasks.Exists(task => task?.Id == id))
-        {
-            Task? task = DataSource.Tasks.Find(task => task?.Id == id);
-            return task;
-        }
-        return null;
+        return DataSource.Tasks.FirstOrDefault(task => task?.Id == id);
+
     }
 
     // This method is used to read all Tasks
     public List<Task> ReadAll()
     {
-        return new List<Task>(DataSource.Tasks!);
+        return DataSource.Tasks.ToList()!;
     }
 
     // This method is used to update the task 
     public void Update(Task item)
     {
-        if (DataSource.Tasks.Exists(task => task?.Id == item.Id))
+        Task? taskToUpdate = DataSource.Tasks.FirstOrDefault(task => task?.Id == item.Id);
+        if (taskToUpdate is not null)
         {
-            Task? task = DataSource.Tasks.Find(task => task?.Id == item.Id);
-            if (task is not null)
-            {
-                DataSource.Tasks.Remove(task);
-                DataSource.Tasks.Add(item);
-            }
+            DataSource.Tasks.Remove(taskToUpdate);
+            DataSource.Tasks.Add(item);
         }
         else
         {
-            throw new Exception($"Task with ID={item.Id} not exists");
+            throw new Exception($"Task with ID={item.Id} does not exist");
         }
     }
 }

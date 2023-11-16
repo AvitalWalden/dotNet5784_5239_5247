@@ -395,7 +395,7 @@ namespace DalTest
             {
                 dependsOnTask = updateDependency.DependsOnTask;
             }
-            DO.Dependency newDependency = new DO.Dependency(0, dependentTask, dependsOnTask);
+            DO.Dependency newDependency = new DO.Dependency(idDependency, dependentTask, dependsOnTask);
             try
             {
                 s_dal?.Dependency.Update(newDependency); // Input the new id of the dependency.
@@ -481,6 +481,7 @@ namespace DalTest
                     case 'f':
                         break;
                     default:
+                        Console.WriteLine("The letter entered is invalid");
                         break;
                 }
             }
@@ -501,7 +502,7 @@ namespace DalTest
                 Console.WriteLine("For an engineer press 2");
                 Console.WriteLine("For depency between tasks press 3");
                 Console.WriteLine("To exit press 0");
-                int choose = int.Parse(Console.ReadLine()!);
+                int choose = int.Parse(Console.ReadLine() ?? throw new Exception("The number entered is invalid"));
                 try
                 {
                     while (choose != 0)
@@ -521,6 +522,7 @@ namespace DalTest
                                 Console.WriteLine("The number entered is invalid");
                                 break;
                         }
+                        Console.WriteLine();
                         Console.WriteLine("enter a number:");
                         Console.WriteLine("For a task press 1");
                         Console.WriteLine("For an engineer press 2");
