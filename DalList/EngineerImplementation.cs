@@ -18,15 +18,10 @@ internal class EngineerImplementation : IEngineer
 
     // This method is used to delete an Engineer by ID
     public void Delete(int id)
-    {
+    { 
         // Check if there are any Tasks associated with the Engineer
-        for (int i = 0; i < DataSource.Tasks.Count; i++)
-        {
-            if (DataSource.Tasks[i]?.Engineerld == id) 
-            { 
-                throw new Exception($"Engineer with ID={id} cannot be deleted");
-            }
-        }
+        if (DataSource.Tasks.Any(task => task?.EngineerId == id))
+            throw new Exception($"Engineer with ID={id} cannot be deleted");
         Engineer? engneerToDelete = Read(id);
         if (engneerToDelete is not null)
         {

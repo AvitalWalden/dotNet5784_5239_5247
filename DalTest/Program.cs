@@ -102,7 +102,7 @@ namespace DalTest
             Console.WriteLine("Enter the id of the engineer");
             int? engineerId = int.Parse(Console.ReadLine()!);
             if (engineerId == null)
-            {  engineerId = updateTask.Engineerld;}
+            {  engineerId = updateTask.EngineerId;}
             DateTime CreatedAt = DateTime.Now;
             Console.WriteLine("Enter the level of the task:");
             Console.WriteLine("For expert press 0");

@@ -12,7 +12,7 @@
 /// <param name="Complete">Task completion date</param>
 /// <param name="Deliverables">Product (a string describing the product)</param>
 /// <param name="Remarks">Notes of the task</param>
-/// <param name="Engineerld">The ID of the engineer assigned to the task</param>
+/// <param name="EngineerId">The ID of the engineer assigned to the task</param>
 /// <param name="CopmlexityLevel">Difficulty level of the task</param>
 public record Task
 (
@@ -26,7 +26,7 @@ public record Task
     DateTime? Complete = null,
     string? Deliverables = null,
     string? Remarks = null,
-    int? Engineerld = null,
+    int? EngineerId = null,
     EngineerExperience? CopmlexityLevel = null
 )
 {
