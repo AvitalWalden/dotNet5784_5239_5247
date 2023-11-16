@@ -12,8 +12,8 @@ public record Engineer
     int Id,
     string Name,
     string Email,
-    EngineerExperience level,
-    double cost
+    EngineerExperience Level,
+    double Cost
 )
 {
     public Engineer() : this(0, "", "", EngineerExperience.JUNIOR, 0) { }

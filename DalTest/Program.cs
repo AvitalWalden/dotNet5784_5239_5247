@@ -261,7 +261,7 @@ namespace DalTest
             int level = int.Parse(Console.ReadLine()!);
             Console.WriteLine("Enter the engineer's cost");
             if (level != 0 || level != 1 || level != 2)
-            { level = (int)updateEngineer.level!; }
+            { level = (int)updateEngineer.Level!; }
             double cost = double.Parse(Console.ReadLine()!);
             DO.Engineer newEngineer = new DO.Engineer(id, name, email, (EngineerExperience)level, cost);
             try
