@@ -28,22 +28,15 @@ internal class DependencyImplementation : IDependency
     // This method is used to read an dependency by ID
     public Dependency? Read(int id)
     {   
-        // Check if a dependency with the given ID exists
-        if (DataSource.Dependencies.Exists(dependency => dependency?.Id == id))
-        {
-            // Find the dependency with the given ID
-            Dependency? dependency = DataSource.Dependencies.Find(dependency => dependency?.Id == id);
-            return dependency;
-        }
-        // Return null if no dependency with the given ID is found
-        return null;
+        // return the dependency with the given ID or null
+         return DataSource.Dependencies.FirstOrDefault(dependency => dependency?.Id == id);
     }
 
     // This method is used to read all dependency
     public List<Dependency> ReadAll()
     {
         // Return a new list containing all dependencies in the DataSource
-        return new List<Dependency>(DataSource.Dependencies!);
+        return DataSource.Dependencies.ToList()!;
     }
 
     // This method is used to update a dependency
