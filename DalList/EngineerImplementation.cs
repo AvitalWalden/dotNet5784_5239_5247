@@ -40,9 +40,17 @@ internal class EngineerImplementation : IEngineer
     }
 
     // This method is used to read all Engineers
-    public List<Engineer> ReadAll()
+    public IEnumerable<Engineer?> ReadAll(Func<Engineer, bool>? filter = null)
     {
-        return DataSource.Engineers.ToList()!;
+        if (filter != null)
+        {
+            return from item in DataSource.Engineers
+                   where filter(item)
+                   select item;
+        }
+        // If no filter is provided, return all engineers
+        return from item in DataSource.Engineers
+               select item;
     }
 
     // This method is used to update the engineer 

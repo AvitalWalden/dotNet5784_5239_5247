@@ -33,31 +33,34 @@ internal class DependencyImplementation : IDependency
     }
 
     // This method is used to read all dependency
-    public List<Dependency> ReadAll()
+    public IEnumerable<Dependency?> ReadAll(Func<Dependency, bool>? filter = null) // האם לשים ? בהחזרה
     {
-        // Return a new list containing all dependencies in the DataSource
-        return DataSource.Dependencies.ToList()!;
+        if (filter != null)
+        {
+            return from item in DataSource.Dependencies
+                   where filter(item)
+                   select item;
+        }
+        // If no filter is provided, return all dependencies
+        return from item in DataSource.Dependencies
+               select item;
     }
 
     // This method is used to update a dependency
     public void Update(Dependency item)
     {
-        // Check if a dependency with the given ID exists
-        if (DataSource.Dependencies.Exists(dependency => dependency?.Id == item.Id))
-        {
-            // Find the dependency with the given ID
-            Dependency? dependency = DataSource.Dependencies.Find(dependency => dependency?.Id == item.Id);
+        // Find the dependency with the given ID
+        Dependency? dependency = DataSource.Dependencies.FirstOrDefault(dependency => dependency?.Id == item.Id);
+        if (dependency is not null)
+        {            
             // If the dependency is not null, remove it from the list and add the updated item
-            if (dependency is not null)
-            {
-                DataSource.Dependencies.Remove(dependency);
-                DataSource.Dependencies.Add(item);
-            }
+            DataSource.Dependencies.Remove(dependency);
+            DataSource.Dependencies.Add(item);
         }
         else
         {
             // Throw an exception if the dependency with the given ID does not exist
-            throw new Exception($"Dependency with ID={item.Id} not exists");
+            throw new Exception($"Dependency with ID={item.Id} does not exist");
         }
     }
 }

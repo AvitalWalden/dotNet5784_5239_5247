@@ -106,7 +106,7 @@ public static class Initialization
             ("Learn to examine databases","databases"),
             ("Homework in logic exercise 1","logic"),
         };
-        List<Engineer> allEngineer = s_dal!.Engineer.ReadAll();//????????
+        List<Engineer?> allEngineer = s_dal!.Engineer.ReadAll().ToList();//????????
 
         for (int i = 0; i < detailsTask.Length; i++)
         {
@@ -122,8 +122,8 @@ public static class Initialization
                 DateTime.Now.AddDays(i * 5).AddDays(i + 4), // Complete date
                 "Product description for " + detailsTask[i].Item1,
                 "Remarks for " + detailsTask[i].Item2,
-                allEngineer[i].Id,
-                allEngineer[i].Level
+                allEngineer[i]?.Id,
+                allEngineer[i]?.Level
             );
             s_dal!.Task.Create(newTask);
         }

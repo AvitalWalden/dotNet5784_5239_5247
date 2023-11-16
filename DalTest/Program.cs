@@ -127,7 +127,7 @@ namespace DalTest
         // The function read all tasks.
         public static void ReadAllTasks()
         {
-            List<DO.Task> tasks = s_dal?.Task.ReadAll() ?? throw new Exception("There are no tasks.");
+            IEnumerable<DO.Task?> tasks = s_dal?.Task.ReadAll() ?? throw new Exception("There are no tasks.");
             foreach (var task in tasks)
             {
                 Console.WriteLine(task);
@@ -292,7 +292,7 @@ namespace DalTest
         // The function read all the engineers.
         public static void ReadAllEngineers()
         {
-            List<DO.Engineer> engineers = s_dal?.Engineer.ReadAll() ?? throw new Exception("There are no engineers.");
+            IEnumerable<DO.Engineer?> engineers = s_dal?.Engineer.ReadAll() ?? throw new Exception("There are no engineers.");
             foreach (var engineer in engineers)
             {
                 Console.WriteLine(engineer);
@@ -411,7 +411,7 @@ namespace DalTest
         // The function read all Dependencies.
         public static void readAllDependencies()
         {
-            List<DO.Dependency> dependencies = s_dal?.Dependency.ReadAll() ?? throw new Exception("There are no dependencies.");
+            IEnumerable<DO.Dependency?> dependencies = s_dal?.Dependency.ReadAll() ?? throw new Exception("There are no dependencies.");
             foreach (var dependency in dependencies)
             {
                 Console.WriteLine(dependency);

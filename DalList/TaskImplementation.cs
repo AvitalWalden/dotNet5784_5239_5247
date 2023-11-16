@@ -56,9 +56,17 @@ internal class TaskImplementation : ITask
     }
 
     // This method is used to read all Tasks
-    public List<Task> ReadAll()
+    public IEnumerable<Task?> ReadAll(Func<Task, bool>? filter = null)
     {
-        return new List<Task>(DataSource.Tasks!);
+        if (filter != null)
+        {
+            return from item in DataSource.Tasks
+                   where filter(item)
+                   select item;
+        }
+        // If no filter is provided, return all tasks
+        return from item in DataSource.Tasks
+               select item;
     }
 
     // This method is used to update the task 
