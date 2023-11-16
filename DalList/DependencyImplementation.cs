@@ -25,6 +25,8 @@ internal class DependencyImplementation : IDependency
         throw new Exception($"Dependency with ID={id} cannot be deleted");
     }
 
+
+    //Reads dependency by filter function
     public Dependency? Read(Func<Dependency, bool> filter)
     {
         return DataSource.Dependencies.FirstOrDefault(dependency => filter(dependency!));

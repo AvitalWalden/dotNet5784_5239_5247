@@ -11,7 +11,7 @@ internal class EngineerImplementation : IEngineer
     {
         // Check if an Engineer with the same ID already exists
         if (Read(item.Id) is not null)
-            throw new Exception($"Engineer with ID={item.Id} already exists");
+            throw new DalAlreadyExistsException($"Engineer with ID={item.Id} already exists");
         DataSource.Engineers.Add(item);
         return item.Id;
     }
@@ -33,6 +33,8 @@ internal class EngineerImplementation : IEngineer
             throw new Exception($"Engineer with ID={id} not exists");
         }
     }
+
+    //Reads engineer object by filter function
     public Engineer? Read(Func<Engineer, bool> filter)
     {
         return DataSource.Engineers.FirstOrDefault(engineer => filter(engineer!));

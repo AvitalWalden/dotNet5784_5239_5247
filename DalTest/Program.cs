@@ -232,8 +232,8 @@ namespace DalTest
         public static void UpdateEngineer()
         {
             Console.WriteLine("Enter a engineer's ID");
-                int id = int.Parse(Console.ReadLine()!);
-                if (s_dal?.Engineer.Read(id) != null)
+            int id = int.Parse(Console.ReadLine()!);
+            if (s_dal?.Engineer.Read(id) != null)
             {
                 Console.WriteLine(s_dal?.Engineer.Read(id));
             }

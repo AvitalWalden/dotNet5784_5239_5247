@@ -34,6 +34,7 @@ internal class TaskImplementation : ITask
         }
     }
 
+    //Reads task object by filter function
     public Task? Read(Func<Task, bool> filter)
     {
         return DataSource.Tasks.FirstOrDefault(task => filter(task!)); /// ??????????????? !task!!!!!!!!!!!!!!!!!!
