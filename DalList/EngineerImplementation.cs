@@ -36,36 +36,27 @@ internal class EngineerImplementation : IEngineer
     // This method is used to read an Engineer by ID
     public Engineer? Read(int id)
     {
-        if (DataSource.Engineers.Exists(engineer => engineer?.Id == id))
-        {
-            Engineer? engineer = DataSource.Engineers.Find(engineer => engineer?.Id == id);
-            return engineer;
-        }
-        return null;
+        return DataSource.Engineers.FirstOrDefault(engineer => engineer?.Id == id);
     }
 
     // This method is used to read all Engineers
     public List<Engineer> ReadAll()
     {
-        return new List<Engineer>(DataSource.Engineers!);
+        return DataSource.Engineers.ToList()!;
     }
 
     // This method is used to update the engineer 
     public void Update(Engineer item)
     {
-        if(DataSource.Engineers.Exists(engineer => engineer?.Id == item.Id))
+        Engineer? engineerToUpdate = DataSource.Engineers.FirstOrDefault(engineer => engineer?.Id == item.Id);
+        if (engineerToUpdate is not null)
         {
-            Engineer? engineer = DataSource.Engineers.Find(engineer => engineer?.Id == item.Id);
-            if (engineer is not null)
-            {
-                DataSource.Engineers.Remove(engineer);
-                DataSource.Engineers.Add(item);
-            }
-
+            DataSource.Engineers.Remove(engineerToUpdate);
+            DataSource.Engineers.Add(item);
         }
         else
         {
-            throw new Exception($"Engineer with ID={item.Id} not exists");
+            throw new Exception($"Engineer with ID={item.Id} does not exist");
         }
     }
 }
