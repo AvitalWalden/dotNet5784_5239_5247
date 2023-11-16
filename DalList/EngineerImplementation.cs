@@ -33,6 +33,11 @@ internal class EngineerImplementation : IEngineer
             throw new Exception($"Engineer with ID={id} not exists");
         }
     }
+    public Engineer? Read(Func<Engineer, bool> filter)
+    {
+        return DataSource.Engineers.FirstOrDefault(engineer => filter(engineer!));
+    }
+
     // This method is used to read an Engineer by ID
     public Engineer? Read(int id)
     {

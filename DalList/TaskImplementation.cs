@@ -34,6 +34,11 @@ internal class TaskImplementation : ITask
         }
     }
 
+    public Task? Read(Func<Task, bool> filter)
+    {
+        return DataSource.Tasks.FirstOrDefault(task => filter(task!)); /// ??????????????? !task!!!!!!!!!!!!!!!!!!
+    }
+
     // This method is used to read a Task by ID
     public Task? Read(int id)
     {
