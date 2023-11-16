@@ -22,7 +22,7 @@ internal class DependencyImplementation : IDependency
     public void Delete(int id)
     {   
         // Throw an exception if the dependency with the given ID cannot be deleted
-        throw new Exception($"Dependency with ID={id} cannot be deleted");
+        throw new DalDeletionImpossible($"Dependency with ID={id} cannot be deleted");
     }
 
 
@@ -67,7 +67,7 @@ internal class DependencyImplementation : IDependency
         else
         {
             // Throw an exception if the dependency with the given ID does not exist
-            throw new Exception($"Dependency with ID={item.Id} does not exist");
+            throw new DalDoesNotExistException($"Dependency with ID={item.Id} does not exist");
         }
     }
 }

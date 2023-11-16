@@ -21,7 +21,7 @@ internal class EngineerImplementation : IEngineer
     { 
         // Check if there are any Tasks associated with the Engineer
         if (DataSource.Tasks.Any(task => task?.EngineerId == id))
-            throw new Exception($"Engineer with ID={id} cannot be deleted");
+            throw new DalDeletionImpossible($"Engineer with ID={id} cannot be deleted");
         Engineer? engneerToDelete = Read(id);
         if (engneerToDelete is not null)
         {
@@ -30,7 +30,7 @@ internal class EngineerImplementation : IEngineer
         }
         else
         {
-            throw new Exception($"Engineer with ID={id} not exists");
+            throw new DalDoesNotExistException($"Engineer with ID={id} not exists");
         }
     }
 
@@ -71,7 +71,7 @@ internal class EngineerImplementation : IEngineer
         }
         else
         {
-            throw new Exception($"Engineer with ID={item.Id} does not exist");
+            throw new DalDoesNotExistException($"Engineer with ID={item.Id} does not exist");
         }
     }
 }

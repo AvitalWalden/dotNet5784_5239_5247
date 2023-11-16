@@ -23,14 +23,14 @@ internal class TaskImplementation : ITask
         if (taskToDelete is not null)
         {
             if (DataSource.Dependencies.Any(dependency => dependency?.DependsOnTask == id))
-                throw new Exception($"Task with ID={id} cannot be deleted");
+                throw new DalDeletionImpossible($"Task with ID={id} cannot be deleted");
 
             DataSource.Dependencies.RemoveAll(dependency => dependency?.DependentTask == id);
             DataSource.Tasks.Remove(taskToDelete);
         }
         else
         {
-            throw new Exception($"Task with ID={id} does not exist");
+            throw new DalDoesNotExistException($"Task with ID={id} does not exist");
         }
     }
 
@@ -72,7 +72,7 @@ internal class TaskImplementation : ITask
         }
         else
         {
-            throw new Exception($"Task with ID={item.Id} does not exist");
+            throw new DalDoesNotExistException($"Task with ID={item.Id} does not exist");
         }
     }
 }
