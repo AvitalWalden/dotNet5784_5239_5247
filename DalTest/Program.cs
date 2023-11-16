@@ -56,7 +56,7 @@ namespace DalTest
             }
             else 
             {
-                throw new Exception($"Task with ID={idTask} not exists");
+                throw new DalDoesNotExistException($"Task with ID={idTask} not exists");
             }
             DO.Task updateTask = s_dal?.Task.Read(idTask)!;
             Console.WriteLine("Enter a description of the task");
@@ -139,7 +139,7 @@ namespace DalTest
         {
             if (s_dal?.Task.Read(idTask) == null)
             {
-                throw new Exception($"Task with ID={idTask} not exists");
+                throw new DalDoesNotExistException($"Task with ID={idTask} not exists");
             }
             else
             {
@@ -239,7 +239,7 @@ namespace DalTest
             }
             else
             {
-                throw new Exception($"Engineer with ID={id} not exists");
+                throw new DalDoesNotExistException($"Engineer with ID={id} not exists");
             }
             Engineer updateEngineer = s_dal?.Engineer.Read(id)!;
             Console.WriteLine("Enter the engineer's name");
@@ -281,7 +281,7 @@ namespace DalTest
         {
             if (s_dal?.Engineer.Read(idEngineer) == null)
             {
-                throw new Exception($"Engineer with ID={idEngineer} not exists");
+                throw new DalDoesNotExistException($"Engineer with ID={idEngineer} not exists");
             }
             else
             {
@@ -371,7 +371,7 @@ namespace DalTest
         }
 
         // The function update a dependency.
-        public static void updateDependency()
+        public static void UpdateDependency()
         {
             Console.WriteLine("Enter a dependency's ID");
             int idDependency = int.Parse(Console.ReadLine()!);
@@ -381,7 +381,7 @@ namespace DalTest
             }
             else
             {
-                throw new Exception($"Dependency with ID={idDependency} not exists");
+                throw new DalDoesNotExistException($"Dependency with ID={idDependency} not exists");
             }
             Dependency updateDependency = s_dal!.Dependency.Read(idDependency)!;
             Console.WriteLine("Enter ID number of pending task");
@@ -409,7 +409,7 @@ namespace DalTest
         }
 
         // The function read all Dependencies.
-        public static void readAllDependencies()
+        public static void ReadAllDependencies()
         {
             IEnumerable<DO.Dependency?> dependencies = s_dal?.Dependency.ReadAll() ?? throw new Exception("There are no dependencies.");
             foreach (var dependency in dependencies)
@@ -419,7 +419,7 @@ namespace DalTest
         }
 
         // The function read a dependency by ID.
-        public static void readDependency(int idDependency)
+        public static void ReadDependency(int idDependency)
         {
             if (s_dal?.Dependency.Read(idDependency) == null)
             {
@@ -432,7 +432,7 @@ namespace DalTest
         }
 
         // The function delete a dependency.
-        public static void deleteDependency(int idDependency)
+        public static void DeleteDependency(int idDependency)
         {
             try
             {
@@ -465,18 +465,18 @@ namespace DalTest
                     case 'b': // Read a dependency by ID
                         Console.WriteLine("Enter a dependency ID");
                         int idDependency = int.Parse(Console.ReadLine()!);
-                        readDependency(idDependency);
+                        ReadDependency(idDependency);
                         break;
                     case 'c': // Read all Dependencies
-                        readAllDependencies();
+                        ReadAllDependencies();
                         break;
                     case 'd': // Update a dependency.
-                        updateDependency();
+                        UpdateDependency();
                         break;
                     case 'e': // Delete a dependency.
                         Console.WriteLine("Enter a Dependency ID");
                         int idDependencyDelete = int.Parse(Console.ReadLine()!);
-                        deleteDependency(idDependencyDelete);
+                        DeleteDependency(idDependencyDelete);
                         break;
                     case 'f':
                         break;
