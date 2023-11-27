@@ -21,7 +21,7 @@ public class DalDeletionImpossible : Exception // Exception of object that can't
 }
 
 [Serializable]
-public class DalInvalidEnteredValue : Exception // Exception of Invalid entered value.
+public class DalInvalidEnteredValue: Exception // Exception of Invalid entered value.
 {
     public DalInvalidEnteredValue(string? message) : base(message) { }
 }
