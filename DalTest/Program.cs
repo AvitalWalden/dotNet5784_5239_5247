@@ -76,7 +76,7 @@ namespace DalTest
                 startDate = updateTask.Start;
             }
             else
-            {
+            { 
                 startDate = DateTime.Parse(startDate1);
             }
             Console.WriteLine("Enter task forecast date");
@@ -128,12 +128,12 @@ namespace DalTest
             string? id = Console.ReadLine();
             int? engineerId;
             if (id == null || id == "") //If not update the enginner id.
-            {
+            {  
                 engineerId = updateTask.EngineerId;
             }
             else
             {
-                engineerId = int.Parse(id);
+                engineerId = int.Parse (id);
             }
             DateTime CreatedAt = DateTime.Now;
             Console.WriteLine("Enter the level of the task:");
@@ -561,46 +561,46 @@ namespace DalTest
 
         static void Main(string[] args)
         {
-
-            //Initialization.Do(s_dalEngineer, s_dalTask, s_dalDependency);
-            Initialization.Do(s_dal); //stage 2
-            Console.WriteLine("For a task press 1");
-            Console.WriteLine("For an engineer press 2");
-            Console.WriteLine("For depency between tasks press 3");
-            Console.WriteLine("To exit press 0");
+           
+                //Initialization.Do(s_dalEngineer, s_dalTask, s_dalDependency);
+                Initialization.Do(s_dal); //stage 2
+                Console.WriteLine("For a task press 1");
+                Console.WriteLine("For an engineer press 2");
+                Console.WriteLine("For depency between tasks press 3");
+                Console.WriteLine("To exit press 0");
             int choose = int.Parse(Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect"));
             try
-            {
-                while (choose != 0)
                 {
-                    switch (choose)
+                    while (choose != 0)
                     {
-                        case 1:
-                            Tasks();
-                            break;
-                        case 2:
-                            Engineers();
-                            break;
-                        case 3:
-                            Dependencies();
-                            break;
-                        default:
-                            Console.WriteLine("The number entered is invalid");
-                            break;
+                        switch (choose)
+                        {
+                            case 1:
+                                Tasks();
+                                break;
+                            case 2:
+                                Engineers();
+                                break;
+                            case 3:
+                                Dependencies();
+                                break;
+                            default:
+                                Console.WriteLine("The number entered is invalid");
+                                break;
+                        }
+                        Console.WriteLine();
+                        Console.WriteLine("enter a number:");
+                        Console.WriteLine("For a task press 1");
+                        Console.WriteLine("For an engineer press 2");
+                        Console.WriteLine("For depency between tasks press 3");
+                        Console.WriteLine("To exit press 0");
+                        choose = int.Parse(Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect"));
                     }
-                    Console.WriteLine();
-                    Console.WriteLine("enter a number:");
-                    Console.WriteLine("For a task press 1");
-                    Console.WriteLine("For an engineer press 2");
-                    Console.WriteLine("For depency between tasks press 3");
-                    Console.WriteLine("To exit press 0");
-                    choose = int.Parse(Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect"));
                 }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
-            }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex);
+                }
         }
     }
 }

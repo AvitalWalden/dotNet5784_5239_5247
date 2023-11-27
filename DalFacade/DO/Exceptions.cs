@@ -27,7 +27,7 @@ public class DalInvalidEnteredValue : Exception // Exception of Invalid entered 
 }
 
 [Serializable]
-public class DalDataListIsEmpty : Exception // Exception of The data list is empty.
+public class DalDataListIsEmpty: Exception // Exception of The data list is empty.
 {
     public DalDataListIsEmpty(string? message) : base(message) { }
 }
