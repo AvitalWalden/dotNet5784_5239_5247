@@ -20,8 +20,8 @@ internal static class DataSource
         internal static int NextDependencyId { get => nextDependencyId++; }//A property with get that advances the private field automatically, by a number greater than the previous one by 1.
     }
 
-    internal static List<DO.Task?> Tasks { get; } = new();//Constructing a list of a task entity
-    internal static List<DO.Engineer?> Engineers { get; } = new();//Building a list of an engineer entity
-    internal static List<DO.Dependency?> Dependencies { get; } = new();//Building a list of entity dependencies
+    internal static List<DO.Task?> Tasks { get; } = new();//Constructing a list of a task entity.
+    internal static List<DO.Engineer?> Engineers { get; } = new();//Building a list of an engineer entity.
+    internal static List<DO.Dependency?> Dependencies { get; } = new();//Building a list of entity dependencies.
 
 }
