@@ -13,7 +13,8 @@ public record Engineer
     string Name,
     string Email,
     EngineerExperience Level,
-    double Cost
+    double Cost,
+    bool Active = true
 )
 {
     public Engineer() : this(0, "", "", EngineerExperience.JUNIOR, 0) { }

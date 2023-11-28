@@ -27,7 +27,8 @@ public record Task
     string? Deliverables = null,
     string? Remarks = null,
     int? EngineerId = null,
-    EngineerExperience? CopmlexityLevel = null
+    EngineerExperience? CopmlexityLevel = null,
+    bool Active = true
 )
 {
     public Task() : this(0, "", "") { } //empty ctor for stage 3

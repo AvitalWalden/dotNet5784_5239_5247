@@ -19,19 +19,13 @@ internal class TaskImplementation : ITask
     // This method is used to delete a Task by ID
     public void Delete(int id)
     {
-        Task? taskToDelete = Read(id);
-        if (taskToDelete is not null)
-        {
-            if (DataSource.Dependencies.Any(dependency => dependency?.DependsOnTask == id))
-                throw new DalDeletionImpossible($"Task with ID={id} cannot be deleted");
-
-            DataSource.Dependencies.RemoveAll(dependency => dependency?.DependentTask == id);
-            DataSource.Tasks.Remove(taskToDelete);
-        }
-        else
-        {
-            throw new DalDoesNotExistException($"Task with ID={id} does not exist");
-        }
+        //Task? taskToDelete = Read(id);
+        //if (taskToDelete is not null)
+        //{
+        //    taskToDelete.Active = false;
+        //}
+        // Throw an exception if the task cannot be deleted
+        throw new DalDeletionImpossible($"Task with ID={id} cannot be deleted");
     }
 
     //Reads task object by filter function

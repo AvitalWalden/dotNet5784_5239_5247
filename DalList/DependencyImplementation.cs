@@ -20,9 +20,17 @@ internal class DependencyImplementation : IDependency
 
     // This method is used to delete a dependency
     public void Delete(int id)
-    {   
-        // Throw an exception if the dependency with the given ID cannot be deleted
-        throw new DalDeletionImpossible($"Dependency with ID={id} cannot be deleted");
+    {
+        Dependency? dependencyToDelete = Read(id);
+        if (dependencyToDelete is not null)
+        {
+            DataSource.Dependencies.Remove(dependencyToDelete);
+
+        }
+        else
+        {
+            throw new DalDoesNotExistException($"dependency with ID={id} not exists");
+        }
     }
 
 
