@@ -4,6 +4,7 @@ using DalApi;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
 using System.Reflection.Emit;
+using System.Threading.Channels;
 
 namespace DalTest
 {
@@ -150,7 +151,9 @@ namespace DalTest
             {
                 level = int.Parse(level1);
             }
-            DO.Task newTask = new DO.Task(idTask, description, alias, false, startDate, forecastDate, deadlineDate, completeDate, productDescription, remarks, engineerId, (EngineerExperience)level);
+            Console.WriteLine("Enter if the task is active or not");
+            bool active = bool.Parse(Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect"));
+            DO.Task newTask = new DO.Task(idTask, description, alias, false, startDate, forecastDate, deadlineDate, completeDate, productDescription, remarks, engineerId, (EngineerExperience)level,active);
             try
             {
                 s_dal?.Task.Update(newTask); // Input the new id of the task.
@@ -318,7 +321,9 @@ namespace DalTest
             {
                 cost = double.Parse(cost1);
             }
-            DO.Engineer newEngineer = new DO.Engineer(id, name, email, (EngineerExperience)level, cost);
+            Console.WriteLine("Enter if the engineer is active or not");
+            bool active = bool.Parse(Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect"));
+            DO.Engineer newEngineer = new DO.Engineer(id, name, email, (EngineerExperience)level, cost,active);
             try
             {
                 s_dal?.Engineer.Update(newEngineer);
