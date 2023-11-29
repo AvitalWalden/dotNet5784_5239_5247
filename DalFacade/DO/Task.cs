@@ -13,7 +13,7 @@
 /// <param name="Deliverables">Product (a string describing the product)</param>
 /// <param name="Remarks">Notes of the task</param>
 /// <param name="EngineerId">The ID of the engineer assigned to the task</param>
-/// <param name="CopmlexityLevel">Difficulty level of the task</param>
+/// <param name="ComplexityLevel">Difficulty level of the task</param>
 public record Task
 (
     int Id,
@@ -27,7 +27,7 @@ public record Task
     string? Deliverables = null,
     string? Remarks = null,
     int? EngineerId = null,
-    EngineerExperience? CopmlexityLevel = null,
+    EngineerExperience? ComplexityLevel = null,
     bool Active = true
 )
 {
