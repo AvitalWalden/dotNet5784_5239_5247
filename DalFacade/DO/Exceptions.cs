@@ -31,3 +31,10 @@ public class DalDataListIsEmpty: Exception // Exception of The data list is empt
 {
     public DalDataListIsEmpty(string? message) : base(message) { }
 }
+
+
+[Serializable]
+public class DalXMLFileLoadCreateException : Exception // Exception from XmlTools
+{
+    public DalXMLFileLoadCreateException(string? message) : base(message) { }
+}
