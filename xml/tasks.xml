@@ -12,6 +12,7 @@
 		<Complete>2023-12-07T14:45:00.000000+02:00</Complete>
 		<Deliverables>Optimized SQL queries and performance report</Deliverables>
 		<ComplexityLevel>EXPERT</ComplexityLevel>
+		<CreateAt>2023-12-01T08:30:00.000000+02:00</CreateAt>
 	</Task>
 
 	<Task>
@@ -26,6 +27,7 @@
 		<Complete>2023-12-06T18:30:00.000000+02:00</Complete>
 		<Deliverables>Implemented user authentication feature with documentation</Deliverables>
 		<ComplexityLevel>EXPERT</ComplexityLevel>
+		<CreateAt>2023-12-01T08:30:00.000000+02:00</CreateAt>
 	</Task>
 	
 	<Task>
@@ -40,6 +42,7 @@
 		<Complete>2023-12-:19:20.3225424+02:00</Complete>
 		<Deliverables>Identify and resolve a software bug</Deliverables>
 		<ComplexityLevel>EXPERT</ComplexityLevel>
+		<CreateAt>2023-12-01T08:30:00.000000+02:00</CreateAt>
 	</Task>
 	
 	<Task>
@@ -54,6 +57,7 @@
 		<Complete>2023-12-07T20:45:00.000000+02:00</Complete>
 		<Deliverables>Code review feedback and approval</Deliverables>
 		<ComplexityLevel>EXPERT</ComplexityLevel>
+		<CreateAt>2023-12-01T08:30:00.000000+02:00</CreateAt>
 	</Task>
 	
 	<Task>
@@ -68,6 +72,7 @@
 		<Complete>2023-12-08T16:00:00.000000+02:00</Complete>
 		<Deliverables>Security patch and documentation</Deliverables>
 		<ComplexityLevel>ROOKIE</ComplexityLevel>
+		<CreateAt>2023-12-01T08:30:00.000000+02:00</CreateAt>
 	</Task>
 
 	<Task>
@@ -82,6 +87,7 @@
 		<Complete>2023-12-09T17:45:00.000000+02:00</Complete>
 		<Deliverables>Optimized front-end code and performance metrics</Deliverables>
 		<ComplexityLevel>ROOKIE</ComplexityLevel>
+		<CreateAt>2023-12-01T08:30:00.000000+02:00</CreateAt>
 	</Task>
 
 	<Task>
@@ -96,6 +102,7 @@
 		<Complete>2023-12-10T19:30:00.000000+02:00</Complete>
 		<Deliverables>Successfully integrated third-party API and documentation</Deliverables>
 		<ComplexityLevel>ROOKIE</ComplexityLevel>
+		<CreateAt>2023-12-01T08:30:00.000000+02:00</CreateAt>
 	</Task>
 
 	<Task>
@@ -110,6 +117,7 @@
 		<Complete>2023-12-11T21:15:00.000000+02:00</Complete>
 		<Deliverables>Automated test suite and test coverage report</Deliverables>
 		<ComplexityLevel>JUNIOR</ComplexityLevel>
+		<CreateAt>2023-12-01T08:30:00.000000+02:00</CreateAt>
 	</Task>
 
 	<Task>
@@ -124,6 +132,7 @@
 		<Complete>2023-12-12T22:45:00.000000+02:00</Complete>
 		<Deliverables>Refactored codebase with updated documentation</Deliverables>
 		<ComplexityLevel>JUNIOR</ComplexityLevel>
+		<CreateAt>2023-12-01T08:30:00.000000+02:00</CreateAt>
 	</Task>
 
 	<Task>
@@ -138,6 +147,7 @@
 		<Complete>2023-12-13T15:30:00.000000+02:00</Complete>
 		<Deliverables>Real-time chat feature with documentation</Deliverables>
 		<ComplexityLevel>ROOKIE</ComplexityLevel>
+		<CreateAt>2023-12-01T08:30:00.000000+02:00</CreateAt>
 	</Task>
 
 	<Task>
@@ -152,6 +162,7 @@
 		<Complete>2023-12-14T17:45:00.000000+02:00</Complete>
 		<Deliverables>Resolved cross-browser compatibility issues</Deliverables>
 		<ComplexityLevel>ROOKIE</ComplexityLevel>
+		<CreateAt>2023-12-01T08:30:00.000000+02:00</CreateAt>
 	</Task>
 
 	<Task>
@@ -166,6 +177,7 @@
 		<Complete>2023-12-15T19:15:00.000000+02:00</Complete>
 		<Deliverables>Performance dashboard with relevant metrics</Deliverables>
 		<ComplexityLevel>ROOKIE</ComplexityLevel>
+		<CreateAt>2023-12-01T08:30:00.000000+02:00</CreateAt>
 	</Task>
 
 	<Task>
@@ -180,6 +192,7 @@
 		<Complete>2023-12-16T21:45:00.000000+02:00</Complete>
 		<Deliverables>Resolved production issues and release notes</Deliverables>
 		<ComplexityLevel>JUNIOR</ComplexityLevel>
+		<CreateAt>2023-12-01T08:30:00.000000+02:00</CreateAt>
 	</Task>
 
 	<Task>
@@ -194,6 +207,7 @@
 		<Complete>2023-12-17T23:15:00.000000+02:00</Complete>
 		<Deliverables>Integrated machine learning model with documentation</Deliverables>
 		<ComplexityLevel>JUNIOR</ComplexityLevel>
+		<CreateAt>2023-12-01T08:30:00.000000+02:00</CreateAt>
 	</Task>
 
 	<Task>
@@ -208,6 +222,7 @@
 		<Complete>2023-12-18T00:45:00.000000+02:00</Complete>
 		<Deliverables>Developed RESTful API with comprehensive documentation</Deliverables>
 		<ComplexityLevel>EXPERT</ComplexityLevel>
+		<CreateAt>2023-12-01T08:30:00.000000+02:00</CreateAt>
 	</Task>
 
 	<Task>
@@ -222,6 +237,7 @@
 		<Complete>2023-12-19T02:15:00.000000+02:00</Complete>
 		<Deliverables>Implemented multi-factor authentication with user guide</Deliverables>
 		<ComplexityLevel>EXPERT</ComplexityLevel>
+		<CreateAt>2023-12-01T08:30:00.000000+02:00</CreateAt>
 	</Task>
 
 	<Task>
@@ -236,6 +252,7 @@
 		<Complete>2023-12-20T03:45:00.000000+02:00</Complete>
 		<Deliverables>Automated deployment system with rollback functionality</Deliverables>
 		<ComplexityLevel>ROOKIE</ComplexityLevel>
+		<CreateAt>2023-12-01T08:30:00.000000+02:00</CreateAt>
 	</Task>
 
 	<Task>
@@ -250,6 +267,7 @@
 		<Complete>2023-12-21T05:15:00.000000+02:00</Complete>
 		<Deliverables>Optimized database schema with performance metrics</Deliverables>
 		<ComplexityLevel>EXPERT</ComplexityLevel>
+		<CreateAt>2023-12-01T08:30:00.000000+02:00</CreateAt>
 	</Task>
 
 	<Task>
@@ -264,6 +282,7 @@
 		<Complete>2023-12-21T06:45:00.000000+02:00</Complete>
 		<Deliverables>Developed web service for third-party integrations with documentation</Deliverables>
 		<ComplexityLevel>EXPERT</ComplexityLevel>
+		<CreateAt>2023-12-01T08:30:00.000000+02:00</CreateAt>
 	</Task>
 
 	<Task>
@@ -278,6 +297,7 @@
 		<Complete>2023-12-23T08:15:00.000000+02:00</Complete>
 		<Deliverables>Load testing report with recommendations for performance improvement</Deliverables>
 		<ComplexityLevel>EXPERT</ComplexityLevel>
+		<CreateAt>2023-12-01T08:30:00.000000+02:00</CreateAt>
 	</Task>
 
 	<Task>
@@ -292,6 +312,7 @@
 		<Complete>2023-12-24T09:45:00.000000+02:00</Complete>
 		<Deliverables>Implemented logging mechanism with detailed user activity tracking</Deliverables>
 		<ComplexityLevel>EXPERT</ComplexityLevel>
+		<CreateAt>2023-12-01T08:30:00.000000+02:00</CreateAt>
 	</Task>
 
 
