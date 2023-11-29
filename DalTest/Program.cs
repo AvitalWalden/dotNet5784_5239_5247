@@ -145,7 +145,7 @@ namespace DalTest
             int level;
             if (level1 == null || level1 == "") //If not update the level.
             {
-                level = (int)updateTask.CopmlexityLevel!;
+                level = (int)updateTask.ComplexityLevel!;
             }
             else
             {
