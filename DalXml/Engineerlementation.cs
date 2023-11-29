@@ -12,7 +12,7 @@ internal class Engineerlementation : IEngineer
         int id = item.Id;
         XElement engineersElement = XElement.Load("path/to/engineers.xml");
 
-        if (engineersElement.Elements("Engineer").Any(e => (int)e.Element("Id") == id))
+        if (engineersElement.Elements("Engineer").Any(e => (int)e.Element("Id")! == id))
             throw new DalAlreadyExistsException($"Engineer with ID={id} already exists");
 
         XElement newEngineerElement = new XElement("Engineer",
@@ -21,7 +21,7 @@ internal class Engineerlementation : IEngineer
             new XElement("Email", item.Email),
             new XElement("Level", item.Level),
             new XElement("Cost", item.Cost),
-            new XElement("Cost", item.Active)
+            new XElement("Active", item.Active)
         );
         engineersElement.Add(newEngineerElement);
         engineersElement.Save("path/to/engineers.xml");
@@ -54,7 +54,7 @@ internal class Engineerlementation : IEngineer
         // call to XML file
         XDocument xdoc = XDocument.Load("path/to/engineers.xml");
         // Check if there is an engineer with the same ID
-        XElement? engineerToUpdate = xdoc.Descendants("Engineer").FirstOrDefault(e => (int)e.Element("Id") == id);
+        XElement? engineerToUpdate = xdoc.Descendants("Engineer").FirstOrDefault(e => (int)e.Element("Id")! == id);
         if (engineerToUpdate != null)
         {
             // Update the engineer in the XML file

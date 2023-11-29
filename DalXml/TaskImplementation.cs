@@ -12,7 +12,7 @@ internal class TaskImplementation : ITask
         int id = item.Id;
         XElement tasksElement = XElement.Load("path/to/tasks.xml");
 
-        if (tasksElement.Elements("Task").Any(e => (int)e.Element("Id") == id))
+        if (tasksElement.Elements("Task").Any(e => (int)e.Element("Id")! == id))
             throw new DalAlreadyExistsException($"Task with ID={id} already exists");
 
         XElement newTaskElement = new XElement("Task",
@@ -62,7 +62,7 @@ internal class TaskImplementation : ITask
         // call to XML file
         XDocument xdoc = XDocument.Load("path/to/tasks.xml");
         // Check if there is an engineer with the same ID
-        XElement? taskToUpdate = xdoc.Descendants("Task").FirstOrDefault(e => (int)e.Element("Id") == id);
+        XElement? taskToUpdate = xdoc.Descendants("Task").FirstOrDefault(e => (int)e.Element("Id")! == id);
         if (taskToUpdate != null)
         {
             // Update the task in the XML file
