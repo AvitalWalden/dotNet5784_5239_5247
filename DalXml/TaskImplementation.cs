@@ -28,8 +28,8 @@ internal class TaskImplementation : ITask
             new XElement("Remarks", item.Remarks),
             new XElement("EngineerId", item.EngineerId),
             new XElement("ComplexityLevel", item.ComplexityLevel),
-            new XElement("Active", item.Active)
-
+            new XElement("Active", item.Active),
+            new XElement("CreatedAt", item.CreatedAt)
         );
         tasksElement.Add(newTaskElement);
         tasksElement.Save("path/to/tasks.xml");
