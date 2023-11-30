@@ -112,22 +112,22 @@ internal class DependencyImplementation : IDependency
 
     public void Update(Dependency item)
     {
-        int id = item.Id;
-        const string dependenciesFile = @"..\xml\dependencies.xml";
-        //XElement dependenciesElement = XElement.Load(dependenciesFile); // למה אין כאן .ROOT והאם צריך ?
-        XElement? allDependencies = XDocument.Load(@"..\xml\dependencies.xml").Root;
+        //int id = item.Id;
+        //const string dependenciesFile = @"..\xml\dependencies.xml";
+        ////XElement dependenciesElement = XElement.Load(dependenciesFile); // למה אין כאן .ROOT והאם צריך ?
+        //XElement? allDependencies = XDocument.Load(@"..\xml\dependencies.xml").Root;
 
-        if (allDependencies!.Elements("Dependency").Any(dependency => (int)dependency.Element("Id")! == id)) //האם אפשר לשים !
-            throw new DalAlreadyExistsException($"Dependency with ID={id} already exists");
+        //if (allDependencies!.Elements("Dependency").Any(dependency => (int)dependency.Element("Id")! == id)) //האם אפשר לשים !
+        //    throw new DalAlreadyExistsException($"Dependency with ID={id} already exists");
 
-        XElement newDependencyElement = new XElement("Dependency",
-            new XElement("Id", id),
-            new XElement("DependentTask", item.DependentTask),
-            new XElement("DependsOnTask", item.DependsOnTask)
-            );
-        allDependencies.Add(newDependencyElement);
-        allDependencies.Save(dependenciesFile);
-        return id;
+        //XElement newDependencyElement = new XElement("Dependency",
+        //    new XElement("Id", id),
+        //    new XElement("DependentTask", item.DependentTask),
+        //    new XElement("DependsOnTask", item.DependsOnTask)
+        //    );
+        //allDependencies.Add(newDependencyElement);
+        //allDependencies.Save(dependenciesFile);
+        //return id;
     }
 }
 
