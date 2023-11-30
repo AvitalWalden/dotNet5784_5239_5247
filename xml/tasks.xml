@@ -294,20 +294,4 @@
     <ComplexityLevel>EXPERT</ComplexityLevel>
     <CreateAt>2023-12-01T08:30:00.000000+02:00</CreateAt>
   </Task>
-  <Task>
-    <Id>22</Id>
-    <Description>a</Description>
-    <Alias>a</Alias>
-    <Milestone>false</Milestone>
-    <Start>2333-12-12T00:00:00</Start>
-    <ForecastDate>2333-12-12T00:00:00</ForecastDate>
-    <Deadline>2333-12-12T00:00:00</Deadline>
-    <Complete>2333-12-12T00:00:00</Complete>
-    <Deliverables>a</Deliverables>
-    <Remarks>a</Remarks>
-    <EngineerId>214385239</EngineerId>
-    <ComplexityLevel>EXPERT</ComplexityLevel>
-    <Active>true</Active>
-    <CreatedAt>2023-11-30T18:39:19.2285441+02:00</CreatedAt>
-  </Task>
 </ArrayOfTask>

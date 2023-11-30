@@ -81,53 +81,80 @@ internal class DependencyImplementation : IDependency
         return null;
     }
 
+    //public IEnumerable<Dependency?> ReadAll(Func<Dependency, bool>? filter = null)
+    //{
+    //    XElement? dependenciesElement = XMLTools.LoadListFromXMLElement("ArrayOfDependency");
+    //    IEnumerable<Dependency> dependencies = dependenciesElement
+    //        .Elements("Dependency")
+    //        .Select(e => new Dependency(
+    //            Id: (int)e.Element("id")!,
+    //            DependentTask: (int)e.Element("dependentTask")!,
+    //            DependsOnTask: (int)e.Element("dependsOnTask")!
+    //        ));
+
+    //    if (filter != null)
+    //    {
+    //        dependencies = dependencies.Where(filter);
+    //    }
+
+    //    return dependencies.ToList(); // Convert to List before returning
+
+    //    //if (filter != null)
+    //    //{
+    //    //    return from item in DataSource.Dependencies
+    //    //           where filter(item)
+    //    //           select item;
+    //    //}
+    //    //// If no filter is provided, return all dependencies
+    //    //return from item in DataSource.Dependencies
+    //    //       select item;
+    //}
+
     public IEnumerable<Dependency?> ReadAll(Func<Dependency, bool>? filter = null)
     {
-        XElement? dependenciesElement = XMLTools.LoadListFromXMLElement("ArrayOfDependency");
-        IEnumerable<Dependency> dependencies = dependenciesElement
-            .Elements("Dependency")
-            .Select(e => new Dependency(
-                Id: (int)e.Element("id")!,
-                DependentTask: (int)e.Element("dependentTask")!,
-                DependsOnTask: (int)e.Element("dependsOnTask")!
-            ));
-
-        if (filter != null)
-        {
-            dependencies = dependencies.Where(filter);
-        }
-
-        return dependencies.ToList(); // Convert to List before returning
+        //XElement dependenciesElement = XMLTools.LoadListFromXMLElement("ArrayOfDependency");
+        //IEnumerable<Dependency> dependencies = dependenciesElement
+        //    .Elements("Dependency")
+        //    .Select(dependency => new Dependency
+        //    {
+        //        Id = (int)dependency.Element("id")!,
+        //        DependentTask = (int)dependency.Element("dependentTask")!,
+        //        DependsOnTask = (int)dependency.Element("dependsOnTask")!
+        //    });
 
         //if (filter != null)
         //{
-        //    return from item in DataSource.Dependencies
-        //           where filter(item)
-        //           select item;
+        //    dependencies = dependencies.Where(filter);
         //}
-        //// If no filter is provided, return all dependencies
-        //return from item in DataSource.Dependencies
-        //       select item;
+
+        //return dependencies;
     }
 
     public void Update(Dependency item)
     {
-        //int id = item.Id;
-        //const string dependenciesFile = @"..\xml\dependencies.xml";
-        ////XElement dependenciesElement = XElement.Load(dependenciesFile); // למה אין כאן .ROOT והאם צריך ?
-        //XElement? allDependencies = XDocument.Load(@"..\xml\dependencies.xml").Root;
-
-        //if (allDependencies!.Elements("Dependency").Any(dependency => (int)dependency.Element("Id")! == id)) //האם אפשר לשים !
-        //    throw new DalAlreadyExistsException($"Dependency with ID={id} already exists");
-
-        //XElement newDependencyElement = new XElement("Dependency",
-        //    new XElement("Id", id),
-        //    new XElement("DependentTask", item.DependentTask),
-        //    new XElement("DependsOnTask", item.DependsOnTask)
-        //    );
-        //allDependencies.Add(newDependencyElement);
-        //allDependencies.Save(dependenciesFile);
-        //return id;
+        int id = item.Id;
+        // call to XML file
+        const string dependenciesFile = @"..\xml\dependencies.xml";
+        XElement? allDependencies = XDocument.Load(dependenciesFile).Root;
+        // Check if there is an engineer with the same ID
+        XElement? dependencyToUpdate = allDependencies!.Descendants("Dependency").FirstOrDefault(dependency => (int)dependency.Element("Id")! == id);
+        if (dependencyToUpdate != null)
+        {
+            // Update the task in the XML file
+            dependencyToUpdate.ReplaceWith(
+                new XElement("Dependency",
+                new XElement("Id", id),
+                new XElement("DependentTask", item.DependentTask),
+                new XElement("DependsOnTask", item.DependsOnTask)
+                )
+            );
+            // Save to XML file again
+            allDependencies.Save(dependenciesFile);
+        }
+        else
+        {
+            throw new DalDoesNotExistException($"Dependency with ID={item.Id} does not exist");
+        }
     }
 }
 

@@ -56,19 +56,21 @@ internal class TaskImplementation : ITask
 
     public IEnumerable<Task?> ReadAll(Func<Task, bool>? filter = null)
     {
-        List<Task> lst = new List<Task>();
+        //    List<Task> lst = new List<Task>();
 
-        XmlSerializer ser = new XmlSerializer(typeof(List<Task>));
+        //    XmlSerializer ser = new XmlSerializer(typeof(List<Task>));
 
-        using (StreamReader r = new StreamReader(@"..\xml\tasks.xml"))
-        {
-            lst = (List<Task>)ser.Deserialize(r)!;
-            r.Close();
-        }
-        
-        //return (func == null) ? lst : lst?.Where(func);
+        //    using (StreamReader r = new StreamReader(@"..\xml\tasks.xml"))
+        //    {
+        //        lst = (List<Task>)ser.Deserialize(r)!;
+        //        r.Close();
+        //    }
 
-        return lst;
+        //    //return (func == null) ? lst : lst?.Where(func);
+
+        //    return lst;
+        throw new NotImplementedException();
+
     }
 
     public void Update(Task item)
