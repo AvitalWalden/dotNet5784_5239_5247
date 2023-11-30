@@ -1,320 +1,313 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <ArrayOfTask>
-	<Task>
-		<Id>1</Id>
-		<Description>Optimize database queries for improved performance</Description>
-		<Alias>Database Optimization</Alias>
-		<Milestone>false</Milestone>
-		<EngineerId>016438046</EngineerId>
-		<Start>2023-12-01T08:30:00.000000+02:00</Start>
-		<ForecastDate>2023-12-05T12:30:00.000000+02:00</ForecastDate>
-		<Deadline>2023-12-08T08:30:00.000000+02:00</Deadline>
-		<Complete>2023-12-07T14:45:00.000000+02:00</Complete>
-		<Deliverables>Optimized SQL queries and performance report</Deliverables>
-		<ComplexityLevel>EXPERT</ComplexityLevel>
-		<CreateAt>2023-12-01T08:30:00.000000+02:00</CreateAt>
-	</Task>
-
-	<Task>
-		<Id>2</Id>
-		<Description>Implement a new feature for user authentication</Description>
-		<Alias>User Auth Feature</Alias>
-		<Milestone>false</Milestone>
-		<EngineerId>214385241</EngineerId>
-		<Start>2023-12-02T10:00:00.000000+02:00</Start>
-		<ForecastDate>2023-12-04T15:00:00.000000+02:00</ForecastDate>
-		<Deadline>2023-12-07T10:00:00.000000+02:00</Deadline>
-		<Complete>2023-12-06T18:30:00.000000+02:00</Complete>
-		<Deliverables>Implemented user authentication feature with documentation</Deliverables>
-		<ComplexityLevel>EXPERT</ComplexityLevel>
-		<CreateAt>2023-12-01T08:30:00.000000+02:00</CreateAt>
-	</Task>
-	
-	<Task>
-		<Id>3</Id>
-		<Description>Identify and resolve a software bug</Description>
-		<Alias>Fix a bug</Alias>
-		<Milestone>false</Milestone>
-		<EngineerId>214385239</EngineerId>
-		<Start>2023-12-01T02:19:20.322507+02:00</Start>
-		<ForecastDate>2023-12-03T08:19:20.3225382+02:00</ForecastDate>
-		<Deadline>2023-12-06T02:19:20.3225409+02:00</Deadline>
-		<Complete>2023-12-:19:20.3225424+02:00</Complete>
-		<Deliverables>Identify and resolve a software bug</Deliverables>
-		<ComplexityLevel>EXPERT</ComplexityLevel>
-		<CreateAt>2023-12-01T08:30:00.000000+02:00</CreateAt>
-	</Task>
-	
-	<Task>
-		<Id>4</Id>
-		<Description>Conduct a code review for a team member's pull request</Description>
-		<Alias>Code Review</Alias>
-		<Milestone>false</Milestone>
-		<EngineerId>214385242</EngineerId>
-		<Start>2023-12-03T14:00:00.000000+02:00</Start>
-		<ForecastDate>2023-12-05T18:00:00.000000+02:00</ForecastDate>
-		<Deadline>2023-12-08T14:00:00.000000+02:00</Deadline>
-		<Complete>2023-12-07T20:45:00.000000+02:00</Complete>
-		<Deliverables>Code review feedback and approval</Deliverables>
-		<ComplexityLevel>EXPERT</ComplexityLevel>
-		<CreateAt>2023-12-01T08:30:00.000000+02:00</CreateAt>
-	</Task>
-	
-	<Task>
-		<Id>5</Id>
-		<Description>Fix a critical security vulnerability in the authentication module</Description>
-		<Alias>Security Fix</Alias>
-		<Milestone>false</Milestone>
-		<EngineerId>214385243</EngineerId>
-		<Start>2023-12-04T09:45:00.000000+02:00</Start>
-		<ForecastDate>2023-12-06T14:45:00.000000+02:00</ForecastDate>
-		<Deadline>2023-12-09T09:45:00.000000+02:00</Deadline>
-		<Complete>2023-12-08T16:00:00.000000+02:00</Complete>
-		<Deliverables>Security patch and documentation</Deliverables>
-		<ComplexityLevel>ROOKIE</ComplexityLevel>
-		<CreateAt>2023-12-01T08:30:00.000000+02:00</CreateAt>
-	</Task>
-
-	<Task>
-		<Id>6</Id>
-		<Description>Optimize front-end code for faster page loading</Description>
-		<Alias>Front-end Optimization</Alias>
-		<Milestone>false</Milestone>
-		<EngineerId>214385244</EngineerId>
-		<Start>2023-12-05T11:30:00.000000+02:00</Start>
-		<ForecastDate>2023-12-07T16:30:00.000000+02:00</ForecastDate>
-		<Deadline>2023-12-10T11:30:00.000000+02:00</Deadline>
-		<Complete>2023-12-09T17:45:00.000000+02:00</Complete>
-		<Deliverables>Optimized front-end code and performance metrics</Deliverables>
-		<ComplexityLevel>ROOKIE</ComplexityLevel>
-		<CreateAt>2023-12-01T08:30:00.000000+02:00</CreateAt>
-	</Task>
-
-	<Task>
-		<Id>7</Id>
-		<Description>Integrate a third-party API for new functionality</Description>
-		<Alias>API Integration</Alias>
-		<Milestone>false</Milestone>
-		<EngineerId>214385245</EngineerId>
-		<Start>2023-12-06T13:15:00.000000+02:00</Start>
-		<ForecastDate>2023-12-08T18:15:00.000000+02:00</ForecastDate>
-		<Deadline>2023-12-11T13:15:00.000000+02:00</Deadline>
-		<Complete>2023-12-10T19:30:00.000000+02:00</Complete>
-		<Deliverables>Successfully integrated third-party API and documentation</Deliverables>
-		<ComplexityLevel>ROOKIE</ComplexityLevel>
-		<CreateAt>2023-12-01T08:30:00.000000+02:00</CreateAt>
-	</Task>
-
-	<Task>
-		<Id>8</Id>
-		<Description>Create automated tests for a critical module</Description>
-		<Alias>Automated Testing</Alias>
-		<Milestone>false</Milestone>
-		<EngineerId>111111118</EngineerId>
-		<Start>2023-12-07T15:00:00.000000+02:00</Start>
-		<ForecastDate>2023-12-09T20:00:00.000000+02:00</ForecastDate>
-		<Deadline>2023-12-12T15:00:00.000000+02:00</Deadline>
-		<Complete>2023-12-11T21:15:00.000000+02:00</Complete>
-		<Deliverables>Automated test suite and test coverage report</Deliverables>
-		<ComplexityLevel>JUNIOR</ComplexityLevel>
-		<CreateAt>2023-12-01T08:30:00.000000+02:00</CreateAt>
-	</Task>
-
-	<Task>
-		<Id>9</Id>
-		<Description>Refactor codebase for improved maintainability</Description>
-		<Alias>Code Refactoring</Alias>
-		<Milestone>false</Milestone>
-		<EngineerId>023995871</EngineerId>
-		<Start>2023-12-08T16:30:00.000000+02:00</Start>
-		<ForecastDate>2023-12-10T21:30:00.000000+02:00</ForecastDate>
-		<Deadline>2023-12-13T16:30:00.000000+02:00</Deadline>
-		<Complete>2023-12-12T22:45:00.000000+02:00</Complete>
-		<Deliverables>Refactored codebase with updated documentation</Deliverables>
-		<ComplexityLevel>JUNIOR</ComplexityLevel>
-		<CreateAt>2023-12-01T08:30:00.000000+02:00</CreateAt>
-	</Task>
-
-	<Task>
-		<Id>10</Id>
-		<Description>Implement real-time chat functionality using WebSocket</Description>
-		<Alias>Real-time Chat</Alias>
-		<Milestone>false</Milestone>
-		<EngineerId>214385247</EngineerId>
-		<Start>2023-12-09T09:00:00.000000+02:00</Start>
-		<ForecastDate>2023-12-11T14:00:00.000000+02:00</ForecastDate>
-		<Deadline>2023-12-14T09:00:00.000000+02:00</Deadline>
-		<Complete>2023-12-13T15:30:00.000000+02:00</Complete>
-		<Deliverables>Real-time chat feature with documentation</Deliverables>
-		<ComplexityLevel>ROOKIE</ComplexityLevel>
-		<CreateAt>2023-12-01T08:30:00.000000+02:00</CreateAt>
-	</Task>
-
-	<Task>
-		<Id>11</Id>
-		<Description>Fix cross-browser compatibility issues in the UI</Description>
-		<Alias>Browser Compatibility Fix</Alias>
-		<Milestone>false</Milestone>
-		<EngineerId>214385247</EngineerId>
-		<Start>2023-12-10T11:30:00.000000+02:00</Start>
-		<ForecastDate>2023-12-12T16:30:00.000000+02:00</ForecastDate>
-		<Deadline>2023-12-15T11:30:00.000000+02:00</Deadline>
-		<Complete>2023-12-14T17:45:00.000000+02:00</Complete>
-		<Deliverables>Resolved cross-browser compatibility issues</Deliverables>
-		<ComplexityLevel>ROOKIE</ComplexityLevel>
-		<CreateAt>2023-12-01T08:30:00.000000+02:00</CreateAt>
-	</Task>
-
-	<Task>
-		<Id>12</Id>
-		<Description>Create a dashboard for monitoring system performance</Description>
-		<Alias>Performance Dashboard</Alias>
-		<Milestone>false</Milestone>
-		<EngineerId>214385247</EngineerId>
-		<Start>2023-12-11T13:00:00.000000+02:00</Start>
-		<ForecastDate>2023-12-13T18:00:00.000000+02:00</ForecastDate>
-		<Deadline>2023-12-16T13:00:00.000000+02:00</Deadline>
-		<Complete>2023-12-15T19:15:00.000000+02:00</Complete>
-		<Deliverables>Performance dashboard with relevant metrics</Deliverables>
-		<ComplexityLevel>ROOKIE</ComplexityLevel>
-		<CreateAt>2023-12-01T08:30:00.000000+02:00</CreateAt>
-	</Task>
-
-	<Task>
-		<Id>13</Id>
-		<Description>Debug and fix issues reported by users in the production environment</Description>
-		<Alias>Production Bug Fixes</Alias>
-		<Milestone>false</Milestone>
-		<EngineerId>023995871</EngineerId>
-		<Start>2023-12-12T15:30:00.000000+02:00</Start>
-		<ForecastDate>2023-12-14T20:30:00.000000+02:00</ForecastDate>
-		<Deadline>2023-12-17T15:30:00.000000+02:00</Deadline>
-		<Complete>2023-12-16T21:45:00.000000+02:00</Complete>
-		<Deliverables>Resolved production issues and release notes</Deliverables>
-		<ComplexityLevel>JUNIOR</ComplexityLevel>
-		<CreateAt>2023-12-01T08:30:00.000000+02:00</CreateAt>
-	</Task>
-
-	<Task>
-		<Id>14</Id>
-		<Description>Integrate machine learning model for predictive analytics</Description>
-		<Alias>ML Integration</Alias>
-		<Milestone>false</Milestone>
-		<EngineerId>023995871</EngineerId>
-		<Start>2023-12-13T17:00:00.000000+02:00</Start>
-		<ForecastDate>2023-12-15T22:00:00.000000+02:00</ForecastDate>
-		<Deadline>2023-12-18T17:00:00.000000+02:00</Deadline>
-		<Complete>2023-12-17T23:15:00.000000+02:00</Complete>
-		<Deliverables>Integrated machine learning model with documentation</Deliverables>
-		<ComplexityLevel>JUNIOR</ComplexityLevel>
-		<CreateAt>2023-12-01T08:30:00.000000+02:00</CreateAt>
-	</Task>
-
-	<Task>
-		<Id>15</Id>
-		<Description>Develop a RESTful API for a new module</Description>
-		<Alias>RESTful API Development</Alias>
-		<Milestone>false</Milestone>
-		<EngineerId>214385245</EngineerId>
-		<Start>2023-12-14T18:30:00.000000+02:00</Start>
-		<ForecastDate>2023-12-16T23:30:00.000000+02:00</ForecastDate>
-		<Deadline>2023-12-19T18:30:00.000000+02:00</Deadline>
-		<Complete>2023-12-18T00:45:00.000000+02:00</Complete>
-		<Deliverables>Developed RESTful API with comprehensive documentation</Deliverables>
-		<ComplexityLevel>EXPERT</ComplexityLevel>
-		<CreateAt>2023-12-01T08:30:00.000000+02:00</CreateAt>
-	</Task>
-
-	<Task>
-		<Id>16</Id>
-		<Description>Implement multi-factor authentication for enhanced security</Description>
-		<Alias>MFA Implementation</Alias>
-		<Milestone>false</Milestone>
-		<EngineerId>214385244</EngineerId>
-		<Start>2023-12-15T20:00:00.000000+02:00</Start>
-		<ForecastDate>2023-12-17T01:00:00.000000+02:00</ForecastDate>
-		<Deadline>2023-12-20T20:00:00.000000+02:00</Deadline>
-		<Complete>2023-12-19T02:15:00.000000+02:00</Complete>
-		<Deliverables>Implemented multi-factor authentication with user guide</Deliverables>
-		<ComplexityLevel>EXPERT</ComplexityLevel>
-		<CreateAt>2023-12-01T08:30:00.000000+02:00</CreateAt>
-	</Task>
-
-	<Task>
-		<Id>17</Id>
-		<Description>Create a system for automated deployment and rollback</Description>
-		<Alias>Automated Deployment System</Alias>
-		<Milestone>false</Milestone>
-		<EngineerId>344165165</EngineerId>
-		<Start>2023-12-16T21:30:00.000000+02:00</Start>
-		<ForecastDate>2023-12-18T02:30:00.000000+02:00</ForecastDate>
-		<Deadline>2023-12-21T21:30:00.000000+02:00</Deadline>
-		<Complete>2023-12-20T03:45:00.000000+02:00</Complete>
-		<Deliverables>Automated deployment system with rollback functionality</Deliverables>
-		<ComplexityLevel>ROOKIE</ComplexityLevel>
-		<CreateAt>2023-12-01T08:30:00.000000+02:00</CreateAt>
-	</Task>
-
-	<Task>
-		<Id>18</Id>
-		<Description>Optimize database schema for improved data retrieval</Description>
-		<Alias>Database Schema Optimization</Alias>
-		<Milestone>false</Milestone>
-		<EngineerId>214385239</EngineerId>
-		<Start>2023-12-17T23:00:00.000000+02:00</Start>
-		<ForecastDate>2023-12-19T04:00:00.000000+02:00</ForecastDate>
-		<Deadline>2023-12-22T23:00:00.000000+02:00</Deadline>
-		<Complete>2023-12-21T05:15:00.000000+02:00</Complete>
-		<Deliverables>Optimized database schema with performance metrics</Deliverables>
-		<ComplexityLevel>EXPERT</ComplexityLevel>
-		<CreateAt>2023-12-01T08:30:00.000000+02:00</CreateAt>
-	</Task>
-
-	<Task>
-		<Id>19</Id>
-		<Description>Develop a web service for third-party integrations</Description>
-		<Alias>Web Service Development</Alias>
-		<Milestone>false</Milestone>
-		<EngineerId>214385239</EngineerId>
-		<Start>2023-12-18T00:30:00.000000+02:00</Start>
-		<ForecastDate>2023-12-20T05:30:00.000000+02:00</ForecastDate>
-		<Deadline>2023-12-23T00:30:00.000000+02:00</Deadline>
-		<Complete>2023-12-21T06:45:00.000000+02:00</Complete>
-		<Deliverables>Developed web service for third-party integrations with documentation</Deliverables>
-		<ComplexityLevel>EXPERT</ComplexityLevel>
-		<CreateAt>2023-12-01T08:30:00.000000+02:00</CreateAt>
-	</Task>
-
-	<Task>
-		<Id>20</Id>
-		<Description>Conduct load testing to identify performance bottlenecks</Description>
-		<Alias>Load Testing</Alias>
-		<Milestone>false</Milestone>
-		<EngineerId>214385239</EngineerId>
-		<Start>2023-12-19T02:00:00.000000+02:00</Start>
-		<ForecastDate>2023-12-21T07:00:00.000000+02:00</ForecastDate>
-		<Deadline>2023-12-24T02:00:00.000000+02:00</Deadline>
-		<Complete>2023-12-23T08:15:00.000000+02:00</Complete>
-		<Deliverables>Load testing report with recommendations for performance improvement</Deliverables>
-		<ComplexityLevel>EXPERT</ComplexityLevel>
-		<CreateAt>2023-12-01T08:30:00.000000+02:00</CreateAt>
-	</Task>
-
-	<Task>
-		<Id>21</Id>
-		<Description>Implement a logging mechanism for tracking user activities</Description>
-		<Alias>Logging Implementation</Alias>
-		<Milestone>false</Milestone>
-		<EngineerId>016438046</EngineerId>
-		<Start>2023-12-20T03:30:00.000000+02:00</Start>
-		<ForecastDate>2023-12-22T08:30:00.000000+02:00</ForecastDate>
-		<Deadline>2023-12-25T03:30:00.000000+02:00</Deadline>
-		<Complete>2023-12-24T09:45:00.000000+02:00</Complete>
-		<Deliverables>Implemented logging mechanism with detailed user activity tracking</Deliverables>
-		<ComplexityLevel>EXPERT</ComplexityLevel>
-		<CreateAt>2023-12-01T08:30:00.000000+02:00</CreateAt>
-	</Task>
-
-
-
+  <Task>
+    <Id>1</Id>
+    <Description>Optimize database queries for improved performance</Description>
+    <Alias>Database Optimization</Alias>
+    <Milestone>false</Milestone>
+    <EngineerId>016438046</EngineerId>
+    <Start>2023-12-01T08:30:00.000000+02:00</Start>
+    <ForecastDate>2023-12-05T12:30:00.000000+02:00</ForecastDate>
+    <Deadline>2023-12-08T08:30:00.000000+02:00</Deadline>
+    <Complete>2023-12-07T14:45:00.000000+02:00</Complete>
+    <Deliverables>Optimized SQL queries and performance report</Deliverables>
+    <ComplexityLevel>EXPERT</ComplexityLevel>
+    <CreateAt>2023-12-01T08:30:00.000000+02:00</CreateAt>
+  </Task>
+  <Task>
+    <Id>2</Id>
+    <Description>Implement a new feature for user authentication</Description>
+    <Alias>User Auth Feature</Alias>
+    <Milestone>false</Milestone>
+    <EngineerId>214385241</EngineerId>
+    <Start>2023-12-02T10:00:00.000000+02:00</Start>
+    <ForecastDate>2023-12-04T15:00:00.000000+02:00</ForecastDate>
+    <Deadline>2023-12-07T10:00:00.000000+02:00</Deadline>
+    <Complete>2023-12-06T18:30:00.000000+02:00</Complete>
+    <Deliverables>Implemented user authentication feature with documentation</Deliverables>
+    <ComplexityLevel>EXPERT</ComplexityLevel>
+    <CreateAt>2023-12-01T08:30:00.000000+02:00</CreateAt>
+  </Task>
+  <Task>
+    <Id>3</Id>
+    <Description>Identify and resolve a software bug</Description>
+    <Alias>Fix a bug</Alias>
+    <Milestone>false</Milestone>
+    <EngineerId>214385239</EngineerId>
+    <Start>2023-12-01T02:19:20.322507+02:00</Start>
+    <ForecastDate>2023-12-03T08:19:20.3225382+02:00</ForecastDate>
+    <Deadline>2023-12-06T02:19:20.3225409+02:00</Deadline>
+    <Complete>2023-12-:19:20.3225424+02:00</Complete>
+    <Deliverables>Identify and resolve a software bug</Deliverables>
+    <ComplexityLevel>EXPERT</ComplexityLevel>
+    <CreateAt>2023-12-01T08:30:00.000000+02:00</CreateAt>
+  </Task>
+  <Task>
+    <Id>4</Id>
+    <Description>Conduct a code review for a team member's pull request</Description>
+    <Alias>Code Review</Alias>
+    <Milestone>false</Milestone>
+    <EngineerId>214385242</EngineerId>
+    <Start>2023-12-03T14:00:00.000000+02:00</Start>
+    <ForecastDate>2023-12-05T18:00:00.000000+02:00</ForecastDate>
+    <Deadline>2023-12-08T14:00:00.000000+02:00</Deadline>
+    <Complete>2023-12-07T20:45:00.000000+02:00</Complete>
+    <Deliverables>Code review feedback and approval</Deliverables>
+    <ComplexityLevel>EXPERT</ComplexityLevel>
+    <CreateAt>2023-12-01T08:30:00.000000+02:00</CreateAt>
+  </Task>
+  <Task>
+    <Id>5</Id>
+    <Description>Fix a critical security vulnerability in the authentication module</Description>
+    <Alias>Security Fix</Alias>
+    <Milestone>false</Milestone>
+    <EngineerId>214385243</EngineerId>
+    <Start>2023-12-04T09:45:00.000000+02:00</Start>
+    <ForecastDate>2023-12-06T14:45:00.000000+02:00</ForecastDate>
+    <Deadline>2023-12-09T09:45:00.000000+02:00</Deadline>
+    <Complete>2023-12-08T16:00:00.000000+02:00</Complete>
+    <Deliverables>Security patch and documentation</Deliverables>
+    <ComplexityLevel>ROOKIE</ComplexityLevel>
+    <CreateAt>2023-12-01T08:30:00.000000+02:00</CreateAt>
+  </Task>
+  <Task>
+    <Id>6</Id>
+    <Description>Optimize front-end code for faster page loading</Description>
+    <Alias>Front-end Optimization</Alias>
+    <Milestone>false</Milestone>
+    <EngineerId>214385244</EngineerId>
+    <Start>2023-12-05T11:30:00.000000+02:00</Start>
+    <ForecastDate>2023-12-07T16:30:00.000000+02:00</ForecastDate>
+    <Deadline>2023-12-10T11:30:00.000000+02:00</Deadline>
+    <Complete>2023-12-09T17:45:00.000000+02:00</Complete>
+    <Deliverables>Optimized front-end code and performance metrics</Deliverables>
+    <ComplexityLevel>ROOKIE</ComplexityLevel>
+    <CreateAt>2023-12-01T08:30:00.000000+02:00</CreateAt>
+  </Task>
+  <Task>
+    <Id>7</Id>
+    <Description>Integrate a third-party API for new functionality</Description>
+    <Alias>API Integration</Alias>
+    <Milestone>false</Milestone>
+    <EngineerId>214385245</EngineerId>
+    <Start>2023-12-06T13:15:00.000000+02:00</Start>
+    <ForecastDate>2023-12-08T18:15:00.000000+02:00</ForecastDate>
+    <Deadline>2023-12-11T13:15:00.000000+02:00</Deadline>
+    <Complete>2023-12-10T19:30:00.000000+02:00</Complete>
+    <Deliverables>Successfully integrated third-party API and documentation</Deliverables>
+    <ComplexityLevel>ROOKIE</ComplexityLevel>
+    <CreateAt>2023-12-01T08:30:00.000000+02:00</CreateAt>
+  </Task>
+  <Task>
+    <Id>8</Id>
+    <Description>Create automated tests for a critical module</Description>
+    <Alias>Automated Testing</Alias>
+    <Milestone>false</Milestone>
+    <EngineerId>111111118</EngineerId>
+    <Start>2023-12-07T15:00:00.000000+02:00</Start>
+    <ForecastDate>2023-12-09T20:00:00.000000+02:00</ForecastDate>
+    <Deadline>2023-12-12T15:00:00.000000+02:00</Deadline>
+    <Complete>2023-12-11T21:15:00.000000+02:00</Complete>
+    <Deliverables>Automated test suite and test coverage report</Deliverables>
+    <ComplexityLevel>JUNIOR</ComplexityLevel>
+    <CreateAt>2023-12-01T08:30:00.000000+02:00</CreateAt>
+  </Task>
+  <Task>
+    <Id>9</Id>
+    <Description>Refactor codebase for improved maintainability</Description>
+    <Alias>Code Refactoring</Alias>
+    <Milestone>false</Milestone>
+    <EngineerId>023995871</EngineerId>
+    <Start>2023-12-08T16:30:00.000000+02:00</Start>
+    <ForecastDate>2023-12-10T21:30:00.000000+02:00</ForecastDate>
+    <Deadline>2023-12-13T16:30:00.000000+02:00</Deadline>
+    <Complete>2023-12-12T22:45:00.000000+02:00</Complete>
+    <Deliverables>Refactored codebase with updated documentation</Deliverables>
+    <ComplexityLevel>JUNIOR</ComplexityLevel>
+    <CreateAt>2023-12-01T08:30:00.000000+02:00</CreateAt>
+  </Task>
+  <Task>
+    <Id>10</Id>
+    <Description>Implement real-time chat functionality using WebSocket</Description>
+    <Alias>Real-time Chat</Alias>
+    <Milestone>false</Milestone>
+    <EngineerId>214385247</EngineerId>
+    <Start>2023-12-09T09:00:00.000000+02:00</Start>
+    <ForecastDate>2023-12-11T14:00:00.000000+02:00</ForecastDate>
+    <Deadline>2023-12-14T09:00:00.000000+02:00</Deadline>
+    <Complete>2023-12-13T15:30:00.000000+02:00</Complete>
+    <Deliverables>Real-time chat feature with documentation</Deliverables>
+    <ComplexityLevel>ROOKIE</ComplexityLevel>
+    <CreateAt>2023-12-01T08:30:00.000000+02:00</CreateAt>
+  </Task>
+  <Task>
+    <Id>11</Id>
+    <Description>Fix cross-browser compatibility issues in the UI</Description>
+    <Alias>Browser Compatibility Fix</Alias>
+    <Milestone>false</Milestone>
+    <EngineerId>214385247</EngineerId>
+    <Start>2023-12-10T11:30:00.000000+02:00</Start>
+    <ForecastDate>2023-12-12T16:30:00.000000+02:00</ForecastDate>
+    <Deadline>2023-12-15T11:30:00.000000+02:00</Deadline>
+    <Complete>2023-12-14T17:45:00.000000+02:00</Complete>
+    <Deliverables>Resolved cross-browser compatibility issues</Deliverables>
+    <ComplexityLevel>ROOKIE</ComplexityLevel>
+    <CreateAt>2023-12-01T08:30:00.000000+02:00</CreateAt>
+  </Task>
+  <Task>
+    <Id>12</Id>
+    <Description>Create a dashboard for monitoring system performance</Description>
+    <Alias>Performance Dashboard</Alias>
+    <Milestone>false</Milestone>
+    <EngineerId>214385247</EngineerId>
+    <Start>2023-12-11T13:00:00.000000+02:00</Start>
+    <ForecastDate>2023-12-13T18:00:00.000000+02:00</ForecastDate>
+    <Deadline>2023-12-16T13:00:00.000000+02:00</Deadline>
+    <Complete>2023-12-15T19:15:00.000000+02:00</Complete>
+    <Deliverables>Performance dashboard with relevant metrics</Deliverables>
+    <ComplexityLevel>ROOKIE</ComplexityLevel>
+    <CreateAt>2023-12-01T08:30:00.000000+02:00</CreateAt>
+  </Task>
+  <Task>
+    <Id>13</Id>
+    <Description>Debug and fix issues reported by users in the production environment</Description>
+    <Alias>Production Bug Fixes</Alias>
+    <Milestone>false</Milestone>
+    <EngineerId>023995871</EngineerId>
+    <Start>2023-12-12T15:30:00.000000+02:00</Start>
+    <ForecastDate>2023-12-14T20:30:00.000000+02:00</ForecastDate>
+    <Deadline>2023-12-17T15:30:00.000000+02:00</Deadline>
+    <Complete>2023-12-16T21:45:00.000000+02:00</Complete>
+    <Deliverables>Resolved production issues and release notes</Deliverables>
+    <ComplexityLevel>JUNIOR</ComplexityLevel>
+    <CreateAt>2023-12-01T08:30:00.000000+02:00</CreateAt>
+  </Task>
+  <Task>
+    <Id>14</Id>
+    <Description>Integrate machine learning model for predictive analytics</Description>
+    <Alias>ML Integration</Alias>
+    <Milestone>false</Milestone>
+    <EngineerId>023995871</EngineerId>
+    <Start>2023-12-13T17:00:00.000000+02:00</Start>
+    <ForecastDate>2023-12-15T22:00:00.000000+02:00</ForecastDate>
+    <Deadline>2023-12-18T17:00:00.000000+02:00</Deadline>
+    <Complete>2023-12-17T23:15:00.000000+02:00</Complete>
+    <Deliverables>Integrated machine learning model with documentation</Deliverables>
+    <ComplexityLevel>JUNIOR</ComplexityLevel>
+    <CreateAt>2023-12-01T08:30:00.000000+02:00</CreateAt>
+  </Task>
+  <Task>
+    <Id>15</Id>
+    <Description>Develop a RESTful API for a new module</Description>
+    <Alias>RESTful API Development</Alias>
+    <Milestone>false</Milestone>
+    <EngineerId>214385245</EngineerId>
+    <Start>2023-12-14T18:30:00.000000+02:00</Start>
+    <ForecastDate>2023-12-16T23:30:00.000000+02:00</ForecastDate>
+    <Deadline>2023-12-19T18:30:00.000000+02:00</Deadline>
+    <Complete>2023-12-18T00:45:00.000000+02:00</Complete>
+    <Deliverables>Developed RESTful API with comprehensive documentation</Deliverables>
+    <ComplexityLevel>EXPERT</ComplexityLevel>
+    <CreateAt>2023-12-01T08:30:00.000000+02:00</CreateAt>
+  </Task>
+  <Task>
+    <Id>16</Id>
+    <Description>Implement multi-factor authentication for enhanced security</Description>
+    <Alias>MFA Implementation</Alias>
+    <Milestone>false</Milestone>
+    <EngineerId>214385244</EngineerId>
+    <Start>2023-12-15T20:00:00.000000+02:00</Start>
+    <ForecastDate>2023-12-17T01:00:00.000000+02:00</ForecastDate>
+    <Deadline>2023-12-20T20:00:00.000000+02:00</Deadline>
+    <Complete>2023-12-19T02:15:00.000000+02:00</Complete>
+    <Deliverables>Implemented multi-factor authentication with user guide</Deliverables>
+    <ComplexityLevel>EXPERT</ComplexityLevel>
+    <CreateAt>2023-12-01T08:30:00.000000+02:00</CreateAt>
+  </Task>
+  <Task>
+    <Id>17</Id>
+    <Description>Create a system for automated deployment and rollback</Description>
+    <Alias>Automated Deployment System</Alias>
+    <Milestone>false</Milestone>
+    <EngineerId>344165165</EngineerId>
+    <Start>2023-12-16T21:30:00.000000+02:00</Start>
+    <ForecastDate>2023-12-18T02:30:00.000000+02:00</ForecastDate>
+    <Deadline>2023-12-21T21:30:00.000000+02:00</Deadline>
+    <Complete>2023-12-20T03:45:00.000000+02:00</Complete>
+    <Deliverables>Automated deployment system with rollback functionality</Deliverables>
+    <ComplexityLevel>ROOKIE</ComplexityLevel>
+    <CreateAt>2023-12-01T08:30:00.000000+02:00</CreateAt>
+  </Task>
+  <Task>
+    <Id>18</Id>
+    <Description>Optimize database schema for improved data retrieval</Description>
+    <Alias>Database Schema Optimization</Alias>
+    <Milestone>false</Milestone>
+    <EngineerId>214385239</EngineerId>
+    <Start>2023-12-17T23:00:00.000000+02:00</Start>
+    <ForecastDate>2023-12-19T04:00:00.000000+02:00</ForecastDate>
+    <Deadline>2023-12-22T23:00:00.000000+02:00</Deadline>
+    <Complete>2023-12-21T05:15:00.000000+02:00</Complete>
+    <Deliverables>Optimized database schema with performance metrics</Deliverables>
+    <ComplexityLevel>EXPERT</ComplexityLevel>
+    <CreateAt>2023-12-01T08:30:00.000000+02:00</CreateAt>
+  </Task>
+  <Task>
+    <Id>19</Id>
+    <Description>Develop a web service for third-party integrations</Description>
+    <Alias>Web Service Development</Alias>
+    <Milestone>false</Milestone>
+    <EngineerId>214385239</EngineerId>
+    <Start>2023-12-18T00:30:00.000000+02:00</Start>
+    <ForecastDate>2023-12-20T05:30:00.000000+02:00</ForecastDate>
+    <Deadline>2023-12-23T00:30:00.000000+02:00</Deadline>
+    <Complete>2023-12-21T06:45:00.000000+02:00</Complete>
+    <Deliverables>Developed web service for third-party integrations with documentation</Deliverables>
+    <ComplexityLevel>EXPERT</ComplexityLevel>
+    <CreateAt>2023-12-01T08:30:00.000000+02:00</CreateAt>
+  </Task>
+  <Task>
+    <Id>20</Id>
+    <Description>Conduct load testing to identify performance bottlenecks</Description>
+    <Alias>Load Testing</Alias>
+    <Milestone>false</Milestone>
+    <EngineerId>214385239</EngineerId>
+    <Start>2023-12-19T02:00:00.000000+02:00</Start>
+    <ForecastDate>2023-12-21T07:00:00.000000+02:00</ForecastDate>
+    <Deadline>2023-12-24T02:00:00.000000+02:00</Deadline>
+    <Complete>2023-12-23T08:15:00.000000+02:00</Complete>
+    <Deliverables>Load testing report with recommendations for performance improvement</Deliverables>
+    <ComplexityLevel>EXPERT</ComplexityLevel>
+    <CreateAt>2023-12-01T08:30:00.000000+02:00</CreateAt>
+  </Task>
+  <Task>
+    <Id>21</Id>
+    <Description>Implement a logging mechanism for tracking user activities</Description>
+    <Alias>Logging Implementation</Alias>
+    <Milestone>false</Milestone>
+    <EngineerId>016438046</EngineerId>
+    <Start>2023-12-20T03:30:00.000000+02:00</Start>
+    <ForecastDate>2023-12-22T08:30:00.000000+02:00</ForecastDate>
+    <Deadline>2023-12-25T03:30:00.000000+02:00</Deadline>
+    <Complete>2023-12-24T09:45:00.000000+02:00</Complete>
+    <Deliverables>Implemented logging mechanism with detailed user activity tracking</Deliverables>
+    <ComplexityLevel>EXPERT</ComplexityLevel>
+    <CreateAt>2023-12-01T08:30:00.000000+02:00</CreateAt>
+  </Task>
+  <Task>
+    <Id>22</Id>
+    <Description>a</Description>
+    <Alias>a</Alias>
+    <Milestone>false</Milestone>
+    <Start>2333-12-12T00:00:00</Start>
+    <ForecastDate>2333-12-12T00:00:00</ForecastDate>
+    <Deadline>2333-12-12T00:00:00</Deadline>
+    <Complete>2333-12-12T00:00:00</Complete>
+    <Deliverables>a</Deliverables>
+    <Remarks>a</Remarks>
+    <EngineerId>214385239</EngineerId>
+    <ComplexityLevel>EXPERT</ComplexityLevel>
+    <Active>true</Active>
+    <CreatedAt>2023-11-30T18:39:19.2285441+02:00</CreatedAt>
+  </Task>
 </ArrayOfTask>

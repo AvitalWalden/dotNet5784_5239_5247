@@ -3,20 +3,23 @@ using DalApi;
 using DO;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Xml.Linq;
+using System.Xml.Serialization;
 
 internal class TaskImplementation : ITask
 {
     public int Create(Task item)
     {
-        int id = item.Id;
-        XElement tasksElement = XElement.Load("path/to/tasks.xml");
+        const string tasksFile = @"..\xml\tasks.xml";
+        int id = Config.NextTaskId;
+        XElement tasksElement = XElement.Load(tasksFile);  // למה לא XElement XDocument
 
         if (tasksElement.Elements("Task").Any(e => (int)e.Element("Id")! == id))
             throw new DalAlreadyExistsException($"Task with ID={id} already exists");
 
         XElement newTaskElement = new XElement("Task",
-            new XElement("Id", item.Id),
+            new XElement("Id", Config.NextTaskId),
             new XElement("Description", item.Description),
             new XElement("Alias", item.Alias),
             new XElement("Milestone", item.Milestone),
@@ -32,13 +35,13 @@ internal class TaskImplementation : ITask
             new XElement("CreatedAt", item.CreatedAt)
         );
         tasksElement.Add(newTaskElement);
-        tasksElement.Save("path/to/tasks.xml");
+        tasksElement.Save(tasksFile);
         return id;
     }
 
     public void Delete(int id)
     {
-        throw new NotImplementedException();
+        throw new DalDeletionImpossible($"Task with ID={id} cannot be deleted");
     }
 
     public Task? Read(Func<Task, bool> filter)
@@ -53,14 +56,27 @@ internal class TaskImplementation : ITask
 
     public IEnumerable<Task?> ReadAll(Func<Task, bool>? filter = null)
     {
-        throw new NotImplementedException();
+        List<Task> lst = new List<Task>();
+
+        XmlSerializer ser = new XmlSerializer(typeof(List<Task>));
+
+        using (StreamReader r = new StreamReader(@"..\xml\tasks.xml"))
+        {
+            lst = (List<Task>)ser.Deserialize(r)!;
+            r.Close();
+        }
+        
+        //return (func == null) ? lst : lst?.Where(func);
+
+        return lst;
     }
 
     public void Update(Task item)
     {
         int id = item.Id;
         // call to XML file
-        XDocument xdoc = XDocument.Load("path/to/tasks.xml");
+        const string tasksFile = @"..\xml\tasks.xml";
+        XDocument? xdoc = XDocument.Load(tasksFile);
         // Check if there is an engineer with the same ID
         XElement? taskToUpdate = xdoc.Descendants("Task").FirstOrDefault(e => (int)e.Element("Id")! == id);
         if (taskToUpdate != null)
@@ -84,7 +100,7 @@ internal class TaskImplementation : ITask
                 )
             );
             // Save to XML file again
-            xdoc.Save("path/to/tasks.xml");
+            xdoc.Save(tasksFile);
         }
         else
         {
