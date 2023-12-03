@@ -81,53 +81,20 @@ internal class DependencyImplementation : IDependency
         return null;
     }
 
-    //public IEnumerable<Dependency?> ReadAll(Func<Dependency, bool>? filter = null)
-    //{
-    //    XElement? dependenciesElement = XMLTools.LoadListFromXMLElement("ArrayOfDependency");
-    //    IEnumerable<Dependency> dependencies = dependenciesElement
-    //        .Elements("Dependency")
-    //        .Select(e => new Dependency(
-    //            Id: (int)e.Element("id")!,
-    //            DependentTask: (int)e.Element("dependentTask")!,
-    //            DependsOnTask: (int)e.Element("dependsOnTask")!
-    //        ));
-
-    //    if (filter != null)
-    //    {
-    //        dependencies = dependencies.Where(filter);
-    //    }
-
-    //    return dependencies.ToList(); // Convert to List before returning
-
-    //    //if (filter != null)
-    //    //{
-    //    //    return from item in DataSource.Dependencies
-    //    //           where filter(item)
-    //    //           select item;
-    //    //}
-    //    //// If no filter is provided, return all dependencies
-    //    //return from item in DataSource.Dependencies
-    //    //       select item;
-    //}
-
     public IEnumerable<Dependency?> ReadAll(Func<Dependency, bool>? filter = null)
     {
-        //XElement dependenciesElement = XMLTools.LoadListFromXMLElement("ArrayOfDependency");
-        //IEnumerable<Dependency> dependencies = dependenciesElement
-        //    .Elements("Dependency")
-        //    .Select(dependency => new Dependency
-        //    {
-        //        Id = (int)dependency.Element("id")!,
-        //        DependentTask = (int)dependency.Element("dependentTask")!,
-        //        DependsOnTask = (int)dependency.Element("dependsOnTask")!
+        //XElement? allDependency = XDocument.Load(@"..\xml\dependencies.xml").Root;
+        //List<Dependency> lst = new List<Dependency> { };
+        //IEnumerable<Dependency> dependencies =
+        //allDependency?.Elements("Dependency").Select(dependency =>
+        //    new Dependency {
+        //    Id = (int)dependency.Element("id")!,
+        //    DependentTask = (int)dependency.Element("dependentTask")!,
+        //    DependsOnTask = (int)dependency.Element("dependsOnTask")!
         //    });
-
-        //if (filter != null)
-        //{
-        //    dependencies = dependencies.Where(filter);
-        //}
-
-        //return dependencies;
+        //
+        //return filter == null ? lst : lst.Where(filter);
+        throw new NotImplementedException();
     }
 
     public void Update(Dependency item)
