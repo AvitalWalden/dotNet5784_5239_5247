@@ -83,19 +83,96 @@ internal class DependencyImplementation : IDependency
 
     public IEnumerable<Dependency?> ReadAll(Func<Dependency, bool>? filter = null)
     {
-        //XElement? allDependency = XDocument.Load(@"..\xml\dependencies.xml").Root;
-        //List<Dependency> lst = new List<Dependency> { };
-        //IEnumerable<Dependency> dependencies =
-        //allDependency?.Elements("Dependency").Select(dependency =>
-        //    new Dependency {
-        //    Id = (int)dependency.Element("id")!,
-        //    DependentTask = (int)dependency.Element("dependentTask")!,
-        //    DependsOnTask = (int)dependency.Element("dependsOnTask")!
-        //    });
-        //
-        //return filter == null ? lst : lst.Where(filter);
-        throw new NotImplementedException();
+        XElement dependenciesElement = XMLTools.LoadListFromXMLElement("ArrayOfDependency");
+        IEnumerable<Dependency> dependencies = dependenciesElement
+            .Elements("Dependency")
+            .Select(dependency => new Dependency
+            {
+                Id = (int)dependency.Element("id")!,
+                DependentTask = (int)dependency.Element("dependentTask")!,
+                DependsOnTask = (int)dependency.Element("dependsOnTask")!
+            });
+
+        if (filter != null)
+        {
+            dependencies = dependencies.Where(filter);
+        }
+
+        return dependencies;
     }
+
+    /*
+using System.Xml.Linq;
+using System.Xml.Serialization;
+
+namespace Lesson7
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            const string filename = @"..\..\..\Myconfig.xml";
+            const string filename2 = @"..\..\..\String.xml";
+            const string filename3 = @"..\..\..\String.json";
+            XDocument doc= XDocument.Load(filename);
+            var c1=doc.Root?.Elements("config")?.
+                Where(c => c.Attribute("name")?.Value == "Group1")?
+                .FirstOrDefault()?
+                .Descendants("bgcolor").FirstOrDefault()?.Value ;
+
+
+            var c2=doc.Root?.Descendants("bgcolor")?.
+                Where(c=>c.Ancestors("config")?.FirstOrDefault()?.Attribute("name")?.Value=="group1")?
+                .FirstOrDefault()?.Value ;
+
+            // הוספה 
+            XElement e = new XElement("config", new XAttribute("name","group3"));
+            XElement el = new XElement("bgcolor");
+            el.Value = "brown";
+            e.Add(el);
+            doc.Root?.Add(e);
+            doc.Save(filename);
+
+            // הנתונים
+            List<string> list = new List<string>() { "sara", "avigail", "ayal", "avital" };
+            // אוביקט שיודע לשטוח אוביקט לסטרינג במבנה של אקס אמ אל
+            XmlSerializer ser = new XmlSerializer(typeof(List<string>));
+            // מצביע לקובץ 
+            StreamWriter w = new StreamWriter(filename2);
+            // הפעולה עצמה
+            ser.Serialize(w, list);
+            // שחרור המצביע
+            w.Close();
+
+            StreamReader reader = new StreamReader(filename2);
+            List<string> lst = (List<string>?)ser.Deserialize(reader) ?? throw new Exception(); ;
+            reader.Close();
+
+
+            string str=JsonSerializer.Serialize<List<string>>(lst);
+            StreamWriter wjson = new StreamWriter(filename3);
+            wjson.Write(str);
+            wjson.Close();
+
+            // הגדרת מצביע לקריאה מהקובץ
+            StreamReader rjson = new StreamReader(filename3);
+            // קריאת הנתונים
+            string s = rjson.ReadToEnd();
+            // המרה לאוביקט
+            List<string> strs=  JsonSerializer.Deserialize<List<string>>(s);
+            rjson.Close();
+           
+            //doc.Root?.Descendants("config")
+            //    .Where(c=>c.Attribute("name")?.Value == "group3")
+            //    .Remove();
+            //doc.Save(filename);
+
+            Console.WriteLine("Hello, World!");
+
+
+        }
+    }
+}*/
 
     public void Update(Dependency item)
     {
