@@ -3,7 +3,9 @@ using DalApi;
 using DO;
 using System;
 using System.Collections.Generic;
+using System.Text.Json;
 using System.Xml.Linq;
+using System.Xml.Serialization;
 
 internal class Engineerlementation : IEngineer
 {
@@ -46,7 +48,26 @@ internal class Engineerlementation : IEngineer
 
     public IEnumerable<Engineer?> ReadAll(Func<Engineer, bool>? filter = null)
     {
-        throw new NotImplementedException();
+        // Use an absolute path or ensure the relative path is correct
+        string filePath = @"..\xml\engineers.xml";
+
+        // Create an XmlSerializer for the Engineer type
+        XmlSerializer serializer = new XmlSerializer(typeof(List<Engineer>));
+
+        // Read the XML data from the file
+        using (StreamReader reader = new StreamReader(filePath))
+        {
+            // Deserialize the XML data into a List<Engineer>
+            List<Engineer> engineers = (List<Engineer>)serializer.Deserialize(reader)!;
+
+            // Apply the filter if provided
+            if (filter != null)
+            {
+                engineers = engineers.Where(filter).ToList();
+            }
+
+            return engineers;
+        }
     }
 
     public void Update(Engineer item)
