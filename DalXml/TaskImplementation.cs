@@ -56,20 +56,26 @@ internal class TaskImplementation : ITask
 
     public IEnumerable<Task?> ReadAll(Func<Task, bool>? filter = null)
     {
-        //    List<Task> lst = new List<Task>();
+        // Use an absolute path or ensure the relative path is correct
+        string filePath = @"..\xml\tasks.xml";
 
-        //    XmlSerializer ser = new XmlSerializer(typeof(List<Task>));
+        // Create an XmlSerializer for the Engineer type
+        XmlSerializer serializer = new XmlSerializer(typeof(List<Task>));
 
-        //    using (StreamReader r = new StreamReader(@"..\xml\tasks.xml"))
-        //    {
-        //        lst = (List<Task>)ser.Deserialize(r)!;
-        //        r.Close();
-        //    }
+        // Read the XML data from the file
+        using (StreamReader reader = new StreamReader(filePath))
+        {
+            // Deserialize the XML data into a List<Engineer>
+            List<Task> tasks = (List<Task>)serializer.Deserialize(reader)!;
 
-        //    //return (func == null) ? lst : lst?.Where(func);
+            // Apply the filter if provided
+            if (filter != null)
+            {
+                tasks = tasks.Where(filter).ToList();
+            }
 
-        //    return lst;
-        throw new NotImplementedException();
+            return tasks;
+        }
 
     }
 
