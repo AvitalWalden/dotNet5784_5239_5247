@@ -37,7 +37,7 @@ internal class DependencyImplementation : IDependency
     ///  Method to delete an dependency by ID
     /// </summary>
     /// <param name="id">ID of dependency you want to delete</param>
-    /// <exception cref="DalDoesNotExistException">exeption that dependency cannot be deleted </exception>
+    /// <exception cref="DalDoesNotExistException">exeption that dependency cannot be deleted</exception>
     public void Delete(int id)
     {
 
@@ -52,7 +52,7 @@ internal class DependencyImplementation : IDependency
     }
 
     /// <summary>
-    /// Method to read an Dependency using a custom filter
+    /// Method to read an dependency using a custom filter
     /// </summary>
     /// <param name="filter">The filter function</param>
     /// <returns>Returns Dependency according to ID and according to the existence of the filter</returns>
@@ -81,10 +81,10 @@ internal class DependencyImplementation : IDependency
     }
 
     /// <summary>
-    ///   Method to read an Dependency by ID
+    ///   Method to read an dependency by ID
     /// </summary>
-    /// <param name="id">ID of Dependency you want to read</param>
-    /// <returns>returns Dependency by ID</returns>
+    /// <param name="id">ID of dependency you want to read</param>
+    /// <returns>returns dependency by ID</returns>
     public Dependency? Read(int id)
     {
         XElement? allDependencies = XDocument.Load(@"..\xml\dependencies.xml").Root;
@@ -105,7 +105,7 @@ internal class DependencyImplementation : IDependency
     /// Method to read all Dependencies with an optional filter
     /// </summary>
     /// <param name="filter">The filter function</param>
-    /// <returns>read all Dependency, or read all Dependency that remain after the filter function</returns>
+    /// <returns>read all dependency, or read all dependency that remain after the filter function</returns>
     public IEnumerable<Dependency?> ReadAll(Func<Dependency, bool>? filter = null)
     {
         XElement? dependenciesElement = XMLTools.LoadListFromXMLElement("dependencies");
@@ -126,10 +126,10 @@ internal class DependencyImplementation : IDependency
         return dependencies;
     }
     /// <summary>
-    ///  Method to update an existing Dependency
+    ///  Method to update an existing dependency
     /// </summary>
     /// <param name="item">Dependency details to update</param>
-    /// <exception cref="DalDoesNotExistException">If the Dependency does not exists</exception>
+    /// <exception cref="DalDoesNotExistException">If the dependency does not exists</exception>
     public void Update(Dependency item)
     {
         int id = item.Id;
