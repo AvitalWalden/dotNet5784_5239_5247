@@ -11,93 +11,57 @@ internal class Engineerlementation : IEngineer
 {
     public int Create(Engineer item)
     {
-        int id = item.Id;
-        const string engineersFile = @"..\xml\engineers.xml";
-        XElement engineersElement = XElement.Load(engineersFile);
-
-        if (engineersElement.Elements("Engineer").Any(e => (int)e.Element("Id")! == id))
-            throw new DalAlreadyExistsException($"Engineer with ID={id} already exists");
-
-        XElement newEngineerElement = new XElement("Engineer",
-            new XElement("Id", item.Id),
-            new XElement("Name", item.Name),
-            new XElement("Email", item.Email),
-            new XElement("Level", item.Level),
-            new XElement("Cost", item.Cost),
-            new XElement("Active", item.Active)
-        );
-        engineersElement.Add(newEngineerElement);
-        engineersElement.Save(engineersFile);
-        return id;
+        List<Engineer> lst = XMLTools.LoadListFromXMLSerializer<Engineer>("engineers");
+        if (Read(item.Id) is not null)
+            throw new DalAlreadyExistsException($"Engineer with ID={item.Id} already exists");
+        lst.Add(item);
+        XMLTools.SaveListToXMLSerializer<Engineer>(lst, "engineers");
+        return item.Id;
     }
 
     public void Delete(int id)
     {
+        //List<Engineer> lst = XMLTools.LoadListFromXMLSerializer<Engineer>("engineers");
+        //lst.Remove(Read(id)!);
+        //XMLTools.SaveListToXMLSerializer<Engineer>(lst, "engineers");
         throw new DalDeletionImpossible($"Engineer with ID={id} cannot be deleted");
-    }
-
-    public Engineer? Read(Func<Engineer, bool> filter)
-    {
-        throw new NotImplementedException();
     }
 
     public Engineer? Read(int id)
     {
-        throw new NotImplementedException();
+        List<Engineer> lst = XMLTools.LoadListFromXMLSerializer<Engineer>("engineers");
+        return lst.FirstOrDefault(engineer => engineer?.Id == id);
+    }
+
+    public Engineer? Read(Func<Engineer, bool> filter)
+    {
+        List<Engineer> lst = XMLTools.LoadListFromXMLSerializer<Engineer>("engineers");
+        if (filter != null)
+        {
+            return lst.Where(filter).FirstOrDefault();
+        }
+        return lst.FirstOrDefault(engineer => filter!(engineer!));
     }
 
     public IEnumerable<Engineer?> ReadAll(Func<Engineer, bool>? filter = null)
     {
-        // Use an absolute path or ensure the relative path is correct
-        string filePath = @"..\xml\engineers.xml";
-
-        // Create an XmlSerializer for the Engineer type
-        XmlSerializer serializer = new XmlSerializer(typeof(List<Engineer>));
-
-        // Read the XML data from the file
-        using (StreamReader reader = new StreamReader(filePath))
+        List<Engineer> lst = XMLTools.LoadListFromXMLSerializer<Engineer>("engineers");
+        if (filter != null)
         {
-            // Deserialize the XML data into a List<Engineer>
-            List<Engineer> engineers = (List<Engineer>)serializer.Deserialize(reader)!;
-
-            // Apply the filter if provided
-            if (filter != null)
-            {
-                engineers = engineers.Where(filter).ToList();
-            }
-
-            return engineers;
+            return lst.Where(filter);
         }
+        return lst;
     }
 
     public void Update(Engineer item)
     {
-        int id = item.Id;
-        // call to XML file
-        const string engineersFile = @"..\xml\engineers.xml";
-        XDocument xdoc = XDocument.Load(engineersFile);
-        // Check if there is an engineer with the same ID
-        XElement? engineerToUpdate = xdoc.Descendants("Engineer").FirstOrDefault(e => (int)e.Element("Id")! == id);
-        if (engineerToUpdate != null)
-        {
-            // Update the engineer in the XML file
-            engineerToUpdate.ReplaceWith(
-                new XElement("Engineer",
-                    new XElement("Id", item.Id),
-                    new XElement("Name", item.Name),
-                    new XElement("Email", item.Email),
-                    new XElement("Level", item.Level),
-                    new XElement("Cost", item.Cost),
-                    new XElement("Active", item.Active)
-                )
-            );
-                        // Save to XML file again
-            xdoc.Save(engineersFile);
-        }
-        else
-        {
-            throw new DalDoesNotExistException($"Engineer with ID={item.Id} does not exist");
-        }
+        List<Engineer> lst = XMLTools.LoadListFromXMLSerializer<Engineer>("engineers");
+        Engineer? engineer = lst.FirstOrDefault(engineer => engineer?.Id == item.Id);
+        if (engineer is null)
+            throw new DalDoesNotExistException($"Dependency with ID={item.Id} is not exists");
+        lst.Remove(engineer);
+        lst.Add(item);
+        XMLTools.SaveListToXMLSerializer<Engineer>(lst, "engineers");
     }
 
     public void Reset()
