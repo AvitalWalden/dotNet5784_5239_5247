@@ -1,6 +1,7 @@
 ﻿namespace DalTest;
 using DalApi;
 using DO;
+using System.ComponentModel;
 using System.Data;
 using System.Security.Cryptography;
 
@@ -72,14 +73,20 @@ public static class Initialization
             double _cost;
             switch (_level) 
             {
-                case EngineerExperience.EXPERT:
-                    _cost = 450;
+                case EngineerExperience.Beginner:
+                    _cost = 150.00;
                     break;
-                case EngineerExperience.JUNIOR:
-                    _cost = 200;
+                case EngineerExperience.AdvancedBeginner:
+                    _cost = 200.35;
                     break;
-                case EngineerExperience.ROOKIE:
-                    _cost = 100;
+                case EngineerExperience.Competent:
+                    _cost = 300.50;
+                    break;
+                     case EngineerExperience.Proficient:
+                     _cost = 350.00;
+                    break;
+                case EngineerExperience.Expert:
+                    _cost = 450.00;
                     break;
                 default:
                     _cost = 30;
@@ -124,8 +131,8 @@ public static class Initialization
                 DateTime.Now.AddDays(i * 5).AddDays(i + 4), // Complete date
                 "Product description for " + detailsTask[i].Item1,
                 "Remarks for " + detailsTask[i].Item2,
-                allEngineer[i]?.Id,
-                allEngineer[i]?.Level
+                allEngineer[i]!.Id,
+                allEngineer[i]!.Level
             );
             s_dal!.Task.Create(newTask);
         }

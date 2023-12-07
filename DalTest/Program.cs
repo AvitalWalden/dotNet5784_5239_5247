@@ -273,9 +273,11 @@ namespace DalTest
             Console.WriteLine("Enter the engineer's email");
             string email = Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect");
             Console.WriteLine("Enter the level of the task:");
-            Console.WriteLine("For expert press 0");
-            Console.WriteLine("For junior press 1");
-            Console.WriteLine("For rookie press 2");
+            Console.WriteLine("For Beginner press 0");
+            Console.WriteLine("For AdvancedBeginner press 1");
+            Console.WriteLine("For Competent press 2");
+            Console.WriteLine("For Proficient press 3");
+            Console.WriteLine("For Expert press 4");
             int level = int.Parse(Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect"));
             Console.WriteLine("Enter the engineer's cost");
             double cost = double.Parse(Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect"));
@@ -310,9 +312,11 @@ namespace DalTest
                 email = updateEngineer.Email;
             }
             Console.WriteLine("Enter the level of the task:");
-            Console.WriteLine("For expert press 0");
-            Console.WriteLine("For junior press 1");
-            Console.WriteLine("For rookie press 2");
+            Console.WriteLine("For Beginner press 0");
+            Console.WriteLine("For AdvancedBeginner press 1");
+            Console.WriteLine("For Competent press 2");
+            Console.WriteLine("For Proficient press 3");
+            Console.WriteLine("For Expert press 4");
             string? level1 = Console.ReadLine();
             int level;
             if (level1 == null || level1 == "") //If not update the level.
@@ -335,7 +339,16 @@ namespace DalTest
                 cost = double.Parse(cost1);
             }
             Console.WriteLine("Enter if the engineer is active or not");
-            bool active = bool.Parse(Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect"));
+            bool active;
+            string active1 = Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect");
+            if (active1 == null || active1 == "") //If not update the cost.
+            {
+                active = updateEngineer.Active;
+            }
+            else
+            {
+                active = bool.Parse(active1);
+            }
             DO.Engineer newEngineer = new DO.Engineer(id, name, email, (EngineerExperience)level, cost,active);
             try
             {
@@ -343,7 +356,6 @@ namespace DalTest
             }
             catch (Exception ex)
             {
-
                 Console.WriteLine(ex);
             }
 
