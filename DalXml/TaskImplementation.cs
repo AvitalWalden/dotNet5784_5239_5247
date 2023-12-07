@@ -11,16 +11,12 @@ internal class TaskImplementation : ITask
 {
     public int Create(Task item)
     {
-        const string tasksFile = @"..\xml\tasks.xml";
-        XmlSerializer serializer = new XmlSerializer(typeof(List<Task>));
-        TextReader textReader = new StringReader(tasksFile);
-        List<Task> lst = (List<Task>?)serializer.Deserialize(textReader) ?? throw new Exception();
-        lst.Add(item);
-        using (TextWriter writer = new StreamWriter(tasksFile))
-        {
-            serializer.Serialize(writer, lst);
-        }
-        return item.Id;
+        List<Task> lst = XMLTools.LoadListFromXMLSerializer<Task>("tasks"); 
+        int id = XMLTools.GetAndIncreaseNextId("data-config", "NextTaskId");
+        Task copy = item with { Id = id };
+        lst.Add(copy);
+        XMLTools.SaveListToXMLSerializer<Task>(lst, "tasks");
+        return id;
     }
 
     public void Delete(int id)
@@ -30,42 +26,34 @@ internal class TaskImplementation : ITask
 
     public Task? Read(Func<Task, bool> filter)
     {
-        throw new NotImplementedException();
+        List<Task> lst = XMLTools.LoadListFromXMLSerializer<Task>("tasks");
+        if (filter != null)
+        {
+            return lst.Where(filter).FirstOrDefault();
+        }
+        return lst.FirstOrDefault(tasks => filter!(tasks!));
     }
 
     public Task? Read(int id)
     {
-        throw new NotImplementedException();
+        List<Task> lst = XMLTools.LoadListFromXMLSerializer<Task>("tasks");
+        return lst.FirstOrDefault(tasks => tasks?.Id == id);
     }
 
     public IEnumerable<Task?> ReadAll(Func<Task, bool>? filter = null)
     {
-        // Use an absolute path or ensure the relative path is correct
-        string filePath = @"..\xml\tasks.xml";
-
-        // Create an XmlSerializer for the Engineer type
-        XmlSerializer serializer = new XmlSerializer(typeof(List<Task>));
-
-        // Read the XML data from the file
-        using (StreamReader reader = new StreamReader(filePath))
-        {
-            // Deserialize the XML data into a List<Engineer>
-            List<Task> tasks = (List<Task>)serializer.Deserialize(reader)!;
-
-            // Apply the filter if provided
-            if (filter != null)
-            {
-                tasks = tasks.Where(filter).ToList();
-            }
-
-            return tasks;
-        }
-
+        return XMLTools.LoadListFromXMLSerializer<Task>("tasks");
     }
 
     public void Update(Task item)
     {
-       
+        List<Task> lst = XMLTools.LoadListFromXMLSerializer<Task>("tasks");
+        Task? task = lst.FirstOrDefault(task => task?.Id == item.Id);
+        if (task is null)
+            throw new DalDoesNotExistException($"Task with ID={item.Id} is not exists");
+        lst.Remove(task);
+        lst.Add(item);
+        XMLTools.SaveListToXMLSerializer<Task>(lst, "tasks");
     }
 
     public void Reset()

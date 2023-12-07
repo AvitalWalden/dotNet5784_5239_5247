@@ -37,9 +37,11 @@ namespace DalTest
             int? engineerId = int.Parse(Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect"));
             DateTime createdAt = DateTime.Now;
             Console.WriteLine("Enter the level of the task:");
-            Console.WriteLine("For expert press 0");
-            Console.WriteLine("For junior press 1");
-            Console.WriteLine("For rookie press 2");
+            Console.WriteLine("For Beginner press 0");
+            Console.WriteLine("For AdvancedBeginner press 1");
+            Console.WriteLine("For Competent press 2");
+            Console.WriteLine("For Proficient press 3");
+            Console.WriteLine("For Expert press 4");
             int level = int.Parse(Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect"));
             DO.Task newTask = new DO.Task(0, description, alias, createdAt, requiredEffort, false, startDate, ScheduledDate, deadlineDate, completeDate, deliverables, remarks, engineerId, (EngineerExperience)level);
             Console.WriteLine(s_dal!.Task.Create(newTask)); // Input the new id of the task.
@@ -151,9 +153,11 @@ namespace DalTest
             }
             DateTime CreatedAt = DateTime.Now;
             Console.WriteLine("Enter the level of the task:");
-            Console.WriteLine("For expert press 0");
-            Console.WriteLine("For junior press 1");
-            Console.WriteLine("For rookie press 2");
+            Console.WriteLine("For Beginner press 0");
+            Console.WriteLine("For AdvancedBeginner press 1");
+            Console.WriteLine("For Competent press 2");
+            Console.WriteLine("For Proficient press 3");
+            Console.WriteLine("For Expert press 4");
             string? level1 = Console.ReadLine();
             int level;
             if (level1 == null || level1 == "") //If not update the level.
@@ -165,7 +169,16 @@ namespace DalTest
                 level = int.Parse(level1);
             }
             Console.WriteLine("Enter if the task is active or not");
-            bool active = bool.Parse(Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect"));
+            bool active;
+            string active1 = Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect");
+            if (active1 == null || active1 == "") //If not update the cost.
+            {
+                active = updateTask.Active;
+            }
+            else
+            {
+                active = bool.Parse(active1);
+            }
             DO.Task newTask = new DO.Task(idTask, description, alias, updateTask.CreatedAtDate, requiredEffort, false, startDate, scheduledDate, deadlineDate, completeDate, deliverables, remarks, engineerId, (EngineerExperience)level, active);
             try
             {
