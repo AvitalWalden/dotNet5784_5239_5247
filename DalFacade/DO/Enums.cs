@@ -3,7 +3,7 @@
 //Professional level of engineering
 public enum EngineerExperience
 {
-    Novice,
+    Beginner,
     AdvancedBeginner,
     Competent,
     Proficient,
