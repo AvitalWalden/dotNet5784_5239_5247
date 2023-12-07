@@ -4,7 +4,7 @@
     <Id>214385247</Id>
     <Name>Michal Walden</Name>
     <Email>michal@gmail.com</Email>
-    <Level>EXPERT</Level>
+    <Level>Expert</Level>
     <Cost>450</Cost>
     <Active>true</Active>
   </Engineer>
@@ -12,7 +12,7 @@
     <Id>214385239</Id>
     <Name>Avital Choen</Name>
     <Email>avital@gmail.com</Email>
-    <Level>JUNIOR</Level>
+    <Level>Proficient</Level>
     <Cost>200</Cost>
     <Active>true</Active>
   </Engineer>
@@ -20,7 +20,7 @@
     <Id>016438046</Id>
     <Name>David Tov</Name>
     <Email>david@gmail.com</Email>
-    <Level>ROOKIE</Level>
+    <Level>Competent</Level>
     <Cost>100</Cost>
     <Active>true</Active>
   </Engineer>
@@ -28,7 +28,7 @@
     <Id>344165165</Id>
     <Name>Ayala Dagan</Name>
     <Email>ayala@gmail.com</Email>
-    <Level>EXPERT</Level>
+    <Level>AdvancedBeginner</Level>
     <Cost>450</Cost>
     <Active>true</Active>
   </Engineer>
@@ -36,7 +36,7 @@
     <Id>111111118</Id>
     <Name>Miri Silver</Name>
     <Email>miri@gmail.com</Email>
-    <Level>ROOKIE</Level>
+    <Level>Beginner</Level>
     <Cost>100</Cost>
     <Active>true</Active>
   </Engineer>
@@ -44,7 +44,7 @@
     <Id>023995871</Id>
     <Name>Esty Shalom</Name>
     <Email>esty@gmail.com</Email>
-    <Level>EXPERT</Level>
+    <Level>Expert</Level>
     <Cost>450</Cost>
     <Active>true</Active>
   </Engineer>
@@ -52,7 +52,7 @@
     <Id>214385242</Id>
     <Name>Sara Drori</Name>
     <Email>sara@gmail.com</Email>
-    <Level>JUNIOR</Level>
+    <Level>Proficient</Level>
     <Cost>200</Cost>
     <Active>true</Active>
   </Engineer>
@@ -60,7 +60,7 @@
     <Id>214385245</Id>
     <Name>Yair Goldshtein</Name>
     <Email>yair@gmail.com</Email>
-    <Level>EXPERT</Level>
+    <Level>Proficient</Level>
     <Cost>450</Cost>
     <Active>true</Active>
   </Engineer>
@@ -68,7 +68,7 @@
     <Id>214385244</Id>
     <Name>Sari Drilman</Name>
     <Email>sari@gmail.com</Email>
-    <Level>EXPERT</Level>
+    <Level>Competent</Level>
     <Cost>450</Cost>
     <Active>true</Active>
   </Engineer>
@@ -76,7 +76,7 @@
     <Id>214385243</Id>
     <Name>Shifra Dayan</Name>
     <Email>shifra@gmail.com</Email>
-    <Level>EXPERT</Level>
+    <Level>Competent</Level>
     <Cost>450</Cost>
     <Active>true</Active>
   </Engineer>
@@ -84,7 +84,7 @@
     <Id>214385852</Id>
     <Name>aa</Name>
     <Email>a</Email>
-    <Level>ROOKIE</Level>
+    <Level>AdvancedBeginner</Level>
     <Cost>223</Cost>
     <Active>true</Active>
   </Engineer>
@@ -92,7 +92,7 @@
     <Id>212121212</Id>
     <Name>aaa</Name>
     <Email>s</Email>
-    <Level>ROOKIE</Level>
+    <Level>Beginner</Level>
     <Cost>222</Cost>
     <Active>true</Active>
   </Engineer>
