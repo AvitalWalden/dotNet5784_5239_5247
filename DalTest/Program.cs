@@ -10,8 +10,8 @@ namespace DalTest
 {
     internal class Program
     {
-        static readonly IDal s_dal = new DalList(); //stage 2.
-    ///    static readonly IDal s_dal = new DalXml(); //stage 3
+        //static readonly IDal s_dal = new DalList(); //stage 2.
+        static readonly IDal s_dal = new DalXml(); //stage 3
         // The function create a new task.
         public static void CreateTask()
         {
@@ -591,8 +591,8 @@ namespace DalTest
 
         static void Main(string[] args)
         {
-           ///////
-                Initialization.Do(s_dal); //stage 2
+          
+             // Initialization.Do(s_dal); //stage 2
                 Console.WriteLine("For a task press 1");
                 Console.WriteLine("For an engineer press 2");
                 Console.WriteLine("For depency between tasks press 3");

@@ -129,7 +129,9 @@ internal class DependencyImplementation : IDependency
     }
     public void Reset()
     {
-
+        List<Dependency> lst = XMLTools.LoadListFromXMLSerializer<Dependency>("dependencies");
+        lst.Clear();
+        XMLTools.SaveListToXMLSerializer<Dependency>(lst, "dependencies");
     }
 }
 
