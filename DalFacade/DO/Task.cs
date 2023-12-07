@@ -16,7 +16,7 @@
 /// <param name="Remarks">Notes of the task</param>
 /// <param name="EngineerId">The ID of the engineer assigned to the task</param>
 /// <param name="ComplexityLevel">Difficulty level of the task</param>
-/// <param name="Active"></param>
+/// <param name="Active">The task is active or not</param>
 public record Task
 (
     int Id,
