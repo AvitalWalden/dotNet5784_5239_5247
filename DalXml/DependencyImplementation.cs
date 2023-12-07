@@ -127,5 +127,9 @@ internal class DependencyImplementation : IDependency
             throw new DalDoesNotExistException($"Dependency with ID={item.Id} does not exist");
         }
     }
+    public void Reset()
+    {
+
+    }
 }
 

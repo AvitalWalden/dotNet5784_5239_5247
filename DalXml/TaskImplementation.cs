@@ -67,4 +67,9 @@ internal class TaskImplementation : ITask
     {
        
     }
+
+    public void Reset()
+    {
+
+    }
 }
