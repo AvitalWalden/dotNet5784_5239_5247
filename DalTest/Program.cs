@@ -10,8 +10,8 @@ namespace DalTest
 {
     internal class Program
     {
-        //static readonly IDal s_dal = new DalList(); //stage 2.
-        static readonly IDal s_dal = new DalXml(); //stage 3
+        static readonly IDal s_dal = new DalList(); //stage 2.
+    ///    static readonly IDal s_dal = new DalXml(); //stage 3
         // The function create a new task.
         public static void CreateTask()
         {
@@ -19,27 +19,29 @@ namespace DalTest
             string description = Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect");
             Console.WriteLine("Enter an alias of the task");
             string alias = Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect");
+            Console.WriteLine("Enter required effort time to the tast");
+            TimeSpan requiredEffort = TimeSpan.Parse(Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect"));
             Console.WriteLine("Enter task start date");
             DateTime? startDate = DateTime.Parse(Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect"));
-            Console.WriteLine("Enter task forecast date");
-            DateTime? forecastDate = DateTime.Parse(Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect"));
+            Console.WriteLine("Enter task Scheduled date");
+            DateTime? ScheduledDate = DateTime.Parse(Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect"));
             Console.WriteLine("Enter task deadline date");
             DateTime? deadlineDate = DateTime.Parse(Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect"));
             Console.WriteLine("Enter task complete date");
             DateTime? completeDate = DateTime.Parse(Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect"));
-            Console.WriteLine("Enter product description of the task");
-            string? productDescription = Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect");
+            Console.WriteLine("Enter product deliverables of the task");
+            string? deliverables = Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect");
             Console.WriteLine("Enter remarks of the task");
             string? remarks = Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect");
             Console.WriteLine("Enter the id of the engineer");
             int? engineerId = int.Parse(Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect"));
-            DateTime CreatedAt = DateTime.Now;
+            DateTime createdAt = DateTime.Now;
             Console.WriteLine("Enter the level of the task:");
             Console.WriteLine("For expert press 0");
             Console.WriteLine("For junior press 1");
             Console.WriteLine("For rookie press 2");
             int level = int.Parse(Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect"));
-            DO.Task newTask = new DO.Task(0, description, alias, false, startDate, forecastDate, deadlineDate, completeDate, productDescription, remarks, engineerId, (EngineerExperience)level);
+            DO.Task newTask = new DO.Task(0, description, alias, createdAt, requiredEffort, false, startDate, ScheduledDate, deadlineDate, completeDate, deliverables, remarks, engineerId, (EngineerExperience)level);
             Console.WriteLine(s_dal!.Task.Create(newTask)); // Input the new id of the task.
         }
 
@@ -69,34 +71,45 @@ namespace DalTest
             {
                 alias = updateTask.Alias;
             }
+            Console.WriteLine("Enter required effort time to the tast");
+            string requiredEffort1 = Console.ReadLine()!;
+            TimeSpan requiredEffort;
+            if (requiredEffort1 == "" || requiredEffort1 == null) //If not update the start date.
+            {
+                requiredEffort = updateTask.RequiredEffort;
+            }
+            else
+            {
+                requiredEffort = TimeSpan.Parse(requiredEffort1);
+            }
             Console.WriteLine("Enter task start date");
             string? startDate1 = Console.ReadLine();
             DateTime? startDate;
             if (startDate1 == "" || startDate1 == null) //If not update the start date.
             {
-                startDate = updateTask.Start;
+                startDate = updateTask.StartDate;
             }
             else
             { 
                 startDate = DateTime.Parse(startDate1);
             }
-            Console.WriteLine("Enter task forecast date");
-            string? forecastDate1 = Console.ReadLine();
-            DateTime? forecastDate;
-            if (forecastDate1 == "" || forecastDate1 == null) //If not update the forecast date.
+            Console.WriteLine("Enter task scheduled date");
+            string? scheduledDate1 = Console.ReadLine();
+            DateTime? scheduledDate;
+            if (scheduledDate1 == "" || scheduledDate1 == null) //If not update the forecast date.
             {
-                forecastDate = updateTask.ForecastDate;
+                scheduledDate = updateTask.ScheduledDate;
             }
             else
             {
-                forecastDate = DateTime.Parse(forecastDate1);
+                scheduledDate = DateTime.Parse(scheduledDate1);
             }
             Console.WriteLine("Enter task deadline date");
             string? deadlineDate1 = Console.ReadLine();
             DateTime? deadlineDate;
             if (deadlineDate1 == "" || deadlineDate1 == null) //If not update the forecast date.
             {
-                deadlineDate = updateTask.Deadline;
+                deadlineDate = updateTask.DeadlineDate;
             }
             else
             {
@@ -107,17 +120,17 @@ namespace DalTest
             DateTime? completeDate;
             if (completeDate1 == "" || completeDate1 == null) //If not update the complete date.
             {
-                completeDate = updateTask.Complete;
+                completeDate = updateTask.CompleteDate;
             }
             else
             {
                 completeDate = DateTime.Parse(completeDate1);
             }
-            Console.WriteLine("Enter product description of the task");
-            string? productDescription = Console.ReadLine();
-            if (productDescription == "" || productDescription == null) //If not update the product description.
+            Console.WriteLine("Enter deliverables of the task");
+            string? deliverables = Console.ReadLine();
+            if (deliverables == "" || deliverables == null) //If not update the product description.
             {
-                productDescription = updateTask.Deliverables;
+                deliverables = updateTask.Deliverables;
             }
             Console.WriteLine("Enter remarks of the task");
             string? remarks = Console.ReadLine();
@@ -153,7 +166,7 @@ namespace DalTest
             }
             Console.WriteLine("Enter if the task is active or not");
             bool active = bool.Parse(Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect"));
-            DO.Task newTask = new DO.Task(idTask, description, alias, false, startDate, forecastDate, deadlineDate, completeDate, productDescription, remarks, engineerId, (EngineerExperience)level,active);
+            DO.Task newTask = new DO.Task(idTask, description, alias, updateTask.CreatedAtDate, requiredEffort, false, startDate, scheduledDate, deadlineDate, completeDate, deliverables, remarks, engineerId, (EngineerExperience)level, active);
             try
             {
                 s_dal?.Task.Update(newTask); // Input the new id of the task.
@@ -566,8 +579,8 @@ namespace DalTest
 
         static void Main(string[] args)
         {
-           
-                //Initialization.Do(s_dal); //stage 2
+           ///////
+                Initialization.Do(s_dal); //stage 2
                 Console.WriteLine("For a task press 1");
                 Console.WriteLine("For an engineer press 2");
                 Console.WriteLine("For depency between tasks press 3");

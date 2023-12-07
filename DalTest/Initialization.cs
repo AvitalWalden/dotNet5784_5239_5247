@@ -115,6 +115,8 @@ public static class Initialization
                 0,
                 detailsTask[i].Item1,
                 detailsTask[i].Item2,
+                DateTime.Now,
+                TimeSpan.Zero,
                 false, // Milestone 
                 DateTime.Now.AddDays(i * 5).AddDays(i + 1), // Start Date 
                 DateTime.Now.AddDays(i * 5).AddDays(i + 2), // ScheduledDate date
