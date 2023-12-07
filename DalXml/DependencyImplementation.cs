@@ -8,14 +8,19 @@ using System.Xml.Linq;
 
 internal class DependencyImplementation : IDependency
 {
+    /// <summary>
+    /// Method to create a new dependency
+    /// </summary>
+    /// <param name="item">dependency details to add</param>
+    /// <returns>the new id of dependency</returns>
+    /// <exception cref="DalAlreadyExistsException">If the dependency already exists</exception>
     public int Create(Dependency item)
     {
-        int id = Config.NextDependencyId;
+        int id = XMLTools.GetAndIncreaseNextId("data-config", "NextDependencyId");
         const string dependenciesFile = @"..\xml\dependencies.xml";
-        //XElement dependenciesElement = XElement.Load(dependenciesFile); // למה אין כאן .ROOT והאם צריך ?
         XElement? allDependencies = XDocument.Load(dependenciesFile).Root;
 
-        if (allDependencies!.Elements("Dependency").Any(dependency => (int)dependency.Element("Id")! == id)) //האם אפשר לשים !
+        if (allDependencies!.Elements("Dependency").Any(dependency => (int)dependency.Element("Id")! == id)) 
             throw new DalAlreadyExistsException($"Dependency with ID={id} already exists");
 
         XElement newDependencyElement = new XElement("Dependency",
@@ -28,6 +33,11 @@ internal class DependencyImplementation : IDependency
         return id;
     }
 
+    /// <summary>
+    ///  Method to delete an dependency by ID
+    /// </summary>
+    /// <param name="id">ID of dependency you want to delete</param>
+    /// <exception cref="DalDoesNotExistException">exeption that dependency cannot be deleted </exception>
     public void Delete(int id)
     {
 
@@ -41,6 +51,11 @@ internal class DependencyImplementation : IDependency
         allDependencies?.Save(@"..\xml\dependencies.xml");
     }
 
+    /// <summary>
+    /// Method to read an Dependency using a custom filter
+    /// </summary>
+    /// <param name="filter">The filter function</param>
+    /// <returns>Returns Dependency according to ID and according to the existence of the filter</returns>
     public Dependency? Read(Func<Dependency, bool> filter)
     {
         XElement? allDependencies = XDocument.Load(@"..\xml\dependencies.xml").Root;
@@ -65,13 +80,18 @@ internal class DependencyImplementation : IDependency
         return null;
     }
 
+    /// <summary>
+    ///   Method to read an Dependency by ID
+    /// </summary>
+    /// <param name="id">ID of Dependency you want to read</param>
+    /// <returns>returns Dependency by ID</returns>
     public Dependency? Read(int id)
     {
         XElement? allDependencies = XDocument.Load(@"..\xml\dependencies.xml").Root;
 
         XElement? dependencyElement = allDependencies?
                     .Elements("Dependency")
-                    .FirstOrDefault(dependency => (int)dependency?.Element("Id")! == id); //האם אפשר לשים !
+                    .FirstOrDefault(dependency => (int)dependency?.Element("Id")! == id); 
 
         if (dependencyElement != null)
         {
@@ -81,6 +101,11 @@ internal class DependencyImplementation : IDependency
         return null;
     }
 
+    /// <summary>
+    /// Method to read all Dependencies with an optional filter
+    /// </summary>
+    /// <param name="filter">The filter function</param>
+    /// <returns>read all Dependency, or read all Dependency that remain after the filter function</returns>
     public IEnumerable<Dependency?> ReadAll(Func<Dependency, bool>? filter = null)
     {
         XElement? dependenciesElement = XMLTools.LoadListFromXMLElement("dependencies");
@@ -98,9 +123,13 @@ internal class DependencyImplementation : IDependency
             dependencies = dependencies.Where(filter);
         }
 
-        return dependencies;//Convert to List before returning
+        return dependencies;
     }
-
+    /// <summary>
+    ///  Method to update an existing Dependency
+    /// </summary>
+    /// <param name="item">Dependency details to update</param>
+    /// <exception cref="DalDoesNotExistException">If the Dependency does not exists</exception>
     public void Update(Dependency item)
     {
         int id = item.Id;
@@ -127,6 +156,10 @@ internal class DependencyImplementation : IDependency
             throw new DalDoesNotExistException($"Dependency with ID={item.Id} does not exist");
         }
     }
+
+    /// <summary>
+    ///  Method to reset the list of Dependency
+    /// </summary>
     public void Reset()
     {
         List<Dependency> lst = XMLTools.LoadListFromXMLSerializer<Dependency>("dependencies");
