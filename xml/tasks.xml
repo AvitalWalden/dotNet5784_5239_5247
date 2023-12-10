@@ -2,8 +2,8 @@
 <ArrayOfTask xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Task>
     <Id>1</Id>
-    <Description>Optimize database queries for improved performance</Description>
-    <Alias>Database Optimization</Alias>
+    <Description>תכנון של מבנים בהתאם לדרישות הלקוח ולתקנים מקומיים</Description>
+    <Alias>תכנון ועיצוב</Alias>
     <CreatedAtDate>2023-12-07T23:12:42.6518+02:00</CreatedAtDate>
     <RequiredEffort>PT0S</RequiredEffort>
     <IsMilestone>false</IsMilestone>
@@ -351,6 +351,23 @@
     <Remarks>df</Remarks>
     <EngineerId>3</EngineerId>
     <ComplexityLevel>Expert</ComplexityLevel>
+    <Active>true</Active>
+  </Task>
+  <Task>
+    <Id>23</Id>
+    <Description>s</Description>
+    <Alias>s</Alias>
+    <CreatedAtDate>2023-12-10T00:35:42.2570111+02:00</CreatedAtDate>
+    <RequiredEffort>P2D</RequiredEffort>
+    <IsMilestone>false</IsMilestone>
+    <StartDate>2023-12-12T00:00:00</StartDate>
+    <ScheduledDate>2023-12-12T00:00:00</ScheduledDate>
+    <DeadlineDate>2023-12-12T00:00:00</DeadlineDate>
+    <CompleteDate>2023-12-12T00:00:00</CompleteDate>
+    <Deliverables>f</Deliverables>
+    <Remarks>g</Remarks>
+    <EngineerId>5</EngineerId>
+    <ComplexityLevel>AdvancedBeginner</ComplexityLevel>
     <Active>true</Active>
   </Task>
 </ArrayOfTask>
