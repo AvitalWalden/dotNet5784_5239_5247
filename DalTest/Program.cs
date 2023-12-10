@@ -239,40 +239,48 @@ namespace DalTest
             Console.WriteLine("To delete a task press e");
             Console.WriteLine("To exit press f");
             char ch = char.Parse(Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect"));
-            try
-            {
-                switch (ch)
+            while (ch!='f') { 
+                try
                 {
-                    case 'a': // Create a new task.
-                        CreateTask();
-                        break;
-                    case 'b': // Read a Task by ID.
-                        Console.WriteLine("Enter a task ID");
-                        int idTask = int.Parse(Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect"));
-                        ReadTask(idTask);
-                        break;
-                    case 'c': // Read all tasks.
-                        ReadAllTasks();
-                        break;
-                    case 'd': // Update a task.
-                        UpdateTask();
-                        break;
-                    case 'e': // Delete a task.
-                        Console.WriteLine("Enter a task ID");
-                        int idTaskDelete = int.Parse(Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect"));
-                        DeleteTask(idTaskDelete);
-                        break;
-                    case 'f':
-                        break;
-                    default:
-                        Console.WriteLine("The letter entered is invalid");
-                        break;
+                    switch (ch)
+                    {
+                        case 'a': // Create a new task.
+                            CreateTask();
+                            break;
+                        case 'b': // Read a Task by ID.
+                            Console.WriteLine("Enter a task ID");
+                            int idTask = int.Parse(Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect"));
+                            ReadTask(idTask);
+                            break;
+                        case 'c': // Read all tasks.
+                            ReadAllTasks();
+                            break;
+                        case 'd': // Update a task.
+                            UpdateTask();
+                            break;
+                        case 'e': // Delete a task.
+                            Console.WriteLine("Enter a task ID");
+                            int idTaskDelete = int.Parse(Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect"));
+                            DeleteTask(idTaskDelete);
+                            break;
+                        default:
+                            Console.WriteLine("The letter entered is invalid");
+                            break;
+                    }
+                    Console.WriteLine();
+                    Console.WriteLine("To add a task press a");
+                    Console.WriteLine("To read a task press b");
+                    Console.WriteLine("To read all tasks press c");
+                    Console.WriteLine("To update a task press d");
+                    Console.WriteLine("To delete a task press e");
+                    Console.WriteLine("To exit press f");
+                    ch = char.Parse(Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect"));
                 }
-            }
-            catch (Exception ex)
-            {
+                catch (Exception ex)
+                {
 
-                Console.WriteLine(ex); ;
+                    Console.WriteLine(ex); ;
+                }
             }
         }
 
@@ -420,40 +428,49 @@ namespace DalTest
             Console.WriteLine("To delete an engineer press e");
             Console.WriteLine("To exit press f");
             char ch = char.Parse(Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect"));
-            try
+            while (ch != 'f')
             {
-                switch (ch)
+                try
                 {
-                    case 'a': // Create a new engineer.
-                        CreateEngineer();
-                        break;
-                    case 'b': // Read a engineer by ID
-                        Console.WriteLine("Enter a engineer's id");
-                        int idEngineer = int.Parse(Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect"));
-                        ReadEngineer(idEngineer);
-                        break;
-                    case 'c': // Read all engineers.
-                        ReadAllEngineers();
-                        break;
-                    case 'd': // Update a engineer.
-                        UpdateEngineer();
-                        break;
-                    case 'e': // Delete a engineer.
-                        Console.WriteLine("Enter a engineer's ID");
-                        int idEngineerDelete = int.Parse(Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect"));
-                        DeleteEngineer(idEngineerDelete);
-                        break;
-                    case 'f':
-                        break;
-                    default:
-                        Console.WriteLine("The letter entered is invalid");
-                        break;
+                    switch (ch)
+                    {
+                        case 'a': // Create a new engineer.
+                            CreateEngineer();
+                            break;
+                        case 'b': // Read a engineer by ID
+                            Console.WriteLine("Enter a engineer's id");
+                            int idEngineer = int.Parse(Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect"));
+                            ReadEngineer(idEngineer);
+                            break;
+                        case 'c': // Read all engineers.
+                            ReadAllEngineers();
+                            break;
+                        case 'd': // Update a engineer.
+                            UpdateEngineer();
+                            break;
+                        case 'e': // Delete a engineer.
+                            Console.WriteLine("Enter a engineer's ID");
+                            int idEngineerDelete = int.Parse(Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect"));
+                            DeleteEngineer(idEngineerDelete);
+                            break;
+                        default:
+                            Console.WriteLine("The letter entered is invalid");
+                            break;
+                    }
+                    Console.WriteLine();
+                    Console.WriteLine("To add an engineer press a");
+                    Console.WriteLine("To read an engineer press b");
+                    Console.WriteLine("To read all engineers press c");
+                    Console.WriteLine("To update an engineer press d");
+                    Console.WriteLine("To delete an engineer press e");
+                    Console.WriteLine("To exit press f");
+                    ch = char.Parse(Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect"));
                 }
-            }
-            catch (Exception ex)
-            {
+                catch (Exception ex)
+                {
 
-                Console.WriteLine(ex); ;
+                    Console.WriteLine(ex); ;
+                }
             }
         }
 
@@ -564,40 +581,49 @@ namespace DalTest
             Console.WriteLine("To delete depency between tasks press e");
             Console.WriteLine("To exit press f");
             char ch = char.Parse(Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect"));
-            try
+            while (ch != 'f')
             {
-                switch (ch)
+                try
                 {
-                    case 'a': // Create a new Dependency
-                        CreatDependency();
-                        break;
-                    case 'b': // Read a dependency by ID
-                        Console.WriteLine("Enter a dependency ID");
-                        int idDependency = int.Parse(Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect"));
-                        ReadDependency(idDependency);
-                        break;
-                    case 'c': // Read all Dependencies
-                        ReadAllDependencies();
-                        break;
-                    case 'd': // Update a dependency.
-                        UpdateDependency();
-                        break;
-                    case 'e': // Delete a dependency.
-                        Console.WriteLine("Enter a Dependency ID");
-                        int idDependencyDelete = int.Parse(Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect"));
-                        DeleteDependency(idDependencyDelete);
-                        break;
-                    case 'f':
-                        break;
-                    default:
-                        Console.WriteLine("The letter entered is invalid");
-                        break;
+                    switch (ch)
+                    {
+                        case 'a': // Create a new Dependency
+                            CreatDependency();
+                            break;
+                        case 'b': // Read a dependency by ID
+                            Console.WriteLine("Enter a dependency ID");
+                            int idDependency = int.Parse(Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect"));
+                            ReadDependency(idDependency);
+                            break;
+                        case 'c': // Read all Dependencies
+                            ReadAllDependencies();
+                            break;
+                        case 'd': // Update a dependency.
+                            UpdateDependency();
+                            break;
+                        case 'e': // Delete a dependency.
+                            Console.WriteLine("Enter a Dependency ID");
+                            int idDependencyDelete = int.Parse(Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect"));
+                            DeleteDependency(idDependencyDelete);
+                            break;
+                        default:
+                            Console.WriteLine("The letter entered is invalid");
+                            break;
+                    }
+                    Console.WriteLine();
+                    Console.WriteLine("To add depency between tasks press a");
+                    Console.WriteLine("To read depency between tasks press b");
+                    Console.WriteLine("To read all depency between tasks press c");
+                    Console.WriteLine("To update depency between tasks press d");
+                    Console.WriteLine("To delete depency between tasks press e");
+                    Console.WriteLine("To exit press f");
+                    ch = char.Parse(Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect"));
                 }
-            }
-            catch (Exception ex)
-            {
+                catch (Exception ex)
+                {
 
-                Console.WriteLine(ex); ;
+                    Console.WriteLine(ex); ;
+                }
             }
         }
 
