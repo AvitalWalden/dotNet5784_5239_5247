@@ -632,13 +632,14 @@ namespace DalTest
         {
           
              // Initialization.Do(s_dal); //stage 2
-                Console.WriteLine("For a task press 1");
-                Console.WriteLine("For an engineer press 2");
-                Console.WriteLine("For depency between tasks press 3");
-                Console.WriteLine("To exit press 0");
+             Console.WriteLine("For a task press 1");
+             Console.WriteLine("For an engineer press 2");
+             Console.WriteLine("For depency between tasks press 3");
+             Console.WriteLine("For create Initial data press 4");
+             Console.WriteLine("To exit press 0");
             int choose = int.Parse(Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect"));
             try
-                {
+            {
                     while (choose != 0)
                     {
                         switch (choose)
@@ -652,23 +653,37 @@ namespace DalTest
                             case 3:
                                 Dependencies();
                                 break;
+                            case 4:
+                            { 
+                            Console.Write("Would you like to create Initial data? (Y/N)"); //stage 3
+                            string? ans = Console.ReadLine() ?? throw new FormatException("Wrong input"); //stage 3
+                                if (ans == "Y") //stage 3
+                                {
+                                    s_dal.Dependency.Reset();
+                                    s_dal.Engineer.Reset();
+                                    s_dal.Task.Reset();
+                                    Initialization.Do(s_dal); //stage 2
+                                }
+                            }
+                            break;
                             default:
-                                Console.WriteLine("The number entered is invalid");
-                                break;
+                              Console.WriteLine("The number entered is invalid");
+                              break;
                         }
                         Console.WriteLine();
                         Console.WriteLine("enter a number:");
                         Console.WriteLine("For a task press 1");
                         Console.WriteLine("For an engineer press 2");
                         Console.WriteLine("For depency between tasks press 3");
+                        Console.WriteLine("For create Initial data press 4");
                         Console.WriteLine("To exit press 0");
                         choose = int.Parse(Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect"));
                     }
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex);
-                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
         }
     }
 }

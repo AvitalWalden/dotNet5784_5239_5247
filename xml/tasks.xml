@@ -2,8 +2,8 @@
 <ArrayOfTask xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Task>
     <Id>1</Id>
-    <Description>תכנון של מבנים בהתאם לדרישות הלקוח ולתקנים מקומיים</Description>
-    <Alias>תכנון ועיצוב</Alias>
+    <Description>Optimized SQL queries and performance report</Description>
+    <Alias>SQL queries</Alias>
     <CreatedAtDate>2023-12-07T23:12:42.6518+02:00</CreatedAtDate>
     <RequiredEffort>PT0S</RequiredEffort>
     <IsMilestone>false</IsMilestone>

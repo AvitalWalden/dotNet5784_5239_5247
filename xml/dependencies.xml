@@ -12,8 +12,8 @@
   </Dependency>
   <Dependency>
     <Id>3</Id>
-    <DependentTask>1</DependentTask>
-    <DependsOnTask>4</DependsOnTask>
+    <DependentTask>3</DependentTask>
+    <DependsOnTask>3</DependsOnTask>
   </Dependency>
   <Dependency>
     <Id>4</Id>
