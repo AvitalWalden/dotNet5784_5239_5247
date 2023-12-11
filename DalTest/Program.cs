@@ -635,7 +635,7 @@ namespace DalTest
              Console.WriteLine("For a task press 1");
              Console.WriteLine("For an engineer press 2");
              Console.WriteLine("For depency between tasks press 3");
-             Console.WriteLine("For create Initial data press 4");
+            Console.WriteLine("For create Initial data press 4");
              Console.WriteLine("To exit press 0");
             int choose = int.Parse(Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect"));
             try

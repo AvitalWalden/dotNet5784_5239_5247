@@ -36,5 +36,5 @@ public record Task
     bool Active = true
 )
 {
-    public Task() : this(0, "", "", DateTime.Now, TimeSpan.MinValue) { } //empty ctor for stage 3
+    public Task() : this(0, "", "", DateTime.Now, TimeSpan.Zero) { } //empty ctor for stage 3
 }
