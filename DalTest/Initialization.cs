@@ -3,6 +3,7 @@ using DalApi;
 using DO;
 using System.ComponentModel;
 using System.Data;
+using System.Numerics;
 using System.Security.Cryptography;
 
 public static class Initialization
@@ -102,18 +103,18 @@ public static class Initialization
     {
         (string, string)[] detailsTask = 
         {
-            ("Homework exercise 1 in algorithms","algorithms"),
-            ("Homework exercise 2 in algorithms","algorithms"),
-            ("Homework exercise 3 in algorithms","algorithms"),
-            ("Homework in the introduction to information assurance exercise 1","mlm"),
-            ("Reading the material in databases","databases"),
-            ("Homework in the introduction to information assurance Exercise 2","mlm"),
-            ("Project on the web about React","web"),
-            ("Homework in databases exercise 1","databases"),
-            ("Learn to examine databases","databases"),
-            ("Homework in logic exercise 1","logic"),
+            ("Create a dashboard for monitoring system performance","Performance Dashboard"),
+            ("Debug and fix issues reported by users in the production environment","Production Bug Fixes"),
+            ("Develop a RESTful API for a new module","RESTful API Development"),
+            ("Integrate machine learning model for predictive analytics","ML Integratio"),
+            ("Implement multi-factor authentication for enhanced security","MFA Implementation"),
+            ("Create a system for automated deployment and rollback","Automated Deployment System"),
+            ("Optimize database schema for improved data retrieval","Database Schema Optimization"),
+            ("Develop a web service for third-party integrations","Web Service Development"),
+            ("Conduct load testing to identify performance bottlenecks","Load Testing"),
+            ("Implement a logging mechanism for tracking user activities","Logging Implementation"),
         };
-        List<Engineer?> allEngineer = s_dal!.Engineer.ReadAll().ToList();//????????
+        List<Engineer?> allEngineer = s_dal!.Engineer.ReadAll().ToList();
 
         for (int i = 0; i < detailsTask.Length; i++)
         {
@@ -152,9 +153,6 @@ public static class Initialization
     }
     public static void Do(IDal dal)
     {
-        //s_dalDependency = dalDependency ?? throw new NullReferenceException("DAL can not be null!");
-        //s_dalEngineer = dalEngineer ?? throw new NullReferenceException("DAL can not be null!");
-        //s_dalTask = dalTask ?? throw new NullReferenceException("DAL can not be null!");
         s_dal = dal ?? throw new NullReferenceException("DAL object can not be null!"); //stage 2
         createEngineers();
         createTasks();

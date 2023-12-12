@@ -655,7 +655,7 @@ namespace DalTest
                                 break;
                             case 4:
                             { 
-                            Console.Write("Would you like to create Initial data? (Y/N)"); //stage 3
+                            Console.WriteLine("Would you like to create Initial data? (Y/N)"); //stage 3
                             string? ans = Console.ReadLine() ?? throw new FormatException("Wrong input"); //stage 3
                                 if (ans == "Y") //stage 3
                                 {
@@ -665,10 +665,10 @@ namespace DalTest
                                     Initialization.Do(s_dal); //stage 2
                                 }
                             }
-                            break;
+                                break;
                             default:
                               Console.WriteLine("The number entered is invalid");
-                              break;
+                                 break;
                         }
                         Console.WriteLine();
                         Console.WriteLine("enter a number:");
