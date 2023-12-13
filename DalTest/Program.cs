@@ -239,8 +239,9 @@ namespace DalTest
             Console.WriteLine("To delete a task press e");
             Console.WriteLine("To exit press f");
             char ch = char.Parse(Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect"));
-            while (ch!='f') { 
-                try
+            try
+            {
+                while (ch != 'f')
                 {
                     switch (ch)
                     {
@@ -276,12 +277,13 @@ namespace DalTest
                     Console.WriteLine("To exit press f");
                     ch = char.Parse(Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect"));
                 }
-                catch (Exception ex)
-                {
-
-                    Console.WriteLine(ex); ;
-                }
             }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine(ex);
+            }
+           
         }
 
         // The function create a new engineer.
@@ -428,9 +430,9 @@ namespace DalTest
             Console.WriteLine("To delete an engineer press e");
             Console.WriteLine("To exit press f");
             char ch = char.Parse(Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect"));
-            while (ch != 'f')
+            try
             {
-                try
+                while (ch != 'f')
                 {
                     switch (ch)
                     {
@@ -466,11 +468,11 @@ namespace DalTest
                     Console.WriteLine("To exit press f");
                     ch = char.Parse(Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect"));
                 }
-                catch (Exception ex)
-                {
+            }
+            catch (Exception ex)
+            {
 
-                    Console.WriteLine(ex); ;
-                }
+                Console.WriteLine(ex); ;
             }
         }
 
@@ -581,9 +583,10 @@ namespace DalTest
             Console.WriteLine("To delete depency between tasks press e");
             Console.WriteLine("To exit press f");
             char ch = char.Parse(Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect"));
-            while (ch != 'f')
+
+            try
             {
-                try
+                while (ch != 'f')
                 {
                     switch (ch)
                     {
@@ -619,11 +622,11 @@ namespace DalTest
                     Console.WriteLine("To exit press f");
                     ch = char.Parse(Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect"));
                 }
-                catch (Exception ex)
-                {
+            }
+            catch (Exception ex)
+            {
 
-                    Console.WriteLine(ex); ;
-                }
+                Console.WriteLine(ex); ;
             }
         }
 
@@ -635,7 +638,7 @@ namespace DalTest
              Console.WriteLine("For a task press 1");
              Console.WriteLine("For an engineer press 2");
              Console.WriteLine("For depency between tasks press 3");
-            Console.WriteLine("For create Initial data press 4");
+             Console.WriteLine("For create Initial data press 4");
              Console.WriteLine("To exit press 0");
             int choose = int.Parse(Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect"));
             try
