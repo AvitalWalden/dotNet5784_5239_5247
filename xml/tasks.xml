@@ -19,7 +19,7 @@
 	<Task>
 		<Id>2</Id>
 		<Description>Purchase of land or the necessary property</Description>
-		<Alias>purchases</Alias>
+		<Alias>Purchases</Alias>
 		<CreatedAtDate>2023-12-07T23:12:47.8715315+02:00</CreatedAtDate>
 		<RequiredEffort>PT0S</RequiredEffort>
 		<IsMilestone>false</IsMilestone>
