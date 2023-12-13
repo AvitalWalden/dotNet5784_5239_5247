@@ -103,16 +103,16 @@ public static class Initialization
     {
         (string, string)[] detailsTask = 
         {
-            ("Create a dashboard for monitoring system performance","Performance Dashboard"),
-            ("Debug and fix issues reported by users in the production environment","Production Bug Fixes"),
-            ("Develop a RESTful API for a new module","RESTful API Development"),
-            ("Integrate machine learning model for predictive analytics","ML Integratio"),
-            ("Implement multi-factor authentication for enhanced security","MFA Implementation"),
-            ("Create a system for automated deployment and rollback","Automated Deployment System"),
-            ("Optimize database schema for improved data retrieval","Database Schema Optimization"),
-            ("Develop a web service for third-party integrations","Web Service Development"),
-            ("Conduct load testing to identify performance bottlenecks","Load Testing"),
-            ("Implement a logging mechanism for tracking user activities","Logging Implementation"),
+            ("Determining the purpose and requirements of the building","Target and requirements"),
+            ("Purchase of land or the necessary property","Purchases"),
+            ("Guaranteed funding","Funding"),
+            ("Obtaining necessary permits for construction","Construction permits"),
+            ("Meetings with an architect to create a work plan","Create a work plan"),
+            ("Land clearing and grading","Preparing the website"),
+            ("Digging the ground","Excavations"),
+            ("Creating a marking outline","Marking outline"),
+            ("The casting of the skeleton of the building or site","Castings"),
+            ("Construction of exterior walls","Exterior walls"),
         };
         List<Engineer?> allEngineer = s_dal!.Engineer.ReadAll().ToList();
 
