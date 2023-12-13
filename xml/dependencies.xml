@@ -2,13 +2,13 @@
 <ArrayOfDependency>
 	<Dependency>
 		<Id>1</Id>
-		<DependentTask>1</DependentTask>
-		<DependsOnTask>2</DependsOnTask>
+		<DependentTask>2</DependentTask>
+		<DependsOnTask>1</DependsOnTask>
 	</Dependency>
 	<Dependency>
 		<Id>2</Id>
-		<DependentTask>2</DependentTask>
-		<DependsOnTask>3</DependsOnTask>
+		<DependentTask>3</DependentTask>
+		<DependsOnTask>2</DependsOnTask>
 	</Dependency>
 	<Dependency>
 		<Id>3</Id>

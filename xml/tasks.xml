@@ -2,8 +2,8 @@
 <ArrayOfTask>
 	<Task>
 		<Id>1</Id>
-		<Description>Optimized SQL queries and performance report</Description>
-		<Alias>SQL queries</Alias>
+		<Description>Determining the purpose and requirements of the building</Description>
+		<Alias>Target and requirements</Alias>
 		<CreatedAtDate>2023-12-07T23:12:42.6518+02:00</CreatedAtDate>
 		<RequiredEffort>PT0S</RequiredEffort>
 		<IsMilestone>false</IsMilestone>
@@ -11,15 +11,15 @@
 		<ScheduledDate>2023-10-12T00:00:00</ScheduledDate>
 		<DeadlineDate>2023-10-12T00:00:00</DeadlineDate>
 		<CompleteDate>2023-10-12T00:00:00</CompleteDate>
-		<Deliverables>Optimized SQL queries and performance report</Deliverables>
+		<Deliverables>Knowledge of building requirements</Deliverables>
 		<EngineerId>16438046</EngineerId>
 		<ComplexityLevel>Expert</ComplexityLevel>
 		<Active>true</Active>
 	</Task>
 	<Task>
 		<Id>2</Id>
-		<Description>Implement a new feature for user authentication</Description>
-		<Alias>User Auth Feature</Alias>
+		<Description>Purchase of land or the necessary property</Description>
+		<Alias>purchases</Alias>
 		<CreatedAtDate>2023-12-07T23:12:47.8715315+02:00</CreatedAtDate>
 		<RequiredEffort>PT0S</RequiredEffort>
 		<IsMilestone>false</IsMilestone>
@@ -27,15 +27,15 @@
 		<ScheduledDate>2023-10-12T00:00:00</ScheduledDate>
 		<DeadlineDate>2023-10-12T00:00:00</DeadlineDate>
 		<CompleteDate>2023-10-12T00:00:00</CompleteDate>
-		<Deliverables>Implemented user authentication feature with documentation</Deliverables>
+		<Deliverables>Land or property to start the work</Deliverables>
 		<EngineerId>214385241</EngineerId>
 		<ComplexityLevel>Expert</ComplexityLevel>
 		<Active>true</Active>
 	</Task>
 	<Task>
 		<Id>3</Id>
-		<Description>Identify and resolve a software bug</Description>
-		<Alias>Fix a bug</Alias>
+		<Description>Guaranteed funding</Description>
+		<Alias>Funding</Alias>
 		<CreatedAtDate>2023-12-07T23:12:47.8715622+02:00</CreatedAtDate>
 		<RequiredEffort>PT0S</RequiredEffort>
 		<IsMilestone>false</IsMilestone>
@@ -43,15 +43,15 @@
 		<ScheduledDate>2023-10-12T00:00:00</ScheduledDate>
 		<DeadlineDate>2023-10-12T00:00:00</DeadlineDate>
 		<CompleteDate>2023-10-12T00:00:00</CompleteDate>
-		<Deliverables>Identify and resolve a software bug</Deliverables>
+		<Deliverables>Obtaining financing for construction</Deliverables>
 		<EngineerId>214385239</EngineerId>
-		<ComplexityLevel>Expert</ComplexityLevel>
+		<ComplexityLevel>Beginner</ComplexityLevel>
 		<Active>true</Active>
 	</Task>
 	<Task>
 		<Id>4</Id>
-		<Description>Conduct a code review for a team member's pull request</Description>
-		<Alias>Code Review</Alias>
+		<Description>Obtaining necessary permits for construction</Description>
+		<Alias>Construction permits</Alias>
 		<CreatedAtDate>2023-12-07T23:12:47.8715778+02:00</CreatedAtDate>
 		<RequiredEffort>PT0S</RequiredEffort>
 		<IsMilestone>false</IsMilestone>
@@ -59,15 +59,15 @@
 		<ScheduledDate>2023-10-12T00:00:00</ScheduledDate>
 		<DeadlineDate>2023-10-12T00:00:00</DeadlineDate>
 		<CompleteDate>2023-10-12T00:00:00</CompleteDate>
-		<Deliverables>Code review feedback and approval</Deliverables>
+		<Deliverables>There are the necessary permits for construction</Deliverables>
 		<EngineerId>214385242</EngineerId>
 		<ComplexityLevel>Expert</ComplexityLevel>
 		<Active>true</Active>
 	</Task>
 	<Task>
 		<Id>5</Id>
-		<Description>Fix a critical security vulnerability in the authentication module</Description>
-		<Alias>Security Fix</Alias>
+		<Description>Meetings with an architect to create a work plan</Description>
+		<Alias>Create a work plan</Alias>
 		<CreatedAtDate>2023-12-07T23:12:47.8715897+02:00</CreatedAtDate>
 		<RequiredEffort>PT0S</RequiredEffort>
 		<IsMilestone>false</IsMilestone>
@@ -75,15 +75,15 @@
 		<ScheduledDate>2023-10-12T00:00:00</ScheduledDate>
 		<DeadlineDate>2023-10-12T00:00:00</DeadlineDate>
 		<CompleteDate>2023-10-12T00:00:00</CompleteDate>
-		<Deliverables>Security patch and documentation</Deliverables>
+		<Deliverables>There are a work plan</Deliverables>
 		<EngineerId>214385243</EngineerId>
 		<ComplexityLevel>Competent</ComplexityLevel>
 		<Active>true</Active>
 	</Task>
 	<Task>
 		<Id>6</Id>
-		<Description>Optimize front-end code for faster page loading</Description>
-		<Alias>Front-end Optimization</Alias>
+		<Description>Land clearing and grading</Description>
+		<Alias>Preparing the website</Alias>
 		<CreatedAtDate>2023-12-07T23:12:47.8716041+02:00</CreatedAtDate>
 		<RequiredEffort>PT0S</RequiredEffort>
 		<IsMilestone>false</IsMilestone>
@@ -91,15 +91,15 @@
 		<ScheduledDate>2023-10-12T00:00:00</ScheduledDate>
 		<DeadlineDate>2023-10-12T00:00:00</DeadlineDate>
 		<CompleteDate>2023-10-12T00:00:00</CompleteDate>
-		<Deliverables>Optimized front-end code and performance metrics</Deliverables>
+		<Deliverables>Land suitable for starting work</Deliverables>
 		<EngineerId>214385244</EngineerId>
 		<ComplexityLevel>Beginner</ComplexityLevel>
 		<Active>true</Active>
 	</Task>
 	<Task>
 		<Id>7</Id>
-		<Description>Integrate a third-party API for new functionality</Description>
-		<Alias>API Integration</Alias>
+		<Description>Digging the ground</Description>
+		<Alias>Excavations</Alias>
 		<CreatedAtDate>2023-12-07T23:12:47.8716168+02:00</CreatedAtDate>
 		<RequiredEffort>PT0S</RequiredEffort>
 		<IsMilestone>false</IsMilestone>
@@ -107,15 +107,15 @@
 		<ScheduledDate>2023-10-12T00:00:00</ScheduledDate>
 		<DeadlineDate>2023-10-12T00:00:00</DeadlineDate>
 		<CompleteDate>2023-10-12T00:00:00</CompleteDate>
-		<Deliverables>Successfully integrated third-party API and documentation</Deliverables>
+		<Deliverables>The building excavations are ready and you can start building foundations</Deliverables>
 		<EngineerId>214385245</EngineerId>
 		<ComplexityLevel>Beginner</ComplexityLevel>
 		<Active>true</Active>
 	</Task>
 	<Task>
 		<Id>8</Id>
-		<Description>Create automated tests for a critical module</Description>
-		<Alias>Automated Testing</Alias>
+		<Description>Creating a marking outline</Description>
+		<Alias>Marking outline</Alias>
 		<CreatedAtDate>2023-12-07T23:12:47.8717281+02:00</CreatedAtDate>
 		<RequiredEffort>PT0S</RequiredEffort>
 		<IsMilestone>false</IsMilestone>
@@ -123,15 +123,15 @@
 		<ScheduledDate>2023-10-12T00:00:00</ScheduledDate>
 		<DeadlineDate>2023-10-12T00:00:00</DeadlineDate>
 		<CompleteDate>2023-10-12T00:00:00</CompleteDate>
-		<Deliverables>Automated test suite and test coverage report</Deliverables>
+		<Deliverables>The foundations are marked and you can start building the foundations</Deliverables>
 		<EngineerId>111111118</EngineerId>
 		<ComplexityLevel>Beginner</ComplexityLevel>
 		<Active>true</Active>
 	</Task>
 	<Task>
 		<Id>9</Id>
-		<Description>Refactor codebase for improved maintainability</Description>
-		<Alias>Code Refactoring</Alias>
+		<Description>The casting of the skeleton of the building or site</Description>
+		<Alias>Castings</Alias>
 		<CreatedAtDate>2023-12-07T23:12:47.8717411+02:00</CreatedAtDate>
 		<RequiredEffort>PT0S</RequiredEffort>
 		<IsMilestone>false</IsMilestone>
@@ -139,15 +139,15 @@
 		<ScheduledDate>2023-10-12T00:00:00</ScheduledDate>
 		<DeadlineDate>2023-10-12T00:00:00</DeadlineDate>
 		<CompleteDate>2023-10-12T00:00:00</CompleteDate>
-		<Deliverables>Refactored codebase with updated documentation</Deliverables>
+		<Deliverables>The castings of the building or the site are ready</Deliverables>
 		<EngineerId>23995871</EngineerId>
 		<ComplexityLevel>Beginner</ComplexityLevel>
 		<Active>true</Active>
 	</Task>
 	<Task>
 		<Id>10</Id>
-		<Description>Implement real-time chat functionality using WebSocket</Description>
-		<Alias>Real-time Chat</Alias>
+		<Description>Construction of exterior walls</Description>
+		<Alias>Exterior walls</Alias>
 		<CreatedAtDate>2023-12-07T23:12:47.8717532+02:00</CreatedAtDate>
 		<RequiredEffort>PT0S</RequiredEffort>
 		<IsMilestone>false</IsMilestone>
@@ -155,15 +155,15 @@
 		<ScheduledDate>2023-10-12T00:00:00</ScheduledDate>
 		<DeadlineDate>2023-10-12T00:00:00</DeadlineDate>
 		<CompleteDate>2023-10-12T00:00:00</CompleteDate>
-		<Deliverables>Real-time chat feature with documentation</Deliverables>
+		<Deliverables>External walls are standing</Deliverables>
 		<EngineerId>214385247</EngineerId>
 		<ComplexityLevel>AdvancedBeginner</ComplexityLevel>
 		<Active>true</Active>
 	</Task>
 	<Task>
 		<Id>11</Id>
-		<Description>Fix cross-browser compatibility issues in the UI</Description>
-		<Alias>Browser Compatibility Fix</Alias>
+		<Description>Construction of interior walls</Description>
+		<Alias>Interior walls</Alias>
 		<CreatedAtDate>2023-12-07T23:12:47.8717659+02:00</CreatedAtDate>
 		<RequiredEffort>PT0S</RequiredEffort>
 		<IsMilestone>false</IsMilestone>
@@ -171,15 +171,15 @@
 		<ScheduledDate>2023-10-12T00:00:00</ScheduledDate>
 		<DeadlineDate>2023-10-12T00:00:00</DeadlineDate>
 		<CompleteDate>2023-10-12T00:00:00</CompleteDate>
-		<Deliverables>Resolved cross-browser compatibility issues</Deliverables>
+		<Deliverables>Standing interior walls</Deliverables>
 		<EngineerId>214385247</EngineerId>
 		<ComplexityLevel>AdvancedBeginner</ComplexityLevel>
 		<Active>true</Active>
 	</Task>
 	<Task>
 		<Id>12</Id>
-		<Description>Create a dashboard for monitoring system performance</Description>
-		<Alias>Performance Dashboard</Alias>
+		<Description>Construction of a electrical system for the building</Description>
+		<Alias>Electrical system</Alias>
 		<CreatedAtDate>2023-12-07T23:12:47.8717782+02:00</CreatedAtDate>
 		<RequiredEffort>PT0S</RequiredEffort>
 		<IsMilestone>false</IsMilestone>
@@ -187,15 +187,15 @@
 		<ScheduledDate>2023-10-12T00:00:00</ScheduledDate>
 		<DeadlineDate>2023-10-12T00:00:00</DeadlineDate>
 		<CompleteDate>2023-10-12T00:00:00</CompleteDate>
-		<Deliverables>Performance dashboard with relevant metrics</Deliverables>
+		<Deliverables>Electrical system ready for the building</Deliverables>
 		<EngineerId>214385247</EngineerId>
 		<ComplexityLevel>Competent</ComplexityLevel>
 		<Active>true</Active>
 	</Task>
 	<Task>
 		<Id>13</Id>
-		<Description>Debug and fix issues reported by users in the production environment</Description>
-		<Alias>Production Bug Fixes</Alias>
+		<Description>Plumbing system for the building</Description>
+		<Alias>Plumbing system</Alias>
 		<CreatedAtDate>2023-12-07T23:12:47.8717901+02:00</CreatedAtDate>
 		<RequiredEffort>PT0S</RequiredEffort>
 		<IsMilestone>false</IsMilestone>
@@ -203,15 +203,15 @@
 		<ScheduledDate>2023-10-12T00:00:00</ScheduledDate>
 		<DeadlineDate>2023-10-12T00:00:00</DeadlineDate>
 		<CompleteDate>2023-10-12T00:00:00</CompleteDate>
-		<Deliverables>Resolved production issues and release notes</Deliverables>
+		<Deliverables>A plumbing system is ready for the building</Deliverables>
 		<EngineerId>23995871</EngineerId>
 		<ComplexityLevel>Competent</ComplexityLevel>
 		<Active>true</Active>
 	</Task>
 	<Task>
 		<Id>14</Id>
-		<Description>Integrate machine learning model for predictive analytics</Description>
-		<Alias>ML Integration</Alias>
+		<Description>Plastering the walls for the building</Description>
+		<Alias>Plastering walls</Alias>
 		<CreatedAtDate>2023-12-07T23:12:47.8718094+02:00</CreatedAtDate>
 		<RequiredEffort>PT0S</RequiredEffort>
 		<IsMilestone>false</IsMilestone>
@@ -219,15 +219,15 @@
 		<ScheduledDate>2023-10-12T00:00:00</ScheduledDate>
 		<DeadlineDate>2023-10-12T00:00:00</DeadlineDate>
 		<CompleteDate>2023-10-12T00:00:00</CompleteDate>
-		<Deliverables>Integrated machine learning model with documentation</Deliverables>
+		<Deliverables>The walls of the building are plastered</Deliverables>
 		<EngineerId>23995871</EngineerId>
 		<ComplexityLevel>Proficient</ComplexityLevel>
 		<Active>true</Active>
 	</Task>
 	<Task>
 		<Id>15</Id>
-		<Description>Develop a RESTful API for a new module</Description>
-		<Alias>RESTful API Development</Alias>
+		<Description>Paving the entire area</Description>
+		<Alias>Flooring</Alias>
 		<CreatedAtDate>2023-12-07T23:12:47.8718216+02:00</CreatedAtDate>
 		<RequiredEffort>PT0S</RequiredEffort>
 		<IsMilestone>false</IsMilestone>
@@ -235,15 +235,15 @@
 		<ScheduledDate>2023-10-12T00:00:00</ScheduledDate>
 		<DeadlineDate>2023-10-12T00:00:00</DeadlineDate>
 		<CompleteDate>2023-10-12T00:00:00</CompleteDate>
-		<Deliverables>Developed RESTful API with comprehensive documentation</Deliverables>
+		<Deliverables>Paved area</Deliverables>
 		<EngineerId>214385245</EngineerId>
 		<ComplexityLevel>Proficient</ComplexityLevel>
 		<Active>true</Active>
 	</Task>
 	<Task>
 		<Id>16</Id>
-		<Description>Implement multi-factor authentication for enhanced security</Description>
-		<Alias>MFA Implementation</Alias>
+		<Description>Painting all the walls</Description>
+		<Alias>Painting</Alias>
 		<CreatedAtDate>2023-12-07T23:12:47.8718363+02:00</CreatedAtDate>
 		<RequiredEffort>PT0S</RequiredEffort>
 		<IsMilestone>false</IsMilestone>
@@ -251,15 +251,47 @@
 		<ScheduledDate>2023-10-12T00:00:00</ScheduledDate>
 		<DeadlineDate>2023-10-12T00:00:00</DeadlineDate>
 		<CompleteDate>2023-10-12T00:00:00</CompleteDate>
-		<Deliverables>Implemented multi-factor authentication with user guide</Deliverables>
+		<Deliverables>All the walls of the building are painted</Deliverables>
 		<EngineerId>214385244</EngineerId>
 		<ComplexityLevel>Proficient</ComplexityLevel>
 		<Active>true</Active>
 	</Task>
 	<Task>
 		<Id>17</Id>
-		<Description>Create a system for automated deployment and rollback</Description>
-		<Alias>Automated Deployment System</Alias>
+		<Description>Installation of openings - windows and doors.</Description>
+		<Alias>Installing the openings.</Alias>
+		<CreatedAtDate>2023-12-07T23:12:47.8718216+02:00</CreatedAtDate>
+		<RequiredEffort>PT0S</RequiredEffort>
+		<IsMilestone>false</IsMilestone>
+		<StartDate>2023-10-12T00:00:00</StartDate>
+		<ScheduledDate>2023-10-12T00:00:00</ScheduledDate>
+		<DeadlineDate>2023-10-12T00:00:00</DeadlineDate>
+		<CompleteDate>2023-10-12T00:00:00</CompleteDate>
+		<Deliverables>Installation of the building openings.</Deliverables>
+		<EngineerId>214385245</EngineerId>
+		<ComplexityLevel>Proficient</ComplexityLevel>
+		<Active>true</Active>
+	</Task>
+	<Task>
+		<Id>18</Id>
+		<Description>Installation of basic equipment for the building such as water, electricity, gas.</Description>
+		<Alias>Installation of necessary utilities.</Alias>
+		<CreatedAtDate>2023-12-07T23:12:47.8718363+02:00</CreatedAtDate>
+		<RequiredEffort>PT0S</RequiredEffort>
+		<IsMilestone>false</IsMilestone>
+		<StartDate>2023-10-12T00:00:00</StartDate>
+		<ScheduledDate>2023-10-12T00:00:00</ScheduledDate>
+		<DeadlineDate>2023-10-12T00:00:00</DeadlineDate>
+		<CompleteDate>2023-10-12T00:00:00</CompleteDate>
+		<Deliverables>Installation of water, electricity and gas for apartments.</Deliverables>
+		<EngineerId>214385244</EngineerId>
+		<ComplexityLevel>Proficient</ComplexityLevel>
+		<Active>true</Active>
+	</Task>
+	<Task>
+		<Id>19</Id>
+		<Description>Inspections to ensure compliance with building codes and regulations.</Description>
+		<Alias>Building inspections.</Alias>
 		<CreatedAtDate>2023-12-07T23:12:47.8718481+02:00</CreatedAtDate>
 		<RequiredEffort>PT0S</RequiredEffort>
 		<IsMilestone>false</IsMilestone>
@@ -267,15 +299,15 @@
 		<ScheduledDate>2023-10-12T00:00:00</ScheduledDate>
 		<DeadlineDate>2023-10-12T00:00:00</DeadlineDate>
 		<CompleteDate>2023-10-12T00:00:00</CompleteDate>
-		<Deliverables>Automated deployment system with rollback functionality</Deliverables>
+		<Deliverables>Construction inspections and building integrity.</Deliverables>
 		<EngineerId>344165165</EngineerId>
 		<ComplexityLevel>Expert</ComplexityLevel>
 		<Active>true</Active>
 	</Task>
 	<Task>
-		<Id>18</Id>
-		<Description>Optimize database schema for improved data retrieval</Description>
-		<Alias>Database Schema Optimization</Alias>
+		<Id>20</Id>
+		<Description>Obtaining an occupancy certificate after passing all the tests</Description>
+		<Alias>Form 4</Alias>
 		<CreatedAtDate>2023-12-07T23:12:47.8718637+02:00</CreatedAtDate>
 		<RequiredEffort>PT0S</RequiredEffort>
 		<IsMilestone>false</IsMilestone>
@@ -283,15 +315,15 @@
 		<ScheduledDate>2023-10-12T00:00:00</ScheduledDate>
 		<DeadlineDate>2023-10-12T00:00:00</DeadlineDate>
 		<CompleteDate>2023-10-12T00:00:00</CompleteDate>
-		<Deliverables>Optimized database schema with performance metrics</Deliverables>
+		<Deliverables>Approval of building occupancy and commencement of use.</Deliverables>
 		<EngineerId>214385239</EngineerId>
 		<ComplexityLevel>Expert</ComplexityLevel>
 		<Active>true</Active>
 	</Task>
 	<Task>
-		<Id>19</Id>
-		<Description>Develop a web service for third-party integrations</Description>
-		<Alias>Web Service Development</Alias>
+		<Id>21</Id>
+		<Description>Completion of required landscaping and site improvement.</Description>
+		<Alias>Improving the construction site.</Alias>
 		<CreatedAtDate>2023-12-07T23:12:47.8718766+02:00</CreatedAtDate>
 		<RequiredEffort>PT0S</RequiredEffort>
 		<IsMilestone>false</IsMilestone>
@@ -299,15 +331,15 @@
 		<ScheduledDate>2023-10-12T00:00:00</ScheduledDate>
 		<DeadlineDate>2023-10-12T00:00:00</DeadlineDate>
 		<CompleteDate>2023-10-12T00:00:00</CompleteDate>
-		<Deliverables>Developed web service for third-party integrations with documentation</Deliverables>
+		<Deliverables>Improving the construction site.</Deliverables>
 		<EngineerId>214385239</EngineerId>
 		<ComplexityLevel>Expert</ComplexityLevel>
 		<Active>true</Active>
 	</Task>
 	<Task>
-		<Id>20</Id>
-		<Description>Conduct load testing to identify performance bottlenecks</Description>
-		<Alias>Load Testing</Alias>
+		<Id>22</Id>
+		<Description>Thorough cleaning of the construction permit and the building.</Description>
+		<Alias>cleanliness</Alias>
 		<CreatedAtDate>2023-12-07T23:12:47.8719306+02:00</CreatedAtDate>
 		<RequiredEffort>PT0S</RequiredEffort>
 		<IsMilestone>false</IsMilestone>
@@ -315,15 +347,15 @@
 		<ScheduledDate>2023-10-12T00:00:00</ScheduledDate>
 		<DeadlineDate>2023-10-12T00:00:00</DeadlineDate>
 		<CompleteDate>2023-10-12T00:00:00</CompleteDate>
-		<Deliverables>Load testing report with recommendations for performance improvement</Deliverables>
+		<Deliverables>Cleaning the construction site and the building.</Deliverables>
 		<EngineerId>214385239</EngineerId>
 		<ComplexityLevel>Expert</ComplexityLevel>
 		<Active>true</Active>
 	</Task>
 	<Task>
-		<Id>21</Id>
-		<Description>Implement a logging mechanism for tracking user activities</Description>
-		<Alias>Logging Implementation</Alias>
+		<Id>23</Id>
+		<Description>Handing over the building to tenants or owners for use and occupancy</Description>
+		<Alias>Occupancy of the building</Alias>
 		<CreatedAtDate>2023-12-07T23:12:47.8719516+02:00</CreatedAtDate>
 		<RequiredEffort>PT0S</RequiredEffort>
 		<IsMilestone>false</IsMilestone>
@@ -331,7 +363,7 @@
 		<ScheduledDate>2023-10-12T00:00:00</ScheduledDate>
 		<DeadlineDate>2023-10-12T00:00:00</DeadlineDate>
 		<CompleteDate>2023-10-12T00:00:00</CompleteDate>
-		<Deliverables>Implemented logging mechanism with detailed user activity tracking</Deliverables>
+		<Deliverables>The building is occupied and ready for use</Deliverables>
 		<EngineerId>16438046</EngineerId>
 		<ComplexityLevel>Expert</ComplexityLevel>
 		<Active>true</Active>
