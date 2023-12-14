@@ -10,8 +10,8 @@ namespace DalTest
 {
     internal class Program
     {
-        //static readonly IDal s_dal = new DalList(); //stage 2.
-        static readonly IDal s_dal = new DalXml(); //stage 3
+        static readonly IDal s_dal = new DalList(); //stage 2.
+        //static readonly IDal s_dal = new DalXml(); //stage 3
         // The function create a new task.
         public static void CreateTask()
         {
@@ -168,7 +168,7 @@ namespace DalTest
             {
                 level = int.Parse(level1);
             }
-            Console.WriteLine("Enter if the task is active or not");
+            Console.WriteLine("Enter if the task is active or not(Y/N)");
             bool active;
             string active1 = Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect");
             if (active1 == null || active1 == "") //If not update the cost.
@@ -177,7 +177,9 @@ namespace DalTest
             }
             else
             {
-                active = bool.Parse(active1);
+                if(active1=="Y")
+                active = true;
+                else active = false;
             }
             DO.Task newTask = new DO.Task(idTask, description, alias, updateTask.CreatedAtDate, requiredEffort, false, startDate, scheduledDate, deadlineDate, completeDate, deliverables, remarks, engineerId, (EngineerExperience)level, active);
             try
@@ -361,7 +363,7 @@ namespace DalTest
             {
                 cost = double.Parse(cost1);
             }
-            Console.WriteLine("Enter if the engineer is active or not");
+            Console.WriteLine("Enter if the engineer is active or not(Y/N)");
             bool active;
             string active1 = Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect");
             if (active1 == null || active1 == "") //If not update the cost.
@@ -370,7 +372,9 @@ namespace DalTest
             }
             else
             {
-                active = bool.Parse(active1);
+                if (active1 == "Y")
+                    active = true;
+                else active = false;
             }
             DO.Engineer newEngineer = new DO.Engineer(id, name, email, (EngineerExperience)level, cost,active);
             try
@@ -633,20 +637,33 @@ namespace DalTest
 
         static void Main(string[] args)
         {
-          
-             // Initialization.Do(s_dal); //stage 2
-             Console.WriteLine("For a task press 1");
-             Console.WriteLine("For an engineer press 2");
-             Console.WriteLine("For depency between tasks press 3");
-             Console.WriteLine("For create Initial data press 4");
-             Console.WriteLine("To exit press 0");
+
+            // Initialization.Do(s_dal); //stage 2
+            Console.WriteLine("For create Initial data press 0");
+            Console.WriteLine("For a task press 1");
+            Console.WriteLine("For an engineer press 2");
+            Console.WriteLine("For depency between tasks press 3");
+            Console.WriteLine("To exit press 4");
             int choose = int.Parse(Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect"));
             try
             {
-                    while (choose != 0)
+                    while (choose != 4)
                     {
                         switch (choose)
                         {
+                            case 0:
+                                {
+                                    Console.WriteLine("Would you like to create Initial data? (Y/N)"); //stage 3
+                                    string? ans = Console.ReadLine() ?? throw new FormatException("Wrong input"); //stage 3
+                                    if (ans == "Y") //stage 3
+                                    {
+                                        s_dal.Dependency.Reset();
+                                        s_dal.Engineer.Reset();
+                                        s_dal.Task.Reset();
+                                        Initialization.Do(s_dal); //stage 2
+                                    }
+                                }
+                                break;
                             case 1:
                                 Tasks();
                                 break;
@@ -656,31 +673,17 @@ namespace DalTest
                             case 3:
                                 Dependencies();
                                 break;
-                            case 4:
-                            { 
-                            Console.WriteLine("Would you like to create Initial data? (Y/N)"); //stage 3
-                            string? ans = Console.ReadLine() ?? throw new FormatException("Wrong input"); //stage 3
-                                if (ans == "Y") //stage 3
-                                {
-                                    s_dal.Dependency.Reset();
-                                    s_dal.Engineer.Reset();
-                                    s_dal.Task.Reset();
-                                    Initialization.Do(s_dal); //stage 2
-                                }
-                            }
-                                break;
                             default:
                               Console.WriteLine("The number entered is invalid");
                                  break;
                         }
                         Console.WriteLine();
-                        Console.WriteLine("enter a number:");
-                        Console.WriteLine("For a task press 1");
-                        Console.WriteLine("For an engineer press 2");
-                        Console.WriteLine("For depency between tasks press 3");
-                        Console.WriteLine("For create Initial data press 4");
-                        Console.WriteLine("To exit press 0");
-                        choose = int.Parse(Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect"));
+                    Console.WriteLine("For create Initial data press 0");
+                    Console.WriteLine("For a task press 1");
+                    Console.WriteLine("For an engineer press 2");
+                    Console.WriteLine("For depency between tasks press 3");
+                    Console.WriteLine("To exit press 4");
+                    choose = int.Parse(Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect"));
                     }
             }
             catch (Exception ex)
