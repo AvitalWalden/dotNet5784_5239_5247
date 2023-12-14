@@ -99,7 +99,7 @@ public static class Initialization
     }
 
     // Create 100 tasks
-    private static void createTasks() //לא עשינו פומקציית אתחול
+    private static void createTasks() 
     {
         (string, string)[] detailsTask = 
         {
