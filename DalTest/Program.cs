@@ -638,7 +638,7 @@ namespace DalTest
         static void Main(string[] args)
         {
 
-            // Initialization.Do(s_dal); //stage 2
+            //Initialization.Do(s_dal); //stage 2
             Console.WriteLine("For create Initial data press 0");
             Console.WriteLine("For a task press 1");
             Console.WriteLine("For an engineer press 2");
