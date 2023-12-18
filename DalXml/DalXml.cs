@@ -8,4 +8,11 @@ sealed public class DalXml : IDal
     public IDependency Dependency =>  new DependencyImplementation();
 
     public IEngineer Engineer =>  new Engineerlementation();
+
+    public void Reset()
+    {
+        Task.Reset();
+        Dependency.Reset();
+        Engineer.Reset();
+    }
 }

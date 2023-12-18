@@ -8,4 +8,5 @@ public interface IDal
 
     IEngineer Engineer { get; }
 
+    public void Reset(); //Delete all the datasource
 }
