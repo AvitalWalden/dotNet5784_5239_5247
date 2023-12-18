@@ -18,7 +18,9 @@ internal static class DataSource
         internal const int startDependencyId = 0;//A constant numeric field (const) that receives an initial value for a running number - startDependencyId: the smallest identifying number.
         private static int nextDependencyId = startDependencyId;// A static numeric field that will receive as an initial value the previous fixed field.
         internal static int NextDependencyId { get => nextDependencyId++; }//A property with get that advances the private field automatically, by a number greater than the previous one by 1.
+
         internal static DateTime endDateProject = new DateTime(2024, 1, 1);
+
         internal static DateTime startDateProject = new DateTime(2024, 1, 7);
 
     }
