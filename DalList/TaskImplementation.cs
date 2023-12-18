@@ -72,6 +72,9 @@ internal class TaskImplementation : ITask
 
     public void Reset()
     {
-        DataSource.Tasks.Clear();
+        if (DataSource.Tasks.Any())
+        {
+            DataSource.Tasks.Clear();
+        }
     }
 }

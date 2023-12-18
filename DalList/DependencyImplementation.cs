@@ -81,6 +81,9 @@ internal class DependencyImplementation : IDependency
 
     public void Reset()
     {
-        DataSource.Dependencies.Clear();
+        if (DataSource.Dependencies.Any())
+        {
+            DataSource.Dependencies.Clear();
+        }
     }
 }
