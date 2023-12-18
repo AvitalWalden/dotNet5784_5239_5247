@@ -11,7 +11,8 @@ namespace DalTest
     internal class Program
     {
         //static readonly IDal s_dal = new DalList(); //stage 2.
-        static readonly IDal s_dal = new DalXml();//stage 3
+        //static readonly IDal s_dal = new DalXml();//stage 3
+        static readonly IDal s_dal = Factory.Get; //stage 4
         // The function create a new task.
         public static void CreateTask()
         {
@@ -658,7 +659,9 @@ namespace DalTest
                                     if (ans == "Y") //stage 3
                                     {
                                          s_dal.Reset();
-                                        Initialization.Do(s_dal); //stage 2
+                                        //Initialization.Do(s_dal); //stage 2
+                                        Initialization.Do(); //stage 4
+
                                     }
                                 }
                                 break;

@@ -2,7 +2,7 @@
 using System.Diagnostics;
 
 namespace Dal;
-//stage 3
+
 sealed internal class DalXml : IDal
 {
     public static IDal Instance { get; } = new DalXml();
