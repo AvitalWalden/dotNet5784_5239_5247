@@ -657,7 +657,7 @@ namespace DalTest
                                     string? ans = Console.ReadLine() ?? throw new FormatException("Wrong input"); //stage 3
                                     if (ans == "Y") //stage 3
                                     {
-                                        s_dal.Reset();
+                                         s_dal.Reset();
                                         Initialization.Do(s_dal); //stage 2
                                     }
                                 }
