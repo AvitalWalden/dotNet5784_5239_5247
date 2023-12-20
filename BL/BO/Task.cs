@@ -1,4 +1,5 @@
 ﻿namespace BO;
+
 public class Task
 {
     public int Id { get; init; }

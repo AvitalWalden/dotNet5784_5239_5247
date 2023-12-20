@@ -6,7 +6,7 @@ public class Engineer
     public required string Email { get; set; }
     public EngineerExperience Level { get; set; }
     public double Cost { get; set; }
-    public bool Active { get; set; } = true;
-    public TaskInEngineer? Task { get; set; }
+    //public bool Active { get; set; } = true;
+    public TaskInEngineer? Task { get; set; } = null;
     public override string ToString() => this.ToStringProperty();
 }
