@@ -10,9 +10,8 @@ public enum EngineerExperience
 }
 public enum Status
 {
-    Beginner,
-    AdvancedBeginner,
-    Competent,
-    Proficient,
-    Expert
+    Unscheduled,
+    Scheduled,
+    OnTrack,
+    InJeopardy
 }
