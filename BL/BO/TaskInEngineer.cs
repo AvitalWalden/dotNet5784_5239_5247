@@ -1,5 +1,7 @@
 ﻿namespace BO;
-
+/// <summary>
+/// Creating an entity of TaskInEngineer and declaring the attributes
+/// </summary>
 public class TaskInEngineer
 {
     public int Id { get; init; }

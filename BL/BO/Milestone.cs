@@ -1,5 +1,7 @@
 ﻿namespace BO;
-
+/// <summary>
+/// Creating an entity of Milestone and declaring the attributes
+/// </summary>
 public class Milestone
 {
     public int Id { get; init; }

@@ -1,4 +1,7 @@
 ﻿namespace BO;
+/// <summary>
+/// Creating an entity of engineer and declaring the attributes
+/// </summary>
 public class Engineer
 {
     public int Id { get; init; }

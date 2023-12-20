@@ -1,5 +1,7 @@
 ﻿namespace BO;
-
+/// <summary>
+/// Creating an entity of TaskInList and declaring the attributes
+/// </summary>
 public class TaskInList
 {
     public int Id { get; init; }
