@@ -18,82 +18,23 @@ public static class Initialization
     // Create 40 engineers
     private static void createEngineers()
     {
-        const int MIN_ID = 200000000;
-        const int MAX_ID = 400000000;
-        (string, string)[] detailsEngineer = {
-           ("Ayala Tov","ayala@gmail.com"),
-           ("Yael Choen","yael@gmail.com"),
-           ("Miri Miler","miri@gmail.com"),
-           ("Shira Sharon","shira@gmail.com"),
-           ("Leha Kaz", "leha@gmail.com"),
-           ("Chaya Levi", "chaya@gmail.com"),
-           ("Shani Walder", "shani@gmail.com"),
-           ("Rachel Kalazan", "rachel@gmail.com"),
-           ("Hadasa Zehavi", "hadasa@gmail.com"),
-           ("David Wal", "david@gmail.com"),
-           ("Yedidia Merin", "yedidia@gmail.com"),
-           ("yaakov Eler", "yaakov@gmail.com"),
-           ("batya Boier", "batya@gmail.com"),
-           ("Miriam Gros", "miriam@gmail.com"),
-           ("Efrat Yadin", "efrat@gmail.com"),
-           ("Tamar Bloyi", "tamar@gmail.com"),
-           ("Chaim Bashari", "chaim@gmail.com"),
-           ("Menachem Erlanger", "menachem@gmail.com"),
-           ("Shifra Dayan", "shifra@gmail.com"),
-           ("Tzvi Sofer", "tzvi@gmail.com"),
-           ("Daniel Kolin", "daniel@gmail.com"),
-           ("Nethanel Sami", "nethanel@gmail.com"),
-           ("Sam Golin", "sam@gmail.com"),
-           ("Avraham Sol", "avraham@gmail.com"),
-           ("Dov Firshtain", "dov@gmail.com"),
-           ("Meir golin", "meir@gmail.com"),
-           ("Shimon Shalom", "shimon@gmail.com"),
-           ("Ben Shir", "ben@gmail.com"),
-           ("Avital Walden", "avital@gmail.com"),
-           ("Michal Dagan", "michal@gmail.com"),
-           ("Sara Drori", "sara@gmail.com"),
-           ("Tamar segal", "tamar@gmail.com"),
-           ("Esti Wingerten", "esti@gmail.com"),
-           ("Avi Silver", "miri@gmail.com"),
-           ("shifi Braverman", "avi@gmail.com"),
-           ("Chaim Winbarger", "chaim@gmail.com"),
-           ("Sari Drilman", "sari@gmail.com"),
-           ("Ruchama Bricker", "ruchama@gmail.com"),
-           ("Tali temstet", "tali@gmail.com"),
-           ("Yossi tair", "yossi@gmail.com")};
+        (int, string, string, EngineerExperience, double)[] detailsEngineer = {
+           (214385247, "Michal Walden","michal@gmail.com", (EngineerExperience)4, 450),
+           (214385239, "Avital Choen","avital@gmail.com", (EngineerExperience)3, 399.99),
+           (016438046, "David Tov","david@gmail.com", (EngineerExperience)2, 250),
+           (344165165, "Ayala Dagan","ayala@gmail.com", (EngineerExperience)1, 200),
+           (111111118, "Miri Silver","miri@gmail.com", (EngineerExperience)0, 100),
+           (023995871, "Esty Shalom","esty@gmail.com", (EngineerExperience)4, 450),
+           (214385242, "Sara Drori","sara@gmail.com", (EngineerExperience)3, 415),
+           (214385247, "Yair Goldshtein","yair@gmail.com", (EngineerExperience)3, 400),
+           (214385244, "Sari Drilman","sari@gmail.com", (EngineerExperience)2, 250),
+           (214385243, "Shifra Dayan","shifra@gmail.com", (EngineerExperience)4, 199.90),
+           (214258965, "Yossi Walden","sari@gmail.com", (EngineerExperience)2, 250),
+        };
 
         for (int i = 0; i < detailsEngineer.Length; i++)
         {
-            int _id;
-            do
-                _id = s_rand.Next(MIN_ID, MAX_ID);
-            while (s_dal!.Engineer.Read(_id) != null);
-            string _name = detailsEngineer[i].Item1;
-            string _email = detailsEngineer[i].Item2;
-            EngineerExperience _level = (EngineerExperience)(_id % Enum.GetNames<EngineerExperience>().Count());
-            double _cost;
-            switch (_level) 
-            {
-                case EngineerExperience.Beginner:
-                    _cost = 150.00;
-                    break;
-                case EngineerExperience.AdvancedBeginner:
-                    _cost = 200.35;
-                    break;
-                case EngineerExperience.Competent:
-                    _cost = 300.50;
-                    break;
-                     case EngineerExperience.Proficient:
-                     _cost = 350.00;
-                    break;
-                case EngineerExperience.Expert:
-                    _cost = 450.00;
-                    break;
-                default:
-                    _cost = 30;
-                    break;
-            }
-            Engineer newEngineer = new(_id, _name, _email, _level, _cost);
+            Engineer newEngineer = new(detailsEngineer[i].Item1, detailsEngineer[i].Item2, detailsEngineer[i].Item3, detailsEngineer[i].Item4, detailsEngineer[i].Item5);
             s_dal!.Engineer.Create(newEngineer);
         }
     }
@@ -103,7 +44,7 @@ public static class Initialization
     {
         (string, string)[] detailsTask = 
         {
-            ("Determining the purpose and requirements of the building","Target and requirements"),
+            ("תכנון הבנייה על פי ייעוד ודרישות הבניין" ,"דרישות הבניין"),
             ("Purchase of land or the necessary property","Purchases"),
             ("Guaranteed funding","Funding"),
             ("Obtaining necessary permits for construction","Construction permits"),

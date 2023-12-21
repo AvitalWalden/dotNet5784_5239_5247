@@ -13,15 +13,15 @@
     <Name>Avital Choen</Name>
     <Email>avital@gmail.com</Email>
     <Level>Proficient</Level>
-    <Cost>200</Cost>
+    <Cost>399.99</Cost>
     <Active>true</Active>
   </Engineer>
   <Engineer>
-    <Id>16438046</Id>
+    <Id>016438046</Id>
     <Name>David Tov</Name>
     <Email>david@gmail.com</Email>
     <Level>Competent</Level>
-    <Cost>100</Cost>
+    <Cost>250</Cost>
     <Active>true</Active>
   </Engineer>
   <Engineer>
@@ -29,7 +29,7 @@
     <Name>Ayala Dagan</Name>
     <Email>ayala@gmail.com</Email>
     <Level>AdvancedBeginner</Level>
-    <Cost>450</Cost>
+    <Cost>200</Cost>
     <Active>true</Active>
   </Engineer>
   <Engineer>
@@ -41,7 +41,7 @@
     <Active>true</Active>
   </Engineer>
   <Engineer>
-    <Id>23995871</Id>
+    <Id>023995871</Id>
     <Name>Esty Shalom</Name>
     <Email>esty@gmail.com</Email>
     <Level>Expert</Level>
@@ -53,7 +53,7 @@
     <Name>Sara Drori</Name>
     <Email>sara@gmail.com</Email>
     <Level>Proficient</Level>
-    <Cost>200</Cost>
+    <Cost>415</Cost>
     <Active>true</Active>
   </Engineer>
   <Engineer>
@@ -61,7 +61,7 @@
     <Name>Yair Goldshtein</Name>
     <Email>yair@gmail.com</Email>
     <Level>Proficient</Level>
-    <Cost>450</Cost>
+    <Cost>400</Cost>
     <Active>true</Active>
   </Engineer>
   <Engineer>
@@ -69,7 +69,7 @@
     <Name>Sari Drilman</Name>
     <Email>sari@gmail.com</Email>
     <Level>Competent</Level>
-    <Cost>450</Cost>
+    <Cost>250</Cost>
     <Active>true</Active>
   </Engineer>
   <Engineer>
@@ -77,12 +77,12 @@
     <Name>Shifra Dayan</Name>
     <Email>shifra@gmail.com</Email>
     <Level>Competent</Level>
-    <Cost>450</Cost>
+    <Cost>199.90</Cost>
     <Active>true</Active>
   </Engineer>
   <Engineer>
     <Id>214258965</Id>
-    <Name>Yossi</Name>
+    <Name>Yossi Walden</Name>
     <Email>yossi@gmail.com</Email>
     <Level>Expert</Level>
     <Cost>399.99</Cost>
