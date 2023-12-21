@@ -28,7 +28,7 @@ internal class EngineerImplementation : IEngineer
             int idStud = _dal.Engineer.Create(doEngineer);
             return idStud;
         }
-        catch /*(DO.DalAlreadyExistsException ex)*/
+        catch (DO.DalAlreadyExistsException)
         {
             throw new BO.BlAlreadyExistsException($"Engineer with ID={boEngineer.Id} already exists");
         }
@@ -36,7 +36,18 @@ internal class EngineerImplementation : IEngineer
 
     public void Delete(int id)
     {
-        throw new NotImplementedException();
+        //if (_dal.Task.ReadA(task => task?.EngineerId == id);
+            //throw new DalDeletionImpossible($"Engineer with ID={id} cannot be deleted");
+        DO.Engineer? engneerToDelete = _dal.Engineer.Read(id);
+        if (engneerToDelete is not null)
+        {
+            _dal.Engineer.Delete(engneerToDelete.Id);//עשינו שאי אפשר לממחוק אז איך אפשר לשלוח לשם
+
+        }
+        else
+        {
+            //throw new BlDoesNotExistException($"Engineer with ID={id} not exists");
+        }
     }
 
     public BO.Engineer? Read(int id)
@@ -73,20 +84,5 @@ internal class EngineerImplementation : IEngineer
     public void Update(BO.Engineer item)
     {
         throw new NotImplementedException();
-    }
-
-    private void ValidateEngineerData(BO.Engineer engineer)
-    {
-        if (engineer.Id <= 0)
-            throw new ArgumentException("Engineer ID must be a positive number");
-
-        if (string.IsNullOrWhiteSpace(engineer.Name))
-            throw new ArgumentException("Engineer name cannot be empty or null");
-
-        if (engineer.Cost <= 0)
-            throw new ArgumentException("Engineer cost must be a positive number");
-
-        if (string.IsNullOrWhiteSpace(engineer.Email))
-            throw new ArgumentException("Engineer email cannot be empty or null");
     }
 }
