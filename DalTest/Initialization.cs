@@ -42,18 +42,15 @@ public static class Initialization
     // Create 100 tasks
     private static void createTasks() 
     {
-        (string, string)[] detailsTask = 
+        (string, string, string)[] detailsTask = 
         {
-            ("תכנון הבנייה על פי ייעוד ודרישות הבניין" ,"דרישות הבניין"),
-            ("Purchase of land or the necessary property","Purchases"),
-            ("Guaranteed funding","Funding"),
-            ("Obtaining necessary permits for construction","Construction permits"),
-            ("Meetings with an architect to create a work plan","Create a work plan"),
-            ("Land clearing and grading","Preparing the website"),
-            ("Digging the ground","Excavations"),
-            ("Creating a marking outline","Marking outline"),
-            ("The casting of the skeleton of the building or site","Castings"),
-            ("Construction of exterior walls","Exterior walls"),
+            ("תכנון הבנייה על פי ייעוד ודרישות הבנין" ,"ארגון ותכנון הבניה", "תכנון הבניה הושלם"),
+            ("רכישת הקרקע","רכישת הנכס", "קרקע בבעלות החברה לקראת תחילת עבודות בניה במקום"),
+            ("הבטחת מימון פרויקט הבניה","מימון","מימון או מימון התחלתי לפרויקט הבנייה"),
+            ("בקשת אישורים נחוצים לצורך הבנייה","אישורים לפרויקט הבנייה","קבלת האישורים הנחוצים לבניה"),
+            ("פגישות עם האדריכל או צוות העיצוב ליצירת תוכנית עבודה","עיצוב","תוכנית עיצוב מוכנה"),
+            ("התחלת הכנת האתר על ידי פינוי המקום","פינוי האתר","אתר הבניה מפונה מעצמים"),
+            ("דירוג הקרקע והכנתה לבניה","דירוג","הקרקע מוכנה לבניה")
         };
         List<Engineer?> allEngineer = s_dal!.Engineer.ReadAll().ToList();
 
