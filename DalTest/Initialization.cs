@@ -42,15 +42,20 @@ public static class Initialization
     // Create 100 tasks
     private static void createTasks() 
     {
-        (string, string, string)[] detailsTask = 
+        (string, string, string)[] detailsTask =
         {
-            ("תכנון הבנייה על פי ייעוד ודרישות הבנין" ,"ארגון ותכנון הבניה", "תכנון הבניה הושלם"),
-            ("רכישת הקרקע","רכישת הנכס", "קרקע בבעלות החברה לקראת תחילת עבודות בניה במקום"),
-            ("הבטחת מימון פרויקט הבניה","מימון","מימון או מימון התחלתי לפרויקט הבנייה"),
-            ("בקשת אישורים נחוצים לצורך הבנייה","אישורים לפרויקט הבנייה","קבלת האישורים הנחוצים לבניה"),
-            ("פגישות עם האדריכל או צוות העיצוב ליצירת תוכנית עבודה","עיצוב","תוכנית עיצוב מוכנה"),
-            ("התחלת הכנת האתר על ידי פינוי המקום","פינוי האתר","אתר הבניה מפונה מעצמים"),
-            ("דירוג הקרקע והכנתה לבניה","דירוג","הקרקע מוכנה לבניה")
+            ("תכנון הבנייה על פי ייעוד ודרישות הבנין" ,"ארגון ותכנון הבניה", "תכנון הבניה הושלם"), //task 0
+            ("הבטחת מימון פרויקט הבניה","מימון","מימון או מימון התחלתי לפרויקט הבנייה"), //task 1
+            ("רכישת הקרקע","רכישת הנכס", "קרקע בבעלות החברה לקראת תחילת עבודות בניה במקום"), //task 2
+            ("בקשת אישורים נחוצים לצורך הבנייה","אישורים לפרויקט הבנייה","קבלת האישורים הנחוצים לבניה"), //task 3
+            ("פגישות עם האדריכל או צוות העיצוב ליצירת תוכנית עבודה","עיצוב","תוכנית עיצוב מוכנה"), //task 4
+            ("התחלת הכנת האתר על ידי פינוי המקום","פינוי האתר","אתר הבניה מפונה מעצמים"), //task 5
+            ("דירוג הקרקע והכנתה לבניה","דירוג","הקרקע מוכנה לבניה"), //task 6
+            ("חפירת הקרקע","חפירות","הקרקע מוכנה לבניה"), //task 7
+            ("יצירת מתווה סימון","מדידות","הקרקע מסומנת לבניה"), //task 8
+            ("יציקת השלד של המבנה","יציקות","השלד מוכן"), //task 9
+            ("יציקת השלד של המבנה","יציקות","השלד מוכן"), //task 10
+            ("יציקת השלד של המבנה","יציקות","השלד מוכן"), //task 11
         };
         List<Engineer?> allEngineer = s_dal!.Engineer.ReadAll().ToList();
 
@@ -68,7 +73,7 @@ public static class Initialization
                 DateTime.Now.AddDays(i * 5).AddDays(i + 2), // ScheduledDate date
                 DateTime.Now.AddDays(i * 5).AddDays(i + 3), // DeadLine date
                 DateTime.Now.AddDays(i * 5).AddDays(i + 4), // Complete date
-                "Product description for " + detailsTask[i].Item1,
+                detailsTask[i].Item3,
                 "Remarks for " + detailsTask[i].Item2,
                 allEngineer[i]!.Id,
                 allEngineer[i]!.Level
@@ -80,14 +85,19 @@ public static class Initialization
     // Create 250 dependencies
     private static void createDependencies()
     {
-        Dependency dependency = new Dependency(0, 0,1);
-        s_dal!.Dependency.Create(dependency);
-        Dependency dependency1 = new Dependency(0, 1, 2);
-        s_dal!.Dependency.Create(dependency1);
-        Dependency dependency2 = new Dependency(0, 3, 5);
-        s_dal!.Dependency.Create(dependency2);
-        Dependency dependency3 = new Dependency(0, 4, 6);
-        s_dal!.Dependency.Create(dependency3);
+        (int, int)[] dependencies = {
+            (1 ,0), (2 ,0), (3 ,0), (4 ,3), (4 ,0), (5 ,3), (5 ,2), (6 ,5), (7 ,6), (8 ,7),
+            (11 ,0), (12 ,0), (13 ,0), (14 ,0), (15 ,0), (16 ,0), (17 ,0), (18 ,0), (19 ,0),
+            (20 ,0), (21 ,0), (22 ,0), (23 ,0), (24 ,0), (25 ,0), (26 ,0), (27 ,0),
+            (28 ,0), (29 ,0), (30 ,0), (31 ,0)
+        };
+
+        for (int i = 0; i < dependencies.Length; i++)
+        {
+            Dependency dependency = new Dependency(0, dependencies[i].Item1, dependencies[i].Item2);
+            s_dal!.Dependency.Create(dependency);
+
+        }
     }
     public static void Do()
     {
