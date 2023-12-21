@@ -1,7 +1,4 @@
 ﻿internal class Program
 {
-    private static void Main(string[] args)
-    {
-        Console.WriteLine("Hello, World!");
-    }
+    static readonly BlApi.IBl s_bl = BlApi.Factory.Get();
 }
