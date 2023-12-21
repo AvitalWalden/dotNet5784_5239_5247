@@ -50,7 +50,7 @@ internal class EngineerImplementation : IEngineer
         }
         else
         {
-            //throw new BlDoesNotExistException($"Engineer with ID={id} not exists");
+            throw new BO.BlDoesNotExistException($"Student with ID={id} does Not exist");
         }
     }
 
@@ -67,13 +67,12 @@ internal class EngineerImplementation : IEngineer
             Email = doEngineer.Email,
             Level = (BO.EngineerExperience)doEngineer.Level,
             Cost = doEngineer.Cost,
-            //Task = (TaskInEngineer)doEngineer.Task,
         };
     }
 
     public IEnumerable<BO.Engineer?> ReadAll(Func<BO.Engineer, bool>? filter = null)
     {
-        return (from DO.Engineer doEngineer in _dal.Engineer.ReadAll()
+        IEnumerable<BO.Engineer?> readAllEngineer = (from DO.Engineer doEngineer in _dal.Engineer.ReadAll()
                 select new BO.Engineer
                 {
                     Id = doEngineer.Id,
@@ -81,12 +80,53 @@ internal class EngineerImplementation : IEngineer
                     Email = doEngineer.Email,
                     Level = (BO.EngineerExperience)doEngineer.Level,
                     Cost = doEngineer.Cost,
-                    //Task = (TaskInEngineer)doEngineer.Task,
                 });
+        if (filter != null)
+        {
+            IEnumerable<BO.Engineer> readAllEngineerFilter = from item in readAllEngineer
+                                                       where filter(item)
+                                                       select item;
+            return readAllEngineerFilter;
+        }
+        return readAllEngineer;
     }
 
-    public void Update(BO.Engineer item)
+    public void Update(BO.Engineer boEngineer)
     {
-        throw new NotImplementedException();
+        DO.Engineer? doEngineer = _dal.Engineer.Read(boEngineer.Id);
+        if (doEngineer != null)
+        {
+            if (boEngineer.Id <= 0)
+            {
+                throw new ArgumentException("");
+            }
+            if (boEngineer.Cost <= 0)
+            {
+                throw new ArgumentException("");
+            }
+            if (boEngineer.Name != "")
+            {
+                throw new ArgumentException("");
+            }
+            if (boEngineer.Email != "")
+            {
+                throw new ArgumentException("");
+            }
+            DO.Engineer engineer = new DO.Engineer(boEngineer.Id, boEngineer.Name, boEngineer.Email, (DO.EngineerExperience)boEngineer.Level, boEngineer.Cost);
+            try
+            {
+                _dal.Engineer.Update(engineer);
+            }
+            catch (DO.DalAlreadyExistsException)
+            {
+                throw new BO.BlAlreadyExistsException($"Engineer with ID={boEngineer.Id} already exists");
+            }
+        }
+        else
+        {
+            throw new BO.BlDoesNotExistException($"engineer with ID={boEngineer.Id} does Not exist");
+        }
+       
+       
     }
 }
