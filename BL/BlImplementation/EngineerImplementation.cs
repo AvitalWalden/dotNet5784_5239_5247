@@ -80,6 +80,7 @@ internal class EngineerImplementation : IEngineer
                     Email = doEngineer.Email,
                     Level = (BO.EngineerExperience)doEngineer.Level,
                     Cost = doEngineer.Cost,
+                    //Task = BO.TaskInEngineer(_dal.Task.ReadAll().FirstOrDefault(task => task?.EngineerId == doEngineer.Id)?.Id, _dal.Task.ReadAll().FirstOrDefault(task => task?.EngineerId == doEngineer.Id)?.Alias)
                 });
         if (filter != null)
         {
