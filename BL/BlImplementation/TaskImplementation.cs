@@ -1,7 +1,4 @@
 ﻿using BlApi;
-using BO;
-using DO;
-using System.Reflection.Emit;
 
 namespace BlImplementation;
 
@@ -38,12 +35,77 @@ internal class TaskImplementation : ITask
 
     public BO.Task? Read(int id)
     {
-        throw new NotImplementedException();
+        DO.Task? doTask = _dal.Task.Read(id);
+        if (doTask == null)
+            throw new BO.BlDoesNotExistException($"Task with ID={id} does Not exist");
+
+        return new BO.Task()
+        {
+            Id = doTask.Id,
+            Description = doTask.Description,
+            Alias = doTask.Alias,
+            CreatedAtDate = doTask.CreatedAtDate,
+            Status =////////////////// ,
+            Milestone = new BO.MilestoneInTask()
+            {
+                ///////////////////////////////////////
+            },
+            BaselineStartDate = ///////////////////,
+            StartDate = doTask.StartDate,
+            ScheduledStartDate = doTask.ScheduledDate,
+            ForecastDate = doTask./////////////////,
+            DeadlineDate = doTask.DeadlineDate,
+            CompleteDate = doTask.CompleteDate,
+            Deliverables = doTask.Deliverables,
+            Remarks = doTask.Remarks,
+            Engineer = new BO.EngineerInTask()
+            {
+                Id = (int)(_dal.Engineer.ReadAll().FirstOrDefault(engineer => engineer?.Id == doTask.EngineerId)?.Id!),
+                Alias = _dal.Task.ReadAll().FirstOrDefault(engineer => engineer?.Id == doTask.EngineerId)?.Alias!
+            },
+            ComplexityLevel = (BO.EngineerExperience)doTask.ComplexityLevel,
+        };
     }
 
-    public IEnumerable<BO.TaskInList> ReadAll(Func<BO.Task, bool>? filter = null)
+    public IEnumerable<BO.Task> ReadAll(Func<BO.Task, bool>? filter = null)
     {
-        throw new NotImplementedException();
+
+        IEnumerable<BO.Task> readAllTask = (from DO.Task doTask in _dal.Task.ReadAll()
+                                                     select new BO.Task
+                                                     {
+                                                         Id = doTask.Id,
+                                                         Description = doTask.Description,
+                                                         Alias = doTask.Alias,
+                                                         CreatedAtDate = doTask.CreatedAtDate,
+                                                         Status = ,
+                                                         Milestone = new BO.MilestoneInTask()
+                                                         {
+                                                             Id = (int)(_dal.Task.ReadAll().FirstOrDefault(task => task?.EngineerId == doTask.Id)?.Id!),
+                                                             Alias = _dal.Task.ReadAll().FirstOrDefault(task => task?.EngineerId == doTask.Id)?.Alias!
+                                                         },
+                                                         BaselineStartDate = ,
+                                                         StartDate = doTask.StartDate,
+                                                         ScheduledStartDate = doTask.ScheduledDate,
+                                                         ForecastDate = doTask.,
+                                                         DeadlineDate = doTask.DeadlineDate,
+                                                         CompleteDate = doTask.CompleteDate,
+                                                         Deliverables = doTask.Deliverables,
+                                                         Remarks = doTask.Remarks,
+                                                         Engineer = new BO.EngineerInTask()
+                                                         {
+                                                             Id = (int)(_dal.Engineer.ReadAll().FirstOrDefault(engineer => engineer?.Id == doTask.EngineerId)?.Id!),
+                                                             Alias = _dal.Task.ReadAll().FirstOrDefault(engineer => engineer?.Id == doTask.EngineerId)?.Alias!
+                                                         },
+                                                         ComplexityLevel = (BO.EngineerExperience)doTask.ComplexityLevel,
+                                                     });
+        if (filter != null)
+        {
+            IEnumerable<BO.Task> readAllTaskFilter = from item in readAllTask
+                                                           where filter(item)
+                                                           select item;
+            return readAllTaskFilter;
+        }
+        return readAllTask;
     }
 
     public IEnumerable<BO.TaskInList> ReadAll()
