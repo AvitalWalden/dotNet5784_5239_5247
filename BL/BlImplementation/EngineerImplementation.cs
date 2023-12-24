@@ -69,6 +69,11 @@ internal class EngineerImplementation : IEngineer
         };
     }
 
+    /// <summary>
+    /// returns all the engineers that pass the condition
+    /// </summary>
+    /// <param name="filter">the condition that the engineer need</param>
+    /// <returns>all the tasks that pass the condition</returns>
     public IEnumerable<BO.Engineer?> ReadAll(Func<BO.Engineer, bool>? filter = null)
     {
         IEnumerable<BO.Engineer?> readAllEngineer = (from DO.Engineer doEngineer in _dal.Engineer.ReadAll()
@@ -79,7 +84,11 @@ internal class EngineerImplementation : IEngineer
                     Email = doEngineer.Email,
                     Level = (BO.EngineerExperience)doEngineer.Level,
                     Cost = doEngineer.Cost,
-                    Task = BO.TaskInEngineer(_dal.Task.ReadAll().FirstOrDefault(task => task?.EngineerId == doEngineer.Id)?.Id, _dal.Task.ReadAll().FirstOrDefault(task => task?.EngineerId == doEngineer.Id)?.Alias)
+                    Task = new BO.TaskInEngineer()
+                    {
+                        Id = (int)(_dal.Task.ReadAll().FirstOrDefault(task => task?.EngineerId == doEngineer.Id)?.Id!),
+                        Alias = _dal.Task.ReadAll().FirstOrDefault(task => task?.EngineerId == doEngineer.Id)?.Alias!
+                    }
                 });
         if (filter != null)
         {
@@ -91,6 +100,12 @@ internal class EngineerImplementation : IEngineer
         return readAllEngineer;
     }
 
+    /// <summary>
+    /// This method is used to update the engineer 
+    /// </summary>
+    /// <param name="boEngineer">The updated engineer</param>
+    /// <exception cref="BO.BlInvalidValue">The entered value is incorrect</exception>
+    /// <exception cref="BO.BlDoesNotExistException">$"Engineer does not exist"</exception>
     public void Update(BO.Engineer boEngineer)
     {
         if (boEngineer.Id <= 0)
