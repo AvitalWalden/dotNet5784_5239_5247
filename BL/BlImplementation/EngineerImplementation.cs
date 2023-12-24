@@ -1,11 +1,19 @@
 ﻿using BlApi;
+using BO;
 
 namespace BlImplementation;
 
 internal class EngineerImplementation : IEngineer
 {
     private DalApi.IDal _dal = DalApi.Factory.Get;
-    
+
+    /// <summary>
+    /// The function receives a logical entity engineer checks the integrity of the data and creates a data entity engineer.
+    /// </summary>
+    /// <param name="boEngineer">a logical entity engineer</param>
+    /// <returns>the id from the engineer</returns>
+    /// <exception cref="BO.BlInvalidValue">checks the integrity of the data</exception>
+    /// <exception cref="BO.BlAlreadyExistsException">this engineer akready exist</exception>
     public int Create(BO.Engineer boEngineer)
     {
         if(boEngineer.Id<=0)
@@ -44,15 +52,27 @@ internal class EngineerImplementation : IEngineer
         DO.Engineer? engneerToDelete = _dal.Engineer.Read(id);
         if (engneerToDelete is not null)
         {
+            TaskInEngineer Task = new BO.TaskInEngineer()
+            {
+                Id = (int)(_dal.Task.ReadAll().FirstOrDefault(task => task?.EngineerId == engneerToDelete.Id)?.Id!),
+                Alias = _dal.Task.ReadAll().FirstOrDefault(task => task?.EngineerId == engneerToDelete.Id)?.Alias!
+            };
+            if(Task?.Id == null) { }
             _dal.Engineer.Delete(engneerToDelete.Id);//עשינו שאי אפשר לממחוק אז איך אפשר לשלוח לשם
 
         }
         else
         {
-            throw new BO.BlDoesNotExistException($"Student with ID={id} does Not exist");
+            throw new BO.BlDoesNotExistException($"Engineer with ID={id} does Not exist");
         }
     }
 
+    /// <summary>
+    ///  This method is used to read an Engineer by ID
+    /// </summary>
+    /// <param name="id">the name of the engineer who search for</param>
+    /// <returns>Constructed engineer object</returns>
+    /// <exception cref="BO.BlDoesNotExistException">No suitable data layer engineer exists</exception>
     public BO.Engineer? Read(int id)
     {
         DO.Engineer? doEngineer = _dal.Engineer.Read(id);
@@ -66,6 +86,11 @@ internal class EngineerImplementation : IEngineer
             Email = doEngineer.Email,
             Level = (BO.EngineerExperience)doEngineer.Level,
             Cost = doEngineer.Cost,
+            Task = new BO.TaskInEngineer()
+            {
+                Id = (int)(_dal.Task.ReadAll().FirstOrDefault(task => task?.EngineerId == doEngineer.Id)?.Id!),
+                Alias = _dal.Task.ReadAll().FirstOrDefault(task => task?.EngineerId == doEngineer.Id)?.Alias!
+            }
         };
     }
 
