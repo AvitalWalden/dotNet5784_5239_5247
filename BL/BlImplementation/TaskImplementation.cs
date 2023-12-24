@@ -38,15 +38,29 @@ internal class TaskImplementation : ITask
 
     public BO.Task? Read(int id)
     {
-        throw new NotImplementedException();
+        DO.Task? doTask = _dal.Task.Read(id);
+        if (doTask == null)
+            throw new BO.BlDoesNotExistException($"Task with ID={id} does Not exist");
+
+        //return new BO.Task()
+        //{
+        //    Id = id,
+        //    Description = doTask.Description,
+        //    Alias = doTask.Alias,
+        //    CreatedAtDate = doTask.CreatedAtDate,
+        //    Status = 
+        //    Cost = doTask.Cost,
+        //    Task = new BO.TaskInEngineer()
+        //    {
+        //        Id = (int)(_dal.Task.ReadAll().FirstOrDefault(task => task?.EngineerId == doEngineer.Id)?.Id!),
+        //        Alias = _dal.Task.ReadAll().FirstOrDefault(task => task?.EngineerId == doEngineer.Id)?.Alias!
+        //    }
+        //};
+        throw new BO.BlDoesNotExistException($"Task with ID={id} does Not exist");
+
     }
 
-    public IEnumerable<BO.TaskInList> ReadAll(Func<BO.Task, bool>? filter = null)
-    {
-        throw new NotImplementedException();
-    }
-
-    public IEnumerable<BO.TaskInList> ReadAll()
+    public IEnumerable<BO.Task> ReadAll(Func<BO.Task, bool>? filter = null)
     {
         throw new NotImplementedException();
     }
