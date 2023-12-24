@@ -1,5 +1,6 @@
 ﻿using DalApi;
-using DO;
+
+
 
 internal class Program
 {
@@ -108,12 +109,16 @@ internal class Program
 
     }
 
-    // The function read a engineer by ID.
+    /// <summary>
+    ///  The function read a engineer by ID.
+    /// </summary>
+    /// <param name="idEngineer">The id engineer to read</param>
+    /// <exception cref="BlDoesNotExistException">"exception: engineer with this id does not exists</exception>
     public static void ReadEngineer(int idEngineer)
     {
         if (s_bl?.Engineer.Read(idEngineer) == null)
         {
-            throw new DalDoesNotExistException($"Engineer with ID={idEngineer} not exists");
+            throw new BO.BlDoesNotExistException($"Engineer with ID={idEngineer} not exists");
         }
         else
         {
@@ -121,17 +126,23 @@ internal class Program
         }
     }
 
-    // The function read all the engineers.
+    /// <summary>
+    /// The function read all the engineers.
+    /// </summary>
+    /// <exception cref="BO.BlDataListIsEmpty">The list is empty. There is no data to read.</exception>
     public static void ReadAllEngineers()
     {
-        IEnumerable<DO.Engineer?> engineers = s_bl?.Engineer.ReadAll() ?? throw new DalDataListIsEmpty("There are no engineers.");
+        IEnumerable<BO.Engineer?> engineers = s_bl?.Engineer.ReadAll() ?? throw new BO.BlDataListIsEmpty("There are no engineers.");
         foreach (var engineer in engineers)
         {
             Console.WriteLine(engineer);
         }
     }
 
-    // The function delete a engineer.
+    /// <summary>
+    /// The function delete a engineer.
+    /// </summary>
+    /// <param name="idEngineerDelete">The id of engineer to delete</param>
     public static void DeleteEngineer(int idEngineerDelete)
     {
         try
