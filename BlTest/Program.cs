@@ -45,7 +45,11 @@ internal class Program
         Console.WriteLine(s_bl!.Engineer.Create(newEngineer));
     }
 
-    // The function update a engineer.
+    /// <summary>
+    ///  The function update a engineer.
+    /// </summary>
+    /// <exception cref="BO.BlInvalidEnteredValue">exception: The entered value is incorrect</exception>
+    /// <exception cref="BO.BlDoesNotExistException">exception: The engineer not exists</exception>
     public static void UpdateEngineer()
     {
         Console.WriteLine("Enter a engineer's ID");
@@ -234,7 +238,7 @@ internal class Program
     }
     public static void Main(string[] args)
     {
-        Console.Write("Would you like to create Initial data? (Y/N)");
+        Console.WriteLine("Would you like to create Initial data? (Y/N)");
         string? ans = Console.ReadLine() ?? throw new FormatException("Wrong input");
         if (ans == "Y")
             DalTest.Initialization.Do();

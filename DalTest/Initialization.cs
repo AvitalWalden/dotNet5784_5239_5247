@@ -35,7 +35,14 @@ public static class Initialization
         for (int i = 0; i < detailsEngineer.Length; i++)
         {
             Engineer newEngineer = new(detailsEngineer[i].Item1, detailsEngineer[i].Item2, detailsEngineer[i].Item3, detailsEngineer[i].Item4, detailsEngineer[i].Item5);
-            s_dal!.Engineer.Create(newEngineer);
+            try
+            {
+                s_dal!.Engineer.Create(newEngineer);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
         }
     }
 
@@ -89,7 +96,14 @@ public static class Initialization
                 allEngineer[i]!.Id,
                 allEngineer[i]!.Level
             );
-            s_dal!.Task.Create(newTask);
+            try
+            {
+                s_dal!.Task.Create(newTask);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
         }
     }
 
@@ -106,7 +120,14 @@ public static class Initialization
         for (int i = 0; i < dependencies.Length; i++)
         {
             Dependency dependency = new Dependency(0, dependencies[i].Item1, dependencies[i].Item2);
-            s_dal!.Dependency.Create(dependency);
+            try
+            {
+                s_dal!.Dependency.Create(dependency);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
 
         }
     }
