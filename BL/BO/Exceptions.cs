@@ -26,3 +26,9 @@ public class BlInvalidValue : Exception
 {
     public BlInvalidValue(string? message) : base(message) { }
 }
+
+[Serializable]
+public class BlInvalidEnteredValue : Exception
+{
+    public BlInvalidEnteredValue(string? message) : base(message) { }
+}

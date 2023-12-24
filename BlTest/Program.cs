@@ -1,32 +1,45 @@
 ﻿using DalApi;
-using DO;
 
 internal class Program
 {
     static readonly BlApi.IBl s_bl = BlApi.Factory.Get();
-
-    // The function create a new engineer.
+    /// <summary>
+    ///The function create a new task.
+    /// </summary>
+    /// <exception cref="BlInvalidEnteredValue">exception: The entered value is incorrect</exception>
     public static void CreateEngineer()
     {
         Console.WriteLine("Enter the engineer's id");
-        int id = int.Parse(Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect"));
+        int id = int.Parse(Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect"));
         Console.WriteLine("Enter the engineer's name");
-        string name = Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect");
+        string name = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
         Console.WriteLine("Enter the engineer's email");
-        string email = Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect");
+        string email = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
         Console.WriteLine("Enter the level of the task:");
         Console.WriteLine("For Beginner press 0");
         Console.WriteLine("For AdvancedBeginner press 1");
         Console.WriteLine("For Competent press 2");
         Console.WriteLine("For Proficient press 3");
         Console.WriteLine("For Expert press 4");
-        int level = int.Parse(Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect"));
+        int level = int.Parse(Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect"));
         Console.WriteLine("Enter the engineer's cost");
-        double cost = double.Parse(Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect"));
+        double cost = double.Parse(Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect"));
         Console.WriteLine("Enter the id's task of this engineer");
-        string? id = Console.ReadLine();
-        int.TryParse(chooseBeforeParse, out int choose);
-        BO.Engineer newEngineer = new BO.Engineer(id, name, email, (EngineerExperience)level, cost);
+        string? chooseBeforeParse = Console.ReadLine();
+        int.TryParse(chooseBeforeParse, out int idOfTask);
+        BO.Engineer newEngineer = new BO.Engineer()
+        {
+            Id = id,
+            Name = name,
+            Email = email,
+            Level = (BO.EngineerExperience)level,
+            Cost = cost,
+            Task = new BO.TaskInEngineer() 
+            {
+               Id = idOfTask,
+               Alias = s_bl.Task.Read(idOfTask)?.Alias!
+            }
+        };
         Console.WriteLine(s_bl!.Engineer.Create(newEngineer));
     }
 
@@ -34,18 +47,18 @@ internal class Program
     public static void UpdateEngineer()
     {
         Console.WriteLine("Enter a engineer's ID");
-        int id = int.Parse(Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect"));
+        int id = int.Parse(Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect"));
         if (s_bl?.Engineer.Read(id) != null)
         {
             Console.WriteLine(s_bl?.Engineer.Read(id));
         }
         else
         {
-            throw new DalDoesNotExistException($"Engineer with ID={id} not exists");
+            throw new BO.BlDoesNotExistException($"Engineer with ID={id} not exists");
         }
-        Engineer updateEngineer = s_bl?.Engineer.Read(id)!;
+        BO.Engineer updateEngineer = s_bl?.Engineer.Read(id)!;
         Console.WriteLine("Enter the engineer's name");
-        string? name = Console.ReadLine(); //If not update the name.
+        string? name = Console.ReadLine();
         if (name == "" || name == null)
         {
             name = updateEngineer.Name;
@@ -62,41 +75,48 @@ internal class Program
         Console.WriteLine("For Competent press 2");
         Console.WriteLine("For Proficient press 3");
         Console.WriteLine("For Expert press 4");
-        string? level1 = Console.ReadLine();
-        int level;
-        if (level1 == null || level1 == "") //If not update the level.
+        string? levelBeforeParse = Console.ReadLine();
+        int.TryParse(levelBeforeParse, out int level);
+        if (levelBeforeParse == null || levelBeforeParse == "") //If not update the level.
         {
             level = (int)updateEngineer.Level;
         }
-        else
-        {
-            level = int.Parse(level1);
-        }
         Console.WriteLine("Enter the engineer's cost");
-        string? cost1 = Console.ReadLine();
-        double cost;
-        if (cost1 == null || cost1 == "") //If not update the cost.
+        string? costBeforeParse = Console.ReadLine();
+        double.TryParse(levelBeforeParse, out double cost);
+        if (costBeforeParse == null || costBeforeParse == "") //If not update the cost.
         {
             cost = (double)updateEngineer.Cost;
         }
-        else
-        {
-            cost = double.Parse(cost1);
-        }
         Console.WriteLine("Enter if the engineer is active or not(Y/N)");
-        bool active;
-        string active1 = Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect");
-        if (active1 == null || active1 == "") //If not update the cost.
+        string? activeBeforeParse = Console.ReadLine();
+        double.TryParse(levelBeforeParse, out double active);
+        //if (activeBeforeParse == null || activeBeforeParse == "") //If not update the cost.
+        //{
+        //    active = updateEngineer.Active;
+        //}
+        //else
+        //{
+        //    if (active1 == "Y")
+        //        active = true;
+        //    else active = false;
+        //}
+        Console.WriteLine("Enter the id's task of this engineer");
+        string? chooseBeforeParse = Console.ReadLine();
+        int.TryParse(chooseBeforeParse, out int idOfTask);
+        BO.Engineer newEngineer = new BO.Engineer()
         {
-            active = updateEngineer.Active;
-        }
-        else
-        {
-            if (active1 == "Y")
-                active = true;
-            else active = false;
-        }
-        DO.Engineer newEngineer = new DO.Engineer(id, name, email, (EngineerExperience)level, cost, active);
+            Id = id,
+            Name = name,
+            Email = email,
+            Level = (BO.EngineerExperience)level,
+            Cost = cost,
+            Task = new BO.TaskInEngineer()
+            {
+                Id = idOfTask,
+                Alias = s_bl?.Task.Read(idOfTask)?.Alias!
+            }
+        };
         try
         {
             s_bl?.Engineer.Update(newEngineer);
@@ -154,7 +174,7 @@ internal class Program
         Console.WriteLine("To update an engineer press d");
         Console.WriteLine("To delete an engineer press e");
         Console.WriteLine("To exit press f");
-        char ch = char.Parse(Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect"));
+        char ch = char.Parse(Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect"));
         try
         {
             while (ch != 'f')
@@ -166,7 +186,7 @@ internal class Program
                         break;
                     case 'b': // Read a engineer by ID
                         Console.WriteLine("Enter a engineer's id");
-                        int idEngineer = int.Parse(Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect"));
+                        int idEngineer = int.Parse(Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect"));
                         ReadEngineer(idEngineer);
                         break;
                     case 'c': // Read all engineers.
@@ -177,7 +197,7 @@ internal class Program
                         break;
                     case 'e': // Delete a engineer.
                         Console.WriteLine("Enter a engineer's ID");
-                        int idEngineerDelete = int.Parse(Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect"));
+                        int idEngineerDelete = int.Parse(Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect"));
                         DeleteEngineer(idEngineerDelete);
                         break;
                     default:
@@ -191,7 +211,7 @@ internal class Program
                 Console.WriteLine("To update an engineer press d");
                 Console.WriteLine("To delete an engineer press e");
                 Console.WriteLine("To exit press f");
-                ch = char.Parse(Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect"));
+                ch = char.Parse(Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect"));
             }
         }
         catch (Exception ex)
