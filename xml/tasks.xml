@@ -2,8 +2,8 @@
 <ArrayOfTask xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<Task>
 		<Id>1</Id>
-		<Description>Determining the purpose and requirements of the building</Description>
-		<Alias>Target and requirements</Alias>
+		<Description>תכנון הבנייה על פי ייעוד ודרישות הבנין</Description>
+		<Alias>ארגון ותכנון הבניה</Alias>
 		<CreatedAtDate>2023-12-07T23:12:42.6518+02:00</CreatedAtDate>
 		<RequiredEffort>PT0S</RequiredEffort>
 		<IsMilestone>false</IsMilestone>
@@ -11,15 +11,15 @@
 		<ScheduledDate>2023-10-12T00:00:00</ScheduledDate>
 		<DeadlineDate>2023-10-12T00:00:00</DeadlineDate>
 		<CompleteDate>2023-10-12T00:00:00</CompleteDate>
-		<Deliverables>Knowledge of building requirements</Deliverables>
+		<Deliverables>תכנון הבניה הושלם</Deliverables>
 		<EngineerId>16438046</EngineerId>
 		<ComplexityLevel>Expert</ComplexityLevel>
 		<Active>true</Active>
 	</Task>
 	<Task>
 		<Id>2</Id>
-		<Description>Purchase of land or the necessary property</Description>
-		<Alias>Purchases</Alias>
+		<Description>הבטחת מימון פרויקט הבניה</Description>
+		<Alias>מימון</Alias>
 		<CreatedAtDate>2023-12-07T23:12:47.8715315+02:00</CreatedAtDate>
 		<RequiredEffort>PT0S</RequiredEffort>
 		<IsMilestone>false</IsMilestone>
@@ -27,7 +27,7 @@
 		<ScheduledDate>2023-10-12T00:00:00</ScheduledDate>
 		<DeadlineDate>2023-10-12T00:00:00</DeadlineDate>
 		<CompleteDate>2023-10-12T00:00:00</CompleteDate>
-		<Deliverables>Land or property to start the work</Deliverables>
+		<Deliverables>מימון או מימון התחלתי לפרויקט הבניה</Deliverables>
 		<EngineerId>214385241</EngineerId>
 		<ComplexityLevel>Expert</ComplexityLevel>
 		<Active>true</Active>
