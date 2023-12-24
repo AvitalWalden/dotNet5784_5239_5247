@@ -32,3 +32,10 @@ public class BlInvalidEnteredValue : Exception
 {
     public BlInvalidEnteredValue(string? message) : base(message) { }
 }
+
+
+[Serializable]
+public class BlDataListIsEmpty : Exception // Exception of The data list is empty.
+{
+    public BlDataListIsEmpty(string? message) : base(message) { }
+}
