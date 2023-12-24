@@ -108,7 +108,7 @@ internal class TaskImplementation : ITask
         return readAllTask;
     }
 
-    public IEnumerable<BO.TaskInList> ReadAll()
+    public IEnumerable<BO.Task> ReadAll(Func<BO.Task, bool>? filter = null)
     {
         throw new NotImplementedException();
     }
