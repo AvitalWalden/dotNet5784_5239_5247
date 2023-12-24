@@ -1,5 +1,4 @@
 ﻿using BlApi;
-using BO;
 
 namespace BlImplementation;
 
@@ -11,20 +10,20 @@ internal class EngineerImplementation : IEngineer
     {
         if(boEngineer.Id<=0)
         {
-            throw new BlInvalidValue("The ID value is invalid");
+            throw new BO.BlInvalidValue("The ID value is invalid");
         }
         if (boEngineer.Cost <= 0)
         {
-            throw new BlInvalidValue("Incorrect price. The price must be positive");
+            throw new BO.BlInvalidValue("Incorrect price. The price must be positive");
         }
         if(boEngineer.Name!="")
         {
-            throw new BlInvalidValue("Invalid name");
+            throw new BO.BlInvalidValue("Invalid name");
         }
         string emailPattern = @"^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$";
         if (!System.Text.RegularExpressions.Regex.IsMatch(emailPattern, emailPattern))
         {
-            throw new BlInvalidValue("Invalid email");
+            throw new BO.BlInvalidValue("Invalid email");
         }
         DO.Engineer doEngineer = new DO.Engineer(boEngineer.Id, boEngineer.Name, boEngineer.Email, (DO.EngineerExperience)boEngineer.Level, boEngineer.Cost);
         try
