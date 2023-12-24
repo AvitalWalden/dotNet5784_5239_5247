@@ -52,7 +52,7 @@ internal class EngineerImplementation : IEngineer
         DO.Engineer? engneerToDelete = _dal.Engineer.Read(id);
         if (engneerToDelete is not null)
         {
-            TaskInEngineer Task = new BO.TaskInEngineer()
+            BO.TaskInEngineer Task = new BO.TaskInEngineer()
             {
                 Id = (int)(_dal.Task.ReadAll().FirstOrDefault(task => task?.EngineerId == engneerToDelete.Id)?.Id!),
                 Alias = _dal.Task.ReadAll().FirstOrDefault(task => task?.EngineerId == engneerToDelete.Id)?.Alias!
