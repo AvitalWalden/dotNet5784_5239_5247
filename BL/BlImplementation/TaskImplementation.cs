@@ -50,10 +50,9 @@ internal class TaskImplementation : ITask
             {
                 ///////////////////////////////////////
             },
-            BaselineStartDate = ///////////////////,
             StartDate = doTask.StartDate,
-            ScheduledStartDate = doTask.ScheduledDate,
-            ForecastDate = doTask./////////////////,
+            ScheduledStartDate = doTask.ScheduledDate,/////
+            ForecastDate = doTask.ScheduledDate,
             DeadlineDate = doTask.DeadlineDate,
             CompleteDate = doTask.CompleteDate,
             Deliverables = doTask.Deliverables,
@@ -83,7 +82,6 @@ internal class TaskImplementation : ITask
                                                              Id = (int)(_dal.Task.ReadAll().FirstOrDefault(task => task?.EngineerId == doTask.Id)?.Id!),
                                                              Alias = _dal.Task.ReadAll().FirstOrDefault(task => task?.EngineerId == doTask.Id)?.Alias!
                                                          },
-                                                         BaselineStartDate = ,
                                                          StartDate = doTask.StartDate,
                                                          ScheduledStartDate = doTask.ScheduledDate,
                                                          ForecastDate = doTask.,
