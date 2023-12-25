@@ -19,19 +19,48 @@ internal class TaskImplementation : ITask
     // This method is used to delete a Task by ID
     public void Delete(int id)
     {
+        //מחיקה מה לעשות בBO אם כאן עושים את זה
         Task? taskToDelete = Read(id);
         if (taskToDelete is not null)
         {
-            if (DataSource.Dependencies.Any(dependency => dependency?.DependsOnTask == id))
-                throw new DalDeletionImpossible($"Task with ID={id} cannot be deleted");
-
-            DataSource.Dependencies.RemoveAll(dependency => dependency?.DependentTask == id);
+            for (int i = 0; i < DataSource.Dependencies.Count; i++)
+            {
+                if (DataSource.Dependencies[i]?.DependsOnTask == id)
+                {
+                    throw new Exception($"Task with ID ={id} cannot be deleted");
+                }
+            }
+            for (int i = 0; i < DataSource.Dependencies.Count; i++)
+            {
+                if (DataSource.Dependencies[i]?.DependentTask == id)
+                {
+                    DataSource.Dependencies.Remove(DataSource.Dependencies[i]);
+                }
+            }
             DataSource.Tasks.Remove(taskToDelete);
         }
         else
         {
-            throw new DalDoesNotExistException($"Task with ID={id} does not exist");
+            throw new Exception($"Task with ID={id} not exists");
         }
+
+        ///שאי אפשר למחוק ככה עשינו
+        //Task? taskToDelete = Read(id);
+        //if (taskToDelete is not null)
+        //{
+        //    if (DataSource.Dependencies.Any(dependency => dependency?.DependsOnTask == id))
+        //        throw new DalDeletionImpossible($"Task with ID={id} cannot be deleted");
+
+        //    DataSource.Dependencies.RemoveAll(dependency => dependency?.DependentTask == id);
+        //    DataSource.Tasks.Remove(taskToDelete);
+        //}
+        //else
+        //{
+        //    throw new DalDoesNotExistException($"Task with ID={id} does not exist");
+        //}
+
+
+        ///ACTVE
         //Task? taskToDelete = Read(id);
         //if (taskToDelete is not null)
         //{
