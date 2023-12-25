@@ -596,6 +596,69 @@ internal class Program
             Console.WriteLine(ex); ;
         }
     }
+
+    public static void CreateMilestone()
+    {
+
+    }
+    public static void ReadMilestone(int idMilestone)
+    {
+        if (s_bl?.Milestone.Read(idMilestone) == null)
+        {
+            throw new BO.BlDoesNotExistException($"Milestone with ID={idMilestone} not exists");
+        }
+        else
+        {
+            Console.WriteLine(s_bl?.Milestone.Read(idMilestone));
+        }
+    }
+    public static void UpdateMilestone()
+    {
+
+    }
+    public static void Milestones()
+    {
+        Console.WriteLine("To add a task press a");
+        Console.WriteLine("To read a task press b");
+        Console.WriteLine("To update a milestone press c");
+        Console.WriteLine("To exit press f");
+        char ch = char.Parse(Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect"));
+        try
+        {
+            while (ch != 'f')
+            {
+                switch (ch)
+                {
+                    case 'a': // Create a new milestone.
+                        CreateMilestone();
+                        break;
+                    case 'b': // Read a milestone by ID.
+                        Console.WriteLine("Enter a task ID");
+                        int idMilestone = int.Parse(Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect"));
+                        ReadMilestone(idMilestone);
+                        break;
+                    case 'c': // Update a milestone.
+                        UpdateMilestone();
+                        break;
+                    default:
+                        Console.WriteLine("The letter entered is invalid");
+                        break;
+                }
+                Console.WriteLine();
+                Console.WriteLine("To add a task press a");
+                Console.WriteLine("To read a task press b");
+                Console.WriteLine("To update a milestone press c");
+                Console.WriteLine("To exit press f");
+                ch = char.Parse(Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect"));
+            }
+        }
+        catch (Exception ex)
+        {
+
+            Console.WriteLine(ex);
+        }
+
+    }
     public static void Main(string[] args)
     {
         Console.WriteLine("Would you like to create Initial data? (Y/N)");
@@ -604,7 +667,7 @@ internal class Program
             DalTest.Initialization.Do();
         Console.WriteLine("For a task press 1");
         Console.WriteLine("For an engineer press 2");
-        Console.WriteLine("For depency between tasks press 3");
+        Console.WriteLine("For milestone between tasks press 3");
         Console.WriteLine("To exit press 0");
         string? chooseBeforeParse = Console.ReadLine();
         int.TryParse(chooseBeforeParse, out int choose);
@@ -621,7 +684,7 @@ internal class Program
                         Engineers();
                         break;
                     case 3:
-                        //cart = _cart(cart);
+                        Milestones();
                         break;
                     default:
                         break;

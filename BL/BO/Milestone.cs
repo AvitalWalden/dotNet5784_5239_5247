@@ -5,9 +5,9 @@
 public class Milestone
 {
     public int Id { get; init; }
-    public required string Description { get; set; } // דרש
-    public required string Alias { get; set; } // דרש
-    public required DateTime CreatedAtDate { get; set; } //required?
+    public required string Description { get; set; }
+    public required string Alias { get; set; }
+    public DateTime CreatedAtDate { get; set; }
     public Status? Status { get; set; } = null;
     public DateTime? StartDate { get; set; } = null;
     public DateTime? ForecastDate { get; set; } = null;
