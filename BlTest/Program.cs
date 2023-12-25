@@ -278,7 +278,7 @@ internal class Program
     ///  The function read a task by ID.
     /// </summary>
     /// <param name="idTask">The id task to read</param>
-    /// <exception cref="BlDoesNotExistException">"exception: engineer with this id does not exists</exception>
+    /// <exception cref="BlDoesNotExistException">exception: engineer with this id does not exists</exception>
     public static void ReadTask(int idTask)
     {
         if (s_bl?.Task.Read(idTask) == null)
@@ -308,7 +308,10 @@ internal class Program
         }
     }
 
-    // The function of the tasks.
+    /// <summary>
+    /// The function of the tasks.
+    /// </summary>
+    /// <exception cref="BO.BlInvalidEnteredValue">The entered value is incorrect</exception>
     public static void Tasks()
     {
         Console.WriteLine("To add a task press a");
@@ -498,7 +501,7 @@ internal class Program
     ///  The function read a engineer by ID.
     /// </summary>
     /// <param name="idEngineer">The id engineer to read</param>
-    /// <exception cref="BlDoesNotExistException">"exception: engineer with this id does not exists</exception>
+    /// <exception cref="BlDoesNotExistException">exception: engineer with this id does not exists</exception>
     public static void ReadEngineer(int idEngineer)
     {
         if (s_bl?.Engineer.Read(idEngineer) == null)
@@ -540,8 +543,10 @@ internal class Program
         }
     }
 
-
-    // The function of the engineer.
+    /// <summary>
+    /// The function of the engineer.
+    /// </summary>
+    /// <exception cref="BO.BlInvalidEnteredValue">The entered value is incorrect</exception>
     public static void Engineers()
     {
         Console.WriteLine("To add an engineer press a");
@@ -601,6 +606,11 @@ internal class Program
     {
 
     }
+    /// <summary>
+    ///  The function read a milestone by ID.
+    /// </summary>
+    /// <param name="idMilestone">The id milestone to read</param>
+    /// <exception cref="BO.BlDoesNotExistException">exception: milestone with this id does not exists</exception>
     public static void ReadMilestone(int idMilestone)
     {
         if (s_bl?.Milestone.Read(idMilestone) == null)
@@ -612,10 +622,16 @@ internal class Program
             Console.WriteLine(s_bl?.Milestone.Read(idMilestone));
         }
     }
+
     public static void UpdateMilestone()
     {
 
     }
+
+    /// <summary>
+    ///The function of the Milestones.
+    /// </summary>
+    /// <exception cref="BO.BlInvalidEnteredValue">The entered value is incorrect</exception>
     public static void Milestones()
     {
         Console.WriteLine("To add a task press a");
@@ -701,5 +717,13 @@ internal class Program
         {
             Console.WriteLine(ex);
         }
+        Console.WriteLine("Enter the project start date (yyyy-MM-ddTHH:mm:ss):");
+        string? startDateString = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+        DateTime.TryParse(startDateString, out DateTime startDate);
+        DalApi.Factory.Get.startDateProject = startDate;
+        Console.WriteLine("Enter the project end date (yyyy-MM-ddTHH:mm:ss):");
+        string? endDateString = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+        DateTime.TryParse(endDateString, out DateTime endDate);
+        DalApi.Factory.Get.endDateProject = endDate;
     }
 }

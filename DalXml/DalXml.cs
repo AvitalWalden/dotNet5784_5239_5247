@@ -1,5 +1,6 @@
 ﻿using DalApi;
 using System.Diagnostics;
+using System.Xml.Linq;
 
 namespace Dal;
 
@@ -18,9 +19,37 @@ sealed internal class DalXml : IDal
 
     public IEngineer Engineer =>  new Engineerlementation();
 
-    public DateTime? startDateProject => Config.startDateProject;
+    //public DateTime? startDateProject => Config.startDateProject;
 
-    public DateTime? endDateProject => Config.endDateProject;
+    //public DateTime? endDateProject => Config.endDateProject;
+    private DateTime? ParseDateTime(string dateTimeString)
+    {
+        if (DateTime.TryParse(dateTimeString, out DateTime result))
+        {
+            return result;
+        }
+        return null;
+    }
+    public DateTime? startDateProject
+    {
+        get => ParseDateTime(XDocument.Load(@"..\xml\data-config.xml").Root!.Element("startDateProject")!.Value);
+        set
+        {
+            XDocument.Load(@"..\xml\data-config.xml").Root!.Element("startDateProject")?.SetValue(value?.ToString("yyyy-MM-ddTHH:mm:ss")!);
+            XDocument.Load(@"..\xml\data-config.xml").Save(@"..\xml\data-config.xml");
+        }
+
+    }
+
+    public DateTime? endDateProject 
+    {
+        get => ParseDateTime(XDocument.Load(@"..\xml\data-config.xml").Root!.Element("endDateProject")!.Value);
+        set
+        {
+            XDocument.Load(@"..\xml\data-config.xml").Root!.Element("endDateProject")?.SetValue(value?.ToString("yyyy-MM-ddTHH:mm:ss")!);
+            XDocument.Load(@"..\xml\data-config.xml").Save(@"..\xml\data-config.xml");
+        }
+    }
 
     public void Reset()
     {

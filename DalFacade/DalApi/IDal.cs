@@ -8,9 +8,9 @@ public interface IDal
 
     IEngineer Engineer { get; }
 
-    DateTime? startDateProject { get; }
+    DateTime? startDateProject { get; set; }
 
-    DateTime? endDateProject { get; }
+    DateTime? endDateProject { get; set; }
 
     public void Reset(); //Delete all the datasource
 }
