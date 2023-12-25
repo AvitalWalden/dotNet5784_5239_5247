@@ -5,9 +5,9 @@
 public class Task
 {
     public int Id { get; init; }
-    public required string Alias { get; set; } // דרש
-    public required string Description { get; set; } // דרש
-    public DateTime CreatedAtDate { get; set; } //required?
+    public required string Alias { get; set; }
+    public required string Description { get; set; }
+    public DateTime CreatedAtDate { get; set; }
     public Status? Status { get; set; } = null;
     public List<TaskInList>? Dependencies { get; set; } = null;
     public MilestoneInTask? Milestone { get; set; } = null;
