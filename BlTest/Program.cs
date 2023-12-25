@@ -109,7 +109,11 @@ internal class Program
         Console.WriteLine(s_bl!.Task.Create(newTask));
     }
 
-    // The function update a task.
+    /// <summary>
+    ///  The function update a task.
+    /// </summary>
+    /// <exception cref="BO.BlInvalidEnteredValue">exception: The entered value is incorrect</exception>
+    /// <exception cref="BO.BlDoesNotExistException">exception: The engineer not exists</exception>
     public static void UpdateTask()
     {
         //Console.WriteLine("Enter a task's ID");
@@ -256,7 +260,11 @@ internal class Program
 
     }
 
-    // The function read all tasks.
+
+    /// <summary>
+    /// The function read all the task.
+    /// </summary>
+    /// <exception cref="BO.BlDataListIsEmpty">The list is empty. There is no data to read.</exception>
     public static void ReadAllTasks()
     {
         IEnumerable<BO.Task?> tasks = s_bl?.Task.ReadAll() ?? throw new BO.BlDataListIsEmpty("There are no tasks.");
@@ -266,7 +274,11 @@ internal class Program
         }
     }
 
-    // The function read a Task by ID.
+    /// <summary>
+    ///  The function read a task by ID.
+    /// </summary>
+    /// <param name="idTask">The id task to read</param>
+    /// <exception cref="BlDoesNotExistException">"exception: engineer with this id does not exists</exception>
     public static void ReadTask(int idTask)
     {
         if (s_bl?.Task.Read(idTask) == null)
@@ -279,7 +291,10 @@ internal class Program
         }
     }
 
-    // The function delete a task.
+    /// <summary>
+    /// The function delete a task.
+    /// </summary>
+    /// <param name="idTaskDelete">The id task to delete</param>
     public static void DeleteTask(int idTaskDelete)
     {
         try
@@ -293,7 +308,6 @@ internal class Program
         }
     }
 
-    // The function of the tasks.
     // The function of the tasks.
     public static void Tasks()
     {
@@ -352,7 +366,7 @@ internal class Program
     }
 
     /// <summary>
-    ///The function create a new task.
+    ///The function create a new engineer.
     /// </summary>
     /// <exception cref="BlInvalidEnteredValue">exception: The entered value is incorrect</exception>
     public static void CreateEngineer()
