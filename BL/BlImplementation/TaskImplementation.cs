@@ -45,7 +45,7 @@ internal class TaskImplementation : ITask
             Description = doTask.Description,
             Alias = doTask.Alias,
             CreatedAtDate = doTask.CreatedAtDate,
-            Status =////////////////// ,
+            Status = BO.Status.Scheduled
             Milestone = new BO.MilestoneInTask()
             {
                 ///////////////////////////////////////
@@ -105,12 +105,6 @@ internal class TaskImplementation : ITask
         }
         return readAllTask;
     }
-
-    public IEnumerable<BO.Task> ReadAll(Func<BO.Task, bool>? filter = null)
-    {
-        throw new NotImplementedException();
-    }
-
     public void Update(BO.Task item)
     {
         throw new NotImplementedException();
