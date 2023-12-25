@@ -7,7 +7,7 @@ public class Task
     public int Id { get; init; }
     public required string Alias { get; set; } // דרש
     public required string Description { get; set; } // דרש
-    public required DateTime CreatedAtDate { get; set; } //required?
+    public DateTime CreatedAtDate { get; set; } //required?
     public Status? Status { get; set; } = null;
     public TaskInList? Dependency { get; set; } //?
     public MilestoneInTask? Milestone { get; set; } = null;

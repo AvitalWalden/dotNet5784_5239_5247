@@ -7,24 +7,35 @@ internal class TaskImplementation : ITask
     private DalApi.IDal _dal = DalApi.Factory.Get;
     public int Create(BO.Task boTask)
     {
-        //if (boTask.Id < 0)
-        //{
-        //    throw new Exception("Task ID must be a positive number");
-        //}
-        //if (string.IsNullOrWhiteSpace(boTask.Description))
-        //{
-        //    throw new Exception("Task description cannot be empty or null");
-        //}
-        //DO.Task doTask = new DO.Task(boTask.Id, boTask.Alias, boTask.CreatedAtDate, boTask.DeadlineDate, );
-        //try
-        //{
-        //    int idTask = _dal.Task.Create(doTask);
-        //    return idTask;
-        //}
-        //catch (DO.DalAlreadyExistsException ex)
-        //{
-        //    throw new BlAlreadyExistsException($"Task with ID={boTask.Id} already exists", ex);
-        //}
+        if (boTask.Id < 0)
+        {
+            throw new Exception("Task ID must be a positive number");
+        }
+        if (string.IsNullOrWhiteSpace(boTask.Description))
+        {
+            throw new Exception("Task description cannot be empty or null");
+        }
+        DO.Task doTask = new DO.Task
+        (
+            boTask.Id,
+            boTask.Alias,
+            boTask.Description,
+            boTask.CreatedAtDate,
+            (TimeSpan)(boTask.StartDate - boTask.CompleteDate),
+            true,
+            boTask.StartDate,
+
+
+        ) ;
+        try
+        {
+            int idTask = _dal.Task.Create(doTask);
+            return idTask;
+        }
+        catch (DO.DalAlreadyExistsException ex)
+        {
+            throw new BlAlreadyExistsException($"Task with ID={boTask.Id} already exists", ex);
+        }
         return 0;
     }
 
@@ -45,13 +56,13 @@ internal class TaskImplementation : ITask
             Description = doTask.Description,
             Alias = doTask.Alias,
             CreatedAtDate = doTask.CreatedAtDate,
-            Status =////////////////// ,
+            Status = ,
             Milestone = new BO.MilestoneInTask()
             {
-                ///////////////////////////////////////
+                
             },
             StartDate = doTask.StartDate,
-            ScheduledStartDate = doTask.ScheduledDate,/////
+            ScheduledStartDate = doTask.ScheduledDate,
             ForecastDate = doTask.ScheduledDate,
             DeadlineDate = doTask.DeadlineDate,
             CompleteDate = doTask.CompleteDate,
@@ -84,7 +95,7 @@ internal class TaskImplementation : ITask
                                                          },
                                                          StartDate = doTask.StartDate,
                                                          ScheduledStartDate = doTask.ScheduledDate,
-                                                         ForecastDate = doTask.,
+                                                         ForecastDate = doTask.,/////////////////
                                                          DeadlineDate = doTask.DeadlineDate,
                                                          CompleteDate = doTask.CompleteDate,
                                                          Deliverables = doTask.Deliverables,
@@ -104,11 +115,6 @@ internal class TaskImplementation : ITask
             return readAllTaskFilter;
         }
         return readAllTask;
-    }
-
-    public IEnumerable<BO.Task> ReadAll(Func<BO.Task, bool>? filter = null)
-    {
-        throw new NotImplementedException();
     }
 
     public void Update(BO.Task item)
