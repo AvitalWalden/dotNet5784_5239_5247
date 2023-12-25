@@ -26,7 +26,7 @@ internal class MilestoneImplementation : IMilestone
         // הוספת תלות נוספות עבור כל משימה שלא תלויה באף משימה קודמת
         var projectStartMilestone = new { MilestoneId = 0, Dependencies = new List<int>() };
         projectStartMilestone.Dependencies.AddRange( _dal.Dependency.ReadAll().Select(task => task.Id));
-        milestones.Insert(0, projectStartMilestone);
+     //   milestones.Insert(0, projectStartMilestone);
 
         // עכשיו אתה יכול לעבוד עם רשימת האבנים והתלויות החדשה
         Console.WriteLine("Milestones and Dependencies:");
