@@ -21,17 +21,22 @@ internal class TaskImplementation : ITask
             boTask.Alias,
             boTask.Description,
             boTask.CreatedAtDate,
-            (TimeSpan)(boTask.StartDate - boTask.CompleteDate)
-            //true,
-            //boTask.StartDate,
-
-
+            (TimeSpan)(boTask.StartDate - boTask.CompleteDate), //--
+            false, //false / true
+            boTask.StartDate,
+            boTask.ScheduledStartDate,
+            boTask.DeadlineDate,
+            boTask.CompleteDate,
+            boTask.Deliverables,
+            boTask.Remarks,
+            boTask.Engineer?.Id,
+            (DO.EngineerExperience)boTask.ComplexityLevel //---
         ) ;
-        //(from BO.TaskInList doDependency in boTask.Dependencies
-        //    select { DO.Dependency dep = new DO.Dependency(0, boTask.Id, doDependency.Id);
-
-          
-        //);
+        foreach (BO.TaskInList doDependency in boTask.Dependencies)
+        {
+            DO.Dependency doDepend = new DO.Dependency(0, boTask.Id, doDependency.Id);
+            int idDependency = _dal.Dependency.Create(doDepend);  //האם להחזיר את המזהה של התלויות שיצרנו
+        }
         try
         {
             int idTask = _dal.Task.Create(doTask);
