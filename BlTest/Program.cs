@@ -1,6 +1,4 @@
-﻿
-using DalApi;
-
+﻿using DalApi;
 
 
 internal class Program
@@ -115,148 +113,308 @@ internal class Program
     /// <exception cref="BO.BlInvalidEnteredValue">exception: The entered value is incorrect</exception>
     /// <exception cref="BO.BlDoesNotExistException">exception: The engineer not exists</exception>
     public static void UpdateTask()
-    {
-        //Console.WriteLine("Enter a task's ID");
-        //int idTask = int.Parse(Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect"));
-        //if (s_bl?.Task.Read(idTask) != null)
-        //{
-        //    Console.WriteLine(s_bl?.Task.Read(idTask));
-        //}
-        //else
-        //{
-        //    throw new DalDoesNotExistException($"Task with ID={idTask} not exists");
-        //}
-        //DO.Task updateTask = s_bl?.Task.Read(idTask)!;
-        //Console.WriteLine("Enter a description of the task");
-        //string? description = Console.ReadLine();
-        //if (description == "" || description == null)
-        //{
-        //    description = updateTask.Description;
-        //}
-        //Console.WriteLine("Enter an alias of the task");
-        //string? alias = Console.ReadLine();
-        //if (alias == "" || alias == null)
-        //{
-        //    alias = updateTask.Alias;
-        //}
-        //Console.WriteLine("Enter required effort time to the tast");
-        //string requiredEffort1 = Console.ReadLine()!;
-        //TimeSpan requiredEffort;
-        //if (requiredEffort1 == "" || requiredEffort1 == null) //If not update the start date.
-        //{
-        //    requiredEffort = updateTask.RequiredEffort;
-        //}
-        //else
-        //{
-        //    requiredEffort = TimeSpan.Parse(requiredEffort1);
-        //}
-        //Console.WriteLine("Enter task start date");
-        //string? startDate1 = Console.ReadLine();
-        //DateTime? startDate;
-        //if (startDate1 == "" || startDate1 == null) //If not update the start date.
-        //{
-        //    startDate = updateTask.StartDate;
-        //}
-        //else
-        //{
-        //    startDate = DateTime.Parse(startDate1);
-        //}
-        //Console.WriteLine("Enter task scheduled date");
-        //string? scheduledDate1 = Console.ReadLine();
-        //DateTime? scheduledDate;
-        //if (scheduledDate1 == "" || scheduledDate1 == null) //If not update the forecast date.
-        //{
-        //    scheduledDate = updateTask.ScheduledDate;
-        //}
-        //else
-        //{
-        //    scheduledDate = DateTime.Parse(scheduledDate1);
-        //}
-        //Console.WriteLine("Enter task deadline date");
-        //string? deadlineDate1 = Console.ReadLine();
-        //DateTime? deadlineDate;
-        //if (deadlineDate1 == "" || deadlineDate1 == null) //If not update the forecast date.
-        //{
-        //    deadlineDate = updateTask.DeadlineDate;
-        //}
-        //else
-        //{
-        //    deadlineDate = DateTime.Parse(deadlineDate1);
-        //}
-        //Console.WriteLine("Enter task complete date");
-        //string? completeDate1 = Console.ReadLine();
-        //DateTime? completeDate;
-        //if (completeDate1 == "" || completeDate1 == null) //If not update the complete date.
-        //{
-        //    completeDate = updateTask.CompleteDate;
-        //}
-        //else
-        //{
-        //    completeDate = DateTime.Parse(completeDate1);
-        //}
-        //Console.WriteLine("Enter deliverables of the task");
-        //string? deliverables = Console.ReadLine();
-        //if (deliverables == "" || deliverables == null) //If not update the product description.
-        //{
-        //    deliverables = updateTask.Deliverables;
-        //}
-        //Console.WriteLine("Enter remarks of the task");
-        //string? remarks = Console.ReadLine();
-        //if (remarks == "" || remarks == null) //If not update the remarks.
-        //{
-        //    remarks = updateTask.Remarks;
-        //}
-        //Console.WriteLine("Enter the id of the engineer");
-        //string? id = Console.ReadLine();
-        //int? engineerId;
-        //if (id == null || id == "") //If not update the enginner id.
-        //{
-        //    engineerId = updateTask.EngineerId;
-        //}
-        //else
-        //{
-        //    engineerId = int.Parse(id);
-        //}
-        //DateTime CreatedAt = DateTime.Now;
-        //Console.WriteLine("Enter the level of the task:");
-        //Console.WriteLine("For Beginner press 0");
-        //Console.WriteLine("For AdvancedBeginner press 1");
-        //Console.WriteLine("For Competent press 2");
-        //Console.WriteLine("For Proficient press 3");
-        //Console.WriteLine("For Expert press 4");
-        //string? level1 = Console.ReadLine();
-        //int level;
-        //if (level1 == null || level1 == "") //If not update the level.
-        //{
-        //    level = (int)updateTask.ComplexityLevel!;
-        //}
-        //else
-        //{
-        //    level = int.Parse(level1);
-        //}
-        //Console.WriteLine("Enter if the task is active or not(Y/N)");
-        //bool active;
-        //string active1 = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
-        //if (active1 == null || active1 == "") //If not update the cost.
-        //{
-        //    active = updateTask.Active;
-        //}
-        //else
-        //{
-        //    if (active1 == "Y")
-        //        active = true;
-        //    else active = false;
-        //}
-        //DO.Task newTask = new DO.Task(idTask, description, alias, updateTask.CreatedAtDate, requiredEffort, false, startDate, scheduledDate, deadlineDate, completeDate, deliverables, remarks, engineerId, (EngineerExperience)level, active);
-        //try
-        //{
-        //   s_bl?.Task.Update(newTask); // Input the new id of the task.
-        //}
-        //catch (Exception ex)
-        //{
 
-        //    Console.WriteLine(ex);
-        //}
+    {
+        Console.WriteLine("Enter the engineer's id");
+        int id = int.Parse(Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect"));
+        if (s_bl?.Task.Read(id) != null)
+        {
+            Console.WriteLine(s_bl?.Task.Read(id));
+        }
+        else
+        {
+            throw new BO.BlDoesNotExistException($"Task with ID={id} not exists");
+        }
+        BO.Task updateTask = s_bl?.Task.Read(id)!;
+        Console.WriteLine("Enter a description of the task");
+        string description = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+        if (description == "" || description == null)
+        {
+            description = updateTask.Description;
+        }
+        Console.WriteLine("Enter an alias of the task");
+        string alias = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+        if (alias == "" || alias == null)
+        {
+            alias = updateTask.Alias;
+        }
+        //// Console.WriteLine("Enter task Created task date");
+        Console.WriteLine("Enter status of stak");
+        string? statusBeforeParse = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+        BO.Status.TryParse(statusBeforeParse, out BO.Status status);
+        if(statusBeforeParse == "" || statusBeforeParse == null)
+        {
+            status = (BO.Status)updateTask.Status!;
+        }
+        Console.WriteLine("To add a dependency to a task, press 1");
+        Console.WriteLine("Exit Press 0");
+        string? choose1 = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+        int.TryParse(choose1, out int choose);
+        List<BO.TaskInList>? tasks = new List<BO.TaskInList>();
+        while (choose != 0)
+        {
+            Console.WriteLine("Enter id of the task that dependency on this task");
+            string? stringId = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+            int.TryParse(stringId, out int idDependency);
+            Console.WriteLine("Enter alias of the task that dependency on this task");
+            string aliasOfidDependency = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+            Console.WriteLine("Enter alias of the task that dependency on this task");
+            string descriptionOfidDependency = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+            BO.TaskInList newTaskInList = new BO.TaskInList()
+            {
+                Id = idDependency,
+                Alias = aliasOfidDependency,
+                Description = descriptionOfidDependency
+            };
+            tasks.Add(newTaskInList);
+        }
+        if( choose == 0 ) {
+            tasks = updateTask.Dependencies;
+        }
+        Console.WriteLine("Enter id of milestone in task");
+        string? idMilstoneBeforeParse = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+        int.TryParse(idMilstoneBeforeParse, out int idMilstone);
+        if (idMilstoneBeforeParse == "" || idMilstoneBeforeParse == null)
+        {
+            idMilstone = updateTask.Milestone.Id;
+        }
+        Console.WriteLine("Enter scheduled startDate date");
+        string? scheduledStartDateBeforeParse4 = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+        DateTime.TryParse(scheduledStartDateBeforeParse4, out DateTime scheduledStartDate);
+        if (scheduledStartDateBeforeParse4 == "" || scheduledStartDateBeforeParse4 == null)
+        {
+            scheduledStartDate = (DateTime)updateTask.ScheduledStartDate;
+        }
+        Console.WriteLine("Enter task start date");
+        string? startDateBeforeParse5 = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+        DateTime.TryParse(startDateBeforeParse5, out DateTime startDate);
+        if (startDateBeforeParse5 == "" || startDateBeforeParse5 == null)
+        {
+            startDate = (DateTime)updateTask.StartDate;
+        }
+        Console.WriteLine("Enter task forecast date");
+        string? forecastDateBeforeParse = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+        DateTime.TryParse(forecastDateBeforeParse, out DateTime forecastDate);
+        if (forecastDateBeforeParse == "" || forecastDateBeforeParse == null)
+        {
+            forecastDate = (DateTime)updateTask.ForecastDate;
+        }
+        Console.WriteLine("Enter task deadline date");
+        string? deadlineDateBeforeParse = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+        DateTime.TryParse(deadlineDateBeforeParse, out DateTime deadlineDate); Console.WriteLine("Enter task deadline date");
+        if (deadlineDateBeforeParse == "" || deadlineDateBeforeParse == null)
+        {
+            startDate = (DateTime)updateTask.DeadlineDate;
+        }
+        Console.WriteLine("Enter task complete date");
+        string? completeDateBeforeParse = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+        DateTime.TryParse(completeDateBeforeParse, out DateTime completeDate); Console.WriteLine("Enter task deadline date");
+        if (completeDateBeforeParse == "" || completeDateBeforeParse == null)
+        {
+            completeDate = (DateTime)updateTask.CompleteDate;
+        }
+        Console.WriteLine("Enter product deliverables of the task");
+        string? deliverables = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+        if (deliverables == "" || deliverables == null)
+        {
+            deliverables = updateTask.Deliverables;
+        }
+        Console.WriteLine("Enter remarks of the task");
+        string? remarks = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+        if (remarks == "" || remarks == null)
+        {
+            deliverables = updateTask.Remarks;
+        }
+        Console.WriteLine("Enter the id of the engineer");
+        string? engineerIdBeforeParse = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+        int.TryParse(engineerIdBeforeParse, out int engineerId);
+        if(engineerIdBeforeParse == "" || engineerIdBeforeParse == null)
+        {
+            engineerId = updateTask.Engineer.Id;
+        }
+        DateTime createdAt = DateTime.Now;  ///??
+        Console.WriteLine("Enter the level of the task:");
+        Console.WriteLine("For Beginner press 0");
+        Console.WriteLine("For AdvancedBeginner press 1");
+        Console.WriteLine("For Competent press 2");
+        Console.WriteLine("For Proficient press 3");
+        Console.WriteLine("For Expert press 4");
+        string? complexityLevelBeforeParse = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+        int.TryParse(complexityLevelBeforeParse, out int complexityLevel);
+        if (complexityLevelBeforeParse == "" || complexityLevelBeforeParse == null)
+        {
+            complexityLevel = (int)updateTask.ComplexityLevel;
+        }
+        BO.Task newTask = new BO.Task()
+        {
+            Id = 0,
+            Alias = alias,
+            Description = description,
+            CreatedAtDate = createdAt,
+            Status = status,
+            Dependencies = tasks,
+            Milestone = new BO.MilestoneInTask()
+            {
+                Id = idMilstone,
+                Alias = s_bl?.Task.Read(idMilstone)?.Alias!
+            },
+            ScheduledStartDate = scheduledStartDate,
+            StartDate = startDate,
+            ForecastDate = forecastDate,
+            DeadlineDate = deadlineDate,
+            CompleteDate = completeDate,
+            Deliverables = deliverables,
+            Remarks = remarks,
+            Engineer = new BO.EngineerInTask()
+            {
+                Id = engineerId,
+                Name = s_bl.Engineer.Read(engineerId)?.Name!
+            },
+            ComplexityLevel = (BO.EngineerExperience?)complexityLevel
+        };
+        Console.WriteLine(s_bl!.Task.Create(newTask));
+    
+    //Console.WriteLine("Enter a task's ID");
+    //int idTask = int.Parse(Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect"));
+    //if (s_bl?.Task.Read(idTask) != null)
+    //{
+    //    Console.WriteLine(s_bl?.Task.Read(idTask));
+    //}
+    //else
+    //{
+    //    throw new DalDoesNotExistException($"Task with ID={idTask} not exists");
+    //}
+    //DO.Task updateTask = s_bl?.Task.Read(idTask)!;
+    //Console.WriteLine("Enter a description of the task");
+    //string? description = Console.ReadLine();
+    //if (description == "" || description == null)
+    //{
+    //    description = updateTask.Description;
+    //}
+    //Console.WriteLine("Enter an alias of the task");
+    //string? alias = Console.ReadLine();
+    //if (alias == "" || alias == null)
+    //{
+    //    alias = updateTask.Alias;
+    //}
+    //Console.WriteLine("Enter required effort time to the tast");
+    //string requiredEffort1 = Console.ReadLine()!;
+    //TimeSpan requiredEffort;
+    //if (requiredEffort1 == "" || requiredEffort1 == null) //If not update the start date.
+    //{
+    //    requiredEffort = updateTask.RequiredEffort;
+    //}
+    //else
+    //{
+    //    requiredEffort = TimeSpan.Parse(requiredEffort1);
+    //}
+    //Console.WriteLine("Enter task start date");
+    //string? startDate1 = Console.ReadLine();
+    //DateTime? startDate;
+    //if (startDate1 == "" || startDate1 == null) //If not update the start date.
+    //{
+    //    startDate = updateTask.StartDate;
+    //}
+    //else
+    //{
+    //    startDate = DateTime.Parse(startDate1);
+    //}
+    //Console.WriteLine("Enter task scheduled date");
+    //string? scheduledDate1 = Console.ReadLine();
+    //DateTime? scheduledDate;
+    //if (scheduledDate1 == "" || scheduledDate1 == null) //If not update the forecast date.
+    //{
+    //    scheduledDate = updateTask.ScheduledDate;
+    //}
+    //else
+    //{
+    //    scheduledDate = DateTime.Parse(scheduledDate1);
+    //}
+    //Console.WriteLine("Enter task deadline date");
+    //string? deadlineDate1 = Console.ReadLine();
+    //DateTime? deadlineDate;
+    //if (deadlineDate1 == "" || deadlineDate1 == null) //If not update the forecast date.
+    //{
+    //    deadlineDate = updateTask.DeadlineDate;
+    //}
+    //else
+    //{
+    //    deadlineDate = DateTime.Parse(deadlineDate1);
+    //}
+    //Console.WriteLine("Enter task complete date");
+    //string? completeDate1 = Console.ReadLine();
+    //DateTime? completeDate;
+    //if (completeDate1 == "" || completeDate1 == null) //If not update the complete date.
+    //{
+    //    completeDate = updateTask.CompleteDate;
+    //}
+    //else
+    //{
+    //    completeDate = DateTime.Parse(completeDate1);
+    //}
+    //Console.WriteLine("Enter deliverables of the task");
+    //string? deliverables = Console.ReadLine();
+    //if (deliverables == "" || deliverables == null) //If not update the product description.
+    //{
+    //    deliverables = updateTask.Deliverables;
+    //}
+    //Console.WriteLine("Enter remarks of the task");
+    //string? remarks = Console.ReadLine();
+    //if (remarks == "" || remarks == null) //If not update the remarks.
+    //{
+    //    remarks = updateTask.Remarks;
+    //}
+    //Console.WriteLine("Enter the id of the engineer");
+    //string? id = Console.ReadLine();
+    //int? engineerId;
+    //if (id == null || id == "") //If not update the enginner id.
+    //{
+    //    engineerId = updateTask.EngineerId;
+    //}
+    //else
+    //{
+    //    engineerId = int.Parse(id);
+    //}
+    //DateTime CreatedAt = DateTime.Now;
+    //Console.WriteLine("Enter the level of the task:");
+    //Console.WriteLine("For Beginner press 0");
+    //Console.WriteLine("For AdvancedBeginner press 1");
+    //Console.WriteLine("For Competent press 2");
+    //Console.WriteLine("For Proficient press 3");
+    //Console.WriteLine("For Expert press 4");
+    //string? level1 = Console.ReadLine();
+    //int level;
+    //if (level1 == null || level1 == "") //If not update the level.
+    //{
+    //    level = (int)updateTask.ComplexityLevel!;
+    //}
+    //else
+    //{
+    //    level = int.Parse(level1);
+    //}
+    //Console.WriteLine("Enter if the task is active or not(Y/N)");
+    //bool active;
+    //string active1 = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+    //if (active1 == null || active1 == "") //If not update the cost.
+    //{
+    //    active = updateTask.Active;
+    //}
+    //else
+    //{
+    //    if (active1 == "Y")
+    //        active = true;
+    //    else active = false;
+    //}
+    //DO.Task newTask = new DO.Task(idTask, description, alias, updateTask.CreatedAtDate, requiredEffort, false, startDate, scheduledDate, deadlineDate, completeDate, deliverables, remarks, engineerId, (EngineerExperience)level, active);
+    //try
+    //{
+    //   s_bl?.Task.Update(newTask); // Input the new id of the task.
+    //}
+    //catch (Exception ex)
+    //{
+
+    //    Console.WriteLine(ex);
+    //}
 
     }
 
