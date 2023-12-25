@@ -1,6 +1,5 @@
 ﻿using BlApi;
 
-
 namespace BlImplementation;
 
 internal class EngineerImplementation : IEngineer
@@ -52,12 +51,18 @@ internal class EngineerImplementation : IEngineer
         DO.Engineer? engneerToDelete = _dal.Engineer.Read(id);
         if (engneerToDelete is not null)
         {
-            BO.TaskInEngineer Task = new BO.TaskInEngineer()
+            BO.TaskInEngineer task = new BO.TaskInEngineer()
             {
                 Id = (int)(_dal.Task.ReadAll().FirstOrDefault(task => task?.EngineerId == engneerToDelete.Id)?.Id!),
                 Alias = _dal.Task.ReadAll().FirstOrDefault(task => task?.EngineerId == engneerToDelete.Id)?.Alias!
             };
-            if(Task?.Id == null) { }
+            if(task?.Id != null)
+            { 
+            //    if(ITask.Read(task.Id)?.Status == BO.Status.OnTrack || ITask.Read(task.Id)?.Status == BO.Status.OnTrack)
+            //    {
+
+            //    }
+            }
             _dal.Engineer.Delete(engneerToDelete.Id);//עשינו שאי אפשר לממחוק אז איך אפשר לשלוח לשם
 
         }
