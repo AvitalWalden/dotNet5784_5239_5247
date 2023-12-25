@@ -1,4 +1,5 @@
-﻿using DalApi;
+﻿
+using DalApi;
 
 
 
@@ -6,29 +7,69 @@ internal class Program
 {
     static readonly BlApi.IBl s_bl = BlApi.Factory.Get();
 
-    // The function create a new task.
+    /// <summary>
+    /// The function create a new task
+    /// </summary>
+    /// <exception cref="BO.BlInvalidEnteredValue">exeption of the entered value is incorrect</exception>
     public static void CreateTask()
     {
         Console.WriteLine("Enter a description of the task");
         string description = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
         Console.WriteLine("Enter an alias of the task");
         string alias = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
-        Console.WriteLine("Enter required effort time to the tast");
-        TimeSpan requiredEffort = TimeSpan.Parse(Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect"));
+        Console.WriteLine("Enter an alias of the task");
+        string descriptionTask = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+        //// Console.WriteLine("Enter task Created task date");
+        Console.WriteLine("Enter status of stak");
+        string? chooseBeforeParse2 = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+        BO.Status.TryParse(chooseBeforeParse2, out BO.Status status);
+        Console.WriteLine("To add a dependency to a task, press 1");
+        Console.WriteLine("Exit Press 0");
+        string? choose1 = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+        int.TryParse(choose1, out int choose);
+        List<BO.TaskInList>? tasks = new List<BO.TaskInList>();
+        while (choose != 0)
+        {
+            Console.WriteLine("Enter id of the task that dependency on this task");
+            string? stringId = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+            int.TryParse(stringId, out int idDependency);
+            Console.WriteLine("Enter alias of the task that dependency on this task");
+            string aliasOfidDependency = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+            Console.WriteLine("Enter alias of the task that dependency on this task");
+            string descriptionOfidDependency = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+            BO.TaskInList newTaskInList = new BO.TaskInList()
+            {
+                Id = idDependency,
+                Alias = aliasOfidDependency,
+                Description = descriptionOfidDependency
+            };
+            tasks.Add(newTaskInList);
+        }
+        Console.WriteLine("Enter id of milestone in task");
+        string? chooseBeforeParse3 = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+        int.TryParse(chooseBeforeParse3, out int idMilstone);
+        Console.WriteLine("Enter scheduled startDate date");
+        string? chooseBeforeParse4 = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+        DateTime.TryParse(chooseBeforeParse4, out DateTime scheduledStartDate);
         Console.WriteLine("Enter task start date");
-        DateTime? startDate = DateTime.Parse(Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect"));
-        Console.WriteLine("Enter task Scheduled date");
-        DateTime? ScheduledDate = DateTime.Parse(Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect"));
+        string? chooseBeforeParse5 = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+        DateTime.TryParse(chooseBeforeParse5, out DateTime startDate);
+        Console.WriteLine("Enter task forecast date");
+        string? chooseBeforeParse6 = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+        DateTime.TryParse(chooseBeforeParse6, out DateTime forecastDate); Console.WriteLine("Enter task deadline date");
         Console.WriteLine("Enter task deadline date");
-        DateTime? deadlineDate = DateTime.Parse(Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect"));
+        string? chooseBeforeParse7 = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+        DateTime.TryParse(chooseBeforeParse7, out DateTime deadlineDate); Console.WriteLine("Enter task deadline date");
         Console.WriteLine("Enter task complete date");
-        DateTime? completeDate = DateTime.Parse(Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect"));
+        string? chooseBeforeParse8 = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+        DateTime.TryParse(chooseBeforeParse8, out DateTime completeDate); Console.WriteLine("Enter task deadline date");
         Console.WriteLine("Enter product deliverables of the task");
         string? deliverables = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
         Console.WriteLine("Enter remarks of the task");
         string? remarks = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
         Console.WriteLine("Enter the id of the engineer");
-        int? engineerId = int.Parse(Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect"));
+        string? chooseBeforeParse9 = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+        int.TryParse(chooseBeforeParse9, out int engineerId); 
         DateTime createdAt = DateTime.Now;
         Console.WriteLine("Enter the level of the task:");
         Console.WriteLine("For Beginner press 0");
@@ -36,9 +77,36 @@ internal class Program
         Console.WriteLine("For Competent press 2");
         Console.WriteLine("For Proficient press 3");
         Console.WriteLine("For Expert press 4");
-        int level = int.Parse(Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect"));
-      //  DO.Task newTask = new DO.Task(0, description, alias, createdAt, requiredEffort, false, startDate, ScheduledDate, deadlineDate, completeDate, deliverables, remarks, engineerId, (EngineerExperience)level);
-       // Console.WriteLine(s_bl!.Task.Create(newTask)); // Input the new id of the task.
+        string? chooseBeforeParse10 = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+        int.TryParse(chooseBeforeParse10, out int complexityLevel);
+        BO.Task newTask = new BO.Task()
+        {
+            Id = 0,
+            Alias = alias,
+            Description = descriptionTask,
+            CreatedAtDate = createdAt,
+            Status = status,
+            Dependencies = tasks,
+            Milestone = new BO.MilestoneInTask()
+            {
+                Id = idMilstone,
+                Alias = s_bl.Task.Read(idMilstone)?.Alias!
+            },
+            ScheduledStartDate = scheduledStartDate,
+            StartDate = startDate,
+            ForecastDate = forecastDate,
+            DeadlineDate = deadlineDate,
+            CompleteDate = completeDate,
+            Deliverables = deliverables,
+            Remarks = remarks,
+            Engineer = new BO.EngineerInTask()
+            {
+                Id = engineerId,
+                Name = s_bl.Engineer.Read(engineerId)?.Name!
+            },
+            ComplexityLevel = (BO.EngineerExperience?)complexityLevel
+        };
+        Console.WriteLine(s_bl!.Task.Create(newTask));
     }
 
     // The function update a task.
@@ -191,24 +259,24 @@ internal class Program
     // The function read all tasks.
     public static void ReadAllTasks()
     {
-        //IEnumerable<DO.Task?> tasks = s_bl?.Task.ReadAll() ?? throw new DalDataListIsEmpty("There are no tasks.");
-        //foreach (var task in tasks)
-        //{
-        //    Console.WriteLine(task);
-        //}
+        IEnumerable<BO.Task?> tasks = s_bl?.Task.ReadAll() ?? throw new BO.BlDataListIsEmpty("There are no tasks.");
+        foreach (var task in tasks)
+        {
+            Console.WriteLine(task);
+        }
     }
 
     // The function read a Task by ID.
     public static void ReadTask(int idTask)
     {
-        //if (s_bl?.Task.Read(idTask) == null)
-        //{
-        //    throw new DalDoesNotExistException($"Task with ID={idTask} not exists");
-        //}
-        //else
-        //{
-        //    Console.WriteLine(s_bl?.Task.Read(idTask));
-        //}
+        if (s_bl?.Task.Read(idTask) == null)
+        {
+            throw new BO.BlDoesNotExistException($"Task with ID={idTask} not exists");
+        }
+        else
+        {
+            Console.WriteLine(s_bl?.Task.Read(idTask));
+        }
     }
 
     // The function delete a task.
@@ -533,7 +601,7 @@ internal class Program
                 switch (choose)
                 {
                     case 1:
-                        //_product(cart);
+                        Tasks();
                         break;
                     case 2:
                         Engineers();
