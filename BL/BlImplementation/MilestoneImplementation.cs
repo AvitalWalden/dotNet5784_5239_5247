@@ -31,14 +31,14 @@ internal class MilestoneImplementation : IMilestone
         {
             throw new Exception("Milestone remarks cannot be empty or null");
         }
-        DO.Task doMilestone = new DO.Task(boMilestone.Id, boMilestone.Alias, boMilestone.Description,boMilestone.CreatedAtDate,/////////////);
-        try
-        {
-            _dal.Task.Update(doMilestone);
-        }
-        catch (DO.DalDoesNotExistException)
-        {
-            throw new BO.BlDoesNotExistException($"Task with ID={boMilestone.Id}  does not exist");
-        }
+     //   DO.Task doMilestone = new DO.Task(boMilestone.Id, boMilestone.Alias, boMilestone.Description,boMilestone.CreatedAtDate,/////////////);
+        //try
+        //{
+        //    _dal.Task.Update(doMilestone);
+        //}
+        //catch (DO.DalDoesNotExistException)
+        //{
+        //    throw new BO.BlDoesNotExistException($"Task with ID={boMilestone.Id}  does not exist");
+        //}
     }
 }

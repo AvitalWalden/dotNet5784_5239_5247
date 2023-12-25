@@ -1,5 +1,4 @@
 ﻿using BlApi;
-
 namespace BlImplementation;
 
 internal class TaskImplementation : ITask
@@ -15,18 +14,24 @@ internal class TaskImplementation : ITask
         {
             throw new Exception("Task description cannot be empty or null");
         }
+       
         DO.Task doTask = new DO.Task
         (
             boTask.Id,
             boTask.Alias,
             boTask.Description,
             boTask.CreatedAtDate,
-            (TimeSpan)(boTask.StartDate - boTask.CompleteDate),
-            true,
-            boTask.StartDate,
+            (TimeSpan)(boTask.StartDate - boTask.CompleteDate)
+            //true,
+            //boTask.StartDate,
 
 
         ) ;
+        //(from BO.TaskInList doDependency in boTask.Dependencies
+        //    select { DO.Dependency dep = new DO.Dependency(0, boTask.Id, doDependency.Id);
+
+          
+        //);
         try
         {
             int idTask = _dal.Task.Create(doTask);
@@ -34,9 +39,8 @@ internal class TaskImplementation : ITask
         }
         catch (DO.DalAlreadyExistsException ex)
         {
-            throw new BlAlreadyExistsException($"Task with ID={boTask.Id} already exists", ex);
+            throw new BO.BlAlreadyExistsException($"Task with ID={boTask.Id} already exists", ex);
         }
-        return 0;
     }
 
     public void Delete(int id)
@@ -56,24 +60,24 @@ internal class TaskImplementation : ITask
             Description = doTask.Description,
             Alias = doTask.Alias,
             CreatedAtDate = doTask.CreatedAtDate,
-            Status = ,
-            Milestone = new BO.MilestoneInTask()
-            {
+            //Status = ,
+            //Milestone = new BO.MilestoneInTask()
+            //{
                 
-            },
-            StartDate = doTask.StartDate,
-            ScheduledStartDate = doTask.ScheduledDate,
-            ForecastDate = doTask.ScheduledDate,
-            DeadlineDate = doTask.DeadlineDate,
-            CompleteDate = doTask.CompleteDate,
-            Deliverables = doTask.Deliverables,
-            Remarks = doTask.Remarks,
-            Engineer = new BO.EngineerInTask()
-            {
-                Id = (int)(_dal.Engineer.ReadAll().FirstOrDefault(engineer => engineer?.Id == doTask.EngineerId)?.Id!),
-                Alias = _dal.Task.ReadAll().FirstOrDefault(engineer => engineer?.Id == doTask.EngineerId)?.Alias!
-            },
-            ComplexityLevel = (BO.EngineerExperience)doTask.ComplexityLevel,
+            //},
+            //StartDate = doTask.StartDate,
+            //ScheduledStartDate = doTask.ScheduledDate,
+            //ForecastDate = doTask.ScheduledDate,
+            //DeadlineDate = doTask.DeadlineDate,
+            //CompleteDate = doTask.CompleteDate,
+            //Deliverables = doTask.Deliverables,
+            //Remarks = doTask.Remarks,
+            //Engineer = new BO.EngineerInTask()
+            //{
+            //    Id = (int)(_dal.Engineer.ReadAll().FirstOrDefault(engineer => engineer?.Id == doTask.EngineerId)?.Id!),
+            //    Alias = _dal.Task.ReadAll().FirstOrDefault(engineer => engineer?.Id == doTask.EngineerId)?.Alias!
+            //},
+            //ComplexityLevel = (BO.EngineerExperience)doTask.ComplexityLevel,
         };
     }
 
@@ -87,25 +91,25 @@ internal class TaskImplementation : ITask
                                                          Description = doTask.Description,
                                                          Alias = doTask.Alias,
                                                          CreatedAtDate = doTask.CreatedAtDate,
-                                                         Status = ,
-                                                         Milestone = new BO.MilestoneInTask()
-                                                         {
-                                                             Id = (int)(_dal.Task.ReadAll().FirstOrDefault(task => task?.EngineerId == doTask.Id)?.Id!),
-                                                             Alias = _dal.Task.ReadAll().FirstOrDefault(task => task?.EngineerId == doTask.Id)?.Alias!
-                                                         },
-                                                         StartDate = doTask.StartDate,
-                                                         ScheduledStartDate = doTask.ScheduledDate,
-                                                         ForecastDate = doTask.,/////////////////
-                                                         DeadlineDate = doTask.DeadlineDate,
-                                                         CompleteDate = doTask.CompleteDate,
-                                                         Deliverables = doTask.Deliverables,
-                                                         Remarks = doTask.Remarks,
-                                                         Engineer = new BO.EngineerInTask()
-                                                         {
-                                                             Id = (int)(_dal.Engineer.ReadAll().FirstOrDefault(engineer => engineer?.Id == doTask.EngineerId)?.Id!),
-                                                             Alias = _dal.Task.ReadAll().FirstOrDefault(engineer => engineer?.Id == doTask.EngineerId)?.Alias!
-                                                         },
-                                                         ComplexityLevel = (BO.EngineerExperience)doTask.ComplexityLevel,
+                                                         //Status = ,
+                                                         //Milestone = new BO.MilestoneInTask()
+                                                         //{
+                                                         //    Id = (int)(_dal.Task.ReadAll().FirstOrDefault(task => task?.EngineerId == doTask.Id)?.Id!),
+                                                         //    Alias = _dal.Task.ReadAll().FirstOrDefault(task => task?.EngineerId == doTask.Id)?.Alias!
+                                                         //},
+                                                         //StartDate = doTask.StartDate,
+                                                         //ScheduledStartDate = doTask.ScheduledDate,
+                                                         //ForecastDate = doTask.,/////////////////
+                                                         //DeadlineDate = doTask.DeadlineDate,
+                                                         //CompleteDate = doTask.CompleteDate,
+                                                         //Deliverables = doTask.Deliverables,
+                                                         //Remarks = doTask.Remarks,
+                                                         //Engineer = new BO.EngineerInTask()
+                                                         //{
+                                                         //    Id = (int)(_dal.Engineer.ReadAll().FirstOrDefault(engineer => engineer?.Id == doTask.EngineerId)?.Id!),
+                                                         //    Alias = _dal.Task.ReadAll().FirstOrDefault(engineer => engineer?.Id == doTask.EngineerId)?.Alias!
+                                                         //},
+                                                         //ComplexityLevel = (BO.EngineerExperience)doTask.ComplexityLevel,
                                                      });
         if (filter != null)
         {

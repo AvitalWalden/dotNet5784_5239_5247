@@ -9,7 +9,7 @@ public class Task
     public required string Description { get; set; } // דרש
     public DateTime CreatedAtDate { get; set; } //required?
     public Status? Status { get; set; } = null;
-    public TaskInList? Dependency { get; set; } //?
+    public List<TaskInList>? Dependencies { get; set; } = null;
     public MilestoneInTask? Milestone { get; set; } = null;
     //public DateTime? BaselineStartDate { get; set; } = null; 
     public DateTime? ScheduledStartDate { get; set; } = null;
