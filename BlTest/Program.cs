@@ -1,7 +1,4 @@
 ﻿
-
-using System.Xml.Linq;
-
 internal class Program
 {
     static readonly BlApi.IBl s_bl = BlApi.Factory.Get();
@@ -733,13 +730,13 @@ internal class Program
         {
             Console.WriteLine(ex);
         }
-        Console.WriteLine("Enter the project start date (yyyy-MM-ddTHH:mm:ss):");
-        string? startDateString = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
-        DateTime.TryParse(startDateString, out DateTime startDate);
-        DalApi.Factory.Get.startDateProject = startDate;
-        Console.WriteLine("Enter the project end date (yyyy-MM-ddTHH:mm:ss):");
-        string? endDateString = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
-        DateTime.TryParse(endDateString, out DateTime endDate);
-        DalApi.Factory.Get.endDateProject = endDate;
+        //Console.WriteLine("Enter the project start date (yyyy-MM-ddTHH:mm:ss):");
+        //string? startDateString = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+        //DateTime.TryParse(startDateString, out DateTime startDate);
+        //DalApi.Factory.Get.startDateProject = startDate; 
+        //Console.WriteLine("Enter the project end date (yyyy-MM-ddTHH:mm:ss):");
+        //string? endDateString = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+        //DateTime.TryParse(endDateString, out DateTime endDate);
+        //DalApi.Factory.Get.endDateProject = endDate;
     }
 }
