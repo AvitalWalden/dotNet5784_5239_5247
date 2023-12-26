@@ -18,8 +18,9 @@ public class Task
     public DateTime? DeadlineDate { get; set; } 
     public DateTime? CompleteDate { get; set; } 
     public string? Deliverables { get; set; } 
-    public string? Remarks { get; set; } 
-    public Tuple<int, string>? Engineer { get; set; }
+    public string? Remarks { get; set; }
+    // public Tuple<int, string>? Engineer { get; set; }
+    public EngineerInTask? Engineer { get; set; }
     public EngineerExperience? ComplexityLevel { get; set; } = null;
     public override string ToString() => this.ToStringProperty();
 }
