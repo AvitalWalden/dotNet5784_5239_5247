@@ -20,12 +20,12 @@ internal class Program
         string descriptionTask = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
         //// Console.WriteLine("Enter task Created task date");
         Console.WriteLine("Enter status of stak");
-        string? chooseBeforeParse2 = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
-        BO.Status.TryParse(chooseBeforeParse2, out BO.Status status);
+        string? chooseStatusBeforeParse = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+        BO.Status.TryParse(chooseStatusBeforeParse, out BO.Status status);
         Console.WriteLine("To add a dependency to a task, press 1");
         Console.WriteLine("Exit Press 0");
-        string? choose1 = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
-        int.TryParse(choose1, out int choose);
+        string? chooseString = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+        int.TryParse(chooseString, out int choose);
         List<BO.TaskInList>? tasks = new List<BO.TaskInList>();
         while (choose != 0)
         {
@@ -45,30 +45,30 @@ internal class Program
             tasks.Add(newTaskInList);
         }
         Console.WriteLine("Enter id of milestone in task");
-        string? chooseBeforeParse3 = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
-        int.TryParse(chooseBeforeParse3, out int idMilstone);
+        string? chooseIdMilstoneBeforeParse = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+        int.TryParse(chooseIdMilstoneBeforeParse, out int idMilstone);
         Console.WriteLine("Enter scheduled startDate date");
-        string? chooseBeforeParse4 = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
-        DateTime.TryParse(chooseBeforeParse4, out DateTime scheduledStartDate);
+        string? chooseScheduledStartDateBeforeParse = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+        DateTime.TryParse(chooseScheduledStartDateBeforeParse, out DateTime scheduledStartDate);
         Console.WriteLine("Enter task start date");
-        string? chooseBeforeParse5 = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
-        DateTime.TryParse(chooseBeforeParse5, out DateTime startDate);
+        string? choosestartDateBeforeParse = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+        DateTime.TryParse(choosestartDateBeforeParse, out DateTime startDate);
         Console.WriteLine("Enter task forecast date");
-        string? chooseBeforeParse6 = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
-        DateTime.TryParse(chooseBeforeParse6, out DateTime forecastDate); Console.WriteLine("Enter task deadline date");
+        string? chooseforecastDateBeforeParse = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+        DateTime.TryParse(chooseforecastDateBeforeParse, out DateTime forecastDate); Console.WriteLine("Enter task deadline date");
         Console.WriteLine("Enter task deadline date");
-        string? chooseBeforeParse7 = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
-        DateTime.TryParse(chooseBeforeParse7, out DateTime deadlineDate); Console.WriteLine("Enter task deadline date");
+        string? chooseDeadlineDateBeforeParse = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+        DateTime.TryParse(chooseDeadlineDateBeforeParse, out DateTime deadlineDate); Console.WriteLine("Enter task deadline date");
         Console.WriteLine("Enter task complete date");
-        string? chooseBeforeParse8 = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
-        DateTime.TryParse(chooseBeforeParse8, out DateTime completeDate); Console.WriteLine("Enter task deadline date");
+        string? choosecompleteDateBeforeParse = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+        DateTime.TryParse(choosecompleteDateBeforeParse, out DateTime completeDate); Console.WriteLine("Enter task deadline date");
         Console.WriteLine("Enter product deliverables of the task");
         string? deliverables = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
         Console.WriteLine("Enter remarks of the task");
         string? remarks = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
         Console.WriteLine("Enter the id of the engineer");
-        string? chooseBeforeParse9 = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
-        int.TryParse(chooseBeforeParse9, out int engineerId); 
+        string? chooseEngineerIdBeforeParse = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+        int.TryParse(chooseEngineerIdBeforeParse, out int engineerId); 
         DateTime createdAt = DateTime.Now;
         Console.WriteLine("Enter the level of the task:");
         Console.WriteLine("For Beginner press 0");
@@ -76,8 +76,8 @@ internal class Program
         Console.WriteLine("For Competent press 2");
         Console.WriteLine("For Proficient press 3");
         Console.WriteLine("For Expert press 4");
-        string? chooseBeforeParse10 = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
-        int.TryParse(chooseBeforeParse10, out int complexityLevel);
+        string? chooseComplexityLevelBeforeParse = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+        int.TryParse(chooseComplexityLevelBeforeParse, out int complexityLevel);
         BO.Task newTask = new BO.Task()
         {
             Id = 0,
@@ -98,11 +98,11 @@ internal class Program
             CompleteDate = completeDate,
             Deliverables = deliverables,
             Remarks = remarks,
-            Engineer = new Tuple<int, string>
-            (
-                 engineerId,
-                s_bl.Engineer.Read(engineerId)?.Name!
-            ),
+            Engineer = new BO.EngineerInTask()
+            {
+                Id = engineerId,
+                Name = s_bl?.Engineer.Read(engineerId)?.Name!
+            },
             ComplexityLevel = (BO.EngineerExperience?)complexityLevel
         };
         Console.WriteLine(s_bl!.Task.Create(newTask));
@@ -231,7 +231,7 @@ internal class Program
         int.TryParse(engineerIdBeforeParse, out int engineerId);
         if(engineerIdBeforeParse == "" || engineerIdBeforeParse == null)
         {
-            engineerId = updateTask.Engineer.Item1;
+            engineerId = updateTask.Engineer.Id;
         }
         DateTime createdAt = DateTime.Now;  ///??
         Console.WriteLine("Enter the level of the task:");
@@ -266,11 +266,11 @@ internal class Program
             CompleteDate = completeDate,
             Deliverables = deliverables,
             Remarks = remarks,
-            Engineer = new Tuple<int, string>
-            (
-                engineerId,
-                s_bl?.Engineer.Read(engineerId)?.Name!
-            ),
+            Engineer = new BO.EngineerInTask()
+            {
+                Id = engineerId,
+                Name = s_bl?.Engineer.Read(engineerId)?.Name!
+            },
             ComplexityLevel = (BO.EngineerExperience?)complexityLevel
         };
         Console.WriteLine(s_bl!.Task.Create(newTask));
