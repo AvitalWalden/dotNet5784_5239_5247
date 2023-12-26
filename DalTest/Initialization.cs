@@ -44,9 +44,21 @@ public static class Initialization
            (322258965, "Tali Rubin","Chaim@gmail.com", (EngineerExperience)2, 230),//23
         };
 
-        for (int i = 0; i < detailsEngineer.Length; i++)
+        //for (int i = 0; i < detailsEngineer.Length; i++)
+        //{
+        //    Engineer newEngineer = new(detailsEngineer[i].Item1, detailsEngineer[i].Item2, detailsEngineer[i].Item3, detailsEngineer[i].Item4, detailsEngineer[i].Item5);
+        //    try
+        //    {
+        //        s_dal!.Engineer.Create(newEngineer);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Console.WriteLine(e);
+        //    }
+        //}
+        foreach (var engineerDetails in detailsEngineer)
         {
-            Engineer newEngineer = new(detailsEngineer[i].Item1, detailsEngineer[i].Item2, detailsEngineer[i].Item3, detailsEngineer[i].Item4, detailsEngineer[i].Item5);
+            Engineer newEngineer = new(engineerDetails.Item1, engineerDetails.Item2, engineerDetails.Item3, engineerDetails.Item4, engineerDetails.Item5);
             try
             {
                 s_dal!.Engineer.Create(newEngineer);
@@ -56,6 +68,7 @@ public static class Initialization
                 Console.WriteLine(e);
             }
         }
+
     }
 
     // Create 20 tasks
@@ -129,18 +142,16 @@ public static class Initialization
             (21 ,14), (21 ,13), (21 ,12), (21 ,11), (21 ,10), (21 ,9), (21 ,8), (21 ,7), (21 ,6) , (22 ,21)
         };
 
-        for (int i = 0; i < dependencies.Length; i++)
+        foreach (var dependencyTuple in dependencies)
         {
-            Dependency dependency = new Dependency(0, dependencies[i].Item1, dependencies[i].Item2);
             try
             {
-                s_dal!.Dependency.Create(dependency);
+                s_dal!.Dependency.Create(new Dependency(0, dependencyTuple.Item1, dependencyTuple.Item2));
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
             }
-
         }
     }
     public static void Do()

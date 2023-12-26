@@ -8,13 +8,13 @@ public class Milestone
     public required string Description { get; set; }
     public required string Alias { get; set; }
     public DateTime CreatedAtDate { get; set; }
-    public Status? Status { get; set; } = null;
-    public DateTime? StartDate { get; set; } = null;
-    public DateTime? ForecastDate { get; set; } = null;
-    public DateTime? DeadlineDate { get; set; } = null;
-    public DateTime? CompleteDate { get; set; } = null;
-    public double? CompletionPercentage { get; set; } = null;
-    public string? Remarks { get; set; } = null;
-    public List<TaskInList>? Dependencies { get; set; } = null;
+    public Status? Status { get; set; }
+    public DateTime? StartDate { get; set; }
+    public DateTime? ForecastDate { get; set; }
+    public DateTime? DeadlineDate { get; set; }
+    public DateTime? CompleteDate { get; set; }
+    public double? CompletionPercentage { get; set; }
+    public string? Remarks { get; set; }
+    public List<TaskInList>? Dependencies { get; set; }
     public override string ToString() => this.ToStringProperty();
 }
