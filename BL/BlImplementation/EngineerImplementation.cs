@@ -78,7 +78,7 @@ internal class EngineerImplementation : IEngineer
     /// <param name="id">the name of the engineer who search for</param>
     /// <returns>Constructed engineer object</returns>
     /// <exception cref="BO.BlDoesNotExistException">No suitable data layer engineer exists</exception>
-    public BO.Engineer? Read(int id)
+    public BO.Engineer? Read(int id) // לטפל אם אין לא משימה רוחמה או אפרת קליין
     {
         DO.Engineer? doEngineer = _dal.Engineer.Read(id);
         if (doEngineer == null)
@@ -93,7 +93,7 @@ internal class EngineerImplementation : IEngineer
             Cost = doEngineer.Cost,
             Task = new BO.TaskInEngineer()
             {
-                Id = (int)(_dal.Task.ReadAll().FirstOrDefault(task => task?.EngineerId == doEngineer.Id)?.Id!),
+                Id = (int)(_dal.Task.ReadAll().FirstOrDefault(task => task?.EngineerId == doEngineer.Id)?.Id),
                 Alias = _dal.Task.ReadAll().FirstOrDefault(task => task?.EngineerId == doEngineer.Id)?.Alias!
             }
         };

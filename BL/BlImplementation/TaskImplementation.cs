@@ -30,7 +30,7 @@ internal class TaskImplementation : ITask
             boTask.CompleteDate,
             boTask.Deliverables,
             boTask.Remarks,
-            boTask.Engineer?.Id,
+            boTask.Engineer.Item1,
             (DO.EngineerExperience)boTask.ComplexityLevel //---
         ) ;
         foreach (BO.TaskInList doDependency in boTask.Dependencies)
@@ -88,11 +88,10 @@ internal class TaskImplementation : ITask
             CompleteDate = doTask.CompleteDate,
             Deliverables = doTask.Deliverables,
             Remarks = doTask.Remarks,
-            Engineer = new BO.EngineerInTask()
-            {
-                Id = (int)(_dal.Engineer.ReadAll().FirstOrDefault(engineer => engineer?.Id == doTask.EngineerId)?.Id!),
-                Name = _dal.Engineer.Read((int)(_dal.Engineer.ReadAll().FirstOrDefault(engineer => engineer?.Id == doTask.EngineerId)?.Id!))!.Name
-            },
+            Engineer = new Tuple<int, string> (
+               (int)(_dal.Engineer.ReadAll().FirstOrDefault(engineer => engineer?.Id == doTask.EngineerId)?.Id!),
+                _dal.Engineer.Read((int)(_dal.Engineer.ReadAll().FirstOrDefault(engineer => engineer?.Id == doTask.EngineerId)?.Id!))!.Name
+            ),
             ComplexityLevel = (BO.EngineerExperience)doTask.ComplexityLevel,
         };
     }
@@ -129,11 +128,11 @@ internal class TaskImplementation : ITask
                                                 CompleteDate = doTask.CompleteDate,
                                                 Deliverables = doTask.Deliverables,
                                                 Remarks = doTask.Remarks,
-                                                Engineer = new BO.EngineerInTask()
-                                                {
-                                                    Id = (int)(_dal.Engineer.ReadAll().FirstOrDefault(engineer => engineer?.Id == doTask.EngineerId)?.Id!),
-                                                    Name = _dal.Engineer.Read((int)(_dal.Engineer.ReadAll().FirstOrDefault(engineer => engineer?.Id == doTask.EngineerId)?.Id!))!.Name
-                                                },
+                                                Engineer = new Tuple<int, string>
+                                                (
+                                                    (int)(_dal.Engineer.ReadAll().FirstOrDefault(engineer => engineer?.Id == doTask.EngineerId)?.Id!),
+                                                    _dal.Engineer.Read((int)(_dal.Engineer.ReadAll().FirstOrDefault(engineer => engineer?.Id == doTask.EngineerId)?.Id!))!.Name
+                                                ),
                                                 ComplexityLevel = (BO.EngineerExperience)doTask.ComplexityLevel,
                                             });
         if (filter != null)
@@ -169,7 +168,7 @@ internal class TaskImplementation : ITask
             boTask.CompleteDate,
             boTask.Deliverables,
             boTask.Remarks,
-            boTask.Engineer?.Id,
+            boTask.Engineer?.Item1,
             (DO.EngineerExperience)boTask.ComplexityLevel //---
         );
         foreach (BO.TaskInList doDependency in boTask.Dependencies)

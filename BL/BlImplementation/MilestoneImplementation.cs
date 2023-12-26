@@ -10,30 +10,29 @@ internal class MilestoneImplementation : IMilestone
     {
         // יצירת רשימה מקובצת על פי מפתח - משימה תלויה
         var groupedDependencies = _dal.Dependency.ReadAll()
-            .Select(dependency => new { TaskId = dependency.DependentTask, DependsOnTaskId = dependency.DependsOnTask })
-            .GroupBy(dep => dep.DependsOnTaskId)
-            .OrderBy(group => group.Key)
+            .OrderBy(dep => dep.DependsOnTask)
+            .GroupBy(dep => dep.DependentTask, dep => dep.DependsOnTask, (id, dependency)=> new { TaskId = id, Dependencies = dependency })
             .ToList();
 
         // יצירת רשימה מסוננת שבה כל ערך מופיע רק פעם אחת
-        var distinctDependencies = groupedDependencies
-            .Select(group => new { TaskId = group.Key, Dependencies = group.Select(dep => dep.TaskId).Distinct().ToList() })
-            .ToList();
+     //   var distinctDependencies = groupedDependencies
+     //       .Select(group => new { TaskId = group.Key, Dependencies = group.Select(dep => dep.TaskId).Distinct().ToList() })
+     //       .ToList();
 
-        // יצירת אבני דרך
-        var milestones = distinctDependencies.Select(dep => new { MilestoneId = dep.TaskId, Dependencies = dep.Dependencies }).ToList();
+     //   // יצירת אבני דרך
+     //   var milestones = distinctDependencies.Select(dep => new { MilestoneId = dep.TaskId, Dependencies = dep.Dependencies }).ToList();
 
-        // הוספת תלות נוספות עבור כל משימה שלא תלויה באף משימה קודמת
-        var projectStartMilestone = new { MilestoneId = 0, Dependencies = new List<int>() };
-        projectStartMilestone.Dependencies.AddRange( _dal.Dependency.ReadAll().Select(task => task.Id));
-     //   milestones.Insert(0, projectStartMilestone);
+     //   // הוספת תלות נוספות עבור כל משימה שלא תלויה באף משימה קודמת
+     //   var projectStartMilestone = new { MilestoneId = 0, Dependencies = new List<int>() };
+     //   projectStartMilestone.Dependencies.AddRange( _dal.Dependency.ReadAll().Select(task => task.Id));
+     ////   milestones.Insert(0, projectStartMilestone);
 
-        // עכשיו אתה יכול לעבוד עם רשימת האבנים והתלויות החדשה
-        Console.WriteLine("Milestones and Dependencies:");
-        foreach (var milestone in milestones)
-        {
-            Console.WriteLine($"Milestone {milestone.MilestoneId}: {string.Join(", ", milestone.Dependencies)}");
-        }
+     //   // עכשיו אתה יכול לעבוד עם רשימת האבנים והתלויות החדשה
+     //   Console.WriteLine("Milestones and Dependencies:");
+     //   foreach (var milestone in milestones)
+     //   {
+     //       Console.WriteLine($"Milestone {milestone.MilestoneId}: {string.Join(", ", milestone.Dependencies)}");
+     //   }
         throw new NotImplementedException();
     }
 
