@@ -7,7 +7,7 @@ namespace BlImplementation;
 internal class MilestoneImplementation : IMilestone
 {
     private DalApi.IDal _dal = DalApi.Factory.Get;
-    public int Create(BO.Milestone item)
+    public void Create(List<BO.TaskInList> Dependency)
     {
         // יצירת רשימה מקובצת על פי מפתח - משימה תלויה
         var groupedDependencies = _dal.Dependency.ReadAll()
@@ -23,48 +23,68 @@ internal class MilestoneImplementation : IMilestone
          .ToList();
 
         // יצירת אבן דרך עבור כל ערך ברשימת התלויות החדשה
-        //var milestones = distinctDependencies
-        //    .Select(dep => new BO.Milestone
-        //    {
-        //        Id = dep.Value, // השמה של מזהה המשימה התלויה
-        //        Description = $"Milestone for Task {dep.Value}", // תיאור אוטומטי
-        //        Alias = $"Milestone-{dep.Value}", // קיצור אוטומטי
-        //        CreatedAtDate = DateTime.Now, // זמן יצירה
-        //        Status = BO.Status.Scheduled, // סטטוס עבור אבן דרך חדשה
-        //        StartDate = null, // תאריך התחלה - אפשר להשיב בהתאם לדרישות העסקיות
-        //        ForecastDate = null, // תאריך תחזית - אפשר להשיב בהתאם לדרישות העסקיות
-        //        DeadlineDate = null, // תאריך סיום אחרון - אפשר להשיב בהתאם לדרישות העסקיות
-        //        CompleteDate = null, // תאריך סיום בפועל - אפשר להשיב בהתאם לדרישות העסקיות
-        //        Dependencies = groupedDependencies
-        //            .Where(depGroup => depGroup.Dependencies.Contains(dep))
-        //            .Select(depGroup =>
-        //            {
-        //                return new BO.TaskInList()
-        //                {
-        //                    Id = (int)depGroup.TaskId,
-        //                    Description = 
-        //                    Alias = $"Task-{depGroup.TaskId}"
-                            
-        //                };
-        //            })
-        //            .ToList()
-        //    })
-        //    .ToList();
+        var milestones = distinctDependencies
+            .Select(dep => new BO.Milestone
+            {
+                Id = dep.Value, // השמה של מזהה המשימה התלויה
+                Description = $"Milestone for Task {dep.Value}", // תיאור אוטומטי
+                Alias = $"M{dep.Value}", // קיצור אוטומטי
+                CreatedAtDate = DateTime.Now, // זמן יצירה
+                Status = BO.Status.Scheduled, // סטטוס עבור אבן דרך חדשה
+                StartDate = null, // תאריך התחלה - אפשר להשיב בהתאם לדרישות העסקיות
+                ForecastDate = null, // תאריך תחזית - אפשר להשיב בהתאם לדרישות העסקיות
+                DeadlineDate = null, // תאריך סיום אחרון - אפשר להשיב בהתאם לדרישות העסקיות
+                CompleteDate = null, // תאריך סיום בפועל - אפשר להשיב בהתאם לדרישות העסקיות
+                Dependencies = groupedDependencies
+                    .Where(depGroup => depGroup.Dependencies.Contains(dep))
+                    .Select(depGroup =>
+                    {
+                        return new BO.TaskInList()
+                        {
+                            Id = (int)depGroup.TaskId,
+                            Alias = $"Task-{depGroup.TaskId}",
+                            Description = $"Task {depGroup.TaskId}", // תיאור אוטומטי
+                            Status = BO.Status.Scheduled // סטטוס עבור המשימה התלויה
+
+                        };
+                    })
+                    .ToList()
+            })
+            .ToList();
 
 
+        // יצירת אבן דרך לתחילת הפרויקט
+        var projectStartMilestone = new BO.Milestone
+        {
+            Id = 0, // ערך ייחודי לאבן הדרך שמייצגת את תחילת הפרויקט
+            Description = "Project Start Milestone", // תיאור אוטומטי
+            Alias = "M0", // קיצור אוטומטי
+            CreatedAtDate = DateTime.Now, // זמן יצירה
+            Status = BO.Status.Scheduled, // סטטוס עבור אבן דרך חדשה
+            StartDate = null, // תאריך התחלה - אפשר להשיב בהתאם לדרישות העסקיות
+            ForecastDate = null, // תאריך תחזית - אפשר להשיב בהתאם לדרישות העסקיות
+            DeadlineDate = null, // תאריך סיום אחרון - אפשר להשיב בהתאם לדרישות העסקיות
+            CompleteDate = null, // תאריך סיום בפועל - אפשר להשיב בהתאם לדרישות העסקיות
+            Dependencies = new List<BO.TaskInList>() // לא יש לה תלות
+        };
 
-        //   // הוספת תלות נוספות עבור כל משימה שלא תלויה באף משימה קודמת
-        //   var projectStartMilestone = new { MilestoneId = 0, Dependencies = new List<int>() };
-        //   projectStartMilestone.Dependencies.AddRange( _dal.Dependency.ReadAll().Select(task => task.Id));
-        ////   milestones.Insert(0, projectStartMilestone);
+        // הוספת אבן הדרך לרשימה
+        milestones.Add(projectStartMilestone);
 
-        //   // עכשיו אתה יכול לעבוד עם רשימת האבנים והתלויות החדשה
-        //   Console.WriteLine("Milestones and Dependencies:");
-        //   foreach (var milestone in milestones)
-        //   {
-        //       Console.WriteLine($"Milestone {milestone.MilestoneId}: {string.Join(", ", milestone.Dependencies)}");
-        //   }
-        throw new NotImplementedException();
+        // מציאת משימות שלא תלויות בשום משימה
+        var independentTasks = _dal.Task.ReadAll(task => !groupedDependencies.Any(depGroup => depGroup.Dependencies.Contains(task.Id)));
+
+        // הוספת תלות לכל אבן דרך עבור המשימות הזו
+        foreach (var independentTask in independentTasks)
+        {
+            projectStartMilestone.Dependencies.Add(new BO.TaskInList
+            {
+                Id = independentTask.Id,
+                Alias = $"Task-{independentTask.Id}",
+                Description = $"Task {independentTask.Id} - {independentTask.Description}",
+                Status = BO.Status.Scheduled
+            });
+        }
     }
 
     public BO.Milestone? Read(int id)
