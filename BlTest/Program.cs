@@ -17,7 +17,11 @@ internal class Program
         Console.WriteLine("Enter an alias of the task");
         string alias = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
         //// Console.WriteLine("Enter task Created task date");
-        Console.WriteLine("Enter status of stak");
+        Console.WriteLine("Enter status of stak:");
+        Console.WriteLine("For Unscheduled press 0");
+        Console.WriteLine("For Scheduled press 1");
+        Console.WriteLine("For OnTrack press 2");
+        Console.WriteLine("For InJeopardy press 3");
         string? chooseStatusBeforeParse = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
         BO.Status.TryParse(chooseStatusBeforeParse, out BO.Status status);
         Console.WriteLine("To add a dependency to a task, press 1");
@@ -138,7 +142,11 @@ internal class Program
             alias = updateTask.Alias;
         }
         //// Console.WriteLine("Enter task Created task date");
-        Console.WriteLine("Enter status of stak");
+        Console.WriteLine("Enter status of stak:");
+        Console.WriteLine("For Unscheduled press 0");
+        Console.WriteLine("For Scheduled press 1");
+        Console.WriteLine("For OnTrack press 2");
+        Console.WriteLine("For InJeopardy press 3");
         string? statusBeforeParse = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
         BO.Status.TryParse(statusBeforeParse, out BO.Status status);
         if(statusBeforeParse == "" || statusBeforeParse == null)
