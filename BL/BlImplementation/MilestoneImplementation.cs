@@ -142,21 +142,4 @@ internal class MilestoneImplementation : IMilestone
         return Status.Unscheduled;
     }
 
-    public Status CalculateStatus( DateTime? startDate, DateTime? forecastDate, DateTime? deadlineDate, DateTime? completeDate)
-    {
-        if (startDate == null && deadlineDate == null)
-            return BO.Status.Unscheduled;
-
-        if (startDate != null && deadlineDate != null && completeDate == null)
-            return BO.Status.Scheduled;
-
-        if (startDate != null && completeDate != null && completeDate <= forecastDate)
-            return BO.Status.OnTrack;
-
-        if (startDate != null && completeDate != null && completeDate > forecastDate)
-            return BO.Status.InJeopardy;
-
-        return BO.Status.Unscheduled;
-    }
-
 }
