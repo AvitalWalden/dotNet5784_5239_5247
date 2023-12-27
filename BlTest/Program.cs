@@ -1,4 +1,7 @@
 ﻿
+using BlApi;
+using BO;
+
 internal class Program
 {
     static readonly BlApi.IBl s_bl = BlApi.Factory.Get();
@@ -13,8 +16,6 @@ internal class Program
         string description = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
         Console.WriteLine("Enter an alias of the task");
         string alias = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
-        Console.WriteLine("Enter an alias of the task");
-        string descriptionTask = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
         //// Console.WriteLine("Enter task Created task date");
         Console.WriteLine("Enter status of stak");
         string? chooseStatusBeforeParse = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
@@ -79,7 +80,7 @@ internal class Program
         {
             Id = 0,
             Alias = alias,
-            Description = descriptionTask,
+            Description = description,
             CreatedAtDate = createdAt,
             Status = status,
             Dependencies = tasks,
@@ -113,7 +114,7 @@ internal class Program
     public static void UpdateTask()
 
     {
-        Console.WriteLine("Enter the engineer's id");
+        Console.WriteLine("Enter the task's id");
         int id = int.Parse(Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect"));
         if (s_bl?.Task.Read(id) != null)
         {
@@ -221,7 +222,7 @@ internal class Program
         string? remarks = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
         if (remarks == "" || remarks == null)
         {
-            deliverables = updateTask.Remarks;
+            remarks = updateTask.Remarks;
         }
         Console.WriteLine("Enter the id of the engineer");
         string? engineerIdBeforeParse = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
@@ -270,7 +271,14 @@ internal class Program
             },
             ComplexityLevel = (BO.EngineerExperience?)complexityLevel
         };
-        Console.WriteLine(s_bl!.Task.Create(newTask));
+        try
+        {
+            s_bl!.Task.Update(newTask);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex);
+        }
     }
 
 
@@ -617,7 +625,30 @@ internal class Program
 
     public static void CreateMilestone()
     {
-
+        //Console.WriteLine("Enter a description of the task");
+        //string description = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+        //Console.WriteLine("Enter an alias of the task");
+        //string alias = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+        ////// Console.WriteLine("Enter task Created task date");
+        //Console.WriteLine("Enter status of stak");
+        //string? chooseStatusBeforeParse = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+        //BO.Status.TryParse(chooseStatusBeforeParse, out BO.Status status);
+        //Console.WriteLine("Enter task start date");
+        //string? choosestartDateBeforeParse = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+        //DateTime.TryParse(choosestartDateBeforeParse, out DateTime startDate);
+        //Console.WriteLine("Enter task forecast date");
+        //string? chooseforecastDateBeforeParse = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+        //DateTime.TryParse(chooseforecastDateBeforeParse, out DateTime forecastDate); Console.WriteLine("Enter task deadline date");
+        //Console.WriteLine("Enter task deadline date");
+        //string? chooseDeadlineDateBeforeParse = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+        //DateTime.TryParse(chooseDeadlineDateBeforeParse, out DateTime deadlineDate); Console.WriteLine("Enter task deadline date");
+        //Console.WriteLine("Enter task complete date");
+        //string? choosecompleteDateBeforeParse = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+        //DateTime.TryParse(choosecompleteDateBeforeParse, out DateTime completeDate); Console.WriteLine("Enter task deadline date");
+        //string? chooseComplexityLevelBeforeParse = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+        //int.TryParse(chooseComplexityLevelBeforeParse, out int complexityLevel);
+        //Console.WriteLine("Enter remarks of the task");
+        //string? remarks = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
     }
     /// <summary>
     ///  The function read a milestone by ID.
@@ -636,9 +667,57 @@ internal class Program
         }
     }
 
+    /// <summary>
+    /// update a milstone.
+    /// </summary>
+    /// <exception cref="BO.BlInvalidEnteredValue"></exception>
     public static void UpdateMilestone()
     {
-
+        Console.WriteLine("Enter the task's id");
+        int id = int.Parse(Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect"));
+        if (s_bl?.Task.Read(id) != null)
+        {
+            Console.WriteLine(s_bl?.Task.Read(id));
+        }
+        else
+        {
+            throw new BO.BlDoesNotExistException($"Task with ID={id} not exists");
+        }
+        BO.Task updateTask = s_bl?.Task.Read(id)!;
+        Console.WriteLine("Enter a description of the task");
+        string description = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+        if (description == "" || description == null)
+        {
+            description = updateTask.Description;
+        }
+        Console.WriteLine("Enter an alias of the task");
+        string alias = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+        if (alias == "" || alias == null)
+        {
+            alias = updateTask.Alias;
+        }
+        Console.WriteLine("Enter remarks of the task");
+        string? remarks = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+        if (remarks == "" || remarks == null)
+        {
+            remarks = updateTask.Remarks;
+        }
+        BO.Milestone newMilestone = new BO.Milestone()
+        {
+            Id = 0,
+            Description = description,
+            Alias = alias,
+            CreatedAtDate = DateTime.Now,
+            Status = null,
+            StartDate = null,
+            ForecastDate = null,
+            DeadlineDate = null,
+            CompleteDate = null,
+            CompletionPercentage = null,
+            Remarks = remarks,
+            Dependencies = null
+        };
+        s_bl!.Milestone.Update(newMilestone);
     }
 
     /// <summary>
@@ -730,13 +809,13 @@ internal class Program
         {
             Console.WriteLine(ex);
         }
-        //Console.WriteLine("Enter the project start date (yyyy-MM-ddTHH:mm:ss):");
-        //string? startDateString = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
-        //DateTime.TryParse(startDateString, out DateTime startDate);
-        //DalApi.Factory.Get.startDateProject = startDate; 
-        //Console.WriteLine("Enter the project end date (yyyy-MM-ddTHH:mm:ss):");
-        //string? endDateString = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
-        //DateTime.TryParse(endDateString, out DateTime endDate);
-        //DalApi.Factory.Get.endDateProject = endDate;
+        Console.WriteLine("Enter the project start date (yyyy-MM-ddTHH:mm:ss):");
+        string? startDateString = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+        DateTime.TryParse(startDateString, out DateTime startDate);
+        DalApi.Factory.Get.startDateProject = startDate; 
+        Console.WriteLine("Enter the project end date (yyyy-MM-ddTHH:mm:ss):");
+        string? endDateString = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+        DateTime.TryParse(endDateString, out DateTime endDate);
+        DalApi.Factory.Get.endDateProject = endDate;
     }
 }

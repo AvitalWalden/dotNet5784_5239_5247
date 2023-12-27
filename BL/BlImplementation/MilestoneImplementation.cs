@@ -122,7 +122,12 @@ internal class MilestoneImplementation : IMilestone
             Dependencies = tasksInList
         };
     }
-
+    /// <summary>
+    ///  Updates milestone details
+    /// </summary>
+    /// <param name="boMilestone"></param>
+    /// <exception cref="Exception"></exception>
+    /// <exception cref="BO.BlDoesNotExistException"></exception>
     public void Update(BO.Milestone boMilestone)
     {
         if (string.IsNullOrWhiteSpace(boMilestone.Alias))
@@ -137,15 +142,40 @@ internal class MilestoneImplementation : IMilestone
         {
             throw new Exception("Milestone remarks cannot be empty or null");
         }
-        DO.Task doMilestone;// = new DO.Task(boMilestone.Id, boMilestone.Description, boMilestone.Alias, boMilestone.CreatedAtDate );////boMilestone.Status
-        try
+        DO.Task? task = _dal.Task.Read(boMilestone.Id);
+        if (task == null)
         {
-          //  _dal.Task.Update(doMilestone);
+            throw new BO.BlDoesNotExistException($"Task with ID={boMilestone.Id} does not exist");
         }
-        catch (DO.DalDoesNotExistException)
+        else
         {
-            throw new BO.BlDoesNotExistException($"Task with ID={boMilestone.Id}  does not exist");
+           DO.Task doMilestone = new DO.Task
+           (
+               boMilestone.Id,
+               boMilestone.Description,
+               boMilestone.Alias,
+               task.CreatedAtDate,
+               task.RequiredEffort,
+               task.IsMilestone,
+               task.StartDate,
+               task.ScheduledDate,
+               task.DeadlineDate,
+               task.CompleteDate,
+               task.Deliverables,
+               boMilestone.Remarks,
+               task.EngineerId,
+               task.ComplexityLevel
+           );
+           try
+           {
+               _dal.Task.Update(doMilestone);
+           }
+           catch (DO.DalDoesNotExistException)
+           {
+               throw new BO.BlDoesNotExistException($"Task with ID={boMilestone.Id} does not exist");
+           }
         }
+       
     }
     public Status CalculateStatus(DateTime? startDate, DateTime? forecastDate, DateTime? deadlineDate, DateTime? completeDate)
     {
