@@ -1,4 +1,5 @@
 ﻿using BlApi;
+using DO;
 
 namespace BlImplementation;
 
@@ -23,14 +24,14 @@ internal class EngineerImplementation : IEngineer
         {
             throw new BO.BlInvalidValue("Incorrect price. The price must be positive");
         }
-        if(boEngineer.Name!="")
+        if(boEngineer.Name != "")
         {
-            throw new BO.BlInvalidValue("Invalid name");
+            throw new BO.BlInvalidValue("The name entered is incorrect.");
         }
-        string emailPattern = @"^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$";
+        string emailPattern = @"^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$"; //Email integrity check.
         if (!System.Text.RegularExpressions.Regex.IsMatch(emailPattern, emailPattern))
         {
-            throw new BO.BlInvalidValue("Invalid email");
+            throw new BO.BlInvalidValue("The email entered is invalid");
         }
         DO.Engineer doEngineer = new DO.Engineer(boEngineer.Id, boEngineer.Name, boEngineer.Email, (DO.EngineerExperience)boEngineer.Level, boEngineer.Cost);
         try
@@ -38,37 +39,30 @@ internal class EngineerImplementation : IEngineer
             int idStud = _dal.Engineer.Create(doEngineer);
             return idStud;
         }
-        catch (DO.DalAlreadyExistsException)
+        catch (DO.DalAlreadyExistsException ex)
         {
-            throw new BO.BlAlreadyExistsException($"Engineer with ID={boEngineer.Id} already exists");
+            throw new BO.BlAlreadyExistsException($"Engineer with ID={boEngineer.Id} already exists", ex);
         }
     }
 
+    /// <summary>
+    /// This method is used to delete an Engineer by ID
+    /// </summary>
+    /// <param name="id"></param>
+    /// <exception cref="BO.BlDoesNotExistException"></exception>
     public void Delete(int id)
     {
-        //if (_dal.Task.ReadA(task => task?.EngineerId == id);
-            //throw new DalDeletionImpossible($"Engineer with ID={id} cannot be deleted");
-        DO.Engineer? engneerToDelete = _dal.Engineer.Read(id);
-        if (engneerToDelete is not null)
-        {
-            BO.TaskInEngineer task = new BO.TaskInEngineer()
-            {
-                Id = (int)(_dal.Task.ReadAll().FirstOrDefault(task => task?.EngineerId == engneerToDelete.Id)?.Id!),
-                Alias = _dal.Task.ReadAll().FirstOrDefault(task => task?.EngineerId == engneerToDelete.Id)?.Alias!
-            };
-            if(task?.Id != null)
-            { 
-            //    if(ITask.Read(task.Id)?.Status == BO.Status.OnTrack || ITask.Read(task.Id)?.Status == BO.Status.OnTrack)
-            //    {
-
-            //    }
-            }
-            _dal.Engineer.Delete(engneerToDelete.Id);//עשינו שאי אפשר לממחוק אז איך אפשר לשלוח לשם
-
-        }
-        else
+        if (_dal.Task.ReadAll(task => task?.EngineerId == id) is not null)
         {
             throw new BO.BlDoesNotExistException($"Engineer with ID={id} does Not exist");
+        }
+        try
+        {
+            _dal.Engineer.Delete(id);//עשינו שאי אפשר לממחוק אז איך אפשר לשלוח לשם
+        }
+        catch (DO.DalDoesNotExistException ex)
+        {
+            throw new BO.BlDoesNotExistException($"Engineer with ID={id} does Not exist", ex);
         }
     }
 
@@ -78,11 +72,22 @@ internal class EngineerImplementation : IEngineer
     /// <param name="id">the name of the engineer who search for</param>
     /// <returns>Constructed engineer object</returns>
     /// <exception cref="BO.BlDoesNotExistException">No suitable data layer engineer exists</exception>
-    public BO.Engineer? Read(int id) // לטפל אם אין לא משימה רוחמה או אפרת קליין
+    public BO.Engineer? Read(int id)
     {
         DO.Engineer? doEngineer = _dal.Engineer.Read(id);
         if (doEngineer == null)
             throw new BO.BlDoesNotExistException($"Engineer with ID={id} does Not exist");
+
+        DO.Task? task = _dal.Task.ReadAll().FirstOrDefault(task => task?.EngineerId == id);
+        BO.TaskInEngineer? taskInEngineer;
+        if (task == null)
+        {
+            taskInEngineer = null;
+        }
+        else
+        {
+            taskInEngineer = new BO.TaskInEngineer() { Id = task.Id, Alias = task.Alias };
+        }
 
         return new BO.Engineer()
         {
@@ -91,11 +96,7 @@ internal class EngineerImplementation : IEngineer
             Email = doEngineer.Email,
             Level = (BO.EngineerExperience)doEngineer.Level,
             Cost = doEngineer.Cost,
-            Task = new BO.TaskInEngineer()
-            {
-                Id = (int)(_dal.Task.ReadAll().FirstOrDefault(task => task?.EngineerId == doEngineer.Id)?.Id),
-                Alias = _dal.Task.ReadAll().FirstOrDefault(task => task?.EngineerId == doEngineer.Id)?.Alias!
-            }
+            Task = taskInEngineer
         };
     }
 
@@ -106,28 +107,45 @@ internal class EngineerImplementation : IEngineer
     /// <returns>all the tasks that pass the condition</returns>
     public IEnumerable<BO.Engineer?> ReadAll(Func<BO.Engineer, bool>? filter = null)
     {
-        IEnumerable<BO.Engineer?> readAllEngineer = (from DO.Engineer doEngineer in _dal.Engineer.ReadAll()
-                select new BO.Engineer
-                {
-                    Id = doEngineer.Id,
-                    Name = doEngineer.Name,
-                    Email = doEngineer.Email,
-                    Level = (BO.EngineerExperience)doEngineer.Level,
-                    Cost = doEngineer.Cost,
-                    Task = new BO.TaskInEngineer()
-                    {
-                        Id = (int)(_dal.Task.ReadAll().FirstOrDefault(task => task?.EngineerId == doEngineer.Id)?.Id!),
-                        Alias = _dal.Task.ReadAll().FirstOrDefault(task => task?.EngineerId == doEngineer.Id)?.Alias!
-                    }
-                });
+        IEnumerable<BO.Engineer?> readAllEngineer = _dal.Engineer.ReadAll().Select(doEngineer =>
+        {
+            if (doEngineer == null)
+            {
+                return null; // If the engineer is NULL, we will also return a NULL engineer
+            }
+
+            DO.Task? task = _dal.Task.ReadAll(task => task?.EngineerId == doEngineer?.Id).FirstOrDefault();
+            BO.TaskInEngineer? taskInEngineer;
+
+            if (task == null)
+            {
+                taskInEngineer = null;
+            }
+            else
+            {
+                taskInEngineer = new BO.TaskInEngineer() { Id = task.Id, Alias = task.Alias };
+            }
+
+            return new BO.Engineer
+            {
+                Id = doEngineer.Id,
+                Name = doEngineer.Name,
+                Email = doEngineer.Email,
+                Level = (BO.EngineerExperience)doEngineer.Level,
+                Cost = doEngineer.Cost,
+                Task = taskInEngineer
+            };
+        })
+        .Where(engineer => engineer != null); // We will use WHERE to filter and drop the engineers that are NULL
+
         if (filter != null)
         {
-            IEnumerable<BO.Engineer> readAllEngineerFilter = from item in readAllEngineer
-                                                       where filter(item)
-                                                       select item;
-            return readAllEngineerFilter;
+            return from item in readAllEngineer
+                   where filter(item)
+                   select item;
         }
         return readAllEngineer;
+
     }
 
     /// <summary>
@@ -148,21 +166,21 @@ internal class EngineerImplementation : IEngineer
         }
         if (boEngineer.Name != "")
         {
-            throw new BO.BlInvalidValue("Invalid name");
+            throw new BO.BlInvalidValue("The name entered is incorrect.");
         }
-        string emailPattern = @"^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$";
+        string emailPattern = @"^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$"; //Email integrity check.
         if (!System.Text.RegularExpressions.Regex.IsMatch(emailPattern, emailPattern))
         {
-            throw new BO.BlInvalidValue("Invalid email");
+            throw new BO.BlInvalidValue("The email entered is invalid");
         }
         DO.Engineer doEngineer = new DO.Engineer(boEngineer.Id, boEngineer.Name, boEngineer.Email, (DO.EngineerExperience)boEngineer.Level, boEngineer.Cost);
         try
         {
             _dal.Engineer.Update(doEngineer);
         }
-        catch (DO.DalDoesNotExistException)
+        catch (DO.DalDoesNotExistException ex)
         {
-            throw new BO.BlDoesNotExistException($"Engineer with ID={boEngineer.Id}  does not exist");
+            throw new BO.BlDoesNotExistException($"Engineer with ID={boEngineer.Id}  does not exist", ex);
         }
     }
 }
