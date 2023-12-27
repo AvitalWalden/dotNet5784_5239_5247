@@ -16,7 +16,11 @@ internal class Program
         Console.WriteLine("Enter an alias of the task");
         string descriptionTask = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
         //// Console.WriteLine("Enter task Created task date");
-        Console.WriteLine("Enter status of stak");
+        Console.WriteLine("Enter status of stak:");
+        Console.WriteLine("For Unscheduled press 0");
+        Console.WriteLine("For Scheduled press 1");
+        Console.WriteLine("For OnTrack press 2");
+        Console.WriteLine("For InJeopardy press 3");
         string? chooseStatusBeforeParse = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
         BO.Status.TryParse(chooseStatusBeforeParse, out BO.Status status);
         Console.WriteLine("To add a dependency to a task, press 1");
@@ -137,7 +141,11 @@ internal class Program
             alias = updateTask.Alias;
         }
         //// Console.WriteLine("Enter task Created task date");
-        Console.WriteLine("Enter status of stak");
+        Console.WriteLine("Enter status of stak:");
+        Console.WriteLine("For Unscheduled press 0");
+        Console.WriteLine("For Scheduled press 1");
+        Console.WriteLine("For OnTrack press 2");
+        Console.WriteLine("For InJeopardy press 3");
         string? statusBeforeParse = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
         BO.Status.TryParse(statusBeforeParse, out BO.Status status);
         if(statusBeforeParse == "" || statusBeforeParse == null)
@@ -730,13 +738,13 @@ internal class Program
         {
             Console.WriteLine(ex);
         }
-        //Console.WriteLine("Enter the project start date (yyyy-MM-ddTHH:mm:ss):");
-        //string? startDateString = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
-        //DateTime.TryParse(startDateString, out DateTime startDate);
-        //DalApi.Factory.Get.startDateProject = startDate; 
-        //Console.WriteLine("Enter the project end date (yyyy-MM-ddTHH:mm:ss):");
-        //string? endDateString = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
-        //DateTime.TryParse(endDateString, out DateTime endDate);
-        //DalApi.Factory.Get.endDateProject = endDate;
+        Console.WriteLine("Enter the project start date (yyyy-MM-ddTHH:mm:ss):");
+        string? startDateString = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+        DateTime.TryParse(startDateString, out DateTime startDate);
+        DalApi.Factory.Get.startDateProject = startDate;
+        Console.WriteLine("Enter the project end date (yyyy-MM-ddTHH:mm:ss):");
+        string? endDateString = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+        DateTime.TryParse(endDateString, out DateTime endDate);
+        DalApi.Factory.Get.endDateProject = endDate;
     }
 }

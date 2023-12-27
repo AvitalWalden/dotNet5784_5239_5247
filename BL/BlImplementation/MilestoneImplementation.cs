@@ -8,7 +8,7 @@ namespace BlImplementation;
 internal class MilestoneImplementation : IMilestone
 {
     private DalApi.IDal _dal = DalApi.Factory.Get;
-    public void Create(List<BO.TaskInList> Dependency)
+    public int Create(BO.Milestone item)
     {
         // יצירת רשימה מקובצת על פי מפתח - משימה תלויה
         var groupedDependencies = _dal.Dependency.ReadAll()
@@ -86,6 +86,8 @@ internal class MilestoneImplementation : IMilestone
                 Status = BO.Status.Scheduled
             });
         }
+
+        return 1;
     }
 
     public BO.Milestone? Read(int id)
