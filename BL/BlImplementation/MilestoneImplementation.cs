@@ -1,6 +1,7 @@
 ﻿using BlApi;
 using BO;
 using DalApi;
+using System.Numerics;
 
 namespace BlImplementation;
 
@@ -136,32 +137,29 @@ internal class MilestoneImplementation : IMilestone
         {
             throw new Exception("Milestone remarks cannot be empty or null");
         }
-        //DO.Task doMilestone = new DO.Task(boMilestone.Id, boMilestone.Description, boMilestone.Alias,boMilestone.CreatedAtDate, boMilestone.Status);
-        //try
-        //{
-        //    _dal.Task.Update(doMilestone);
-        //}
-        //catch (DO.DalDoesNotExistException)
-        //{
-        //    throw new BO.BlDoesNotExistException($"Task with ID={boMilestone.Id}  does not exist");
-        //}
+        DO.Task doMilestone;// = new DO.Task(boMilestone.Id, boMilestone.Description, boMilestone.Alias, boMilestone.CreatedAtDate );////boMilestone.Status
+        try
+        {
+          //  _dal.Task.Update(doMilestone);
+        }
+        catch (DO.DalDoesNotExistException)
+        {
+            throw new BO.BlDoesNotExistException($"Task with ID={boMilestone.Id}  does not exist");
+        }
     }
-
-    public Status CalculateStatus( DateTime? startDate, DateTime? forecastDate, DateTime? deadlineDate, DateTime? completeDate)
+    public Status CalculateStatus(DateTime? startDate, DateTime? forecastDate, DateTime? deadlineDate, DateTime? completeDate)
     {
         if (startDate == null && deadlineDate == null)
-            return BO.Status.Unscheduled;
+            return Status.Unscheduled;
 
         if (startDate != null && deadlineDate != null && completeDate == null)
-            return BO.Status.Scheduled;
-
+            return Status.Scheduled;
         if (startDate != null && completeDate != null && completeDate <= forecastDate)
-            return BO.Status.OnTrack;
-
+            return Status.OnTrack;
         if (startDate != null && completeDate != null && completeDate > forecastDate)
-            return BO.Status.InJeopardy;
+            return Status.InJeopardy;
 
-        return BO.Status.Unscheduled;
+        return Status.Unscheduled;
     }
 
 }
