@@ -24,7 +24,7 @@ internal class TaskImplementation : ITask
             boTask.Description,
             boTask.CreatedAtDate,
             (TimeSpan)(boTask.StartDate - boTask.CompleteDate), //--
-            false, //false / true
+            false,//////////////////////////
             boTask.StartDate,
             boTask.ScheduledStartDate,
             boTask.DeadlineDate,
@@ -64,26 +64,27 @@ internal class TaskImplementation : ITask
         return new BO.Task()
         {
             Id = doTask.Id,
-            Description = doTask.Description,
             Alias = doTask.Alias,
+            Description = doTask.Description,
             CreatedAtDate = doTask.CreatedAtDate,
-            Status = BO.Status.Scheduled, //??
-            Milestone = new BO.MilestoneInTask() /////????
-            {
-                Id = (int)(_dal.Task.ReadAll().FirstOrDefault(task => task?.EngineerId == doTask.Id)?.Id!),
-                Alias = _dal.Task.ReadAll().FirstOrDefault(task => task?.EngineerId == doTask.Id)?.Alias!
-            },
+            Status = CalculateStatus(doTask.StartDate/**/, doTask.ScheduledDate, doTask.StartDate, doTask.StartDate/**/, doTask.DeadlineDate, doTask.CompleteDate),
             Dependencies = ((List<TaskInList>)(from DO.Dependency doDependency in _dal.Dependency.ReadAll()
                                                select new TaskInList()
                                                {
                                                    Id = (int)_dal.Dependency.ReadAll().FirstOrDefault(dependency => dependency?.DependsOnTask == doTask.Id)?.DependentTask!,
                                                    Description = _dal.Task.Read((int)_dal.Dependency.ReadAll().FirstOrDefault(dependency => dependency?.DependsOnTask == doTask.Id)?.DependentTask!).Description,
                                                    Alias = _dal.Task.Read((int)_dal.Dependency.ReadAll().FirstOrDefault(dependency => dependency?.DependsOnTask == doTask.Id)?.DependentTask!).Alias,
-                                                   //  Status = BO.Status.Scheduled   //???
+                                                   Status = CalculateStatus(doTask.StartDate/**/, doTask.ScheduledDate, doTask.StartDate, doTask.StartDate/**/, doTask.DeadlineDate, doTask.CompleteDate),
                                                })
-                                                               ),
-            StartDate = doTask.StartDate,
+            ),
+            Milestone = new BO.MilestoneInTask() /////????
+            {
+                Id = (int)(_dal.Task.ReadAll().FirstOrDefault(task => task?.EngineerId == doTask.Id)?.Id!),
+                Alias = _dal.Task.ReadAll().FirstOrDefault(task => task?.EngineerId == doTask.Id)?.Alias!
+            },
+            BaselineStartDate = doTask.StartDate,//////////
             ScheduledStartDate = doTask.ScheduledDate,
+            StartDate = doTask.StartDate,
             ForecastDate = doTask.DeadlineDate, //מה מחושב בו???
             DeadlineDate = doTask.DeadlineDate,
             CompleteDate = doTask.CompleteDate,
@@ -185,5 +186,21 @@ internal class TaskImplementation : ITask
         {
             throw new BO.BlAlreadyExistsException($"Task with ID={boTask.Id} already exists", ex);
         }
+    }
+    public Status CalculateStatus(DateTime? baselineStartDate, DateTime? scheduledStartDate, DateTime? startDate, DateTime? forecastDate, DateTime? deadlineDate, DateTime? completeDate)
+    {
+        if (startDate == null && baselineStartDate == null)
+            return Status.Unscheduled;
+
+        if (startDate != null && baselineStartDate != null && scheduledStartDate != null)
+            return Status.Scheduled;
+
+        if (startDate != null && completeDate != null && completeDate <= forecastDate)
+            return Status.OnTrack;
+
+        if (startDate != null && completeDate != null && deadlineDate!= null && completeDate <= forecastDate)
+            return Status.InJeopardy;
+
+        return Status.Unscheduled;
     }
 }
