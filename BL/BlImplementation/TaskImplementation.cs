@@ -11,17 +11,17 @@ internal class TaskImplementation : ITask
     {
         if (boTask.Id < 0)
         {
-            throw new Exception("Task ID must be a positive number");
+            throw new BO.BlInvalidValue("Task ID must be a positive number");
         }
         if (string.IsNullOrWhiteSpace(boTask.Description))
         {
-            throw new Exception("Task description cannot be empty or null");
+            throw new BO.BlInvalidValue("Task description cannot be empty or null");
         }
         DO.Task doTask = new DO.Task
         (
             boTask.Id,
-            boTask.Alias,
             boTask.Description,
+            boTask.Alias,
             boTask.CreatedAtDate,
             (TimeSpan)(boTask.StartDate - boTask.CompleteDate), //--
             false,//////////////////////////
@@ -31,13 +31,13 @@ internal class TaskImplementation : ITask
             boTask.CompleteDate,
             boTask.Deliverables,
             boTask.Remarks,
-            boTask.Engineer.Id,
+            boTask.Engineer?.Id ?? null,
             (DO.EngineerExperience)boTask.ComplexityLevel //---
-        ) ;
+        );
         foreach (BO.TaskInList doDependency in boTask.Dependencies)
         {
             DO.Dependency doDepend = new DO.Dependency(0, boTask.Id, doDependency.Id);
-            int idDependency = _dal.Dependency.Create(doDepend);  //האם להחזיר את המזהה של התלויות שיצרנו
+            _dal.Dependency.Create(doDepend);
         }
         try
         {
