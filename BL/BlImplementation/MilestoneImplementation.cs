@@ -1,5 +1,4 @@
 ﻿using BlApi;
-using BO;
 using DalApi;
 using System.Numerics;
 
@@ -180,24 +179,26 @@ internal class MilestoneImplementation : IMilestone
            }
            catch (DO.DalDoesNotExistException)
            {
-               throw new BO.BlDoesNotExistException($"Task with ID={id} does not exist");
+               throw new BO.BlDoesNotExistException($"Task with ID={boMilestone.Id} does not exist");
            }
         }
        
     }
-    public Status CalculateStatus(DateTime? startDate, DateTime? forecastDate, DateTime? deadlineDate, DateTime? completeDate)
+    public BO.Status CalculateStatusOfTask(DateTime? startDate, DateTime? ScheduledDate, DateTime? deadlineDate, DateTime? completeDate)
     {
         if (startDate == null && deadlineDate == null)
-            return Status.Unscheduled;
+            return BO.Status.Unscheduled;
 
         if (startDate != null && deadlineDate != null && completeDate == null)
-            return Status.Scheduled;
-        if (startDate != null && completeDate != null && completeDate <= forecastDate)
-            return Status.OnTrack;
-        if (startDate != null && completeDate != null && completeDate > forecastDate)
-            return Status.InJeopardy;
+            return BO.Status.Scheduled;
 
-        return Status.Unscheduled;
+        if (startDate != null && completeDate != null && completeDate <= ScheduledDate)
+            return BO.Status.OnTrack;
+
+        if (startDate != null && completeDate != null && completeDate > ScheduledDate)
+            return BO.Status.InJeopardy;
+
+        return BO.Status.Unscheduled;
     }
 
 }
