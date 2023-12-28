@@ -7,7 +7,7 @@ public interface IMilestone
     /// </summary>
     /// <param name="item">the new milestone to be added</param>
     /// <returns></returns>
-    public void Create(List<BO.TaskInList> Dependency);
+    public int Create(BO.Milestone item);
     /// <summary>
     /// returns milestone by given id
     /// </summary>
