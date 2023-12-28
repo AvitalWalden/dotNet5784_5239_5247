@@ -106,7 +106,7 @@ internal class MilestoneImplementation : IMilestone
                 Id = task!.Id,
                 Description = task.Description,
                 Alias = task.Alias,
-                Status = CalculateStatus(task.StartDate, task.ScheduledDate, task.DeadlineDate, task.CompleteDate)
+                Status = CalculateStatusOfTask(task.StartDate, task.ScheduledDate, task.DeadlineDate, task.CompleteDate)
             }).ToList();
 
             return new BO.Milestone()
@@ -115,11 +115,11 @@ internal class MilestoneImplementation : IMilestone
                 Description = doTaskMilestone.Description,
                 Alias = doTaskMilestone.Alias,
                 CreatedAtDate = doTaskMilestone.CreatedAtDate,
-                Status = CalculateStatus(doTaskMilestone.StartDate, doTaskMilestone.ScheduledDate, doTaskMilestone.DeadlineDate, doTaskMilestone.CompleteDate),
+                Status = CalculateStatusOfTask(doTaskMilestone.StartDate, doTaskMilestone.ScheduledDate, doTaskMilestone.DeadlineDate, doTaskMilestone.CompleteDate),
                 ForecastDate = doTaskMilestone.ScheduledDate,
                 DeadlineDate = doTaskMilestone.DeadlineDate,
                 CompleteDate = doTaskMilestone.CompleteDate,
-                CompletionPercentage = (tasksInList.Count(task => task.Status == Status.OnTrack) / (double)tasksInList.Count) * 100,
+                CompletionPercentage = (tasksInList.Count(task => task.Status == BO.Status.OnTrack) / (double)tasksInList.Count) * 100,
                 Remarks = doTaskMilestone.Remarks,
                 Dependencies = tasksInList
             };
