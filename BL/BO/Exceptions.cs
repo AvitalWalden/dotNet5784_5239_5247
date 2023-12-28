@@ -39,3 +39,9 @@ public class BlDataListIsEmpty : Exception // Exception of The data list is empt
 {
     public BlDataListIsEmpty(string? message) : base(message) { }
 }
+
+[Serializable]
+public class FailedToReadMilestone : Exception // Exception of failed to read Milestone
+{
+    public FailedToReadMilestone(string? message) : base(message) { }
+}

@@ -91,38 +91,43 @@ internal class MilestoneImplementation : IMilestone
 
     public BO.Milestone? Read(int id)
     {
-        DO.Task? doTaskMilestone = _dal.Task.Read(task => task.Id == id && task.IsMilestone);
-        if (doTaskMilestone == null)
-            throw new BO.BlDoesNotExistException($"Milstone with ID={id} does Not exist");
-
-        var tasksId = _dal.Dependency.ReadAll(dependensy => dependensy.DependsOnTask == doTaskMilestone.Id)
-                                     .Select(dependensy => dependensy?.DependentTask);
-
-       //List<BO.> milstoneDepends = doTaskMilestone.Dependenci
-        var tasks = _dal.Task.ReadAll(task => tasksId.Contains(task.Id)).ToList();
-
-        var tasksInList = tasks.Select(task => new BO.TaskInList
+        try
         {
-            Id = task.Id,
-            Description = task.Description,
-            Alias = task.Alias,
-            Status = CalculateStatusOfTask(task.StartDate, task.ScheduledDate, task.DeadlineDate, task.CompleteDate)
-        }).ToList();
+            DO.Task? doTaskMilestone = _dal.Task.Read(task => task.Id == id && task.IsMilestone);
+            if (doTaskMilestone == null)
+                throw new BO.BlDoesNotExistException($"Milstone with ID={id} does Not exist");
 
-        return new BO.Milestone()
+            var idMilstoneDependsOn = _dal.Dependency.ReadAll(dependensy => dependensy.DependentTask == doTaskMilestone.Id)
+                                        .Select(dependensy => dependensy?.DependsOnTask);
+            var milstoneDependsOn = _dal.Task.ReadAll(task => idMilstoneDependsOn.Contains(task.Id)).ToList();
+
+            var tasksInList = milstoneDependsOn.Select(task => new BO.TaskInList
+            {
+                Id = task!.Id,
+                Description = task.Description,
+                Alias = task.Alias,
+                Status = CalculateStatusOfTask(task.StartDate, task.ScheduledDate, task.DeadlineDate, task.CompleteDate)
+            }).ToList();
+
+            return new BO.Milestone()
+            {
+                Id = doTaskMilestone.Id,
+                Description = doTaskMilestone.Description,
+                Alias = doTaskMilestone.Alias,
+                CreatedAtDate = doTaskMilestone.CreatedAtDate,
+                Status = CalculateStatusOfTask(doTaskMilestone.StartDate, doTaskMilestone.ScheduledDate, doTaskMilestone.DeadlineDate, doTaskMilestone.CompleteDate),
+                ForecastDate = doTaskMilestone.ScheduledDate,
+                DeadlineDate = doTaskMilestone.DeadlineDate,
+                CompleteDate = doTaskMilestone.CompleteDate,
+                CompletionPercentage = (tasksInList.Count(task => task.Status == BO.Status.OnTrack) / (double)tasksInList.Count) * 100,
+                Remarks = doTaskMilestone.Remarks,
+                Dependencies = tasksInList
+            };
+        }
+        catch (BO.FailedToReadMilestone)
         {
-            Id = doTaskMilestone.Id,
-            Description = doTaskMilestone.Description,
-            Alias = doTaskMilestone.Alias,
-            CreatedAtDate = doTaskMilestone.CreatedAtDate,
-            Status = CalculateStatusOfTask(doTaskMilestone.StartDate, doTaskMilestone.ScheduledDate, doTaskMilestone.DeadlineDate, doTaskMilestone.CompleteDate),
-            ForecastDate = doTaskMilestone.ScheduledDate,
-            DeadlineDate = doTaskMilestone.DeadlineDate,
-            CompleteDate = doTaskMilestone.CompleteDate,
-            CompletionPercentage = (tasksInList.Count(task => task.Status == BO.Status.OnTrack) / (double)tasksInList.Count) * 100,
-            Remarks = doTaskMilestone.Remarks,
-            Dependencies = tasksInList
-        };
+            throw new BO.FailedToReadMilestone($"Milestone with ID={id} cannwt be read");
+        }
     }
 
     /// <summary>
