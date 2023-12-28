@@ -129,6 +129,7 @@ internal class MilestoneImplementation : IMilestone
             throw new BO.FailedToReadMilestone($"Milestone with ID={id} cannwt be read");
         }
     }
+
     /// <summary>
     ///  Updates milestone details
     /// </summary>
@@ -184,6 +185,7 @@ internal class MilestoneImplementation : IMilestone
         }
        
     }
+
     public BO.Status CalculateStatusOfTask(DateTime? startDate, DateTime? ScheduledDate, DateTime? deadlineDate, DateTime? completeDate)
     {
         if (startDate == null && deadlineDate == null)

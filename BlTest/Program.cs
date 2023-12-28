@@ -105,7 +105,7 @@ internal class Program
                 Id = engineerId,
                 Name = s_bl?.Engineer.Read(engineerId)?.Name!
             },
-            ComplexityLevel = (BO.EngineerExperience?)complexityLevel
+            ComplexityLevel = (BO.EngineerExperience)complexityLevel
         };
         Console.WriteLine(s_bl!.Task.Create(newTask));
     }
@@ -277,7 +277,7 @@ internal class Program
                 Id = engineerId,
                 Name = s_bl?.Engineer.Read(engineerId)?.Name!
             },
-            ComplexityLevel = (BO.EngineerExperience?)complexityLevel
+            ComplexityLevel = (BO.EngineerExperience)complexityLevel
         };
         try
         {
