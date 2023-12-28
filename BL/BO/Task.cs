@@ -21,6 +21,6 @@ public class Task
     public string? Remarks { get; set; }
     // public Tuple<int, string>? Engineer { get; set; }
     public EngineerInTask? Engineer { get; set; }
-    public EngineerExperience? ComplexityLevel { get; set; } = null;
+    public EngineerExperience ComplexityLevel { get; set; }
     public override string ToString() => this.ToStringProperty();
 }

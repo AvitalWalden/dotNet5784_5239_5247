@@ -117,7 +117,7 @@ internal class TaskImplementation : ITask
                 Status = CalculateStatusOfTask(doTask.StartDate, doTask.ScheduledDate, doTask.DeadlineDate, doTask.CompleteDate), //??
                 Milestone = new BO.MilestoneInTask() /////????
                 {
-                    Id = (int)(_dal.Task.ReadAll().FirstOrDefault(task => task?.EngineerId == doTask.Id)?.Id!),
+                    Id = (int)(_dal.Task.ReadAll().FirstOrDefault(task => task?.Id == doTask.Id)?.Id!),
                     Alias = _dal.Task.ReadAll().FirstOrDefault(task => task?.EngineerId == doTask.Id)?.Alias!
                 },
                 Dependencies = ((List<TaskInList>)(from DO.Dependency doDependency in _dal.Dependency.ReadAll()
@@ -128,7 +128,7 @@ internal class TaskImplementation : ITask
                                                        Alias = _dal.Task.Read((int)_dal.Dependency.ReadAll().FirstOrDefault(dependency => dependency?.DependsOnTask == doTask.Id)?.DependentTask!).Alias,
                                                        //  Status = BO.Status.Scheduled   //???
                                                    })
-                                                              ),
+                                                   ),
                 StartDate = doTask.StartDate,
                 ScheduledStartDate = doTask.ScheduledDate,
                 ForecastDate = doTask.DeadlineDate, //מה מחושב בו???
@@ -177,7 +177,7 @@ internal class TaskImplementation : ITask
             boTask.Description,
             boTask.CreatedAtDate,
             (TimeSpan)(boTask.StartDate - boTask.CompleteDate), //--
-            false, //false / true
+            false,
             boTask.StartDate,
             boTask.ScheduledStartDate,
             boTask.DeadlineDate,
@@ -185,12 +185,15 @@ internal class TaskImplementation : ITask
             boTask.Deliverables,
             boTask.Remarks,
             boTask.Engineer?.Id,
-            (DO.EngineerExperience)boTask.ComplexityLevel //---
+            (DO.EngineerExperience)boTask.ComplexityLevel
         );
-        foreach (BO.TaskInList doDependency in boTask.Dependencies)
+        if (boTask.Dependencies != null)
         {
-            DO.Dependency doDepend = new DO.Dependency(0, boTask.Id, doDependency.Id);
-            int idDependency = _dal.Dependency.Create(doDepend);  //האם להחזיר את המזהה של התלויות שיצרנו
+            foreach (BO.TaskInList doDependency in boTask.Dependencies)
+            {
+                DO.Dependency doDepend = new DO.Dependency(0, boTask.Id, doDependency.Id);
+                int idDependency = _dal.Dependency.Create(doDepend);
+            }
         }
         try
         {
