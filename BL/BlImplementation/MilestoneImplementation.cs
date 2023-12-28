@@ -1,5 +1,4 @@
 ﻿using BlApi;
-using BO;
 using DalApi;
 using System.Numerics;
 
@@ -99,6 +98,7 @@ internal class MilestoneImplementation : IMilestone
         var tasksId = _dal.Dependency.ReadAll(dependensy => dependensy.DependsOnTask == doTaskMilestone.Id)
                                      .Select(dependensy => dependensy?.DependentTask);
 
+       //List<BO.> milstoneDepends = doTaskMilestone.Dependenci
         var tasks = _dal.Task.ReadAll(task => tasksId.Contains(task.Id)).ToList();
 
         var tasksInList = tasks.Select(task => new BO.TaskInList
@@ -106,7 +106,7 @@ internal class MilestoneImplementation : IMilestone
             Id = task.Id,
             Description = task.Description,
             Alias = task.Alias,
-            Status = CalculateStatus(task.StartDate, task.ScheduledDate, task.DeadlineDate, task.CompleteDate)
+            Status = CalculateStatusOfTask(task.StartDate, task.ScheduledDate, task.DeadlineDate, task.CompleteDate)
         }).ToList();
 
         return new BO.Milestone()
@@ -115,11 +115,11 @@ internal class MilestoneImplementation : IMilestone
             Description = doTaskMilestone.Description,
             Alias = doTaskMilestone.Alias,
             CreatedAtDate = doTaskMilestone.CreatedAtDate,
-            Status = CalculateStatus(doTaskMilestone.StartDate, doTaskMilestone.ScheduledDate, doTaskMilestone.DeadlineDate, doTaskMilestone.CompleteDate),
+            Status = CalculateStatusOfTask(doTaskMilestone.StartDate, doTaskMilestone.ScheduledDate, doTaskMilestone.DeadlineDate, doTaskMilestone.CompleteDate),
             ForecastDate = doTaskMilestone.ScheduledDate,
             DeadlineDate = doTaskMilestone.DeadlineDate,
             CompleteDate = doTaskMilestone.CompleteDate,
-            CompletionPercentage = (tasksInList.Count(task => task.Status == Status.OnTrack) / (double)tasksInList.Count) * 100,
+            CompletionPercentage = (tasksInList.Count(task => task.Status == BO.Status.OnTrack) / (double)tasksInList.Count) * 100,
             Remarks = doTaskMilestone.Remarks,
             Dependencies = tasksInList
         };
@@ -179,19 +179,21 @@ internal class MilestoneImplementation : IMilestone
         }
        
     }
-    public Status CalculateStatus(DateTime? startDate, DateTime? forecastDate, DateTime? deadlineDate, DateTime? completeDate)
+    public BO.Status CalculateStatusOfTask(DateTime? startDate, DateTime? ScheduledDate, DateTime? deadlineDate, DateTime? completeDate)
     {
         if (startDate == null && deadlineDate == null)
-            return Status.Unscheduled;
+            return BO.Status.Unscheduled;
 
         if (startDate != null && deadlineDate != null && completeDate == null)
-            return Status.Scheduled;
-        if (startDate != null && completeDate != null && completeDate <= forecastDate)
-            return Status.OnTrack;
-        if (startDate != null && completeDate != null && completeDate > forecastDate)
-            return Status.InJeopardy;
+            return BO.Status.Scheduled;
 
-        return Status.Unscheduled;
+        if (startDate != null && completeDate != null && completeDate <= ScheduledDate)
+            return BO.Status.OnTrack;
+
+        if (startDate != null && completeDate != null && completeDate > ScheduledDate)
+            return BO.Status.InJeopardy;
+
+        return BO.Status.Unscheduled;
     }
 
 }
