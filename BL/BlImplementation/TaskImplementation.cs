@@ -67,14 +67,14 @@ internal class TaskImplementation : ITask
             Alias = doTask.Alias,
             Description = doTask.Description,
             CreatedAtDate = doTask.CreatedAtDate,
-            Status = CalculateStatus(doTask.StartDate/**/, doTask.ScheduledDate, doTask.StartDate, doTask.StartDate/**/, doTask.DeadlineDate, doTask.CompleteDate),
+            Status = CalculateStatusOfTask(doTask.StartDate, doTask.ScheduledDate, doTask.DeadlineDate, doTask.CompleteDate),
             Dependencies = ((List<TaskInList>)(from DO.Dependency doDependency in _dal.Dependency.ReadAll()
                                                select new TaskInList()
                                                {
                                                    Id = (int)_dal.Dependency.ReadAll().FirstOrDefault(dependency => dependency?.DependsOnTask == doTask.Id)?.DependentTask!,
                                                    Description = _dal.Task.Read((int)_dal.Dependency.ReadAll().FirstOrDefault(dependency => dependency?.DependsOnTask == doTask.Id)?.DependentTask!).Description,
                                                    Alias = _dal.Task.Read((int)_dal.Dependency.ReadAll().FirstOrDefault(dependency => dependency?.DependsOnTask == doTask.Id)?.DependentTask!).Alias,
-                                                   Status = CalculateStatus(doTask.StartDate/**/, doTask.ScheduledDate, doTask.StartDate, doTask.StartDate/**/, doTask.DeadlineDate, doTask.CompleteDate),
+                                                   Status = CalculateStatusOfTask(doTask.StartDate, doTask.ScheduledDate, doTask.DeadlineDate, doTask.CompleteDate)
                                                })
             ),
             Milestone = new BO.MilestoneInTask() /////????
@@ -98,50 +98,60 @@ internal class TaskImplementation : ITask
         };
     }
 
-    public IEnumerable<BO.Task> ReadAll(Func<BO.Task, bool>? filter = null)
+    public IEnumerable<BO.Task?> ReadAll(Func<BO.Task, bool>? filter = null)
     {
 
-        IEnumerable<BO.Task> readAllTask = (from DO.Task doTask in _dal.Task.ReadAll()
-                                            select new BO.Task
-                                            {
-                                                Id = doTask.Id,
-                                                Description = doTask.Description,
-                                                Alias = doTask.Alias,
-                                                CreatedAtDate = doTask.CreatedAtDate,
-                                                Status = BO.Status.Scheduled, //??
-                                                Milestone = new BO.MilestoneInTask() /////????
-                                                {
-                                                    Id = (int)(_dal.Task.ReadAll().FirstOrDefault(task => task?.EngineerId == doTask.Id)?.Id!),
-                                                    Alias = _dal.Task.ReadAll().FirstOrDefault(task => task?.EngineerId == doTask.Id)?.Alias!
-                                                },
-                                                Dependencies = ((List<TaskInList>)(from DO.Dependency doDependency in _dal.Dependency.ReadAll()
-                                                                select new TaskInList()
-                                                                {
-                                                                    Id = (int)_dal.Dependency.ReadAll().FirstOrDefault(dependency => dependency?.DependsOnTask == doTask.Id)?.DependentTask!,
-                                                                    Description = _dal.Task.Read((int)_dal.Dependency.ReadAll().FirstOrDefault(dependency => dependency?.DependsOnTask == doTask.Id)?.DependentTask!).Description,
-                                                                    Alias = _dal.Task.Read((int)_dal.Dependency.ReadAll().FirstOrDefault(dependency => dependency?.DependsOnTask == doTask.Id)?.DependentTask!).Alias,
-                                                                  //  Status = BO.Status.Scheduled   //???
-                                                                })
-                                                               ),
-                                                StartDate = doTask.StartDate,
-                                                ScheduledStartDate = doTask.ScheduledDate,
-                                                ForecastDate = doTask.DeadlineDate, //מה מחושב בו???
-                                                DeadlineDate = doTask.DeadlineDate,
-                                                CompleteDate = doTask.CompleteDate,
-                                                Deliverables = doTask.Deliverables,
-                                                Remarks = doTask.Remarks,
-                                                Engineer = new EngineerInTask()
-                                                {
-                                                    Id = (int)(_dal.Engineer.ReadAll().FirstOrDefault(engineer => engineer?.Id == doTask.EngineerId)?.Id!),
-                                                    Name = _dal.Engineer.Read((int)(_dal.Engineer.ReadAll().FirstOrDefault(engineer => engineer?.Id == doTask.EngineerId)?.Id!))!.Name
-                                                },
-                                                ComplexityLevel = (BO.EngineerExperience)doTask.ComplexityLevel,
-                                            });
+        IEnumerable<BO.Task?> readAllTask = _dal.Task.ReadAll().Select(doTask =>
+        {
+            if (doTask == null)
+            {
+                return null; // If the engineer is NULL, we will also return a NULL engineer
+            }
+
+            return new BO.Task
+            {
+                Id = doTask.Id,
+                Description = doTask.Description,
+                Alias = doTask.Alias,
+                CreatedAtDate = doTask.CreatedAtDate,
+                Status = CalculateStatusOfTask(doTask.StartDate, doTask.ScheduledDate, doTask.DeadlineDate, doTask.CompleteDate), //??
+                Milestone = new BO.MilestoneInTask() /////????
+                {
+                    Id = (int)(_dal.Task.ReadAll().FirstOrDefault(task => task?.EngineerId == doTask.Id)?.Id!),
+                    Alias = _dal.Task.ReadAll().FirstOrDefault(task => task?.EngineerId == doTask.Id)?.Alias!
+                },
+                Dependencies = ((List<TaskInList>)(from DO.Dependency doDependency in _dal.Dependency.ReadAll()
+                                                   select new TaskInList()
+                                                   {
+                                                       Id = (int)_dal.Dependency.ReadAll().FirstOrDefault(dependency => dependency?.DependsOnTask == doTask.Id)?.DependentTask!,
+                                                       Description = _dal.Task.Read((int)_dal.Dependency.ReadAll().FirstOrDefault(dependency => dependency?.DependsOnTask == doTask.Id)?.DependentTask!).Description,
+                                                       Alias = _dal.Task.Read((int)_dal.Dependency.ReadAll().FirstOrDefault(dependency => dependency?.DependsOnTask == doTask.Id)?.DependentTask!).Alias,
+                                                       //  Status = BO.Status.Scheduled   //???
+                                                   })
+                                                              ),
+                StartDate = doTask.StartDate,
+                ScheduledStartDate = doTask.ScheduledDate,
+                ForecastDate = doTask.DeadlineDate, //מה מחושב בו???
+                DeadlineDate = doTask.DeadlineDate,
+                CompleteDate = doTask.CompleteDate,
+                Deliverables = doTask.Deliverables,
+                Remarks = doTask.Remarks,
+                Engineer = new EngineerInTask()
+                {
+                    Id = (int)(_dal.Engineer.ReadAll().FirstOrDefault(engineer => engineer?.Id == doTask.EngineerId)?.Id!),
+                    Name = _dal.Engineer.Read((int)(_dal.Engineer.ReadAll().FirstOrDefault(engineer => engineer?.Id == doTask.EngineerId)?.Id!))!.Name
+                },
+                ComplexityLevel = (BO.EngineerExperience)doTask.ComplexityLevel,
+            };
+
+            
+        }).Where(task => task != null); // We will use WHERE to filter and drop the tasks that are NULL
+
         if (filter != null)
         {
             IEnumerable<BO.Task> readAllTaskFilter = from item in readAllTask
-                                                           where filter(item)
-                                                           select item;
+                                                     where filter(item)
+                                                     select item;
             return readAllTaskFilter;
         }
         return readAllTask;
@@ -156,6 +166,10 @@ internal class TaskImplementation : ITask
         {
             throw new Exception("Task description cannot be empty or null");
         }
+        //if (boTask.StartDate == null || boTask.CompleteDate == null)
+        //{
+        //    TimeSpan requiredEffort = 
+        //}
         DO.Task doTask = new DO.Task
         (
             boTask.Id,
@@ -187,20 +201,20 @@ internal class TaskImplementation : ITask
             throw new BO.BlAlreadyExistsException($"Task with ID={boTask.Id} already exists", ex);
         }
     }
-    public Status CalculateStatus(DateTime? baselineStartDate, DateTime? scheduledStartDate, DateTime? startDate, DateTime? forecastDate, DateTime? deadlineDate, DateTime? completeDate)
+    public BO.Status CalculateStatusOfTask(DateTime? startDate, DateTime? ScheduledDate, DateTime? deadlineDate, DateTime? completeDate)
     {
-        if (startDate == null && baselineStartDate == null)
-            return Status.Unscheduled;
+        if (startDate == null && deadlineDate == null)
+            return BO.Status.Unscheduled;
 
-        if (startDate != null && baselineStartDate != null && scheduledStartDate != null)
-            return Status.Scheduled;
+        if (startDate != null && deadlineDate != null && completeDate == null)
+            return BO.Status.Scheduled;
 
-        if (startDate != null && completeDate != null && completeDate <= forecastDate)
-            return Status.OnTrack;
+        if (startDate != null && completeDate != null && completeDate <= ScheduledDate)
+            return BO.Status.OnTrack;
 
-        if (startDate != null && completeDate != null && deadlineDate!= null && completeDate <= forecastDate)
-            return Status.InJeopardy;
+        if (startDate != null && completeDate != null && completeDate > ScheduledDate)
+            return BO.Status.InJeopardy;
 
-        return Status.Unscheduled;
+        return BO.Status.Unscheduled;
     }
 }

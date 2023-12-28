@@ -124,6 +124,7 @@ internal class MilestoneImplementation : IMilestone
             Dependencies = tasksInList
         };
     }
+
     /// <summary>
     ///  Updates milestone details
     /// </summary>
@@ -179,6 +180,7 @@ internal class MilestoneImplementation : IMilestone
         }
        
     }
+
     public BO.Status CalculateStatusOfTask(DateTime? startDate, DateTime? ScheduledDate, DateTime? deadlineDate, DateTime? completeDate)
     {
         if (startDate == null && deadlineDate == null)
