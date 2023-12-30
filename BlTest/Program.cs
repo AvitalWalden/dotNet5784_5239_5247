@@ -182,14 +182,18 @@ internal class Program
         int.TryParse(idMilstoneBeforeParse, out int idMilstone);
         if (idMilstoneBeforeParse == "" || idMilstoneBeforeParse == null)
         {
-            idMilstone = updateTask.Milestone.Id;
+            idMilstone = updateTask.Milestone!.Id;
         }
-        Console.WriteLine("Enter scheduled startDate date");
-        string? scheduledStartDateBeforeParse4 = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
-        DateTime.TryParse(scheduledStartDateBeforeParse4, out DateTime scheduledStartDate);
-        if (scheduledStartDateBeforeParse4 == "" || scheduledStartDateBeforeParse4 == null)
+        Console.WriteLine("Enter baseline startDate date");
+        string? baselineDate1 = Console.ReadLine();
+        DateTime? baselinedDate;
+        if (baselineDate1 == "" || baselineDate1 == null) //If not update the complete date.
         {
-            scheduledStartDate = (DateTime)updateTask.BaselineStartDate;
+            baselinedDate = updateTask.BaselineStartDate;
+        }
+        else
+        {
+            baselinedDate = DateTime.Parse(baselineDate1);
         }
         Console.WriteLine("Enter task start date");
         string? startDate1 = Console.ReadLine();
@@ -203,11 +207,15 @@ internal class Program
             startDate = DateTime.Parse(startDate1);
         }
         Console.WriteLine("Enter task forecast date");
-        string? forecastDateBeforeParse = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
-        DateTime.TryParse(forecastDateBeforeParse, out DateTime forecastDate);
-        if (forecastDateBeforeParse == "" || forecastDateBeforeParse == null)
+        string? forecastDate1 = Console.ReadLine();
+        DateTime? forecastDate;
+        if (forecastDate1 == "" || forecastDate1 == null) //If not update the complete date.
         {
-            forecastDate = (DateTime)updateTask.ForecastDate;
+            forecastDate = updateTask.ForecastDate;
+        }
+        else
+        {
+            forecastDate = DateTime.Parse(forecastDate1);
         }
         Console.WriteLine("Enter task deadline date");
         string? deadlineDate1 = Console.ReadLine();
@@ -248,9 +256,9 @@ internal class Program
         int.TryParse(engineerIdBeforeParse, out int engineerId);
         if(engineerIdBeforeParse == "" || engineerIdBeforeParse == null)
         {
-            engineerId = updateTask.Engineer.Id;
+            engineerId = updateTask.Engineer!.Id;
         }
-        DateTime createdAt = DateTime.Now;  ///??
+        DateTime createdAt = DateTime.Now;
         Console.WriteLine("Enter the level of the task:");
         Console.WriteLine("For Beginner press 0");
         Console.WriteLine("For AdvancedBeginner press 1");
@@ -276,7 +284,7 @@ internal class Program
                 Id = idMilstone,
                 Alias = s_bl?.Task.Read(idMilstone)?.Alias!
             },
-            BaselineStartDate = scheduledStartDate,
+            BaselineStartDate = baselinedDate,
             StartDate = startDate,
             ForecastDate = forecastDate,
             DeadlineDate = deadlineDate,
