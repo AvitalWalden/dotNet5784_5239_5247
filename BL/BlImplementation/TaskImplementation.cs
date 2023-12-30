@@ -251,7 +251,6 @@ internal class TaskImplementation : ITask
             throw new BO.BlDoesNotExistException(ex.Message, ex);
         }
     }
-
     public static BO.Status CalculateStatusOfTask(DateTime? startDate, DateTime? ScheduledDate, DateTime? deadlineDate, DateTime? completeDate)
     {
         if (startDate == null && deadlineDate == null)
