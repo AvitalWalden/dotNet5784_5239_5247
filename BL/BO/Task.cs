@@ -12,7 +12,7 @@ public class Task
     public List<TaskInList>? Dependencies { get; set; } 
     public MilestoneInTask? Milestone { get; set; } 
     public DateTime? BaselineStartDate { get; set; } //תאריך התחלה בסיסי - לא ברור מה איתו!!!
-    public DateTime? ScheduledStartDate { get; set; } //the planned start date - תאריך התחלה משוער
+    //public DateTime? ScheduledStartDate { get; set; } //the planned start date - תאריך התחלה משוער
     public DateTime? StartDate { get; set; } //the real start date - תאריך התחלה בפועל
     public DateTime? ForecastDate { get; set; } //תאריך חישוב מתוכנן, תאריך משוער לסיום
     public DateTime? DeadlineDate { get; set; } //the latest complete date - תאריך אחרון לסיום

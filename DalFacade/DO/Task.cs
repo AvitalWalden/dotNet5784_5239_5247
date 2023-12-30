@@ -23,7 +23,7 @@ public record Task
     string Description,
     string Alias,
     DateTime CreatedAtDate,
-    TimeSpan RequiredEffort,
+    TimeSpan? RequiredEffort = null,
     bool IsMilestone = false,
     DateTime? StartDate = null,
     DateTime? ScheduledDate = null,

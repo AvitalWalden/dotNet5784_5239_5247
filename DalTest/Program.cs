@@ -76,7 +76,7 @@ namespace DalTest
             }
             Console.WriteLine("Enter required effort time to the tast");
             string requiredEffort1 = Console.ReadLine()!;
-            TimeSpan requiredEffort;
+            TimeSpan? requiredEffort;
             if (requiredEffort1 == "" || requiredEffort1 == null) //If not update the start date.
             {
                 requiredEffort = updateTask.RequiredEffort;

@@ -1,6 +1,5 @@
 ﻿
 using BlApi;
-using BO;
 
 internal class Program
 {
@@ -93,7 +92,7 @@ internal class Program
                 Id = idMilstone,
                 Alias = s_bl.Task.Read(idMilstone)?.Alias!
             },
-            ScheduledStartDate = scheduledStartDate,
+            BaselineStartDate = scheduledStartDate,
             StartDate = startDate,
             ForecastDate = forecastDate,
             DeadlineDate = deadlineDate,
@@ -190,14 +189,18 @@ internal class Program
         DateTime.TryParse(scheduledStartDateBeforeParse4, out DateTime scheduledStartDate);
         if (scheduledStartDateBeforeParse4 == "" || scheduledStartDateBeforeParse4 == null)
         {
-            scheduledStartDate = (DateTime)updateTask.ScheduledStartDate;
+            scheduledStartDate = (DateTime)updateTask.BaselineStartDate;
         }
         Console.WriteLine("Enter task start date");
-        string? startDateBeforeParse5 = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
-        DateTime.TryParse(startDateBeforeParse5, out DateTime startDate);
-        if (startDateBeforeParse5 == "" || startDateBeforeParse5 == null)
+        string? startDate1 = Console.ReadLine();
+        DateTime? startDate;
+        if (startDate1 == "" || startDate1 == null) //If not update the start date.
         {
-            startDate = (DateTime)updateTask.StartDate;
+            startDate = updateTask.StartDate;
+        }
+        else
+        {
+            startDate = DateTime.Parse(startDate1);
         }
         Console.WriteLine("Enter task forecast date");
         string? forecastDateBeforeParse = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
@@ -207,18 +210,26 @@ internal class Program
             forecastDate = (DateTime)updateTask.ForecastDate;
         }
         Console.WriteLine("Enter task deadline date");
-        string? deadlineDateBeforeParse = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
-        DateTime.TryParse(deadlineDateBeforeParse, out DateTime deadlineDate); Console.WriteLine("Enter task deadline date");
-        if (deadlineDateBeforeParse == "" || deadlineDateBeforeParse == null)
+        string? deadlineDate1 = Console.ReadLine();
+        DateTime? deadlineDate;
+        if (deadlineDate1 == "" || deadlineDate1 == null) //If not update the forecast date.
         {
-            startDate = (DateTime)updateTask.DeadlineDate;
+            deadlineDate = updateTask.DeadlineDate;
+        }
+        else
+        {
+            deadlineDate = DateTime.Parse(deadlineDate1);
         }
         Console.WriteLine("Enter task complete date");
-        string? completeDateBeforeParse = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
-        DateTime.TryParse(completeDateBeforeParse, out DateTime completeDate); Console.WriteLine("Enter task deadline date");
-        if (completeDateBeforeParse == "" || completeDateBeforeParse == null)
+        string? completeDate1 = Console.ReadLine();
+        DateTime? completeDate;
+        if (completeDate1 == "" || completeDate1 == null) //If not update the complete date.
         {
-            completeDate = (DateTime)updateTask.CompleteDate;
+            completeDate = updateTask.CompleteDate;
+        }
+        else
+        {
+            completeDate = DateTime.Parse(completeDate1);
         }
         Console.WriteLine("Enter product deliverables of the task");
         string? deliverables = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
@@ -265,7 +276,7 @@ internal class Program
                 Id = idMilstone,
                 Alias = s_bl?.Task.Read(idMilstone)?.Alias!
             },
-            ScheduledStartDate = scheduledStartDate,
+            BaselineStartDate = scheduledStartDate,
             StartDate = startDate,
             ForecastDate = forecastDate,
             DeadlineDate = deadlineDate,
