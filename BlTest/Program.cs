@@ -35,7 +35,7 @@ internal class Program
             int.TryParse(stringId, out int idDependency);
             Console.WriteLine("Enter alias of the task that dependency on this task");
             string aliasOfidDependency = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
-            Console.WriteLine("Enter alias of the task that dependency on this task");
+            Console.WriteLine("Enter description of the task that dependency on this task");
             string descriptionOfidDependency = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
             BO.TaskInList newTaskInList = new BO.TaskInList()
             {
@@ -44,6 +44,10 @@ internal class Program
                 Description = descriptionOfidDependency
             };
             tasks.Add(newTaskInList);
+            Console.WriteLine("To add a dependency to a task, press 1");
+            Console.WriteLine("Exit Press 0");
+            chooseString = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+            int.TryParse(chooseString, out choose);
         }
         Console.WriteLine("Enter id of milestone in task");
         string? chooseIdMilstoneBeforeParse = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
@@ -56,13 +60,13 @@ internal class Program
         DateTime.TryParse(choosestartDateBeforeParse, out DateTime startDate);
         Console.WriteLine("Enter task forecast date");
         string? chooseforecastDateBeforeParse = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
-        DateTime.TryParse(chooseforecastDateBeforeParse, out DateTime forecastDate); Console.WriteLine("Enter task deadline date");
+        DateTime.TryParse(chooseforecastDateBeforeParse, out DateTime forecastDate);
         Console.WriteLine("Enter task deadline date");
         string? chooseDeadlineDateBeforeParse = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
-        DateTime.TryParse(chooseDeadlineDateBeforeParse, out DateTime deadlineDate); Console.WriteLine("Enter task deadline date");
+        DateTime.TryParse(chooseDeadlineDateBeforeParse, out DateTime deadlineDate);
         Console.WriteLine("Enter task complete date");
         string? choosecompleteDateBeforeParse = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
-        DateTime.TryParse(choosecompleteDateBeforeParse, out DateTime completeDate); Console.WriteLine("Enter task deadline date");
+        DateTime.TryParse(choosecompleteDateBeforeParse, out DateTime completeDate);
         Console.WriteLine("Enter product deliverables of the task");
         string? deliverables = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
         Console.WriteLine("Enter remarks of the task");
@@ -164,7 +168,7 @@ internal class Program
             int.TryParse(stringId, out int idDependency);
             Console.WriteLine("Enter alias of the task that dependency on this task");
             string aliasOfidDependency = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
-            Console.WriteLine("Enter alias of the task that dependency on this task");
+            Console.WriteLine("Enter description of the task that dependency on this task");
             string descriptionOfidDependency = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
             BO.TaskInList newTaskInList = new BO.TaskInList()
             {
@@ -173,8 +177,12 @@ internal class Program
                 Description = descriptionOfidDependency
             };
             tasks.Add(newTaskInList);
+            Console.WriteLine("To add a dependency to a task, press 1");
+            Console.WriteLine("Exit Press 0");
+            choose1 = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+            int.TryParse(choose1, out choose);
         }
-        if( choose == 0 ) {
+        if ( choose == 0 ) {
             tasks = updateTask.Dependencies;
         }
         Console.WriteLine("Enter id of milestone in task");
