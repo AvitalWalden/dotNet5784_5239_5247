@@ -168,6 +168,10 @@ internal class DependencyImplementation : IDependency
             lst.Clear();
             XMLTools.SaveListToXMLSerializer<Dependency>(lst, "dependencies");
         }
+        string configFile = "data-config";
+        XElement configElement = XMLTools.LoadListFromXMLElement(configFile);
+        configElement.Element("NextDependencyId")?.SetValue("0");
+        XMLTools.SaveListToXMLElement(configElement, configFile);
     }
 }
 

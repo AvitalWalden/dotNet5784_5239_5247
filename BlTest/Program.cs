@@ -21,6 +21,7 @@ internal class Program
         Console.WriteLine("For Scheduled press 1");
         Console.WriteLine("For OnTrack press 2");
         Console.WriteLine("For InJeopardy press 3");
+        Console.WriteLine("For Done press 4");
         string? chooseStatusBeforeParse = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
         BO.Status.TryParse(chooseStatusBeforeParse, out BO.Status status);
         Console.WriteLine("To add a dependency to a task, press 1");
@@ -150,6 +151,7 @@ internal class Program
         Console.WriteLine("For Scheduled press 1");
         Console.WriteLine("For OnTrack press 2");
         Console.WriteLine("For InJeopardy press 3");
+        Console.WriteLine("For Done press 4");
         string? statusBeforeParse = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
         BO.Status.TryParse(statusBeforeParse, out BO.Status status);
         if(statusBeforeParse == "" || statusBeforeParse == null)
