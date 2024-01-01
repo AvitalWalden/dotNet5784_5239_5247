@@ -173,7 +173,7 @@ internal class MilestoneImplementation : IMilestone
                 Id = task!.Id,
                 Description = task.Description,
                 Alias = task.Alias,
-                Status = Tools.CalculateStatusOfTask(task.StartDate, task.ScheduledDate, task.DeadlineDate, task.CompleteDate)
+                Status = Tools.CalculateStatusOfTask(task)
             }).ToList();
 
             return new BO.Milestone()
@@ -182,7 +182,7 @@ internal class MilestoneImplementation : IMilestone
                 Description = doTaskMilestone.Description,
                 Alias = doTaskMilestone.Alias,
                 CreatedAtDate = doTaskMilestone.CreatedAtDate,
-                Status = Tools.CalculateStatusOfTask(doTaskMilestone.StartDate, doTaskMilestone.ScheduledDate, doTaskMilestone.DeadlineDate, doTaskMilestone.CompleteDate),
+                Status = Tools.CalculateStatusOfTask(doTaskMilestone),
                 ForecastDate = doTaskMilestone.ScheduledDate,
                 DeadlineDate = doTaskMilestone.DeadlineDate,
                 CompleteDate = doTaskMilestone.CompleteDate,

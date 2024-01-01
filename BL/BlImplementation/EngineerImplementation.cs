@@ -74,7 +74,7 @@ internal class EngineerImplementation : IEngineer
         if (doEngineer == null)
             throw new BO.BlDoesNotExistException($"Engineer with ID={id} does Not exist");
 
-        DO.Task? task = _dal.Task.ReadAll().FirstOrDefault(task => task?.EngineerId == id && Tools.CalculateStatusOfTask(task.StartDate, task.ScheduledDate, task.DeadlineDate, task.CompleteDate) == BO.Status.OnTrack);
+        DO.Task? task = _dal.Task.ReadAll().FirstOrDefault(task => task?.EngineerId == id && Tools.CalculateStatusOfTask(task) == BO.Status.OnTrack);
         BO.TaskInEngineer? taskInEngineer;
         if (task == null)
         {

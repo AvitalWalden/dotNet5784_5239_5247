@@ -17,20 +17,20 @@ public  static class Tools
 
         return result;
     }
-    public static BO.Status CalculateStatusOfTask(DateTime? startDate, DateTime? ScheduledDate, DateTime? deadlineDate, DateTime? completeDate)
+    public static BO.Status CalculateStatusOfTask(DO.Task doTask)
     {
-        if (startDate == null && deadlineDate == null)
+        if (doTask.StartDate == null && doTask.DeadlineDate == null)
             return BO.Status.Unscheduled;
 
-        if (startDate != null && deadlineDate != null && completeDate == null)
+        if (doTask.StartDate != null && doTask.DeadlineDate != null && doTask.CompleteDate == null)
             return BO.Status.Scheduled;
 
-        if (startDate != null && completeDate != null && completeDate <= ScheduledDate)
+        if (doTask.StartDate != null && doTask.CompleteDate != null && doTask.CompleteDate <= doTask.ScheduledDate)
             return BO.Status.OnTrack;
 
-        if (startDate != null && completeDate != null && completeDate > ScheduledDate)
+        if (doTask.StartDate != null && doTask.CompleteDate != null && doTask.CompleteDate > doTask.ScheduledDate)
             return BO.Status.InJeopardy;
-        if (startDate != null && completeDate > DateTime.Now)
+        if (doTask.StartDate != null && doTask.CompleteDate > DateTime.Now)
             return BO.Status.Done;
 
         return BO.Status.Unscheduled;
