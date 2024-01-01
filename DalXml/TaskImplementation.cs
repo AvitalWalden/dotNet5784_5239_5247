@@ -31,7 +31,29 @@ internal class TaskImplementation : ITask
     /// <exception cref="DalDeletionImpossible">exeption that task cannot be deleted</exception>
     public void Delete(int id)
     {
-        throw new DalDeletionImpossible($"Task with ID={id} cannot be deleted");
+        List<Dependency> lstDependency = XMLTools.LoadListFromXMLSerializer<Dependency>("dependencies");
+        List<Task> lst = XMLTools.LoadListFromXMLSerializer<Task>("tasks");
+        Task? task = lst.FirstOrDefault(task => task?.Id == id);
+        if (task is null)
+            throw new DalDoesNotExistException($"Task with ID={id} is not exists");
+        if (Config.startDateProject >= DateTime.Now)
+            throw new DalDeletionImpossible("Task cannot be deleted because the project alredy began");
+        foreach (var dep in lstDependency)
+        {
+            if (dep.DependsOnTask == id)
+            {
+                throw new Exception($"Task with ID ={id} cannot be deleted");
+            }
+        }
+        foreach (var dep in lstDependency)
+        {
+            if (dep.DependentTask == id)
+            {
+                lstDependency.Remove(dep);
+            }
+        }
+        lst.Remove(task);
+        XMLTools.SaveListToXMLSerializer<Task>(lst, "tasks");
     }
 
     /// <summary>
@@ -97,5 +119,9 @@ internal class TaskImplementation : ITask
             lst.Clear();
             XMLTools.SaveListToXMLSerializer<Task>(lst, "tasks");
         }
+        string configFile = "data-config";
+        XElement configElement = XMLTools.LoadListFromXMLElement(configFile);
+        configElement.Element("NextTaskId")?.SetValue("0");
+        XMLTools.SaveListToXMLElement(configElement, configFile);
     }
 }

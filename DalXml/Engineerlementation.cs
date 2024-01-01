@@ -31,7 +31,22 @@ internal class Engineerlementation : IEngineer
     /// <exception cref="DalDeletionImpossible">exeption that engineer cannot be deleted </exception>
     public void Delete(int id)
     {
-        throw new DalDeletionImpossible($"Engineer with ID={id} cannot be deleted");
+        List<Engineer> lst = XMLTools.LoadListFromXMLSerializer<Engineer>("engineers");
+        List<Task> lstTask = XMLTools.LoadListFromXMLSerializer<Task>("tasks");
+
+        foreach (var task in lstTask)
+        {
+            if( task.EngineerId == id && task.StartDate <= DateTime.Now)
+            {
+                throw new DalDeletionImpossible($"Engineer with ID={id} cannot be deleted");
+
+            }
+        }
+        Engineer? engineer = lst.FirstOrDefault(engineer => engineer?.Id == id);
+        if (engineer is null)
+            throw new DalDoesNotExistException($"Dependency with ID={id} is not exists");
+        lst.Remove(engineer);
+        XMLTools.SaveListToXMLSerializer<Engineer>(lst, "engineers");
     }
 
     /// <summary>
