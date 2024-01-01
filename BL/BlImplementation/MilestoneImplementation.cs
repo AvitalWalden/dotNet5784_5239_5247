@@ -179,7 +179,6 @@ public IEnumerable<DO.Dependency> Create()
 
                 foreach (var dependencyGroup in groupedDependencies)
                 {
-                    // אם הרשימה של המשימה (DependentTask) שווה לרשימה של המשימה הנוצרת
                     if (dependencyGroup.Item2.SequenceEqual(tasksList))
                     {
                         foreach (var dependentOnTaskId in dependencyGroup.Item2)

@@ -2,7 +2,7 @@
 
 namespace BO;
 
-internal  static class Tools
+public  static class Tools
 {
     public static string ToStringProperty<T>(this T obj)
     {
@@ -34,5 +34,12 @@ internal  static class Tools
             return BO.Status.Done;
 
         return BO.Status.Unscheduled;
+    }
+
+    public static void SetProjectDates(DateTime startDate, DateTime endDate)
+    {
+        DalApi.Factory.Get.endDateProject = endDate;
+        DalApi.Factory.Get.startDateProject = startDate;
+
     }
 }

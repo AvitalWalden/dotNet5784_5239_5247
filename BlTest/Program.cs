@@ -1,7 +1,4 @@
-﻿
-
-
-using DalApi;
+﻿using DalApi;
 
 internal class Program
 {
@@ -55,21 +52,21 @@ internal class Program
         Console.WriteLine("Enter id of milestone in task");
         string? chooseIdMilstoneBeforeParse = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
         int.TryParse(chooseIdMilstoneBeforeParse, out int idMilstone);
-        Console.WriteLine("Enter scheduled startDate date");
-        string? chooseScheduledStartDateBeforeParse = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
-        DateTime.TryParse(chooseScheduledStartDateBeforeParse, out DateTime scheduledStartDate);
-        Console.WriteLine("Enter task start date");
-        string? choosestartDateBeforeParse = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
-        DateTime.TryParse(choosestartDateBeforeParse, out DateTime startDate);
-        Console.WriteLine("Enter task forecast date");
-        string? chooseforecastDateBeforeParse = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
-        DateTime.TryParse(chooseforecastDateBeforeParse, out DateTime forecastDate);
-        Console.WriteLine("Enter task deadline date");
-        string? chooseDeadlineDateBeforeParse = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
-        DateTime.TryParse(chooseDeadlineDateBeforeParse, out DateTime deadlineDate);
-        Console.WriteLine("Enter task complete date");
-        string? choosecompleteDateBeforeParse = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
-        DateTime.TryParse(choosecompleteDateBeforeParse, out DateTime completeDate);
+        //Console.WriteLine("Enter scheduled startDate date");
+        //string? chooseScheduledStartDateBeforeParse = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+        //DateTime.TryParse(chooseScheduledStartDateBeforeParse, out DateTime scheduledStartDate);
+        //Console.WriteLine("Enter task start date");
+        //string? choosestartDateBeforeParse = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+        //DateTime.TryParse(choosestartDateBeforeParse, out DateTime startDate);
+        //Console.WriteLine("Enter task forecast date");
+        //string? chooseforecastDateBeforeParse = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+        //DateTime.TryParse(chooseforecastDateBeforeParse, out DateTime forecastDate);
+        //Console.WriteLine("Enter task deadline date");
+        //string? chooseDeadlineDateBeforeParse = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+        //DateTime.TryParse(chooseDeadlineDateBeforeParse, out DateTime deadlineDate);
+        //Console.WriteLine("Enter task complete date");
+        //string? choosecompleteDateBeforeParse = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+        //DateTime.TryParse(choosecompleteDateBeforeParse, out DateTime completeDate);
         Console.WriteLine("Enter product deliverables of the task");
         string? deliverables = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
         Console.WriteLine("Enter remarks of the task");
@@ -99,11 +96,11 @@ internal class Program
                 Id = idMilstone,
                 Alias = s_bl.Task.Read(idMilstone)?.Alias!
             },
-            BaselineStartDate = scheduledStartDate,
-            StartDate = startDate,
-            ForecastDate = forecastDate,
-            DeadlineDate = deadlineDate,
-            CompleteDate = completeDate,
+            BaselineStartDate = null,
+            StartDate = null,
+            ForecastDate = null,
+            DeadlineDate = null,
+            CompleteDate = null,
             Deliverables = deliverables,
             Remarks = remarks,
             Engineer = new BO.EngineerInTask()
@@ -790,8 +787,6 @@ internal class Program
             DalTest.Initialization.Do();
         }
         Console.WriteLine("For a task press 1");
-        Console.WriteLine("For an engineer press 2");
-        Console.WriteLine("For milestone between tasks press 3");
         Console.WriteLine("To exit press 0");
         string? chooseBeforeParse = Console.ReadLine();
         int.TryParse(chooseBeforeParse, out int choose);
@@ -800,6 +795,41 @@ internal class Program
             while (choose != 0)
             {
                 switch (choose)
+                {
+                    case 1:
+                        Tasks();
+                        break;
+                    default:
+                        break;
+                }
+                Console.WriteLine("For a task press 1");
+                Console.WriteLine("To exit press 0");
+                chooseBeforeParse = Console.ReadLine();
+                int.TryParse(chooseBeforeParse, out choose);
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex);
+        }
+        Console.WriteLine("Enter the project start date (yyyy-MM-ddTHH:mm:ss):");
+        string? startDateString = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+        DateTime.TryParse(startDateString, out DateTime startDate);
+        Console.WriteLine("Enter the project end date (yyyy-MM-ddTHH:mm:ss):");
+        string? endDateString = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+        DateTime.TryParse(endDateString, out DateTime endDate);
+        BO.Tools.SetProjectDates(startDate, endDate);
+        Console.WriteLine("For a task press 1");
+        Console.WriteLine("For an engineer press 2");
+        Console.WriteLine("For milestone between tasks press 3");
+        Console.WriteLine("To exit press 0");
+        string? chooseBeforeParseAll = Console.ReadLine();
+        int.TryParse(chooseBeforeParseAll, out int ch);
+        try
+        {
+            while (ch != 0)
+            {
+                switch (ch)
                 {
                     case 1:
                         Tasks();
@@ -817,21 +847,14 @@ internal class Program
                 Console.WriteLine("For an engineer press 2");
                 Console.WriteLine("For depency between tasks press 3");
                 Console.WriteLine("To exit press 0");
-                chooseBeforeParse = Console.ReadLine();
-                int.TryParse(chooseBeforeParse, out choose);
+                chooseBeforeParseAll = Console.ReadLine();
+                int.TryParse(chooseBeforeParse, out ch);
             }
         }
         catch (Exception ex)
         {
             Console.WriteLine(ex);
         }
-        Console.WriteLine("Enter the project start date (yyyy-MM-ddTHH:mm:ss):");
-        string? startDateString = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
-        DateTime.TryParse(startDateString, out DateTime startDate);
-        DalApi.Factory.Get.startDateProject = startDate; 
-        Console.WriteLine("Enter the project end date (yyyy-MM-ddTHH:mm:ss):");
-        string? endDateString = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
-        DateTime.TryParse(endDateString, out DateTime endDate);
-        DalApi.Factory.Get.endDateProject = endDate;
+       
     }
 }
