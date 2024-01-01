@@ -9,82 +9,82 @@ internal class MilestoneImplementation : IMilestone
     private DalApi.IDal _dal = DalApi.Factory.Get;
     public int Create(BO.Milestone item)
     {
-        //// יצירת רשימה מקובצת על פי מפתח - משימה תלויה
-        //var groupedDependencies = _dal.Dependency.ReadAll()
-        //    .OrderBy(dep => dep?.DependsOnTask)
-        //    .GroupBy(dep => dep?.DependentTask, dep => dep?.DependsOnTask, (id, dependency)=> new { TaskId = id, Dependencies = dependency })
-        //    .ToList();
+        // יצירת רשימה מקובצת על פי מפתח - משימה תלויה
+        var groupedDependencies = _dal.Dependency.ReadAll()
+            .OrderBy(dep => dep?.DependsOnTask)
+            .GroupBy(dep => dep?.DependentTask, dep => dep?.DependsOnTask, (id, dependency) => new { TaskId = id, Dependencies = dependency })
+            .ToList();
 
-        //// יצירת רשימה מסוננת שבה כל ערך מופיע רק פעם אחת
-        //var distinctDependencies = groupedDependencies
-        // .SelectMany(depGroup => depGroup.Dependencies)
-        // .Where(dep => dep != null)
-        // .Distinct()
-        // .ToList();
+        // יצירת רשימה מסוננת שבה כל ערך מופיע רק פעם אחת
+        var distinctDependencies = groupedDependencies
+         .SelectMany(depGroup => depGroup.Dependencies)
+         .Where(dep => dep != null)
+         .Distinct()
+         .ToList();
 
-        //// יצירת אבן דרך עבור כל ערך ברשימת התלויות החדשה
-        //var milestones = distinctDependencies
-        //    .Select(dep => new BO.Milestone
-        //    {
-        //        Id = dep.Value, // השמה של מזהה המשימה התלויה
-        //        Description = $"Milestone for Task {dep.Value}", // תיאור אוטומטי
-        //        Alias = $"M{dep.Value}", // קיצור אוטומטי
-        //        CreatedAtDate = DateTime.Now, // זמן יצירה
-        //        Status = BO.Status.Scheduled, // סטטוס עבור אבן דרך חדשה
-        //        StartDate = null, // תאריך התחלה - אפשר להשיב בהתאם לדרישות העסקיות
-        //        ForecastDate = null, // תאריך תחזית - אפשר להשיב בהתאם לדרישות העסקיות
-        //        DeadlineDate = null, // תאריך סיום אחרון - אפשר להשיב בהתאם לדרישות העסקיות
-        //        CompleteDate = null, // תאריך סיום בפועל - אפשר להשיב בהתאם לדרישות העסקיות
-        //        Dependencies = groupedDependencies
-        //            .Where(depGroup => depGroup.Dependencies.Contains(dep))
-        //            .Select(depGroup =>
-        //            {
-        //                return new BO.TaskInList()
-        //                {
-        //                    Id = (int)depGroup.TaskId,
-        //                    Alias = $"Task-{depGroup.TaskId}",
-        //                    Description = $"Task {depGroup.TaskId}", // תיאור אוטומטי
-        //                    Status = BO.Status.Scheduled // סטטוס עבור המשימה התלויה
+        // יצירת אבן דרך עבור כל ערך ברשימת התלויות החדשה
+        var milestones = distinctDependencies
+            .Select(dep => new BO.Milestone
+            {
+                Id = dep.Value, // השמה של מזהה המשימה התלויה
+                Description = $"Milestone for Task {dep.Value}", // תיאור אוטומטי
+                Alias = $"M{dep.Value}", // קיצור אוטומטי
+                CreatedAtDate = DateTime.Now, // זמן יצירה
+                Status = BO.Status.Scheduled, // סטטוס עבור אבן דרך חדשה
+                StartDate = null, // תאריך התחלה - אפשר להשיב בהתאם לדרישות העסקיות
+                ForecastDate = null, // תאריך תחזית - אפשר להשיב בהתאם לדרישות העסקיות
+                DeadlineDate = null, // תאריך סיום אחרון - אפשר להשיב בהתאם לדרישות העסקיות
+                CompleteDate = null, // תאריך סיום בפועל - אפשר להשיב בהתאם לדרישות העסקיות
+                Dependencies = groupedDependencies
+                    .Where(depGroup => depGroup.Dependencies.Contains(dep))
+                    .Select(depGroup =>
+                    {
+                        return new BO.TaskInList()
+                        {
+                            Id = (int)depGroup.TaskId,
+                            Alias = $"Task-{depGroup.TaskId}",
+                            Description = $"Task {depGroup.TaskId}", // תיאור אוטומטי
+                            Status = BO.Status.Scheduled // סטטוס עבור המשימה התלויה
 
-        //                };
-        //            })
-        //            .ToList()
-        //    })
-        //    .ToList();
+                        };
+                    })
+                    .ToList()
+            })
+            .ToList();
 
 
-        //// יצירת אבן דרך לתחילת הפרויקט
-        //var projectStartMilestone = new BO.Milestone
-        //{
-        //    Id = 0, // ערך ייחודי לאבן הדרך שמייצגת את תחילת הפרויקט
-        //    Description = "Project Start Milestone", // תיאור אוטומטי
-        //    Alias = "M0", // קיצור אוטומטי
-        //    CreatedAtDate = DateTime.Now, // זמן יצירה
-        //    Status = BO.Status.Scheduled, // סטטוס עבור אבן דרך חדשה
-        //    StartDate = null, // תאריך התחלה - אפשר להשיב בהתאם לדרישות העסקיות
-        //    ForecastDate = null, // תאריך תחזית - אפשר להשיב בהתאם לדרישות העסקיות
-        //    DeadlineDate = null, // תאריך סיום אחרון - אפשר להשיב בהתאם לדרישות העסקיות
-        //    CompleteDate = null, // תאריך סיום בפועל - אפשר להשיב בהתאם לדרישות העסקיות
-        //    Dependencies = new List<BO.TaskInList>() // לא יש לה תלות
-        //};
+        // יצירת אבן דרך לתחילת הפרויקט
+        var projectStartMilestone = new BO.Milestone
+        {
+            Id = 0, // ערך ייחודי לאבן הדרך שמייצגת את תחילת הפרויקט
+            Description = "Project Start Milestone", // תיאור אוטומטי
+            Alias = "M0", // קיצור אוטומטי
+            CreatedAtDate = DateTime.Now, // זמן יצירה
+            Status = BO.Status.Scheduled, // סטטוס עבור אבן דרך חדשה
+            StartDate = null, // תאריך התחלה - אפשר להשיב בהתאם לדרישות העסקיות
+            ForecastDate = null, // תאריך תחזית - אפשר להשיב בהתאם לדרישות העסקיות
+            DeadlineDate = null, // תאריך סיום אחרון - אפשר להשיב בהתאם לדרישות העסקיות
+            CompleteDate = null, // תאריך סיום בפועל - אפשר להשיב בהתאם לדרישות העסקיות
+            Dependencies = new List<BO.TaskInList>() // לא יש לה תלות
+        };
 
-        //// הוספת אבן הדרך לרשימה
-        //milestones.Add(projectStartMilestone);
+        // הוספת אבן הדרך לרשימה
+        milestones.Add(projectStartMilestone);
 
-        //// מציאת משימות שלא תלויות בשום משימה
-        //var independentTasks = _dal.Task.ReadAll(task => !groupedDependencies.Any(depGroup => depGroup.Dependencies.Contains(task.Id)));
+        // מציאת משימות שלא תלויות בשום משימה
+        var independentTasks = _dal.Task.ReadAll(task => !groupedDependencies.Any(depGroup => depGroup.Dependencies.Contains(task.Id)));
 
-        //// הוספת תלות לכל אבן דרך עבור המשימות הזו
-        //foreach (var independentTask in independentTasks)
-        //{
-        //    projectStartMilestone.Dependencies.Add(new BO.TaskInList
-        //    {
-        //        Id = independentTask.Id,
-        //        Alias = $"Task-{independentTask.Id}",
-        //        Description = $"Task {independentTask.Id} - {independentTask.Description}",
-        //        Status = BO.Status.Scheduled
-        //    });
-        //}
+        // הוספת תלות לכל אבן דרך עבור המשימות הזו
+        foreach (var independentTask in independentTasks)
+        {
+            projectStartMilestone.Dependencies.Add(new BO.TaskInList
+            {
+                Id = independentTask.Id,
+                Alias = $"Task-{independentTask.Id}",
+                Description = $"Task {independentTask.Id} - {independentTask.Description}",
+                Status = BO.Status.Scheduled
+            });
+        }
 
         return 1;
     }

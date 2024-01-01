@@ -3,6 +3,7 @@ using DalApi;
 using DO;
 using System.Collections;
 using System.Collections.Generic;
+using static Dal.DataSource;
 
 internal class TaskImplementation : ITask
 {
@@ -21,6 +22,8 @@ internal class TaskImplementation : ITask
     {
         //מחיקה מה לעשות בBO אם כאן עושים את זה
         Task? taskToDelete = Read(id);
+        if (Config.startDateProject >= DateTime.Now)
+            throw new DalDeletionImpossible("the project alredy began");
         if (taskToDelete is not null)
         {
             for (int i = 0; i < DataSource.Dependencies.Count; i++)

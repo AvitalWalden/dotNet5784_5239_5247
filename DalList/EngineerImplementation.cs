@@ -24,8 +24,8 @@ internal class EngineerImplementation : IEngineer
         Engineer? engneerToDelete = Read(id);
         if (engneerToDelete is not null)
         {
-            //if (DataSource.Tasks.Any(task => task?.EngineerId == id))
-            //    throw new DalDeletionImpossible($"Engineer with ID={id} cannot be deleted");
+            if (DataSource.Tasks.Any(task => task?.EngineerId == id && task.StartDate <= DateTime.Now))
+                throw new DalDeletionImpossible($"Engineer with ID={id} cannot be deleted");
             DataSource.Engineers.Remove(engneerToDelete);
 
         }

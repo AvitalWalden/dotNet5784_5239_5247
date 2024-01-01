@@ -52,10 +52,6 @@ internal class EngineerImplementation : IEngineer
     /// <exception cref="BO.BlDoesNotExistException"></exception>
     public void Delete(int id)
     {
-        if (_dal.Task.ReadAll(task => task?.EngineerId == id) is not null)
-        {
-            throw new BO.BlDoesNotExistException($"Engineer with ID={id} cannot be deleted");
-        }
         try
         {
             _dal.Engineer.Delete(id);//עשינו שאי אפשר לממחוק אז איך אפשר לשלוח לשם
@@ -78,7 +74,7 @@ internal class EngineerImplementation : IEngineer
         if (doEngineer == null)
             throw new BO.BlDoesNotExistException($"Engineer with ID={id} does Not exist");
 
-        DO.Task? task = _dal.Task.ReadAll().FirstOrDefault(task => task?.EngineerId == id && TaskImplementation.CalculateStatusOfTask(task.StartDate, task.ScheduledDate, task.DeadlineDate, task.CompleteDate) == BO.Status.OnTrack);
+        DO.Task? task = _dal.Task.ReadAll().FirstOrDefault(task => task?.EngineerId == id && Tools.CalculateStatusOfTask(task.StartDate, task.ScheduledDate, task.DeadlineDate, task.CompleteDate) == BO.Status.OnTrack);
         BO.TaskInEngineer? taskInEngineer;
         if (task == null)
         {
