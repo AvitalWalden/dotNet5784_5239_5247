@@ -786,39 +786,39 @@ internal class Program
             Factory.Get.Reset();
             DalTest.Initialization.Do();
         }
-        Console.WriteLine("For a task press 1");
-        Console.WriteLine("To exit press 0");
-        string? chooseBeforeParse = Console.ReadLine();
-        int.TryParse(chooseBeforeParse, out int choose);
-        try
-        {
-            while (choose != 0)
-            {
-                switch (choose)
-                {
-                    case 1:
-                        Tasks();
-                        break;
-                    default:
-                        break;
-                }
-                Console.WriteLine("For a task press 1");
-                Console.WriteLine("To exit press 0");
-                chooseBeforeParse = Console.ReadLine();
-                int.TryParse(chooseBeforeParse, out choose);
-            }
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine(ex);
-        }
-        Console.WriteLine("Enter the project start date (yyyy-MM-ddTHH:mm:ss):");
-        string? startDateString = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
-        DateTime.TryParse(startDateString, out DateTime startDate);
-        Console.WriteLine("Enter the project end date (yyyy-MM-ddTHH:mm:ss):");
-        string? endDateString = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
-        DateTime.TryParse(endDateString, out DateTime endDate);
-        BO.Tools.SetProjectDates(startDate, endDate);
+        //Console.WriteLine("For a task press 1");
+        //Console.WriteLine("To exit press 0");
+        //string? chooseBeforeParse = Console.ReadLine();
+        //int.TryParse(chooseBeforeParse, out int choose);
+        //try
+        //{
+        //    while (choose != 0)
+        //    {
+        //        switch (choose)
+        //        {
+        //            case 1:
+        //                Tasks();
+        //                break;
+        //            default:
+        //                break;
+        //        }
+        //        Console.WriteLine("For a task press 1");
+        //        Console.WriteLine("To exit press 0");
+        //        chooseBeforeParse = Console.ReadLine();
+        //        int.TryParse(chooseBeforeParse, out choose);
+        //    }
+        //}
+        //catch (Exception ex)
+        //{
+        //    Console.WriteLine(ex);
+        //}
+        //Console.WriteLine("Enter the project start date (yyyy-MM-ddTHH:mm:ss):");
+        //string? startDateString = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+        //DateTime.TryParse(startDateString, out DateTime startDate);
+        //Console.WriteLine("Enter the project end date (yyyy-MM-ddTHH:mm:ss):");
+        //string? endDateString = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+        //DateTime.TryParse(endDateString, out DateTime endDate);
+        //BO.Tools.SetProjectDates(startDate, endDate);
         Console.WriteLine("For a task press 1");
         Console.WriteLine("For an engineer press 2");
         Console.WriteLine("For milestone between tasks press 3");
@@ -848,7 +848,7 @@ internal class Program
                 Console.WriteLine("For depency between tasks press 3");
                 Console.WriteLine("To exit press 0");
                 chooseBeforeParseAll = Console.ReadLine();
-                int.TryParse(chooseBeforeParse, out ch);
+                int.TryParse(chooseBeforeParseAll, out ch);
             }
         }
         catch (Exception ex)

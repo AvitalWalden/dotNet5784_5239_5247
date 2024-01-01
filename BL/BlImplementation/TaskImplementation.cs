@@ -1,4 +1,5 @@
 ﻿using BlApi;
+using BO;
 using System.Xml.Linq;
 
 namespace BlImplementation;
@@ -8,6 +9,7 @@ internal class TaskImplementation : ITask
     private DalApi.IDal _dal = DalApi.Factory.Get;
     public int Create(BO.Task boTask)
     {
+       
         if (boTask.Id < 0)
         {
             throw new BO.BlInvalidValue("Task ID must be a positive number");
@@ -21,6 +23,14 @@ internal class TaskImplementation : ITask
         {
             requiredEffort = (TimeSpan)(boTask.StartDate! - boTask.CompleteDate!);
         }
+        if (boTask.Engineer?.Id !=null)
+        {
+            var task = _dal.Task.ReadAll(doTask => doTask.EngineerId == boTask.Engineer?.Id && Tools.CalculateStatusOfTask(boTask) != Status.Done).ToList();
+            if (task != null) {
+                throw new EngineerIsAlreadyBusy("Engineer is already busy");
+            }
+        }
+       
         DO.Task doTask = new DO.Task
         (
             boTask.Id,

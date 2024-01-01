@@ -54,3 +54,9 @@ public class BlFailedToCreateMilestone : Exception // Exception of failed to rea
     public BlFailedToCreateMilestone(string message, Exception innerException) : base(message, innerException) { }
 }
 
+[Serializable]
+public class EngineerIsAlreadyBusy : Exception 
+{
+    public EngineerIsAlreadyBusy(string? message) : base(message) { }
+    public EngineerIsAlreadyBusy(string message, Exception innerException) : base(message, innerException) { }
+}
