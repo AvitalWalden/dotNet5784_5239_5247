@@ -89,7 +89,16 @@ internal class TaskImplementation : ITask
     /// <returns>read all Dependency, or read all task that remain after the filter function</returns>
     public IEnumerable<Task?> ReadAll(Func<Task, bool>? filter = null)
     {
-        return XMLTools.LoadListFromXMLSerializer<Task>("tasks");
+        var allTasks = XMLTools.LoadListFromXMLSerializer<Task>("tasks");
+        if (filter != null)
+        {
+            return from item in allTasks
+                   where filter(item)
+                   select item;
+        }
+        // If no filter is provided, return all tasks
+        return from item in allTasks
+               select item;
     }
 
     /// <summary>

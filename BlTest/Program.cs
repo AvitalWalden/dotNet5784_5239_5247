@@ -447,9 +447,9 @@ internal class Program
         int level = int.Parse(Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect"));
         Console.WriteLine("Enter the engineer's cost");
         double cost = double.Parse(Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect"));
-        Console.WriteLine("Enter the id's task of this engineer");
-        string? chooseBeforeParse = Console.ReadLine();
-        int.TryParse(chooseBeforeParse, out int idOfTask);
+        //Console.WriteLine("Enter the id's task of this engineer");
+        //string? chooseBeforeParse = Console.ReadLine();
+        //int.TryParse(chooseBeforeParse, out int idOfTask);
         BO.Engineer newEngineer = new BO.Engineer()
         {
             Id = id,
@@ -457,11 +457,11 @@ internal class Program
             Email = email,
             Level = (BO.EngineerExperience)level,
             Cost = cost,
-            Task = new BO.TaskInEngineer()
-            {
-                Id = idOfTask,
-                Alias = s_bl.Task.Read(idOfTask)?.Alias!
-            }
+            //Task = new BO.TaskInEngineer()
+            //{
+            //    Id = idOfTask,
+            //    Alias = s_bl.Task.Read(idOfTask)?.Alias!
+            //}
         };
         Console.WriteLine(s_bl!.Engineer.Create(newEngineer));
     }
@@ -528,9 +528,9 @@ internal class Program
         //        active = true;
         //    else active = false;
         //}
-        Console.WriteLine("Enter the id's task of this engineer");
-        string? chooseBeforeParse = Console.ReadLine();
-        int.TryParse(chooseBeforeParse, out int idOfTask);
+        //Console.WriteLine("Enter the id's task of this engineer");
+        //string? chooseBeforeParse = Console.ReadLine();
+        //int.TryParse(chooseBeforeParse, out int idOfTask);
         BO.Engineer newEngineer = new BO.Engineer()
         {
             Id = id,
@@ -538,11 +538,11 @@ internal class Program
             Email = email,
             Level = (BO.EngineerExperience)level,
             Cost = cost,
-            Task = new BO.TaskInEngineer()
-            {
-                Id = idOfTask,
-                Alias = s_bl?.Task.Read(idOfTask)?.Alias!
-            }
+            //Task = new BO.TaskInEngineer()
+            //{
+            //    Id = idOfTask,
+            //    Alias = s_bl?.Task.Read(idOfTask)?.Alias!
+            //}
         };
         try
         {
