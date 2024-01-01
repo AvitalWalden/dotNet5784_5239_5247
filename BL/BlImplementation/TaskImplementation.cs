@@ -85,7 +85,7 @@ internal class TaskImplementation : ITask
                    Id = task.Id,
                    Description = task.Description,
                    Alias = task.Alias,
-                   Status = BO.Tools.CalculateStatusOfTask(task.StartDate, task.ScheduledDate, task.DeadlineDate, task.CompleteDate)
+                   Status = BO.Tools.CalculateStatusOfTask(task)
                };
            }
            return null;
@@ -112,7 +112,7 @@ internal class TaskImplementation : ITask
             Alias = doTask.Alias,
             Description = doTask.Description,
             CreatedAtDate = doTask.CreatedAtDate,
-            Status = BO.Tools.CalculateStatusOfTask(doTask.StartDate, doTask.ScheduledDate, doTask.DeadlineDate, doTask.CompleteDate),
+            Status = BO.Tools.CalculateStatusOfTask(doTask),
             Dependencies = dependencies as List<BO.TaskInList>,
             Milestone = milestone,
             BaselineStartDate = doTask.ScheduledDate,
@@ -226,7 +226,7 @@ internal class TaskImplementation : ITask
                         Id = task.Id,
                         Description = task.Description,
                         Alias = task.Alias,
-                        Status = Tools.CalculateStatusOfTask(task.StartDate, task.ScheduledDate, task.DeadlineDate, task.CompleteDate)
+                        Status = Tools.CalculateStatusOfTask(task)
                     };
                 }
                 return null;
@@ -253,7 +253,7 @@ internal class TaskImplementation : ITask
                 Alias = doTask.Alias,
                 Description = doTask.Description,
                 CreatedAtDate = doTask.CreatedAtDate,
-                Status = Tools.CalculateStatusOfTask(doTask.StartDate, doTask.ScheduledDate, doTask.DeadlineDate, doTask.CompleteDate),
+                Status = Tools.CalculateStatusOfTask(doTask),
                 Dependencies = dependencies as List<TaskInList>,
                 Milestone = milestone,
                 BaselineStartDate = doTask.ScheduledDate,
