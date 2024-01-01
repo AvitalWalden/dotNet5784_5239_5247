@@ -73,7 +73,7 @@ internal class Program
         string? remarks = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
         Console.WriteLine("Enter the id of the engineer");
         string? chooseEngineerIdBeforeParse = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
-        int.TryParse(chooseEngineerIdBeforeParse, out int engineerId); 
+        int.TryParse(chooseEngineerIdBeforeParse, out int engineerId);
         DateTime createdAt = DateTime.Now;
         Console.WriteLine("Enter the level of the task:");
         Console.WriteLine("For Beginner press 0");
@@ -153,7 +153,7 @@ internal class Program
         Console.WriteLine("For Done press 4");
         string? statusBeforeParse = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
         BO.Status.TryParse(statusBeforeParse, out BO.Status status);
-        if(statusBeforeParse == "" || statusBeforeParse == null)
+        if (statusBeforeParse == "" || statusBeforeParse == null)
         {
             status = (BO.Status)updateTask.Status!;
         }
@@ -183,7 +183,8 @@ internal class Program
             choose1 = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
             int.TryParse(choose1, out choose);
         }
-        if ( choose == 0 ) {
+        if (choose == 0)
+        {
             tasks = updateTask.Dependencies;
         }
         Console.WriteLine("Enter id of milestone in task");
@@ -263,7 +264,7 @@ internal class Program
         Console.WriteLine("Enter the id of the engineer");
         string? engineerIdBeforeParse = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
         int.TryParse(engineerIdBeforeParse, out int engineerId);
-        if(engineerIdBeforeParse == "" || engineerIdBeforeParse == null)
+        if (engineerIdBeforeParse == "" || engineerIdBeforeParse == null)
         {
             engineerId = updateTask.Engineer!.Id;
         }
@@ -456,10 +457,10 @@ internal class Program
             Email = email,
             Level = (BO.EngineerExperience)level,
             Cost = cost,
-            Task = new BO.TaskInEngineer() 
+            Task = new BO.TaskInEngineer()
             {
-               Id = idOfTask,
-               Alias = s_bl.Task.Read(idOfTask)?.Alias!
+                Id = idOfTask,
+                Alias = s_bl.Task.Read(idOfTask)?.Alias!
             }
         };
         Console.WriteLine(s_bl!.Engineer.Create(newEngineer));
@@ -659,7 +660,7 @@ internal class Program
         }
     }
 
- 
+
     /// <summary>
     ///  The function read a milestone by ID.
     /// </summary>
@@ -855,6 +856,6 @@ internal class Program
         {
             Console.WriteLine(ex);
         }
-       
+
     }
 }

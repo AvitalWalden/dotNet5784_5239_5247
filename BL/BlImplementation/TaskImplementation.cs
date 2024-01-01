@@ -1,4 +1,5 @@
 ﻿using BlApi;
+using BO;
 using System.Xml.Linq;
 
 namespace BlImplementation;
@@ -225,7 +226,7 @@ internal class TaskImplementation : ITask
                         Id = task.Id,
                         Description = task.Description,
                         Alias = task.Alias,
-                        Status = BO.Tools.CalculateStatusOfTask(task.StartDate, task.ScheduledDate, task.DeadlineDate, task.CompleteDate)
+                        Status = Tools.CalculateStatusOfTask(task.StartDate, task.ScheduledDate, task.DeadlineDate, task.CompleteDate)
                     };
                 }
                 return null;
@@ -237,24 +238,23 @@ internal class TaskImplementation : ITask
             }
 
             BO.MilestoneInTask? milestone = null;
-            //List<BO.Task> allTask = _dal.Task.ReadAll()
-            BO.TaskInList task = dependencies!.Where(t => _dal.Task.Read(t!.Id)!.IsMilestone == true).FirstOrDefault()!;
-            if (task != null)
-            {
-                milestone = new BO.MilestoneInTask()
-                {
-                    Id = task.Id,
-                    Alias = task.Alias
-                };
-            }
+            //BO.TaskInList task = dependencies!.Where(t => _dal.Task.Read(t!.Id)!.IsMilestone == true).FirstOrDefault()!;
+            //if(task != null)
+            //{
+            //    milestone = new BO.MilestoneInTask()
+            //    {
+            //        Id = task.Id,
+            //        Alias = task.Alias
+            //    };
+            //}
             return new BO.Task
             {
                 Id = doTask.Id,
                 Alias = doTask.Alias,
                 Description = doTask.Description,
                 CreatedAtDate = doTask.CreatedAtDate,
-                Status = BO.Tools.CalculateStatusOfTask(doTask.StartDate, doTask.ScheduledDate, doTask.DeadlineDate, doTask.CompleteDate),
-                Dependencies = dependencies as List<BO.TaskInList>,
+                Status = Tools.CalculateStatusOfTask(doTask.StartDate, doTask.ScheduledDate, doTask.DeadlineDate, doTask.CompleteDate),
+                Dependencies = dependencies as List<TaskInList>,
                 Milestone = milestone,
                 BaselineStartDate = doTask.ScheduledDate,
                 StartDate = doTask.StartDate,
@@ -264,11 +264,11 @@ internal class TaskImplementation : ITask
                 CompleteDate = doTask.CompleteDate,
                 Deliverables = doTask.Deliverables,
                 Remarks = doTask.Remarks,
-                Engineer =engineer,
+                Engineer = engineer,
                 ComplexityLevel = (BO.EngineerExperience)doTask.ComplexityLevel,
             };
 
-            
+
         }).Where(task => task != null).ToList(); // We will use WHERE to filter and drop the tasks that are NULL
 
         if (filter != null)
@@ -279,7 +279,88 @@ internal class TaskImplementation : ITask
             return readAllTaskFilter;
         }
         return readAllTask;
-    }
+    
+    //IEnumerable<BO.Task?> readAllTask = _dal.Task.ReadAll().Select(doTask =>
+    //{
+    //    if (doTask == null)
+    //    {
+    //        return null;
+    //    }
+    //    DO.Engineer? eng = _dal.Engineer.ReadAll().FirstOrDefault(engineer => engineer?.Id == doTask.EngineerId);
+    //    BO.EngineerInTask? engineer = null;
+    //    if (eng != null)
+    //    {
+    //        engineer = new BO.EngineerInTask()
+    //        {
+    //            Id = eng.Id,
+    //            Name = eng.Name
+    //        };
+    //    }
+    //    var dependencies = _dal.Dependency.ReadAll(depen => depen.DependentTask == doTask.Id).Select(doDependency =>
+    //    {
+    //        if (doDependency != null)
+    //        {
+    //            DO.Task task = _dal.Task.Read(doDependency.DependentTask)!;
+    //            return new BO.TaskInList()
+    //            {
+    //                Id = task.Id,
+    //                Description = task.Description,
+    //                Alias = task.Alias,
+    //                Status = BO.Tools.CalculateStatusOfTask(task.StartDate, task.ScheduledDate, task.DeadlineDate, task.CompleteDate)
+    //            };
+    //        }
+    //        return null;
+    //    }).Where(dependency => dependency != null).ToList();
+
+    //    if (dependencies.Count == 0)
+    //    {
+    //        dependencies = null;
+    //    }
+
+    //    BO.MilestoneInTask? milestone = null;
+    //    //List<BO.Task> allTask = _dal.Task.ReadAll()
+    //    BO.TaskInList task = dependencies!.Where(t => _dal.Task.Read(t!.Id)!.IsMilestone == true).FirstOrDefault()!;
+    //    if (task != null)
+    //    {
+    //        milestone = new BO.MilestoneInTask()
+    //        {
+    //            Id = task.Id,
+    //            Alias = task.Alias
+    //        };
+    //    }
+    //    return new BO.Task
+    //    {
+    //        Id = doTask.Id,
+    //        Alias = doTask.Alias,
+    //        Description = doTask.Description,
+    //        CreatedAtDate = doTask.CreatedAtDate,
+    //        Status = BO.Tools.CalculateStatusOfTask(doTask.StartDate, doTask.ScheduledDate, doTask.DeadlineDate, doTask.CompleteDate),
+    //        Dependencies = dependencies as List<BO.TaskInList>,
+    //        Milestone = milestone,
+    //        BaselineStartDate = doTask.ScheduledDate,
+    //        StartDate = doTask.StartDate,
+    //        //ScheduledStartDate = doTask.ScheduledDate,
+    //        ForecastDate = doTask.StartDate + doTask.RequiredEffort,
+    //        DeadlineDate = doTask.DeadlineDate,
+    //        CompleteDate = doTask.CompleteDate,
+    //        Deliverables = doTask.Deliverables,
+    //        Remarks = doTask.Remarks,
+    //        Engineer =engineer,
+    //        ComplexityLevel = (BO.EngineerExperience)doTask.ComplexityLevel,
+    //    };
+
+
+    //}).Where(task => task != null).ToList(); // We will use WHERE to filter and drop the tasks that are NULL
+
+    //if (filter != null)
+    //{
+    //    IEnumerable<BO.Task> readAllTaskFilter = from item in readAllTask
+    //                                             where filter(item)
+    //                                             select item;
+    //    return readAllTaskFilter;
+    //}
+    //return readAllTask;
+}
     public void Update(BO.Task boTask)
     {
         if (boTask.Id < 0)
