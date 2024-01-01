@@ -662,33 +662,7 @@ internal class Program
         }
     }
 
-    public static void CreateMilestone()
-    {
-        //Console.WriteLine("Enter a description of the task");
-        //string description = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
-        //Console.WriteLine("Enter an alias of the task");
-        //string alias = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
-        ////// Console.WriteLine("Enter task Created task date");
-        //Console.WriteLine("Enter status of stak");
-        //string? chooseStatusBeforeParse = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
-        //BO.Status.TryParse(chooseStatusBeforeParse, out BO.Status status);
-        //Console.WriteLine("Enter task start date");
-        //string? choosestartDateBeforeParse = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
-        //DateTime.TryParse(choosestartDateBeforeParse, out DateTime startDate);
-        //Console.WriteLine("Enter task forecast date");
-        //string? chooseforecastDateBeforeParse = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
-        //DateTime.TryParse(chooseforecastDateBeforeParse, out DateTime forecastDate); Console.WriteLine("Enter task deadline date");
-        //Console.WriteLine("Enter task deadline date");
-        //string? chooseDeadlineDateBeforeParse = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
-        //DateTime.TryParse(chooseDeadlineDateBeforeParse, out DateTime deadlineDate); Console.WriteLine("Enter task deadline date");
-        //Console.WriteLine("Enter task complete date");
-        //string? choosecompleteDateBeforeParse = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
-        //DateTime.TryParse(choosecompleteDateBeforeParse, out DateTime completeDate); Console.WriteLine("Enter task deadline date");
-        //string? chooseComplexityLevelBeforeParse = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
-        //int.TryParse(chooseComplexityLevelBeforeParse, out int complexityLevel);
-        //Console.WriteLine("Enter remarks of the task");
-        //string? remarks = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
-    }
+ 
     /// <summary>
     ///  The function read a milestone by ID.
     /// </summary>
@@ -765,9 +739,9 @@ internal class Program
     /// <exception cref="BO.BlInvalidEnteredValue">The entered value is incorrect</exception>
     public static void Milestones()
     {
-        Console.WriteLine("To add a task press a");
-        Console.WriteLine("To read a task press b");
-        Console.WriteLine("To update a milestone press c");
+        //Console.WriteLine("To add a task press a");
+        Console.WriteLine("To read a task press a");
+        Console.WriteLine("To update a milestone press b");
         Console.WriteLine("To exit press f");
         char ch = char.Parse(Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect"));
         try
@@ -776,15 +750,15 @@ internal class Program
             {
                 switch (ch)
                 {
-                    case 'a': // Create a new milestone.
-                        CreateMilestone();
-                        break;
-                    case 'b': // Read a milestone by ID.
+                    //case 'a': // Create a new milestone.
+                    //    CreateMilestone();
+                    //    break;
+                    case 'a': // Read a milestone by ID.
                         Console.WriteLine("Enter a task ID");
                         int idMilestone = int.Parse(Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect"));
                         ReadMilestone(idMilestone);
                         break;
-                    case 'c': // Update a milestone.
+                    case 'b': // Update a milestone.
                         UpdateMilestone();
                         break;
                     default:
@@ -792,9 +766,9 @@ internal class Program
                         break;
                 }
                 Console.WriteLine();
-                Console.WriteLine("To add a task press a");
-                Console.WriteLine("To read a task press b");
-                Console.WriteLine("To update a milestone press c");
+                //Console.WriteLine("To add a task press a");
+                Console.WriteLine("To read a task press a");
+                Console.WriteLine("To update a milestone press b");
                 Console.WriteLine("To exit press f");
                 ch = char.Parse(Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect"));
             }

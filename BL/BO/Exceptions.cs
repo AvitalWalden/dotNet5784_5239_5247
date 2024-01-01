@@ -45,3 +45,12 @@ public class FailedToReadMilestone : Exception // Exception of failed to read Mi
 {
     public FailedToReadMilestone(string? message) : base(message) { }
 }
+
+
+[Serializable]
+public class BlFailedToCreateMilestone : Exception // Exception of failed to read Milestone
+{
+    public BlFailedToCreateMilestone(string? message) : base(message) { }
+    public BlFailedToCreateMilestone(string message, Exception innerException) : base(message, innerException) { }
+}
+
