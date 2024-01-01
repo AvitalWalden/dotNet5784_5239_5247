@@ -1,6 +1,8 @@
 ﻿
 
 
+using DalApi;
+
 internal class Program
 {
     static readonly BlApi.IBl s_bl = BlApi.Factory.Get();
@@ -807,7 +809,10 @@ internal class Program
         Console.WriteLine("Would you like to create Initial data? (Y/N)");
         string? ans = Console.ReadLine() ?? throw new FormatException("Wrong input");
         if (ans == "Y")
+        {
+            Factory.Get.Reset();
             DalTest.Initialization.Do();
+        }
         Console.WriteLine("For a task press 1");
         Console.WriteLine("For an engineer press 2");
         Console.WriteLine("For milestone between tasks press 3");

@@ -485,9 +485,9 @@ namespace DalTest
         public static void CreatDependency()
         {
             Console.WriteLine("Enter ID number of pending task");
-            int? dependentTask = int.Parse(Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect"));
+            int dependentTask = int.Parse(Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect"));
             Console.WriteLine("Enter ID number of a previous assignment");
-            int? dependsOnTask = int.Parse(Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect"));
+            int dependsOnTask = int.Parse(Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect"));
             DO.Dependency newDependency = new DO.Dependency(0, dependentTask, dependsOnTask);
             Console.WriteLine(s_dal?.Dependency.Create(newDependency)); // Input the new id of the new dependency.
         }
@@ -508,7 +508,7 @@ namespace DalTest
             Dependency updateDependency = s_dal!.Dependency.Read(idDependency)!;
             Console.WriteLine("Enter ID number of pending task");
             string? dependentTask1 = Console.ReadLine();
-            int? dependentTask;
+            int dependentTask;
             if (dependentTask1 == null || dependentTask1 == "") //If not update the dependent task.
             {
                 dependentTask = updateDependency.DependentTask;
@@ -519,7 +519,7 @@ namespace DalTest
             }
             Console.WriteLine("Enter ID number of a previous assignment");
             string? dependsOnTask1 = Console.ReadLine();
-            int? dependsOnTask;
+            int dependsOnTask;
             if (dependsOnTask1 == null || dependsOnTask1 == "") //If not update the dependent on task.
             {
                 dependsOnTask = updateDependency.DependsOnTask;
