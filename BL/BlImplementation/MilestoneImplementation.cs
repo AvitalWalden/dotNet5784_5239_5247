@@ -9,7 +9,7 @@ namespace BlImplementation;
 internal class MilestoneImplementation : IMilestone
 {
     private DalApi.IDal _dal = DalApi.Factory.Get;
-    public IEnumerable<DO.Dependency> Create()
+    public void Create()
     {
         //    // יצירת רשימה מקובצת על פי מפתח - משימה תלויה
         //    var groupedDependencies = _dal.Dependency.ReadAll()
@@ -33,7 +33,7 @@ internal class MilestoneImplementation : IMilestone
             .Select(group => group.Item2.Distinct().ToList())
             .ToList();
 
-        int milestoneAlias = 1;
+        int index = 1;
             List<DO.Dependency> dependencies = new List<DO.Dependency>();
 
             foreach (var dep in distinctDependencies)
@@ -43,8 +43,8 @@ internal class MilestoneImplementation : IMilestone
                 new DO.Task
                 {
                     Id = 0, // השמה של מזהה המשימה התלויה
-                    Description = $"Milestone for Task {milestoneAlias}", // תיאור אוטומטי
-                    Alias = $"M{milestoneAlias}", // קיצור אוטומטי
+                    Description = $"Milestone for Task {index}", // תיאור אוטומטי
+                    Alias = $"M{index}", // קיצור אוטומטי
                     CreatedAtDate = DateTime.Now, // זמן יצירה
                     RequiredEffort = null,
                     IsMilestone = true
@@ -81,11 +81,11 @@ internal class MilestoneImplementation : IMilestone
                         }
                     }
 
-                    milestoneAlias++;
+                    index++;
                 }
                 catch (DO.DalAlreadyExistsException ex)
                 {
-                    throw new BO.BlFailedToCreateMilestone($"failed to create Milestone with Alias = M{milestoneAlias}", ex);
+                    throw new BO.BlFailedToCreateMilestone($"failed to create Milestone with Alias = M{index}", ex);
                 }
 
             }
@@ -152,8 +152,33 @@ internal class MilestoneImplementation : IMilestone
 
             _dal.Dependency.ReadAll().ToList().ForEach(d => _dal.Dependency.Delete(d!.Id));
             dependencies.ToList().ForEach(d => _dal.Dependency.Create(d));
-            return _dal.Dependency.ReadAll()!;
-        
+
+        var milstoneList = _dal.Task.ReadAll(task => task.IsMilestone).Where(t => t!= null).ToList();
+        DateTime? baseLineDate;
+        foreach (var milstone in milstoneList)
+        {
+            if (milstone!.Alias=="Start")
+            {
+                baseLineDate = DateTime.Now;
+            }
+            else
+            {
+                baseLineDate = _dal.Task.ReadAll(task => _dal.Dependency.ReadAll().Any(dependency => dependency?.DependentTask == task.Id && dependency.DependsOnTask == milstone.Id)).Min(t  => t!.ScheduledDate!); //.value
+            }
+        }
+        //DateTime? baseLineDate;
+        //foreach (var milstone in milstoneList)
+        //{
+        //    if (milstone!.Alias == "Start")
+        //    {
+        //        baseLineDate = DateTime.Now;
+        //    }
+        //    else
+        //    {
+        //        baseLineDate = _dal.Task.ReadAll(task => _dal.Dependency.ReadAll().Any(dependency => dependency?.DependentTask == task.Id && dependency.DependsOnTask == milstone.Id)).Min(t => t!.ScheduledDate!); //.value
+        //    }
+        //}
+
     }
 
     public BO.Milestone? Read(int id)

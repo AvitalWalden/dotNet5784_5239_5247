@@ -14,7 +14,7 @@ internal class TaskImplementation : ITask
         {
             throw new BO.BlInvalidValue("Task ID must be a positive number");
         }
-        if (boTask.Alias == "")
+        if (string.IsNullOrWhiteSpace(boTask.Alias))
         {
             throw new BO.BlInvalidValue("Task description cannot be empty or null");
         }
@@ -382,7 +382,7 @@ internal class TaskImplementation : ITask
         {
             requiredEffort = (TimeSpan)(boTask.StartDate! - boTask.CompleteDate!);
         }
-        var task = _dal.Task.ReadAll(task => task.EngineerId == boTask.Engineer?.Id && !(boTask.CompleteDate < DateTime.Now)).ToList();
+        var task = _dal.Task.ReadAll(task => task.EngineerId == boTask.Engineer?.Id && Tools.CalculateStatusOfTask(task) != BO.Status.Done).ToList();
         if (task != null)
         {
             throw new EngineerIsAlreadyBusy("Engineer is already busy");

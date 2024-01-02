@@ -160,7 +160,7 @@ internal class EngineerImplementation : IEngineer
         {
             throw new BO.BlInvalidValue("Incorrect price. The price must be positive");
         }
-        if (boEngineer.Name != "")
+        if (string.IsNullOrWhiteSpace(boEngineer.Name))
         {
             throw new BO.BlInvalidValue("The name entered is incorrect.");
         }

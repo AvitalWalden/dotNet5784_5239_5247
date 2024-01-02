@@ -7,7 +7,7 @@ public interface IMilestone
     /// </summary>
     /// <param name="item">the new milestone to be added</param>
     /// <returns></returns>
-    public IEnumerable<DO.Dependency> Create();
+    public void Create();
     /// <summary>
     /// returns milestone by given id
     /// </summary>
