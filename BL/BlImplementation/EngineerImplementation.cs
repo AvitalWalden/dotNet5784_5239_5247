@@ -165,7 +165,7 @@ internal class EngineerImplementation : IEngineer
             throw new BO.BlInvalidValue("The name entered is incorrect.");
         }
         string emailPattern = @"^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$"; //Email integrity check.
-        if (!System.Text.RegularExpressions.Regex.IsMatch(emailPattern, emailPattern))
+        if (System.Text.RegularExpressions.Regex.IsMatch(emailPattern, emailPattern))
         {
             throw new BO.BlInvalidValue("The email entered is invalid");
         }

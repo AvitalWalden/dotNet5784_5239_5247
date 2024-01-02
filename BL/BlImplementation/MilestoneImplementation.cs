@@ -11,11 +11,11 @@ internal class MilestoneImplementation : IMilestone
     private DalApi.IDal _dal = DalApi.Factory.Get;
     public void Create()
     {
-        //    // יצירת רשימה מקובצת על פי מפתח - משימה תלויה
-        //    var groupedDependencies = _dal.Dependency.ReadAll()
-        //        .OrderBy(dep => dep?.DependsOnTask)
-        //        .GroupBy(dep => dep?.DependentTask, dep => dep?.DependsOnTask, (id, dependency) => new { TaskId = id, Dependencies = dependency })
-        //        .ToList();
+        // יצירת רשימה מקובצת על פי מפתח - משימה תלויה
+        //var groupedDependencies = _dal.Dependency.ReadAll()
+        //    .OrderBy(dep => dep?.DependsOnTask)
+        //    .GroupBy(dep => dep?.DependentTask, dep => dep?.DependsOnTask, (id, dependency) => new { TaskId = id, Dependencies = dependency })
+        //    .ToList();
 
         //// יצירת רשימה מסוננת שבה כל ערך מופיע רק פעם אחת
         //    var distinctDependencies = groupedDependencies
@@ -101,7 +101,7 @@ internal class MilestoneImplementation : IMilestone
                 Id = 0, // השמה של מזהה המשימה התלויה
                 Description = $"start milestone", // תיאור אוטומטי
                 Alias = $"Start", // קיצור אוטומטי
-                CreatedAtDate = DateTime.Now, // זמן יצירה
+                CreatedAtDate = DateTime.Now, 
                 RequiredEffort = null,
                 IsMilestone = true
             };
