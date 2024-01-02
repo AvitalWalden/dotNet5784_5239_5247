@@ -11,18 +11,30 @@ internal class MilestoneImplementation : IMilestone
     private DalApi.IDal _dal = DalApi.Factory.Get;
     public void Create()
     {
-        //    // יצירת רשימה מקובצת על פי מפתח - משימה תלויה
-        //    var groupedDependencies = _dal.Dependency.ReadAll()
-        //        .OrderBy(dep => dep?.DependsOnTask)
-        //        .GroupBy(dep => dep?.DependentTask, dep => dep?.DependsOnTask, (id, dependency) => new { TaskId = id, Dependencies = dependency })
-        //        .ToList();
+        // יצירת רשימה מקובצת על פי מפתח - משימה תלויה
+        //var groupedDependencies1 = _dal.Dependency.ReadAll();
+        //var groupedDependencies2 = groupedDependencies1.OrderBy(dep => dep?.DependsOnTask);
+        //var groupedDependencies3 = groupedDependencies2.GroupBy(dep => dep?.DependentTask, dep => dep?.DependsOnTask, (id, dependency) => new { TaskId = id, Dependencies = dependency });
+        //var groupedDependencies4 = groupedDependencies3.ToList();
 
-        //// יצירת רשימה מסוננת שבה כל ערך מופיע רק פעם אחת
-        //    var distinctDependencies = groupedDependencies
+
+        //foreach (var dep in groupedDependencies1)
+        //{
+        //    //Console.WriteLine(dep.Dependencies);
+        //}
+        //var groupedDependencies14 = _dal.Dependency.ReadAll()
+        //    .OrderBy(dep => dep?.DependsOnTask)
+        //    .GroupBy(dep => dep?.DependentTask, dep => dep?.DependsOnTask, (id, dependency) => new { TaskId = id, Dependencies = dependency })
+        //    .Select(group => new { TaskId = group.TaskId, Dependencies = group.Dependencies.Distinct().OrderBy(dependency => dependency).ToList() })
+        //    .OrderBy(group => group.TaskId)
+        //    .ToList();
+        // יצירת רשימה מסוננת שבה כל ערך מופיע רק פעם אחת
+        //var distinctDependencies1 = groupedDependencies1
         //     .SelectMany(depGroup => depGroup.Dependencies)
         //     .Where(dep => dep != null)
         //     .Distinct()
         //     .ToList();
+
         var groupedDependencies = _dal.Dependency.ReadAll().Where(d => d!=null)
             .GroupBy(d => d!.DependentTask)
             .OrderBy(group => group.Key)
@@ -32,7 +44,10 @@ internal class MilestoneImplementation : IMilestone
         var distinctDependencies = groupedDependencies
             .Select(group => group.Item2.Distinct().ToList())
             .ToList();
-
+        foreach (var dep in groupedDependencies)
+        {
+            Console.WriteLine(dep.Item2);
+        }
         int index = 1;
             List<DO.Dependency> dependencies = new List<DO.Dependency>();
 
@@ -154,30 +169,30 @@ internal class MilestoneImplementation : IMilestone
             dependencies.ToList().ForEach(d => _dal.Dependency.Create(d));
 
         var milstoneList = _dal.Task.ReadAll(task => task.IsMilestone).Where(t => t!= null).ToList();
-        DateTime? baseLineDate;
+        DateTime? scheduledDate;
         foreach (var milstone in milstoneList)
         {
             if (milstone!.Alias=="Start")
             {
-                baseLineDate = DateTime.Now;
+                scheduledDate = DateTime.Now;
             }
             else
             {
-                baseLineDate = _dal.Task.ReadAll(task => _dal.Dependency.ReadAll().Any(dependency => dependency?.DependentTask == task.Id && dependency.DependsOnTask == milstone.Id)).Min(t  => t!.ScheduledDate!); //.value
+                scheduledDate = _dal.Task.ReadAll(task => _dal.Dependency.ReadAll().Any(dependency => dependency?.DependentTask == task.Id && dependency.DependsOnTask == milstone.Id)).Min(t  => t!.ScheduledDate!); //.value
             }
         }
-        //DateTime? baseLineDate;
-        //foreach (var milstone in milstoneList)
-        //{
-        //    if (milstone!.Alias == "Start")
-        //    {
-        //        baseLineDate = DateTime.Now;
-        //    }
-        //    else
-        //    {
-        //        baseLineDate = _dal.Task.ReadAll(task => _dal.Dependency.ReadAll().Any(dependency => dependency?.DependentTask == task.Id && dependency.DependsOnTask == milstone.Id)).Min(t => t!.ScheduledDate!); //.value
-        //    }
-        //}
+        DateTime? DeadlineDate;
+        foreach (var milstone in milstoneList)
+        {
+            if (milstone!.Alias == "End")
+            {
+                DeadlineDate = DalApi.Factory.Get.endDateProject;
+            }
+            else
+            {
+                DeadlineDate = _dal.Task.ReadAll(task => _dal.Dependency.ReadAll().Any(dependency => dependency?.DependentTask == task.Id && dependency.DependsOnTask == milstone.Id)).Max(t => t!.DeadlineDate!); //.value
+            }
+        }
 
     }
 

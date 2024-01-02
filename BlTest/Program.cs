@@ -96,7 +96,7 @@ internal class Program
                 Id = idMilstone,
                 Alias = s_bl.Task.Read(idMilstone)?.Alias!
             },
-            BaselineStartDate = null,
+            ScheduledStartDate = null,
             StartDate = null,
             ForecastDate = null,
             DeadlineDate = null,
@@ -199,7 +199,7 @@ internal class Program
         DateTime? baselinedDate;
         if (baselineDate1 == "" || baselineDate1 == null) //If not update the complete date.
         {
-            baselinedDate = updateTask.BaselineStartDate;
+            baselinedDate = updateTask.ScheduledStartDate;
         }
         else
         {
@@ -294,7 +294,7 @@ internal class Program
                 Id = idMilstone,
                 Alias = s_bl?.Task.Read(idMilstone)?.Alias!
             },
-            BaselineStartDate = baselinedDate,
+            ScheduledStartDate = baselinedDate,
             StartDate = startDate,
             ForecastDate = forecastDate,
             DeadlineDate = deadlineDate,
@@ -737,7 +737,7 @@ internal class Program
     /// <exception cref="BO.BlInvalidEnteredValue">The entered value is incorrect</exception>
     public static void Milestones()
     {
-        //Console.WriteLine("To add a task press a");
+        s_bl.Milestone.Create();
         Console.WriteLine("To read a task press a");
         Console.WriteLine("To update a milestone press b");
         Console.WriteLine("To exit press f");

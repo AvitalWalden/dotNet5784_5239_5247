@@ -184,12 +184,5 @@
     <Cost>230</Cost>
     <Active>true</Active>
   </Engineer>
-  <Engineer>
-    <Id>212121212</Id>
-    <Name>Racheli</Name>
-    <Email>racheli@gmail.com</Email>
-    <Level>Beginner</Level>
-    <Cost>234</Cost>
-    <Active>true</Active>
-  </Engineer>
+
 </ArrayOfEngineer>

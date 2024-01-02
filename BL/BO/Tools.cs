@@ -16,7 +16,27 @@ public  static class Tools
         //}));
 
         //return result;
-        PropertyInfo[] properties = typeof(T).GetProperties(); //Get all properties of T.
+
+        /*/***************/
+        //PropertyInfo[] properties = typeof(T).GetProperties(); //Get all properties of T.
+
+        //string result = string.Join(", ", properties.Select(property =>
+        //{
+        //    object? value = property.GetValue(obj);
+
+        //    // Check if the property is a collection (e.g., IEnumerable)
+        //    if (value is IEnumerable<object> collection)
+        //    {
+        //        string collectionString = string.Join(", ", collection);
+        //        return $"{property.Name}: [{collectionString}]";
+        //    }
+
+        //    string? valueString = (value != null) ? value.ToString() : "null";
+        //    return $"{property.Name}: {valueString}";
+        //}));
+
+        //return result;
+        PropertyInfo[] properties = typeof(T).GetProperties(); // Get all properties of T.
 
         string result = string.Join(", ", properties.Select(property =>
         {
@@ -25,7 +45,7 @@ public  static class Tools
             // Check if the property is a collection (e.g., IEnumerable)
             if (value is IEnumerable<object> collection)
             {
-                string collectionString = string.Join(", ", collection);
+                string collectionString = string.Join(", ", collection.Select(item => item?.ToString() ?? "null"));
                 return $"{property.Name}: [{collectionString}]";
             }
 

@@ -37,7 +37,7 @@ internal class TaskImplementation : ITask
             requiredEffort,
             false,
             boTask.StartDate,
-            boTask.BaselineStartDate,
+            boTask.ScheduledStartDate,
             boTask.DeadlineDate,
             boTask.CompleteDate,
             boTask.Deliverables,
@@ -103,15 +103,17 @@ internal class TaskImplementation : ITask
         }
 
         BO.MilestoneInTask? milestone = null;
-        //BO.TaskInList task = dependencies!.Where(t => _dal.Task.Read(t!.Id)!.IsMilestone == true).FirstOrDefault()!;
-        //if(task != null)
-        //{
-        //    milestone = new BO.MilestoneInTask()
-        //    {
-        //        Id = task.Id,
-        //        Alias = task.Alias
-        //    };
-        //}
+        var milstoneList = _dal.Task.ReadAll(task => task.IsMilestone).Where(t => t != null).ToList();
+        var task = milstoneList.FirstOrDefault(task => _dal.Dependency.ReadAll().Any(dependency => dependency?.DependentTask == task?.Id && dependency?.DependsOnTask == doTask.Id));
+        /*dependencies!.Where(t => _dal.Task.Read(t!.Id)!.IsMilestone == true).FirstOrDefault()!;*/
+        if (task != null)
+        {
+            milestone = new BO.MilestoneInTask()
+            {
+                Id = task.Id,
+                Alias = task.Alias
+            };
+        }
         return new BO.Task()
         {
             Id = doTask.Id,
@@ -121,7 +123,7 @@ internal class TaskImplementation : ITask
             Status = BO.Tools.CalculateStatusOfTask(doTask),
             Dependencies = dependencies as List<BO.TaskInList>,
             Milestone = milestone,
-            BaselineStartDate = doTask.ScheduledDate,
+            ScheduledStartDate = doTask.ScheduledDate,
             //ScheduledStartDate = doTask.ScheduledDate,
             StartDate = doTask.StartDate,
             ForecastDate = doTask.StartDate + doTask.RequiredEffort,
@@ -262,7 +264,7 @@ internal class TaskImplementation : ITask
                 Status = Tools.CalculateStatusOfTask(doTask),
                 Dependencies = dependencies as List<TaskInList>,
                 Milestone = milestone,
-                BaselineStartDate = doTask.ScheduledDate,
+                ScheduledStartDate = doTask.ScheduledDate,
                 StartDate = doTask.StartDate,
                 //ScheduledStartDate = doTask.ScheduledDate,
                 ForecastDate = doTask.StartDate + doTask.RequiredEffort,
@@ -396,7 +398,7 @@ internal class TaskImplementation : ITask
             requiredEffort,
             false,
             boTask.StartDate,
-            boTask.BaselineStartDate,
+            boTask.ScheduledStartDate,
             boTask.DeadlineDate,
             boTask.CompleteDate,
             boTask.Deliverables,
