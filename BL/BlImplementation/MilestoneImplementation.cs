@@ -116,7 +116,7 @@ internal class MilestoneImplementation : IMilestone
                 Id = 0, // השמה של מזהה המשימה התלויה
                 Description = $"start milestone", // תיאור אוטומטי
                 Alias = $"Start", // קיצור אוטומטי
-                CreatedAtDate = DateTime.Now, // זמן יצירה
+                CreatedAtDate = DateTime.Now, 
                 RequiredEffort = null,
                 IsMilestone = true
             };
