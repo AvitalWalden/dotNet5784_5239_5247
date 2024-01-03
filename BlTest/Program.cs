@@ -187,13 +187,13 @@ internal class Program
         {
             tasks = updateTask.Dependencies;
         }
-        Console.WriteLine("Enter id of milestone in task");
-        string? idMilstoneBeforeParse = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
-        int.TryParse(idMilstoneBeforeParse, out int idMilstone);
-        if (idMilstoneBeforeParse == "" || idMilstoneBeforeParse == null)
-        {
-            idMilstone = updateTask.Milestone!.Id;
-        }
+        //Console.WriteLine("Enter id of milestone in task");
+        //string? idMilstoneBeforeParse = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+        //int.TryParse(idMilstoneBeforeParse, out int idMilstone);
+        //if (idMilstoneBeforeParse == "" || idMilstoneBeforeParse == null)
+        //{
+        //    idMilstone = updateTask.Milestone!.Id;
+        //}
         Console.WriteLine("Enter baseline startDate date");
         string? baselineDate1 = Console.ReadLine();
         DateTime? baselinedDate;
@@ -289,11 +289,7 @@ internal class Program
             CreatedAtDate = createdAt,
             Status = status,
             Dependencies = tasks,
-            Milestone = new BO.MilestoneInTask()
-            {
-                Id = idMilstone,
-                Alias = s_bl?.Task.Read(idMilstone)?.Alias!
-            },
+            Milestone = updateTask.Milestone,
             ScheduledStartDate = baselinedDate,
             StartDate = startDate,
             ForecastDate = forecastDate,
