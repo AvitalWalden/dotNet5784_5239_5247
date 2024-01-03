@@ -6,10 +6,10 @@ namespace Dal;
 
 sealed internal class DalXml : IDal
 {
-    public static IDal Instance { get; } = new DalXml();
+    //public static IDal Instance { get; } = new DalXml();
 
-    //private static readonly Lazy<DalXml> lazyInstance = new Lazy<DalXml>(() => new DalXml());
-    //public static IDal Instance => lazyInstance.Value;
+    private static readonly Lazy<DalXml> lazyInstance = new Lazy<DalXml>(() => new DalXml());
+    public static IDal Instance => lazyInstance.Value;
 
     //private static readonly object lockObject = new object();
     private DalXml() { }
@@ -32,22 +32,32 @@ sealed internal class DalXml : IDal
     }
     public DateTime? startDateProject
     {
-        get => ParseDateTime(XDocument.Load(@"..\xml\data-config.xml").Root!.Element("startDateProject")!.Value);
+        get
+        {
+            var value = XDocument.Load(@"..\xml\data-config.xml").Root?.Element("startProject")?.Value;
+            return string.IsNullOrEmpty(value) ? null : DateTime.Parse(value);
+        }
         set
         {
-            XDocument.Load(@"..\xml\data-config.xml").Root!.Element("startDateProject")?.SetValue(value?.ToString("yyyy-MM-ddTHH:mm:ss")!);
-            XDocument.Load(@"..\xml\data-config.xml").Save(@"..\xml\data-config.xml");
+            var xDocument = XDocument.Load(@"..\xml\data-config.xml");
+            xDocument.Root?.Element("startProject")?.SetValue(value?.ToString("yyyy-MM-ddTHH:mm:ss")!);
+            xDocument.Save(@"..\xml\data-config.xml");
         }
 
     }
 
     public DateTime? endDateProject 
     {
-        get => ParseDateTime(XDocument.Load(@"..\xml\data-config.xml").Root!.Element("endDateProject")!.Value);
+        get
+        {
+            var value = XDocument.Load(@"..\xml\data-config.xml").Root?.Element("endDateProject")?.Value;
+            return string.IsNullOrEmpty(value) ? null : DateTime.Parse(value);
+        }
         set
         {
-            XDocument.Load(@"..\xml\data-config.xml").Root!.Element("endDateProject")?.SetValue(value?.ToString("yyyy-MM-ddTHH:mm:ss")!);
-            XDocument.Load(@"..\xml\data-config.xml").Save(@"..\xml\data-config.xml");
+            var xDocument = XDocument.Load(@"..\xml\data-config.xml");
+            xDocument.Root?.Element("endDateProject")?.SetValue(value?.ToString("yyyy-MM-ddTHH:mm:ss")!);
+            xDocument.Save(@"..\xml\data-config.xml");
         }
     }
 
