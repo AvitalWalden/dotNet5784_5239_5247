@@ -3,12 +3,13 @@ using DO;
 using System.Collections;
 using System.Reflection;
 
+namespace BO;
 
 public static class Tools
 {
     public static string ToStringProperty<T>(this T obj)
     {
-        PropertyInfo[] properties = typeof(T).GetProperties(); //Get all properties of T.
+        PropertyInfo[] properties = typeof(T).GetProperties();
 
         string result = string.Join(", ", properties.Select(property =>
         {
@@ -19,13 +20,13 @@ public static class Tools
             {
                 valueString = "null";
             }
-            else if (value is List<BO.TaskInList> enumerableValue)
+            else if (value is IEnumerable enumerableValue)
             {
-                valueString = string.Join(", ", enumerableValue.Select(item => item.ToString()));
+                valueString = string.Join("", enumerableValue.Cast<object>().Select(item => item.ToString()));
             }
             else
             {
-                valueString = value.ToString();
+                valueString = value.ToString()!;
             }
 
             return $"{property.Name}: {valueString}";
