@@ -14,7 +14,7 @@ public static class Tools
         string result = string.Join(", ", properties.Select(property =>
         {
             object? value = property.GetValue(obj);
-            string valueString;
+            string? valueString;
 
             if (value == null)
             {
@@ -33,6 +33,49 @@ public static class Tools
         }));
 
         return result;
+        //PropertyInfo[] properties = typeof(T).GetProperties(); // Get all properties of T.
+
+        //string result = string.Join(", ", properties.Select(property =>
+        //{
+        //    object? value = property.GetValue(obj);
+
+        //    Check if the property is a collection (e.g., IEnumerable)
+        //    if (value is IEnumerable<object> collection)
+        //    {
+        //        string collectionString = string.Join(", ", collection.Select(item => item?.ToString() ?? "null"));
+        //        return $"{property.Name}: [{collectionString}]";
+        //    }
+
+        //    string? valueString = (value != null) ? value.ToString() : "null";
+        //    return $"{property.Name}: {valueString}";
+        //}));
+
+        //return result;
+        //PropertyInfo[] properties = typeof(T).GetProperties();
+
+        //string result = string.Join(", ", properties.Select(property =>
+        //{
+        //    object? value = property.GetValue(obj);
+        //    string ? valueString;
+
+        //    if (value == null)
+        //    {
+        //        valueString = "null";
+        //    }
+        //    else if (value is IEnumerable enumerableValue)
+        //    {
+        //        valueString = string.Join(", ", enumerableValue.Cast<object>().Select(item => item.ToString()));
+        //    }
+        //    else
+        //    {
+        //        valueString = value.ToString() ?? null;
+        //    }
+
+        //    return $"{property.Name}: {valueString}";
+        //}));
+
+        //return result;
+
     }
     public static BO.Status CalculateStatusOfTask(DO.Task doTask)
     {
@@ -64,7 +107,7 @@ public static class Tools
     {
         DalApi.IDal _dal = DalApi.Factory.Get;
 
-        List<BO.TaskInList> tasksList = new List<TaskInList>();
+        List<BO.TaskInList> tasksList = new List<BO.TaskInList>();
         _dal.Dependency.ReadAll(dependency => dependency.DependentTask == id)
                            .Select(dependency => _dal.Task.Read(task => task.Id == dependency?.DependsOnTask))
                            .ToList()
