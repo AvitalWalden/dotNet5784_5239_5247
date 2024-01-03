@@ -33,15 +33,12 @@ internal class Program
             Console.WriteLine("Enter id of the task that dependency on this task");
             string? stringId = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
             int.TryParse(stringId, out int idDependency);
-            Console.WriteLine("Enter alias of the task that dependency on this task");
-            string aliasOfidDependency = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
-            Console.WriteLine("Enter description of the task that dependency on this task");
-            string descriptionOfidDependency = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+            BO.Task task = s_bl.Task.Read(idDependency) ?? throw new BO.BlDoesNotExistException($"Task with ID={idDependency} not exists");
             BO.TaskInList newTaskInList = new BO.TaskInList()
             {
                 Id = idDependency,
-                Alias = aliasOfidDependency,
-                Description = descriptionOfidDependency
+                Alias = task.Alias,
+                Description = task.Description
             };
             tasks.Add(newTaskInList);
             Console.WriteLine("To add a dependency to a task, press 1");
@@ -123,15 +120,15 @@ internal class Program
     {
         Console.WriteLine("Enter the task's id");
         int id = int.Parse(Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect"));
-        if (s_bl?.Task.Read(id) != null)
+        if (s_bl.Task.Read(id) != null)
         {
-            Console.WriteLine(s_bl?.Task.Read(id));
+            Console.WriteLine(s_bl.Task.Read(id));
         }
         else
         {
             throw new BO.BlDoesNotExistException($"Task with ID={id} not exists");
         }
-        BO.Task updateTask = s_bl?.Task.Read(id)!;
+        BO.Task updateTask = s_bl.Task.Read(id)!;
         Console.WriteLine("Enter a description of the task");
         string description = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
         if (description == "" || description == null)
@@ -167,15 +164,12 @@ internal class Program
             Console.WriteLine("Enter id of the task that dependency on this task");
             string? stringId = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
             int.TryParse(stringId, out int idDependency);
-            Console.WriteLine("Enter alias of the task that dependency on this task");
-            string aliasOfidDependency = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
-            Console.WriteLine("Enter description of the task that dependency on this task");
-            string descriptionOfidDependency = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+            BO.Task task = s_bl.Task.Read(idDependency) ?? throw new BO.BlDoesNotExistException($"Task with ID={idDependency} not exists");
             BO.TaskInList newTaskInList = new BO.TaskInList()
             {
                 Id = idDependency,
-                Alias = aliasOfidDependency,
-                Description = descriptionOfidDependency
+                Alias = task.Alias,
+                Description = task.Description
             };
             tasks.Add(newTaskInList);
             Console.WriteLine("To add a dependency to a task, press 1");
@@ -283,7 +277,7 @@ internal class Program
         }
         BO.Task newTask = new BO.Task()
         {
-            Id = 0,
+            Id = updateTask.Id,
             Alias = alias,
             Description = description,
             CreatedAtDate = createdAt,
@@ -321,7 +315,7 @@ internal class Program
     /// <exception cref="BO.BlDataListIsEmpty">The list is empty. There is no data to read.</exception>
     public static void ReadAllTasks()
     {
-        IEnumerable<BO.Task?> tasks = s_bl?.Task.ReadAll() ?? throw new BO.BlDataListIsEmpty("There are no tasks.");
+        IEnumerable<BO.Task?> tasks = s_bl.Task.ReadAll() ?? throw new BO.BlDataListIsEmpty("There are no tasks.");
         foreach (var task in tasks)
         {
             Console.WriteLine(task);
@@ -335,13 +329,13 @@ internal class Program
     /// <exception cref="BlDoesNotExistException">exception: engineer with this id does not exists</exception>
     public static void ReadTask(int idTask)
     {
-        if (s_bl?.Task.Read(idTask) == null)
+        if (s_bl.Task.Read(idTask) == null)
         {
             throw new BO.BlDoesNotExistException($"Task with ID={idTask} not exists");
         }
         else
         {
-            Console.WriteLine(s_bl?.Task.Read(idTask));
+            Console.WriteLine(s_bl.Task.Read(idTask));
         }
     }
 
@@ -353,7 +347,7 @@ internal class Program
     {
         try
         {
-            s_bl?.Task.Delete(idTaskDelete); // Input the new id of the task.
+            s_bl.Task.Delete(idTaskDelete); // Input the new id of the task.
         }
         catch (Exception ex)
         {
@@ -459,7 +453,7 @@ internal class Program
             //    Alias = s_bl.Task.Read(idOfTask)?.Alias!
             //}
         };
-        Console.WriteLine(s_bl!.Engineer.Create(newEngineer));
+        Console.WriteLine(s_bl.Engineer.Create(newEngineer));
     }
 
     /// <summary>
@@ -471,15 +465,15 @@ internal class Program
     {
         Console.WriteLine("Enter a engineer's ID");
         int id = int.Parse(Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect"));
-        if (s_bl?.Engineer.Read(id) != null)
+        if (s_bl.Engineer.Read(id) != null)
         {
-            Console.WriteLine(s_bl?.Engineer.Read(id));
+            Console.WriteLine(s_bl.Engineer.Read(id));
         }
         else
         {
             throw new BO.BlDoesNotExistException($"Engineer with ID={id} not exists");
         }
-        BO.Engineer updateEngineer = s_bl?.Engineer.Read(id)!;
+        BO.Engineer updateEngineer = s_bl.Engineer.Read(id)!;
         Console.WriteLine("Enter the engineer's name");
         string? name = Console.ReadLine();
         if (name == "" || name == null)
@@ -542,7 +536,7 @@ internal class Program
         };
         try
         {
-            s_bl?.Engineer.Update(newEngineer);
+            s_bl.Engineer.Update(newEngineer);
         }
         catch (Exception ex)
         {
@@ -558,13 +552,13 @@ internal class Program
     /// <exception cref="BlDoesNotExistException">exception: engineer with this id does not exists</exception>
     public static void ReadEngineer(int idEngineer)
     {
-        if (s_bl?.Engineer.Read(idEngineer) == null)
+        if (s_bl.Engineer.Read(idEngineer) == null)
         {
             throw new BO.BlDoesNotExistException($"Engineer with ID={idEngineer} not exists");
         }
         else
         {
-            Console.WriteLine(s_bl?.Engineer.Read(idEngineer));
+            Console.WriteLine(s_bl.Engineer.Read(idEngineer));
         }
     }
 
@@ -574,7 +568,7 @@ internal class Program
     /// <exception cref="BO.BlDataListIsEmpty">The list is empty. There is no data to read.</exception>
     public static void ReadAllEngineers()
     {
-        IEnumerable<BO.Engineer?> engineers = s_bl?.Engineer.ReadAll() ?? throw new BO.BlDataListIsEmpty("There are no engineers.");
+        IEnumerable<BO.Engineer?> engineers = s_bl.Engineer.ReadAll() ?? throw new BO.BlDataListIsEmpty("There are no engineers.");
         foreach (var engineer in engineers)
         {
             Console.WriteLine(engineer);
@@ -589,7 +583,7 @@ internal class Program
     {
         try
         {
-            s_bl?.Engineer.Delete(idEngineerDelete); // Input the new id of the task.
+            s_bl.Engineer.Delete(idEngineerDelete); // Input the new id of the task.
         }
         catch (Exception ex)
         {
@@ -664,13 +658,13 @@ internal class Program
     /// <exception cref="BO.BlDoesNotExistException">exception: milestone with this id does not exists</exception>
     public static void ReadMilestone(int idMilestone)
     {
-        if (s_bl?.Milestone.Read(idMilestone) == null)
+        if (s_bl.Milestone.Read(idMilestone) == null)
         {
             throw new BO.BlDoesNotExistException($"Milestone with ID={idMilestone} not exists");
         }
         else
         {
-            Console.WriteLine(s_bl?.Milestone.Read(idMilestone));
+            Console.WriteLine(s_bl.Milestone.Read(idMilestone));
         }
     }
 
@@ -682,15 +676,15 @@ internal class Program
     {
         Console.WriteLine("Enter the task's id");
         int id = int.Parse(Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect"));
-        if (s_bl?.Task.Read(id) != null)
+        if (s_bl.Task.Read(id) != null)
         {
-            Console.WriteLine(s_bl?.Task.Read(id));
+            Console.WriteLine(s_bl.Task.Read(id));
         }
         else
         {
             throw new BO.BlDoesNotExistException($"Task with ID={id} not exists");
         }
-        BO.Task updateTask = s_bl?.Task.Read(id)!;
+        BO.Task updateTask = s_bl.Task.Read(id)!;
         Console.WriteLine("Enter a description of the task");
         string description = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
         if (description == "" || description == null)
@@ -711,7 +705,7 @@ internal class Program
         }
         BO.Milestone newMilestone = new BO.Milestone()
         {
-            Id = 0,
+            Id = updateTask.Id,
             Description = description,
             Alias = alias,
             CreatedAtDate = DateTime.Now,
