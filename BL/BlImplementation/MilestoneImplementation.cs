@@ -11,174 +11,147 @@ internal class MilestoneImplementation : IMilestone
     private DalApi.IDal _dal = DalApi.Factory.Get;
     public void Create()
     {
-        // יצירת רשימה מקובצת על פי מפתח - משימה תלויה
-        //var groupedDependencies1 = _dal.Dependency.ReadAll();
-        //var groupedDependencies2 = groupedDependencies1.OrderBy(dep => dep?.DependsOnTask);
-        //var groupedDependencies3 = groupedDependencies2.GroupBy(dep => dep?.DependentTask, dep => dep?.DependsOnTask, (id, dependency) => new { TaskId = id, Dependencies = dependency });
-        //var groupedDependencies4 = groupedDependencies3.ToList();
-
-
-        //foreach (var dep in groupedDependencies1)
-        //{
-        //    //Console.WriteLine(dep.Dependencies);
-        //}
-        //var groupedDependencies14 = _dal.Dependency.ReadAll()
-        //    .OrderBy(dep => dep?.DependsOnTask)
-        //    .GroupBy(dep => dep?.DependentTask, dep => dep?.DependsOnTask, (id, dependency) => new { TaskId = id, Dependencies = dependency })
-        //    .Select(group => new { TaskId = group.TaskId, Dependencies = group.Dependencies.Distinct().OrderBy(dependency => dependency).ToList() })
-        //    .OrderBy(group => group.TaskId)
-        //    .ToList();
-        // יצירת רשימה מסוננת שבה כל ערך מופיע רק פעם אחת
-        //var distinctDependencies1 = groupedDependencies1
-        //     .SelectMany(depGroup => depGroup.Dependencies)
-        //     .Where(dep => dep != null)
-        //     .Distinct()
-        //     .ToList();
-
-        var groupedDependencies = _dal.Dependency.ReadAll().Where(d => d!=null)
-            .GroupBy(d => d!.DependentTask)
-            .OrderBy(group => group.Key)
-            .Select(group => (group.Key, group.Select(d => d!.DependsOnTask).ToList()))
+        var groupedDependencies = _dal.Dependency.ReadAll()
+            .OrderBy(dep => dep?.DependsOnTask)
+            .GroupBy(dep => dep?.DependentTask, dep => dep?.DependsOnTask,
+            (id, dependency) => new { TaskId = id, Dependencies = dependency })
             .ToList();
 
         var distinctDependencies = groupedDependencies
-            .Select(group => group.Item2.Distinct().ToList())
+            .Select(group => group.Dependencies.Distinct().ToList())
             .ToList();
-        foreach (var dep in groupedDependencies)
-        {
-            Console.WriteLine(dep.Item2);
-        }
+
         int index = 1;
-            List<DO.Dependency> dependencies = new List<DO.Dependency>();
+        List<DO.Dependency> dependencies = new List<DO.Dependency>();
 
-            foreach (var dep in distinctDependencies)
-            {
+        foreach (var dep in distinctDependencies)
+        {
 
-                DO.Task doTaskOfMilestone =
-                new DO.Task
-                {
-                    Id = 0, // השמה של מזהה המשימה התלויה
-                    Description = $"Milestone for Task {index}", // תיאור אוטומטי
-                    Alias = $"M{index}", // קיצור אוטומטי
-                    CreatedAtDate = DateTime.Now, // זמן יצירה
-                    RequiredEffort = null,
-                    IsMilestone = true
-                };
-           
-
-                try
-                {
-                    int milestoneId = _dal.Task.Create(doTaskOfMilestone);
-
-                    foreach (var taskId in dep)
-                    {
-                        dependencies.Add(new DO.Dependency
-                        {
-                            Id = 0,
-                            DependentTask = milestoneId,
-                            DependsOnTask = taskId
-                        });
-                    }
-
-                    foreach (var dependencyGroup in groupedDependencies)
-                    {
-                        // אם הרשימה של המשימה (DependentTask) שווה לרשימה של המשימה הנוצרת
-                        if (dependencyGroup.Item2.SequenceEqual(dep))
-                        {
-                            foreach (var dependentOnTaskId in dependencyGroup.Item2)
-                            {
-                                dependencies.Add(new DO.Dependency
-                                {
-                                    DependentTask = dependentOnTaskId,
-                                    DependsOnTask = milestoneId
-                                });
-                            }
-                        }
-                    }
-
-                    index++;
-                }
-                catch (DO.DalAlreadyExistsException ex)
-                {
-                    throw new BO.BlFailedToCreateMilestone($"failed to create Milestone with Alias = M{index}", ex);
-                }
-
-            }
-
-
-            var independentOnTasks = _dal.Task.ReadAll()
-              .Where(task => !dependencies.Any(d => d.DependentTask == task!.Id))
-              .Select(task => task!.Id)
-              .ToList();
-
-            DO.Task projectStartMilestone = new DO.Task
+            DO.Task doTaskOfMilestone =
+            new DO.Task
             {
                 Id = 0, // השמה של מזהה המשימה התלויה
-                Description = $"start milestone", // תיאור אוטומטי
-                Alias = $"Start", // קיצור אוטומטי
-                CreatedAtDate = DateTime.Now, 
-                RequiredEffort = null,
-                IsMilestone = true
-            };
-       
-            //משימות ששום משימה לא תלויה בהן
-            var independentTasks = _dal.Task.ReadAll()
-             .Where(task => !dependencies.Any(d => d.DependsOnTask == task!.Id))
-             .Select(task => task!.Id)
-             .ToList();
-
-            DO.Task projectEneMilestone = new DO.Task
-            {
-                Id = 0, // השמה של מזהה המשימה התלויה
-                Description = $"end milestone", // תיאור אוטומטי
-                Alias = $"End", // קיצור אוטומטי
+                Description = $"Milestone for Task {index}", // תיאור אוטומטי
+                Alias = $"M{index}", // קיצור אוטומטי
                 CreatedAtDate = DateTime.Now, // זמן יצירה
                 RequiredEffort = null,
                 IsMilestone = true
             };
 
+
             try
             {
-                int startMilestoneId = _dal.Task.Create(projectStartMilestone);
-                int endMilestoneId = _dal.Task.Create(projectEneMilestone);
+                int milestoneId = _dal.Task.Create(doTaskOfMilestone);
 
-                foreach (var task in independentOnTasks)
+                foreach (var idTask in dep)
                 {
                     dependencies.Add(new DO.Dependency
                     {
-                        DependentTask = task,
-                        DependsOnTask = startMilestoneId
+                        Id = 0,
+                        DependentTask = milestoneId,
+                        DependsOnTask = idTask!.Value
                     });
                 }
 
-                foreach (var task in independentTasks)
+                foreach (var dependencyGroup in groupedDependencies)
                 {
-                    dependencies.Add(new DO.Dependency
+                    // אם הרשימה של המשימה (DependentTask) שווה לרשימה של המשימה הנוצרת
+                    if (dependencyGroup.Dependencies.SequenceEqual(dep))
                     {
-                        DependentTask = endMilestoneId,
-                        DependsOnTask = task
-                    });
+                        foreach (var dependentOnTaskId in dependencyGroup.Dependencies)
+                        {
+                            dependencies.Add(new DO.Dependency
+                            {
+                                DependentTask = dependentOnTaskId!.Value,
+                                DependsOnTask = milestoneId
+                            });
+                        }
+                    }
                 }
+
+                index++;
             }
             catch (DO.DalAlreadyExistsException ex)
             {
-                throw new BO.BlFailedToCreateMilestone("Failed to create END or START milestone", ex);
+                throw new BO.BlFailedToCreateMilestone($"failed to create Milestone with Alias = M{index}", ex);
             }
 
-            _dal.Dependency.ReadAll().ToList().ForEach(d => _dal.Dependency.Delete(d!.Id));
-            dependencies.ToList().ForEach(d => _dal.Dependency.Create(d));
+        }
 
-        var milstoneList = _dal.Task.ReadAll(task => task.IsMilestone).Where(t => t!= null).ToList();
+
+        var independentOnTasks = _dal.Task.ReadAll()
+          .Where(task => !dependencies.Any(d => d.DependentTask == task!.Id))
+          .Select(task => task!.Id)
+          .ToList();
+
+        DO.Task projectStartMilestone = new DO.Task
+        {
+            Id = 0, // השמה של מזהה המשימה התלויה
+            Description = $"start milestone", // תיאור אוטומטי
+            Alias = $"Start", // קיצור אוטומטי
+            CreatedAtDate = DateTime.Now,
+            RequiredEffort = null,
+            IsMilestone = true
+        };
+
+        //משימות ששום משימה לא תלויה בהן
+        var independentTasks = _dal.Task.ReadAll()
+         .Where(task => !dependencies.Any(d => d.DependsOnTask == task!.Id))
+         .Select(task => task!.Id)
+         .ToList();
+
+        DO.Task projectEneMilestone = new DO.Task
+        {
+            Id = 0, // השמה של מזהה המשימה התלויה
+            Description = $"end milestone", // תיאור אוטומטי
+            Alias = $"End", // קיצור אוטומטי
+            CreatedAtDate = DateTime.Now, // זמן יצירה
+            RequiredEffort = null,
+            IsMilestone = true
+        };
+
+        try
+        {
+            int startMilestoneId = _dal.Task.Create(projectStartMilestone);
+            int endMilestoneId = _dal.Task.Create(projectEneMilestone);
+
+            foreach (var task in independentOnTasks)
+            {
+                dependencies.Add(new DO.Dependency
+                {
+                    DependentTask = task,
+                    DependsOnTask = startMilestoneId
+                });
+            }
+
+            foreach (var task in independentTasks)
+            {
+                dependencies.Add(new DO.Dependency
+                {
+                    DependentTask = endMilestoneId,
+                    DependsOnTask = task
+                });
+            }
+        }
+        catch (DO.DalAlreadyExistsException ex)
+        {
+            throw new BO.BlFailedToCreateMilestone("Failed to create END or START milestone", ex);
+        }
+
+        _dal.Dependency.ReadAll().ToList().ForEach(d => _dal.Dependency.Delete(d!.Id));
+        dependencies.ToList().ForEach(d => _dal.Dependency.Create(d));
+
+        var milstoneList = _dal.Task.ReadAll(task => task.IsMilestone).Where(t => t != null).ToList();
         DateTime? scheduledDate;
         foreach (var milstone in milstoneList)
         {
-            if (milstone!.Alias=="Start")
+            if (milstone!.Alias == "Start")
             {
                 scheduledDate = DateTime.Now;
             }
             else
             {
-                scheduledDate = _dal.Task.ReadAll(task => _dal.Dependency.ReadAll().Any(dependency => dependency?.DependentTask == task.Id && dependency.DependsOnTask == milstone.Id)).Min(t  => t!.ScheduledDate!); //.value
+                scheduledDate = _dal.Task.ReadAll(task => _dal.Dependency.ReadAll().Any(dependency => dependency?.DependentTask == task.Id && dependency.DependsOnTask == milstone.Id)).Min(t => t!.ScheduledDate!); //.value
             }
         }
         DateTime? DeadlineDate;
