@@ -9,7 +9,7 @@ internal class TaskImplementation : ITask
     private DalApi.IDal _dal = DalApi.Factory.Get;
     public int Create(BO.Task boTask)
     {
-       
+
         if (boTask.Id < 0)
         {
             throw new BO.BlInvalidValue("Task ID must be a positive number");
@@ -23,7 +23,7 @@ internal class TaskImplementation : ITask
         {
             requiredEffort = (TimeSpan)(boTask.StartDate! - boTask.CompleteDate!);
         }
-        var task = _dal.Task.ReadAll(task => task.EngineerId == boTask.Engineer?.Id && Tools.CalculateStatusOfTask(task)!= BO.Status.Done).ToList();
+        var task = _dal.Task.ReadAll(task => task.EngineerId == boTask.Engineer?.Id && Tools.CalculateStatusOfTask(task) != BO.Status.Done).ToList();
         if (task != null)
         {
             throw new EngineerIsAlreadyBusy("Engineer is already busy");
@@ -80,39 +80,82 @@ internal class TaskImplementation : ITask
             };
         }
 
+        // List<BO.TaskInList> tasksList = new List<TaskInList>();
+        // _dal.Dependency.ReadAll(d => d.DependentTask == doTask.Id)
+        //                    .Select(d => _dal.Task.Read(d1 => d1.Id == d.DependsOnTask))
+        //                    .ToList()
+        //                    .ForEach(task =>
+        //                    {
+        //                        if (task != null)
+        //                        {
+        //                            tasksList.Add(new BO.TaskInList()
+        //                            {
+        //                                Id = task.Id,
+        //                                Alias = task.Alias,
+        //                                Description = task.Description,
+        //                                Status = (BO.Status)Tools.CalculateStatusOfTask(task)
+        //                            });
+        //                        }
+        //                    });
+        // var dependencies = _dal.Dependency.ReadAll(depen => depen.DependentTask == doTask.Id).Select(doDependency =>
+        //{
+        //    if (doDependency != null)
+        //    {
+        //        DO.Task task = _dal.Task.Read(doDependency.DependentTask)!;
+        //        return new BO.TaskInList()
+        //        {
+        //            Id = task.Id,
+        //            Description = task.Description,
+        //            Alias = task.Alias,
+        //            Status = BO.Tools.CalculateStatusOfTask(task)
+        //        };
+        //    }
+        //    return null;
+        //}).Where(dependency => dependency != null).ToList();
 
-       var dependencies =_dal.Dependency.ReadAll(depen => depen.DependentTask == doTask.Id).Select(doDependency =>
-       {
-           if (doDependency != null)
-           {
-               DO.Task task = _dal.Task.Read(doDependency.DependentTask)!;
-               return new BO.TaskInList()
-               {
-                   Id = task.Id,
-                   Description = task.Description,
-                   Alias = task.Alias,
-                   Status = BO.Tools.CalculateStatusOfTask(task)
-               };
-           }
-           return null;
-       }).Where(dependency => dependency != null).ToList();
+        // if (dependencies.Count == 0)
+        // {
+        //     dependencies = null;
+        // }
 
-        if(dependencies.Count == 0)
+        // BO.MilestoneInTask? milestone = null;
+        // var milstoneList = _dal.Task.ReadAll(task => task.IsMilestone).Where(t => t != null).ToList();
+        // var task = milstoneList.FirstOrDefault(task => _dal.Dependency.ReadAll().Any(dependency => dependency?.DependentTask == task?.Id && dependency?.DependsOnTask == doTask.Id));
+        // /*dependencies!.Where(t => _dal.Task.Read(t!.Id)!.IsMilestone == true).FirstOrDefault()!;*/
+        // if (task != null)
+        // {
+        //     milestone = new BO.MilestoneInTask()
+        //     {
+        //         Id = task.Id,
+        //         Alias = task.Alias
+        //     };
+        // }
+
+        List<TaskInList>? tasksList = null;
+        MilestoneInTask? milestone = null;
+
+        DO.Dependency? checkMilestone = _dal.Dependency.Read(dependency => dependency.DependsOnTask == doTask.Id);
+        if (checkMilestone != null)
         {
-            dependencies = null;
-        }
-
-        BO.MilestoneInTask? milestone = null;
-        var milstoneList = _dal.Task.ReadAll(task => task.IsMilestone).Where(t => t != null).ToList();
-        var task = milstoneList.FirstOrDefault(task => _dal.Dependency.ReadAll().Any(dependency => dependency?.DependentTask == task?.Id && dependency?.DependsOnTask == doTask.Id));
-        /*dependencies!.Where(t => _dal.Task.Read(t!.Id)!.IsMilestone == true).FirstOrDefault()!;*/
-        if (task != null)
-        {
-            milestone = new BO.MilestoneInTask()
+            int milestoneId = checkMilestone.DependentTask;
+            DO.Task? milestoneAsATask = _dal.Task.Read(task => task.Id == milestoneId && task.IsMilestone);
+            if (milestoneAsATask != null)
             {
-                Id = task.Id,
-                Alias = task.Alias
-            };
+                string aliasOfMilestone = milestoneAsATask.Alias;
+                milestone = new MilestoneInTask()
+                {
+                    Id = milestoneId,
+                    Alias = aliasOfMilestone
+                };
+            }
+            else
+            {
+                tasksList = Tools.CalculateTaskInList(id);
+            }
+        }
+        else
+        {
+            tasksList = Tools.CalculateTaskInList(id);
         }
         return new BO.Task()
         {
@@ -121,7 +164,7 @@ internal class TaskImplementation : ITask
             Description = doTask.Description,
             CreatedAtDate = doTask.CreatedAtDate,
             Status = BO.Tools.CalculateStatusOfTask(doTask),
-            Dependencies = dependencies as List<BO.TaskInList>,
+            Dependencies = tasksList,
             Milestone = milestone,
             ScheduledStartDate = doTask.ScheduledDate,
             //ScheduledStartDate = doTask.ScheduledDate,
@@ -287,88 +330,88 @@ internal class TaskImplementation : ITask
             return readAllTaskFilter;
         }
         return readAllTask;
-    
-    //IEnumerable<BO.Task?> readAllTask = _dal.Task.ReadAll().Select(doTask =>
-    //{
-    //    if (doTask == null)
-    //    {
-    //        return null;
-    //    }
-    //    DO.Engineer? eng = _dal.Engineer.ReadAll().FirstOrDefault(engineer => engineer?.Id == doTask.EngineerId);
-    //    BO.EngineerInTask? engineer = null;
-    //    if (eng != null)
-    //    {
-    //        engineer = new BO.EngineerInTask()
-    //        {
-    //            Id = eng.Id,
-    //            Name = eng.Name
-    //        };
-    //    }
-    //    var dependencies = _dal.Dependency.ReadAll(depen => depen.DependentTask == doTask.Id).Select(doDependency =>
-    //    {
-    //        if (doDependency != null)
-    //        {
-    //            DO.Task task = _dal.Task.Read(doDependency.DependentTask)!;
-    //            return new BO.TaskInList()
-    //            {
-    //                Id = task.Id,
-    //                Description = task.Description,
-    //                Alias = task.Alias,
-    //                Status = BO.Tools.CalculateStatusOfTask(task.StartDate, task.ScheduledDate, task.DeadlineDate, task.CompleteDate)
-    //            };
-    //        }
-    //        return null;
-    //    }).Where(dependency => dependency != null).ToList();
 
-    //    if (dependencies.Count == 0)
-    //    {
-    //        dependencies = null;
-    //    }
+        //IEnumerable<BO.Task?> readAllTask = _dal.Task.ReadAll().Select(doTask =>
+        //{
+        //    if (doTask == null)
+        //    {
+        //        return null;
+        //    }
+        //    DO.Engineer? eng = _dal.Engineer.ReadAll().FirstOrDefault(engineer => engineer?.Id == doTask.EngineerId);
+        //    BO.EngineerInTask? engineer = null;
+        //    if (eng != null)
+        //    {
+        //        engineer = new BO.EngineerInTask()
+        //        {
+        //            Id = eng.Id,
+        //            Name = eng.Name
+        //        };
+        //    }
+        //    var dependencies = _dal.Dependency.ReadAll(depen => depen.DependentTask == doTask.Id).Select(doDependency =>
+        //    {
+        //        if (doDependency != null)
+        //        {
+        //            DO.Task task = _dal.Task.Read(doDependency.DependentTask)!;
+        //            return new BO.TaskInList()
+        //            {
+        //                Id = task.Id,
+        //                Description = task.Description,
+        //                Alias = task.Alias,
+        //                Status = BO.Tools.CalculateStatusOfTask(task.StartDate, task.ScheduledDate, task.DeadlineDate, task.CompleteDate)
+        //            };
+        //        }
+        //        return null;
+        //    }).Where(dependency => dependency != null).ToList();
 
-    //    BO.MilestoneInTask? milestone = null;
-    //    //List<BO.Task> allTask = _dal.Task.ReadAll()
-    //    BO.TaskInList task = dependencies!.Where(t => _dal.Task.Read(t!.Id)!.IsMilestone == true).FirstOrDefault()!;
-    //    if (task != null)
-    //    {
-    //        milestone = new BO.MilestoneInTask()
-    //        {
-    //            Id = task.Id,
-    //            Alias = task.Alias
-    //        };
-    //    }
-    //    return new BO.Task
-    //    {
-    //        Id = doTask.Id,
-    //        Alias = doTask.Alias,
-    //        Description = doTask.Description,
-    //        CreatedAtDate = doTask.CreatedAtDate,
-    //        Status = BO.Tools.CalculateStatusOfTask(doTask.StartDate, doTask.ScheduledDate, doTask.DeadlineDate, doTask.CompleteDate),
-    //        Dependencies = dependencies as List<BO.TaskInList>,
-    //        Milestone = milestone,
-    //        BaselineStartDate = doTask.ScheduledDate,
-    //        StartDate = doTask.StartDate,
-    //        //ScheduledStartDate = doTask.ScheduledDate,
-    //        ForecastDate = doTask.StartDate + doTask.RequiredEffort,
-    //        DeadlineDate = doTask.DeadlineDate,
-    //        CompleteDate = doTask.CompleteDate,
-    //        Deliverables = doTask.Deliverables,
-    //        Remarks = doTask.Remarks,
-    //        Engineer =engineer,
-    //        ComplexityLevel = (BO.EngineerExperience)doTask.ComplexityLevel,
-    //    };
+        //    if (dependencies.Count == 0)
+        //    {
+        //        dependencies = null;
+        //    }
+
+        //    BO.MilestoneInTask? milestone = null;
+        //    //List<BO.Task> allTask = _dal.Task.ReadAll()
+        //    BO.TaskInList task = dependencies!.Where(t => _dal.Task.Read(t!.Id)!.IsMilestone == true).FirstOrDefault()!;
+        //    if (task != null)
+        //    {
+        //        milestone = new BO.MilestoneInTask()
+        //        {
+        //            Id = task.Id,
+        //            Alias = task.Alias
+        //        };
+        //    }
+        //    return new BO.Task
+        //    {
+        //        Id = doTask.Id,
+        //        Alias = doTask.Alias,
+        //        Description = doTask.Description,
+        //        CreatedAtDate = doTask.CreatedAtDate,
+        //        Status = BO.Tools.CalculateStatusOfTask(doTask.StartDate, doTask.ScheduledDate, doTask.DeadlineDate, doTask.CompleteDate),
+        //        Dependencies = dependencies as List<BO.TaskInList>,
+        //        Milestone = milestone,
+        //        BaselineStartDate = doTask.ScheduledDate,
+        //        StartDate = doTask.StartDate,
+        //        //ScheduledStartDate = doTask.ScheduledDate,
+        //        ForecastDate = doTask.StartDate + doTask.RequiredEffort,
+        //        DeadlineDate = doTask.DeadlineDate,
+        //        CompleteDate = doTask.CompleteDate,
+        //        Deliverables = doTask.Deliverables,
+        //        Remarks = doTask.Remarks,
+        //        Engineer =engineer,
+        //        ComplexityLevel = (BO.EngineerExperience)doTask.ComplexityLevel,
+        //    };
 
 
-    //}).Where(task => task != null).ToList(); // We will use WHERE to filter and drop the tasks that are NULL
+        //}).Where(task => task != null).ToList(); // We will use WHERE to filter and drop the tasks that are NULL
 
-    //if (filter != null)
-    //{
-    //    IEnumerable<BO.Task> readAllTaskFilter = from item in readAllTask
-    //                                             where filter(item)
-    //                                             select item;
-    //    return readAllTaskFilter;
-    //}
-    //return readAllTask;
-}
+        //if (filter != null)
+        //{
+        //    IEnumerable<BO.Task> readAllTaskFilter = from item in readAllTask
+        //                                             where filter(item)
+        //                                             select item;
+        //    return readAllTaskFilter;
+        //}
+        //return readAllTask;
+    }
     public void Update(BO.Task boTask)
     {
         if (boTask.Id < 0)
@@ -419,7 +462,7 @@ internal class TaskImplementation : ITask
                 }
             }
         }
-        
+
         try
         {
             _dal.Task.Update(doTask);

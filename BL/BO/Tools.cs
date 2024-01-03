@@ -1,8 +1,11 @@
-﻿using System.Reflection;
+﻿using BlApi;
+using DO;
+using System.Collections;
+using System.Reflection;
 
 namespace BO;
 
-public  static class Tools
+public static class Tools
 {
     public static string ToStringProperty<T>(this T obj)
     {
@@ -18,16 +21,40 @@ public  static class Tools
         //return result;
 
         /*/***************/
-        //PropertyInfo[] properties = typeof(T).GetProperties(); //Get all properties of T.
+        PropertyInfo[] properties = typeof(T).GetProperties(); //Get all properties of T.
+
+        string result = string.Join(", ", properties.Select(property =>
+        {
+            object? value = property.GetValue(obj);
+            string valueString;
+
+            if (value == null)
+            {
+                valueString = "null";
+            }
+            else if (value is IEnumerable<object> enumerableValue)
+            {
+                valueString = string.Join(", ", enumerableValue.Select(item => item.ToString()));
+            }
+            else
+            {
+                valueString = value.ToString();
+            }
+
+            return $"{property.Name}: {valueString}";
+        }));
+
+        return result;
+        //PropertyInfo[] properties = typeof(T).GetProperties(); // Get all properties of T.
 
         //string result = string.Join(", ", properties.Select(property =>
         //{
         //    object? value = property.GetValue(obj);
 
-        //    // Check if the property is a collection (e.g., IEnumerable)
+        //    Check if the property is a collection (e.g., IEnumerable)
         //    if (value is IEnumerable<object> collection)
         //    {
-        //        string collectionString = string.Join(", ", collection);
+        //        string collectionString = string.Join(", ", collection.Select(item => item?.ToString() ?? "null"));
         //        return $"{property.Name}: [{collectionString}]";
         //    }
 
@@ -36,24 +63,30 @@ public  static class Tools
         //}));
 
         //return result;
-        PropertyInfo[] properties = typeof(T).GetProperties(); // Get all properties of T.
+        //PropertyInfo[] properties = typeof(T).GetProperties();
 
-        string result = string.Join(", ", properties.Select(property =>
-        {
-            object? value = property.GetValue(obj);
+        //string result = string.Join(", ", properties.Select(property =>
+        //{
+        //    object? value = property.GetValue(obj);
+        //    string ? valueString;
 
-            // Check if the property is a collection (e.g., IEnumerable)
-            if (value is IEnumerable<object> collection)
-            {
-                string collectionString = string.Join(", ", collection.Select(item => item?.ToString() ?? "null"));
-                return $"{property.Name}: [{collectionString}]";
-            }
+        //    if (value == null)
+        //    {
+        //        valueString = "null";
+        //    }
+        //    else if (value is IEnumerable enumerableValue)
+        //    {
+        //        valueString = string.Join(", ", enumerableValue.Cast<object>().Select(item => item.ToString()));
+        //    }
+        //    else
+        //    {
+        //        valueString = value.ToString() ?? null;
+        //    }
 
-            string? valueString = (value != null) ? value.ToString() : "null";
-            return $"{property.Name}: {valueString}";
-        }));
+        //    return $"{property.Name}: {valueString}";
+        //}));
 
-        return result;
+        //return result;
 
     }
     public static BO.Status CalculateStatusOfTask(DO.Task doTask)
@@ -69,7 +102,7 @@ public  static class Tools
 
         if (doTask.StartDate != null && doTask.CompleteDate != null && doTask.CompleteDate > doTask.ScheduledDate)
             return BO.Status.InJeopardy;
-        if (doTask.StartDate != null && doTask.CompleteDate!=null && doTask.CompleteDate < DateTime.Now)
+        if (doTask.StartDate != null && doTask.CompleteDate != null && doTask.CompleteDate < DateTime.Now)
             return BO.Status.Done;
 
         return BO.Status.Unscheduled;
@@ -80,5 +113,29 @@ public  static class Tools
         DalApi.Factory.Get.endDateProject = endDate;
         DalApi.Factory.Get.startDateProject = startDate;
 
+    }
+
+    public static List<BO.TaskInList> CalculateTaskInList(int id)
+    {
+        DalApi.IDal _dal = DalApi.Factory.Get;
+
+        List<BO.TaskInList> tasksList = new List<TaskInList>();
+        _dal.Dependency.ReadAll(dependency => dependency.DependentTask == id)
+                           .Select(dependency => _dal.Task.Read(task => task.Id == dependency?.DependsOnTask))
+                           .ToList()
+                           .ForEach(task =>
+                           {
+                               if (task != null)
+                               {
+                                   tasksList.Add(new BO.TaskInList()
+                                   {
+                                       Id = task.Id,
+                                       Alias = task.Alias,
+                                       Description = task.Description,
+                                       Status = (BO.Status)Tools.CalculateStatusOfTask(task)
+                                   });
+                               }
+                           });
+        return tasksList;
     }
 }
