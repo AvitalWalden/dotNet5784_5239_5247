@@ -323,17 +323,18 @@ internal class TaskImplementation : ITask
             (DO.EngineerExperience)boTask.ComplexityLevel
         );
 
-        if (boTask.Milestone != null)
-        {
-            if (boTask.Dependencies != null)
-            {
-                foreach (BO.TaskInList doDependency in boTask.Dependencies)
-                {
-                    DO.Dependency doDepend = new DO.Dependency(0, boTask.Id, doDependency.Id);
-                    int idDependency = _dal.Dependency.Create(doDepend);
-                }
-            }
-        }
+        //if (boTask.Milestone != null)
+        //{
+        //    if (boTask.Dependencies != null)
+        //    {
+        //        foreach (BO.TaskInList doDependency in boTask.Dependencies)
+        //        {
+        //            if(_dal.Dependency.Read(doDependency.Id) != null)
+        //            DO.Dependency doDepend = new DO.Dependency(0, boTask.Id, doDependency.Id);
+        //            int idDependency = _dal.Dependency.Create(doDepend);
+        //        }
+        //    }
+        //}
 
         try
         {
