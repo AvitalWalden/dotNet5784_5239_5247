@@ -4,12 +4,18 @@ using DalApi;
 using System.Collections;
 using System.Numerics;
 using System.Runtime.Intrinsics.Arm;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace BlImplementation;
 
 internal class MilestoneImplementation : IMilestone
 {
     private DalApi.IDal _dal = DalApi.Factory.Get;
+
+    /// <summary>
+    /// Algorithm for calculating milestones
+    /// </summary>
+    /// <exception cref="BO.BlFailedToCreateMilestone"></exception>
     public void Create()
     {
         
@@ -181,6 +187,14 @@ internal class MilestoneImplementation : IMilestone
 
     }
 
+    /// <summary>
+    /// Milestone details request 
+    /// You will receive a Milestone ID You will attempt to request a milestone(an entity of type task) from a data layer
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    /// <exception cref="BO.BlDoesNotExistException"></exception>
+    /// <exception cref="BO.FailedToReadMilestone"></exception>
     public BO.Milestone? Read(int id)
     {
         try
