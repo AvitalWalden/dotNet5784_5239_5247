@@ -31,9 +31,9 @@ internal class MilestoneImplementation : IMilestone
             var distinct = from d in dependenciesForDistinct
                            where d.TaskId != dependenciesForDistinct[j].TaskId && d.Dependencies.SequenceEqual(dependenciesForDistinct[j].Dependencies)
                         select d.TaskId;
-            if (distinct.Count() < 1)
+            if (distinct.Count() >= 1)
             {
-                distinctDependencies.Add(distinctDependencies[j]);
+                distinctDependencies.Remove(distinctDependencies[j]);
             }
         }
 
@@ -77,7 +77,7 @@ internal class MilestoneImplementation : IMilestone
 
                 foreach (var dependencyGroup in groupedDependencies)
                 {
-                    if (dependencyGroup.Dependencies.SequenceEqual(dep.Dependencies) && dep.TaskId!= dependencyGroup.TaskId)
+                    if (dependencyGroup.Dependencies.SequenceEqual(dep.Dependencies))
                     {
                         dependencies.Add(new DO.Dependency
                         {
