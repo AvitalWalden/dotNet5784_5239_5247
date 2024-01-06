@@ -1,6 +1,7 @@
 ﻿using BlApi;
 using BO;
 using DalApi;
+using System.Collections;
 using System.Numerics;
 using System.Runtime.Intrinsics.Arm;
 
@@ -11,15 +12,30 @@ internal class MilestoneImplementation : IMilestone
     private DalApi.IDal _dal = DalApi.Factory.Get;
     public void Create()
     {
-        var groupedDependencies = _dal.Dependency.ReadAll()
+        
+        var dependenciesForDistinct = _dal.Dependency.ReadAll()
             .OrderBy(dep => dep?.DependsOnTask)
             .GroupBy(dep => dep?.DependentTask, dep => dep?.DependsOnTask,
             (id, dependency) => new { TaskId = id, Dependencies = dependency })
             .ToList();
 
-        var distinctDependencies = groupedDependencies
-            .Select(group => group.Dependencies.Distinct().ToList())
-            .ToList();
+        var distinctDependencies = dependenciesForDistinct;
+        for (var j = 0; j < dependenciesForDistinct.Count(); j++)//מחיקת כפלויות
+        {
+            var distinct = from d in dependenciesForDistinct
+                           where d.TaskId != dependenciesForDistinct[j].TaskId && d.Dependencies.SequenceEqual(dependenciesForDistinct[j].Dependencies)
+                        select d.TaskId;
+            if (distinct.Count() < 1)
+            {
+                distinctDependencies.Add(distinctDependencies[j]);
+            }
+        }
+
+        var groupedDependencies = _dal.Dependency.ReadAll()
+          .OrderBy(dep => dep?.DependsOnTask)
+          .GroupBy(dep => dep?.DependentTask, dep => dep?.DependsOnTask,
+          (id, dependency) => new { TaskId = id, Dependencies = dependency })
+          .ToList();
 
         int index = 1;
         List<DO.Dependency> dependencies = new List<DO.Dependency>();
@@ -43,7 +59,7 @@ internal class MilestoneImplementation : IMilestone
             {
                 int milestoneId = _dal.Task.Create(doTaskOfMilestone);
 
-                foreach (var idTask in dep)
+                foreach (var idTask in dep.Dependencies)
                 {
                     dependencies.Add(new DO.Dependency
                     {
@@ -55,20 +71,16 @@ internal class MilestoneImplementation : IMilestone
 
                 foreach (var dependencyGroup in groupedDependencies)
                 {
-                    // אם הרשימה של המשימה (DependentTask) שווה לרשימה של המשימה הנוצרת
-                    if (dependencyGroup.Dependencies.SequenceEqual(dep))
+                    if (dependencyGroup.Dependencies.SequenceEqual(dep.Dependencies) && dep.TaskId!= dependencyGroup.TaskId)
                     {
-                        foreach (var dependentOnTaskId in dependencyGroup.Dependencies)
+                        dependencies.Add(new DO.Dependency
                         {
-                            dependencies.Add(new DO.Dependency
-                            {
-                                DependentTask = dependentOnTaskId!.Value,
-                                DependsOnTask = milestoneId
-                            });
-                        }
+                            DependentTask = dependencyGroup.TaskId!.Value,
+                            DependsOnTask = milestoneId
+                        });
                     }
                 }
-
+               
                 index++;
             }
             catch (DO.DalAlreadyExistsException ex)

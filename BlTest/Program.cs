@@ -728,7 +728,7 @@ internal class Program
     public static void Milestones()
     {
         s_bl.Milestone.Create();
-        Console.WriteLine("To read a task press a");
+        Console.WriteLine("To read a milstone press a");
         Console.WriteLine("To update a milestone press b");
         Console.WriteLine("To exit press f");
         char ch = char.Parse(Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect"));
@@ -742,7 +742,7 @@ internal class Program
                     //    CreateMilestone();
                     //    break;
                     case 'a': // Read a milestone by ID.
-                        Console.WriteLine("Enter a task ID");
+                        Console.WriteLine("Enter a milstone ID");
                         int idMilestone = int.Parse(Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect"));
                         ReadMilestone(idMilestone);
                         break;
@@ -768,6 +768,10 @@ internal class Program
         }
 
     }
+    /// <summary>
+    /// Main function
+    /// </summary>
+    /// <exception cref="FormatException">wronginput</exception>
     public static void Main(string[] args)
     {
         Console.WriteLine("Would you like to create Initial data? (Y/N)");
@@ -777,39 +781,6 @@ internal class Program
             Factory.Get.Reset();
             DalTest.Initialization.Do();
         }
-        //Console.WriteLine("For a task press 1");
-        //Console.WriteLine("To exit press 0");
-        //string? chooseBeforeParse = Console.ReadLine();
-        //int.TryParse(chooseBeforeParse, out int choose);
-        //try
-        //{
-        //    while (choose != 0)
-        //    {
-        //        switch (choose)
-        //        {
-        //            case 1:
-        //                Tasks();
-        //                break;
-        //            default:
-        //                break;
-        //        }
-        //        Console.WriteLine("For a task press 1");
-        //        Console.WriteLine("To exit press 0");
-        //        chooseBeforeParse = Console.ReadLine();
-        //        int.TryParse(chooseBeforeParse, out choose);
-        //    }
-        //}
-        //catch (Exception ex)
-        //{
-        //    Console.WriteLine(ex);
-        //}
-        //Console.WriteLine("Enter the project start date (yyyy-MM-ddTHH:mm:ss):");
-        //string? startDateString = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
-        //DateTime.TryParse(startDateString, out DateTime startDate);
-        //Console.WriteLine("Enter the project end date (yyyy-MM-ddTHH:mm:ss):");
-        //string? endDateString = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
-        //DateTime.TryParse(endDateString, out DateTime endDate);
-        //BO.Tools.SetProjectDates(startDate, endDate);
         Console.WriteLine("For a task press 1");
         Console.WriteLine("For an engineer press 2");
         Console.WriteLine("For milestone between tasks press 3");
