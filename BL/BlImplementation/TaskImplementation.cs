@@ -1,5 +1,4 @@
 ﻿using BlApi;
-using BO;
 using System.Xml.Linq;
 
 namespace BlImplementation;
@@ -7,6 +6,15 @@ namespace BlImplementation;
 internal class TaskImplementation : ITask
 {
     private DalApi.IDal _dal = DalApi.Factory.Get;
+
+    /// <summary>
+    /// Creating an assignment task for the project
+    /// </summary>
+    /// <param name="boTask">the BO task</param>
+    /// <returns>ID of the new task</returns>
+    /// <exception cref="BO.BlInvalidValue">A error that the value is invvalid value</exception>
+    /// <exception cref="BO.EngineerIsAlreadyBusy">A error that the engineer is busy</exception>
+    /// <exception cref="BO.BlAlreadyExistsException">error</exception>
     public int Create(BO.Task boTask)
     {
 
@@ -63,6 +71,13 @@ internal class TaskImplementation : ITask
             throw new BO.BlAlreadyExistsException($"Task with ID={boTask.Id} already exists", ex);
         }
     }
+
+    /// <summary>
+    /// Task details request
+    /// </summary>
+    /// <param name="id">the id of the task</param>
+    /// <returns>a task</returns>
+    /// <exception cref="BO.BlDoesNotExistException">errors that the task with this id does Not exist</exception>
     public BO.Task? Read(int id)
     {
         DO.Task? doTask = _dal.Task.Read(id);
@@ -127,6 +142,12 @@ internal class TaskImplementation : ITask
             ComplexityLevel = (BO.EngineerExperience)doTask.ComplexityLevel,
         };
     }
+
+    /// <summary>
+    /// Request details of all tasks
+    /// </summary>
+    /// <param name="filter">A function for mapping the tasks</param>
+    /// <returns>Returns all tasks</returns>
     public IEnumerable<BO.Task?> ReadAll(Func<BO.Task, bool>? filter = null)
     {
 
@@ -205,15 +226,23 @@ internal class TaskImplementation : ITask
         }
         return readAllTask;
     }
+
+    /// <summary>
+    /// task to update
+    /// </summary>
+    /// <param name="boTask">the task to update</param>
+    /// <exception cref="BO.BlInvalidValue">A error that the value is invvalid value</exception>
+    /// <exception cref="BO.EngineerIsAlreadyBusy">A error that the engineer is busy</exception>
+    /// <exception cref="BO.BlAlreadyExistsException">error</exception>
     public void Update(BO.Task boTask)
     {
         if (boTask.Id < 0)
         {
-            throw new Exception("Task ID must be a positive number");
+            throw new BO.BlInvalidValue("Task ID must be a positive number");
         }
         if (string.IsNullOrWhiteSpace(boTask.Description))
         {
-            throw new Exception("Task description cannot be empty or null");
+            throw new BO.BlInvalidValue("Task description cannot be empty or null");
         }
         TimeSpan? requiredEffort = null;
         if (boTask.StartDate != null || boTask.CompleteDate != null)
@@ -265,6 +294,12 @@ internal class TaskImplementation : ITask
             throw new BO.BlAlreadyExistsException($"Task with ID={boTask.Id} already exists", ex);
         }
     }
+    
+    /// <summary>
+    /// Delete the task
+    /// </summary>
+    /// <param name="id">ID of the task ti delete</param>
+    /// <exception cref="BO.BlDoesNotExistException">a error that the this id does not exist</exception>
     public void Delete(int id)
     {
         try
