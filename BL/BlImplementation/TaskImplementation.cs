@@ -31,7 +31,7 @@ internal class TaskImplementation : ITask
         {
             requiredEffort = (TimeSpan)(boTask.StartDate! - boTask.CompleteDate!);
         }
-        var task = _dal.Task.Read(task => task.EngineerId == boTask.Engineer?.Id && Tools.CalculateStatusOfTask(task) != BO.Status.Done);
+        var task = _dal.Task.Read(task => task.EngineerId == boTask.Engineer?.Id && BO.Tools.CalculateStatusOfTask(task) != BO.Status.Done);
         if (task != null)
         {
             throw new BO.EngineerIsAlreadyBusy("Engineer is already busy");
@@ -114,12 +114,12 @@ internal class TaskImplementation : ITask
             }
             else
             {
-                tasksList = Tools.CalculateTaskInList(id);
+                tasksList = BO.Tools.CalculateTaskInList(id);
             }
         }
         else
         {
-            tasksList = Tools.CalculateTaskInList(id);
+            tasksList = BO.Tools.CalculateTaskInList(id);
         }
         return new BO.Task()
         {
@@ -127,7 +127,7 @@ internal class TaskImplementation : ITask
             Alias = doTask.Alias,
             Description = doTask.Description,
             CreatedAtDate = doTask.CreatedAtDate,
-            Status = Tools.CalculateStatusOfTask(doTask),
+            Status = BO.Tools.CalculateStatusOfTask(doTask),
             Dependencies = tasksList,
             Milestone = milestone,
             ScheduledStartDate = doTask.ScheduledDate,
@@ -186,12 +186,12 @@ internal class TaskImplementation : ITask
                 }
                 else
                 {
-                    tasksList = Tools.CalculateTaskInList(doTask.Id);
+                    tasksList = BO.Tools.CalculateTaskInList(doTask.Id);
                 }
             }
             else
             {
-                tasksList = Tools.CalculateTaskInList(doTask.Id);
+                tasksList = BO.Tools.CalculateTaskInList(doTask.Id);
             }
             return new BO.Task
             {
@@ -199,7 +199,7 @@ internal class TaskImplementation : ITask
                 Alias = doTask.Alias,
                 Description = doTask.Description,
                 CreatedAtDate = doTask.CreatedAtDate,
-                Status = Tools.CalculateStatusOfTask(doTask),
+                Status = BO.Tools.CalculateStatusOfTask(doTask),
                 Dependencies = tasksList,
                 Milestone = milestone,
                 ScheduledStartDate = doTask.ScheduledDate,
@@ -249,7 +249,7 @@ internal class TaskImplementation : ITask
         {
             requiredEffort = (TimeSpan)(boTask.StartDate! - boTask.CompleteDate!);
         }
-        var task = _dal.Task.Read(task => task.EngineerId == boTask.Engineer?.Id && Tools.CalculateStatusOfTask(task) != BO.Status.Done);
+        var task = _dal.Task.Read(task => task.EngineerId == boTask.Engineer?.Id && BO.Tools.CalculateStatusOfTask(task) != BO.Status.Done);
         if (task != null && task.Id != boTask.Id)
         {
             throw new BO.EngineerIsAlreadyBusy("Engineer is already busy");
