@@ -4,13 +4,13 @@
     <Id>0</Id>
     <Description>תכנון הבנייה על פי ייעוד ודרישות הבנין</Description>
     <Alias>ארגון ותכנון הבניה</Alias>
-    <CreatedAtDate>2024-01-02T00:48:22.4358405+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-01-07T14:49:55.9326708+02:00</CreatedAtDate>
     <RequiredEffort>PT0S</RequiredEffort>
     <IsMilestone>false</IsMilestone>
-    <StartDate>2024-01-03T00:48:22.4358462+02:00</StartDate>
-    <ScheduledDate>2024-01-04T00:48:22.4361063+02:00</ScheduledDate>
-    <DeadlineDate>2024-01-05T00:48:22.4361068+02:00</DeadlineDate>
-    <CompleteDate>2024-01-06T00:48:22.436107+02:00</CompleteDate>
+    <StartDate>2024-01-08T14:49:55.9326799+02:00</StartDate>
+    <ScheduledDate>2024-01-09T14:49:55.9326972+02:00</ScheduledDate>
+    <DeadlineDate>2024-01-10T14:49:55.9326976+02:00</DeadlineDate>
+    <CompleteDate>2024-01-11T14:49:55.9326979+02:00</CompleteDate>
     <Deliverables>תכנון הבניה הושלם</Deliverables>
     <Remarks>Remarks for ארגון ותכנון הבניה</Remarks>
     <EngineerId>214385247</EngineerId>
@@ -21,13 +21,13 @@
     <Id>1</Id>
     <Description>הבטחת מימון פרויקט הבניה</Description>
     <Alias>מימון</Alias>
-    <CreatedAtDate>2024-01-02T00:48:22.4416115+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-01-07T14:49:55.9411499+02:00</CreatedAtDate>
     <RequiredEffort>PT0S</RequiredEffort>
     <IsMilestone>false</IsMilestone>
-    <StartDate>2024-01-09T00:48:22.4416156+02:00</StartDate>
-    <ScheduledDate>2024-01-10T00:48:22.4416162+02:00</ScheduledDate>
-    <DeadlineDate>2024-01-11T00:48:22.4416165+02:00</DeadlineDate>
-    <CompleteDate>2024-01-12T00:48:22.4416168+02:00</CompleteDate>
+    <StartDate>2024-01-14T14:49:55.9411526+02:00</StartDate>
+    <ScheduledDate>2024-01-15T14:49:55.9411534+02:00</ScheduledDate>
+    <DeadlineDate>2024-01-16T14:49:55.9411536+02:00</DeadlineDate>
+    <CompleteDate>2024-01-17T14:49:55.9411539+02:00</CompleteDate>
     <Deliverables>מימון או מימון התחלתי לפרויקט הבניה</Deliverables>
     <Remarks>Remarks for מימון</Remarks>
     <EngineerId>214385239</EngineerId>
@@ -38,13 +38,13 @@
     <Id>2</Id>
     <Description>רכישת הקרקע</Description>
     <Alias>רכישת הנכס</Alias>
-    <CreatedAtDate>2024-01-02T00:48:22.4506434+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-01-07T14:49:55.9438335+02:00</CreatedAtDate>
     <RequiredEffort>PT0S</RequiredEffort>
     <IsMilestone>false</IsMilestone>
-    <StartDate>2024-01-15T00:48:22.4506465+02:00</StartDate>
-    <ScheduledDate>2024-01-16T00:48:22.450647+02:00</ScheduledDate>
-    <DeadlineDate>2024-01-17T00:48:22.4506473+02:00</DeadlineDate>
-    <CompleteDate>2024-01-18T00:48:22.4506475+02:00</CompleteDate>
+    <StartDate>2024-01-20T14:49:55.943836+02:00</StartDate>
+    <ScheduledDate>2024-01-21T14:49:55.9438367+02:00</ScheduledDate>
+    <DeadlineDate>2024-01-22T14:49:55.9438369+02:00</DeadlineDate>
+    <CompleteDate>2024-01-23T14:49:55.9438372+02:00</CompleteDate>
     <Deliverables>קרקע בבעלות החברה לקראת תחילת עבודות בניה במקום</Deliverables>
     <Remarks>Remarks for רכישת הנכס</Remarks>
     <EngineerId>16438046</EngineerId>
@@ -55,13 +55,13 @@
     <Id>3</Id>
     <Description>בקשת אישורים נחוצים לצורך הבנייה</Description>
     <Alias>אישורים לפרויקט הבנייה</Alias>
-    <CreatedAtDate>2024-01-02T00:48:22.4603567+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-01-07T14:49:55.948272+02:00</CreatedAtDate>
     <RequiredEffort>PT0S</RequiredEffort>
     <IsMilestone>false</IsMilestone>
-    <StartDate>2024-01-21T00:48:22.4603594+02:00</StartDate>
-    <ScheduledDate>2024-01-22T00:48:22.4603602+02:00</ScheduledDate>
-    <DeadlineDate>2024-01-23T00:48:22.4603604+02:00</DeadlineDate>
-    <CompleteDate>2024-01-24T00:48:22.4603606+02:00</CompleteDate>
+    <StartDate>2024-01-26T14:49:55.9482753+02:00</StartDate>
+    <ScheduledDate>2024-01-27T14:49:55.948276+02:00</ScheduledDate>
+    <DeadlineDate>2024-01-28T14:49:55.9482764+02:00</DeadlineDate>
+    <CompleteDate>2024-01-29T14:49:55.9482768+02:00</CompleteDate>
     <Deliverables>קבלת האישורים הנחוצים לבניה</Deliverables>
     <Remarks>Remarks for אישורים לפרויקט הבנייה</Remarks>
     <EngineerId>344165165</EngineerId>
@@ -72,13 +72,13 @@
     <Id>4</Id>
     <Description>פגישות עם האדריכל או צוות העיצוב ליצירת תוכנית עבודה</Description>
     <Alias>עיצוב</Alias>
-    <CreatedAtDate>2024-01-02T00:48:22.4697509+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-01-07T14:49:55.9513194+02:00</CreatedAtDate>
     <RequiredEffort>PT0S</RequiredEffort>
     <IsMilestone>false</IsMilestone>
-    <StartDate>2024-01-27T00:48:22.4697532+02:00</StartDate>
-    <ScheduledDate>2024-01-28T00:48:22.4697535+02:00</ScheduledDate>
-    <DeadlineDate>2024-01-29T00:48:22.4697538+02:00</DeadlineDate>
-    <CompleteDate>2024-01-30T00:48:22.469754+02:00</CompleteDate>
+    <StartDate>2024-02-01T14:49:55.9513215+02:00</StartDate>
+    <ScheduledDate>2024-02-02T14:49:55.9513225+02:00</ScheduledDate>
+    <DeadlineDate>2024-02-03T14:49:55.9513228+02:00</DeadlineDate>
+    <CompleteDate>2024-02-04T14:49:55.9513231+02:00</CompleteDate>
     <Deliverables>תוכנית עיצוב מוכנה</Deliverables>
     <Remarks>Remarks for עיצוב</Remarks>
     <EngineerId>111111118</EngineerId>
@@ -89,13 +89,13 @@
     <Id>5</Id>
     <Description>התחלת הכנת האתר על ידי פינוי המקום</Description>
     <Alias>פינוי האתר</Alias>
-    <CreatedAtDate>2024-01-02T00:48:22.4930025+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-01-07T14:49:55.9545288+02:00</CreatedAtDate>
     <RequiredEffort>PT0S</RequiredEffort>
     <IsMilestone>false</IsMilestone>
-    <StartDate>2024-02-02T00:48:22.4930077+02:00</StartDate>
-    <ScheduledDate>2024-02-03T00:48:22.4930084+02:00</ScheduledDate>
-    <DeadlineDate>2024-02-04T00:48:22.4930086+02:00</DeadlineDate>
-    <CompleteDate>2024-02-05T00:48:22.4930089+02:00</CompleteDate>
+    <StartDate>2024-02-07T14:49:55.9545332+02:00</StartDate>
+    <ScheduledDate>2024-02-08T14:49:55.9545341+02:00</ScheduledDate>
+    <DeadlineDate>2024-02-09T14:49:55.9545346+02:00</DeadlineDate>
+    <CompleteDate>2024-02-10T14:49:55.9545351+02:00</CompleteDate>
     <Deliverables>אתר הבניה מפונה מעצמים</Deliverables>
     <Remarks>Remarks for פינוי האתר</Remarks>
     <EngineerId>23995871</EngineerId>
@@ -106,13 +106,13 @@
     <Id>6</Id>
     <Description>דירוג הקרקע והכנתה לבניה</Description>
     <Alias>דירוג</Alias>
-    <CreatedAtDate>2024-01-02T00:48:22.5057713+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-01-07T14:49:55.9578604+02:00</CreatedAtDate>
     <RequiredEffort>PT0S</RequiredEffort>
     <IsMilestone>false</IsMilestone>
-    <StartDate>2024-02-08T00:48:22.5057749+02:00</StartDate>
-    <ScheduledDate>2024-02-09T00:48:22.5057756+02:00</ScheduledDate>
-    <DeadlineDate>2024-02-10T00:48:22.5057758+02:00</DeadlineDate>
-    <CompleteDate>2024-02-11T00:48:22.5057761+02:00</CompleteDate>
+    <StartDate>2024-02-13T14:49:55.957865+02:00</StartDate>
+    <ScheduledDate>2024-02-14T14:49:55.9578661+02:00</ScheduledDate>
+    <DeadlineDate>2024-02-15T14:49:55.9578668+02:00</DeadlineDate>
+    <CompleteDate>2024-02-16T14:49:55.9578675+02:00</CompleteDate>
     <Deliverables>הקרקע מוכנה לבניה</Deliverables>
     <Remarks>Remarks for דירוג</Remarks>
     <EngineerId>214385242</EngineerId>
@@ -123,13 +123,13 @@
     <Id>7</Id>
     <Description>חפירת הקרקע</Description>
     <Alias>חפירות</Alias>
-    <CreatedAtDate>2024-01-02T00:48:22.5134292+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-01-07T14:49:55.9622099+02:00</CreatedAtDate>
     <RequiredEffort>PT0S</RequiredEffort>
     <IsMilestone>false</IsMilestone>
-    <StartDate>2024-02-14T00:48:22.5134327+02:00</StartDate>
-    <ScheduledDate>2024-02-15T00:48:22.5134334+02:00</ScheduledDate>
-    <DeadlineDate>2024-02-16T00:48:22.5134337+02:00</DeadlineDate>
-    <CompleteDate>2024-02-17T00:48:22.5134339+02:00</CompleteDate>
+    <StartDate>2024-02-19T14:49:55.9622161+02:00</StartDate>
+    <ScheduledDate>2024-02-20T14:49:55.9622174+02:00</ScheduledDate>
+    <DeadlineDate>2024-02-21T14:49:55.962218+02:00</DeadlineDate>
+    <CompleteDate>2024-02-22T14:49:55.9622187+02:00</CompleteDate>
     <Deliverables>הקרקע מוכנה לבניה</Deliverables>
     <Remarks>Remarks for חפירות</Remarks>
     <EngineerId>214375247</EngineerId>
@@ -140,13 +140,13 @@
     <Id>8</Id>
     <Description>יצירת מתווה סימון</Description>
     <Alias>מדידות</Alias>
-    <CreatedAtDate>2024-01-02T00:48:22.5215319+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-01-07T14:49:55.9663286+02:00</CreatedAtDate>
     <RequiredEffort>PT0S</RequiredEffort>
     <IsMilestone>false</IsMilestone>
-    <StartDate>2024-02-20T00:48:22.5215348+02:00</StartDate>
-    <ScheduledDate>2024-02-21T00:48:22.5215354+02:00</ScheduledDate>
-    <DeadlineDate>2024-02-22T00:48:22.5215356+02:00</DeadlineDate>
-    <CompleteDate>2024-02-23T00:48:22.5215358+02:00</CompleteDate>
+    <StartDate>2024-02-25T14:49:55.9663306+02:00</StartDate>
+    <ScheduledDate>2024-02-26T14:49:55.9663316+02:00</ScheduledDate>
+    <DeadlineDate>2024-02-27T14:49:55.9663319+02:00</DeadlineDate>
+    <CompleteDate>2024-02-28T14:49:55.9663322+02:00</CompleteDate>
     <Deliverables>הקרקע מסומנת לבניה</Deliverables>
     <Remarks>Remarks for מדידות</Remarks>
     <EngineerId>214385244</EngineerId>
@@ -157,13 +157,13 @@
     <Id>9</Id>
     <Description>יציקת השלד של המבנה</Description>
     <Alias>יציקות</Alias>
-    <CreatedAtDate>2024-01-02T00:48:22.5328407+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-01-07T14:49:55.9693951+02:00</CreatedAtDate>
     <RequiredEffort>PT0S</RequiredEffort>
     <IsMilestone>false</IsMilestone>
-    <StartDate>2024-02-26T00:48:22.5328423+02:00</StartDate>
-    <ScheduledDate>2024-02-27T00:48:22.5328432+02:00</ScheduledDate>
-    <DeadlineDate>2024-02-28T00:48:22.5328434+02:00</DeadlineDate>
-    <CompleteDate>2024-02-29T00:48:22.5328436+02:00</CompleteDate>
+    <StartDate>2024-03-02T14:49:55.9693969+02:00</StartDate>
+    <ScheduledDate>2024-03-03T14:49:55.9693977+02:00</ScheduledDate>
+    <DeadlineDate>2024-03-04T14:49:55.9693979+02:00</DeadlineDate>
+    <CompleteDate>2024-03-05T14:49:55.9693982+02:00</CompleteDate>
     <Deliverables>השלד מוכן</Deliverables>
     <Remarks>Remarks for יציקות</Remarks>
     <EngineerId>214385243</EngineerId>
@@ -174,13 +174,13 @@
     <Id>10</Id>
     <Description>בנית קירות חוץ</Description>
     <Alias>קירות בנין חיצוניות</Alias>
-    <CreatedAtDate>2024-01-02T00:48:22.5430099+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-01-07T14:49:55.9728019+02:00</CreatedAtDate>
     <RequiredEffort>PT0S</RequiredEffort>
     <IsMilestone>false</IsMilestone>
-    <StartDate>2024-03-03T00:48:22.5430134+02:00</StartDate>
-    <ScheduledDate>2024-03-04T00:48:22.543014+02:00</ScheduledDate>
-    <DeadlineDate>2024-03-05T00:48:22.5430143+02:00</DeadlineDate>
-    <CompleteDate>2024-03-06T00:48:22.5430145+02:00</CompleteDate>
+    <StartDate>2024-03-08T14:49:55.9728046+02:00</StartDate>
+    <ScheduledDate>2024-03-09T14:49:55.9728053+02:00</ScheduledDate>
+    <DeadlineDate>2024-03-10T14:49:55.9728056+02:00</DeadlineDate>
+    <CompleteDate>2024-03-11T14:49:55.9728059+02:00</CompleteDate>
     <Deliverables>קירות בנין חיצוניות בנויות</Deliverables>
     <Remarks>Remarks for קירות בנין חיצוניות</Remarks>
     <EngineerId>214258965</EngineerId>
@@ -191,13 +191,13 @@
     <Id>11</Id>
     <Description>בנית קירות פנים</Description>
     <Alias>קירות בנין פנימיות</Alias>
-    <CreatedAtDate>2024-01-02T00:48:22.5505271+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-01-07T14:49:55.9761653+02:00</CreatedAtDate>
     <RequiredEffort>PT0S</RequiredEffort>
     <IsMilestone>false</IsMilestone>
-    <StartDate>2024-03-09T00:48:22.5505294+02:00</StartDate>
-    <ScheduledDate>2024-03-10T00:48:22.5505301+02:00</ScheduledDate>
-    <DeadlineDate>2024-03-11T00:48:22.5505303+02:00</DeadlineDate>
-    <CompleteDate>2024-03-12T00:48:22.5505306+02:00</CompleteDate>
+    <StartDate>2024-03-14T14:49:55.9761689+02:00</StartDate>
+    <ScheduledDate>2024-03-15T14:49:55.9761699+02:00</ScheduledDate>
+    <DeadlineDate>2024-03-16T14:49:55.9761702+02:00</DeadlineDate>
+    <CompleteDate>2024-03-17T14:49:55.9761705+02:00</CompleteDate>
     <Deliverables>קירות בנין פנימיות בנויות</Deliverables>
     <Remarks>Remarks for קירות בנין פנימיות</Remarks>
     <EngineerId>214785269</EngineerId>
@@ -208,13 +208,13 @@
     <Id>12</Id>
     <Description>בנית מערכות בנין</Description>
     <Alias>מערכות בנין</Alias>
-    <CreatedAtDate>2024-01-02T00:48:22.569836+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-01-07T14:49:55.9797807+02:00</CreatedAtDate>
     <RequiredEffort>PT0S</RequiredEffort>
     <IsMilestone>false</IsMilestone>
-    <StartDate>2024-03-15T00:48:22.5698383+02:00</StartDate>
-    <ScheduledDate>2024-03-16T00:48:22.5698416+02:00</ScheduledDate>
-    <DeadlineDate>2024-03-17T00:48:22.5698418+02:00</DeadlineDate>
-    <CompleteDate>2024-03-18T00:48:22.569842+02:00</CompleteDate>
+    <StartDate>2024-03-20T14:49:55.9797828+02:00</StartDate>
+    <ScheduledDate>2024-03-21T14:49:55.9797835+02:00</ScheduledDate>
+    <DeadlineDate>2024-03-22T14:49:55.9797838+02:00</DeadlineDate>
+    <CompleteDate>2024-03-23T14:49:55.9797841+02:00</CompleteDate>
     <Deliverables>הבנין יהיה עם מערכות חשמל ואינסטלציה</Deliverables>
     <Remarks>Remarks for מערכות בנין</Remarks>
     <EngineerId>320569824</EngineerId>
@@ -225,13 +225,13 @@
     <Id>13</Id>
     <Description>טיוח הקירות</Description>
     <Alias>טיוח קירות</Alias>
-    <CreatedAtDate>2024-01-02T00:48:22.5796828+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-01-07T14:49:55.9841507+02:00</CreatedAtDate>
     <RequiredEffort>PT0S</RequiredEffort>
     <IsMilestone>false</IsMilestone>
-    <StartDate>2024-03-21T00:48:22.5796847+02:00</StartDate>
-    <ScheduledDate>2024-03-22T00:48:22.5796855+02:00</ScheduledDate>
-    <DeadlineDate>2024-03-23T00:48:22.5796857+02:00</DeadlineDate>
-    <CompleteDate>2024-03-24T00:48:22.579686+02:00</CompleteDate>
+    <StartDate>2024-03-26T14:49:55.9841528+02:00</StartDate>
+    <ScheduledDate>2024-03-27T14:49:55.9841536+02:00</ScheduledDate>
+    <DeadlineDate>2024-03-28T14:49:55.9841539+02:00</DeadlineDate>
+    <CompleteDate>2024-03-29T14:49:55.9841542+03:00</CompleteDate>
     <Deliverables>קירות מוכנות לצביעה</Deliverables>
     <Remarks>Remarks for טיוח קירות</Remarks>
     <EngineerId>214385269</EngineerId>
@@ -242,13 +242,13 @@
     <Id>14</Id>
     <Description>ריצוף הבנין והדירות</Description>
     <Alias>ריצוף</Alias>
-    <CreatedAtDate>2024-01-02T00:48:22.5925767+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-01-07T14:49:55.9880454+02:00</CreatedAtDate>
     <RequiredEffort>PT0S</RequiredEffort>
     <IsMilestone>false</IsMilestone>
-    <StartDate>2024-03-27T00:48:22.5925818+02:00</StartDate>
-    <ScheduledDate>2024-03-28T00:48:22.5925826+02:00</ScheduledDate>
-    <DeadlineDate>2024-03-29T00:48:22.5925828+02:00</DeadlineDate>
-    <CompleteDate>2024-03-30T00:48:22.592583+03:00</CompleteDate>
+    <StartDate>2024-04-01T14:49:55.9880474+03:00</StartDate>
+    <ScheduledDate>2024-04-02T14:49:55.9880481+03:00</ScheduledDate>
+    <DeadlineDate>2024-04-03T14:49:55.9880483+03:00</DeadlineDate>
+    <CompleteDate>2024-04-04T14:49:55.9880486+03:00</CompleteDate>
     <Deliverables>בניין ודירות מרוצפות</Deliverables>
     <Remarks>Remarks for ריצוף</Remarks>
     <EngineerId>214385236</EngineerId>
@@ -259,13 +259,13 @@
     <Id>15</Id>
     <Description>התקנת פתחים חלונות ודלתות</Description>
     <Alias>התקנת הפתחים</Alias>
-    <CreatedAtDate>2024-01-02T00:48:22.6031555+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-01-07T14:49:55.9913468+02:00</CreatedAtDate>
     <RequiredEffort>PT0S</RequiredEffort>
     <IsMilestone>false</IsMilestone>
-    <StartDate>2024-04-02T00:48:22.6031588+03:00</StartDate>
-    <ScheduledDate>2024-04-03T00:48:22.6031602+03:00</ScheduledDate>
-    <DeadlineDate>2024-04-04T00:48:22.6031604+03:00</DeadlineDate>
-    <CompleteDate>2024-04-05T00:48:22.6031606+03:00</CompleteDate>
+    <StartDate>2024-04-07T14:49:55.991349+03:00</StartDate>
+    <ScheduledDate>2024-04-08T14:49:55.9913497+03:00</ScheduledDate>
+    <DeadlineDate>2024-04-09T14:49:55.99135+03:00</DeadlineDate>
+    <CompleteDate>2024-04-10T14:49:55.9913503+03:00</CompleteDate>
     <Deliverables>הבנין חסום מפתחים</Deliverables>
     <Remarks>Remarks for התקנת הפתחים</Remarks>
     <EngineerId>314385242</EngineerId>
@@ -276,13 +276,13 @@
     <Id>16</Id>
     <Description>התקנת כלי עזר נחוצים</Description>
     <Alias>כלי עזר לבנין</Alias>
-    <CreatedAtDate>2024-01-02T00:48:22.6134815+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-01-07T14:49:55.9956438+02:00</CreatedAtDate>
     <RequiredEffort>PT0S</RequiredEffort>
     <IsMilestone>false</IsMilestone>
-    <StartDate>2024-04-08T00:48:22.6134841+03:00</StartDate>
-    <ScheduledDate>2024-04-09T00:48:22.6134848+03:00</ScheduledDate>
-    <DeadlineDate>2024-04-10T00:48:22.613485+03:00</DeadlineDate>
-    <CompleteDate>2024-04-11T00:48:22.6134852+03:00</CompleteDate>
+    <StartDate>2024-04-13T14:49:55.9956462+03:00</StartDate>
+    <ScheduledDate>2024-04-14T14:49:55.9956469+03:00</ScheduledDate>
+    <DeadlineDate>2024-04-15T14:49:55.9956472+03:00</DeadlineDate>
+    <CompleteDate>2024-04-16T14:49:55.9956476+03:00</CompleteDate>
     <Deliverables>הבנין בעל מים חשמל וגז</Deliverables>
     <Remarks>Remarks for כלי עזר לבנין</Remarks>
     <EngineerId>314385247</EngineerId>
@@ -293,13 +293,13 @@
     <Id>17</Id>
     <Description>בדיקות כדי להבטיח עמידה בקודי בניה ובתקנות</Description>
     <Alias>בדיקות</Alias>
-    <CreatedAtDate>2024-01-02T00:48:22.6234986+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-01-07T14:49:56.0006446+02:00</CreatedAtDate>
     <RequiredEffort>PT0S</RequiredEffort>
     <IsMilestone>false</IsMilestone>
-    <StartDate>2024-04-14T00:48:22.6235038+03:00</StartDate>
-    <ScheduledDate>2024-04-15T00:48:22.6235046+03:00</ScheduledDate>
-    <DeadlineDate>2024-04-16T00:48:22.6235049+03:00</DeadlineDate>
-    <CompleteDate>2024-04-17T00:48:22.6235052+03:00</CompleteDate>
+    <StartDate>2024-04-19T14:49:56.0006476+03:00</StartDate>
+    <ScheduledDate>2024-04-20T14:49:56.0006485+03:00</ScheduledDate>
+    <DeadlineDate>2024-04-21T14:49:56.0006488+03:00</DeadlineDate>
+    <CompleteDate>2024-04-22T14:49:56.0006491+03:00</CompleteDate>
     <Deliverables>הבנין עומד בתקן</Deliverables>
     <Remarks>Remarks for בדיקות</Remarks>
     <EngineerId>314385244</EngineerId>
@@ -310,13 +310,13 @@
     <Id>18</Id>
     <Description>נקיון יסוד של האתר בניה</Description>
     <Alias>נקיון אתר הבנייה</Alias>
-    <CreatedAtDate>2024-01-02T00:48:22.6343089+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-01-07T14:49:56.0051802+02:00</CreatedAtDate>
     <RequiredEffort>PT0S</RequiredEffort>
     <IsMilestone>false</IsMilestone>
-    <StartDate>2024-04-20T00:48:22.6343114+03:00</StartDate>
-    <ScheduledDate>2024-04-21T00:48:22.6343121+03:00</ScheduledDate>
-    <DeadlineDate>2024-04-22T00:48:22.6343123+03:00</DeadlineDate>
-    <CompleteDate>2024-04-23T00:48:22.6343126+03:00</CompleteDate>
+    <StartDate>2024-04-25T14:49:56.0051847+03:00</StartDate>
+    <ScheduledDate>2024-04-26T14:49:56.0051856+03:00</ScheduledDate>
+    <DeadlineDate>2024-04-27T14:49:56.0051861+03:00</DeadlineDate>
+    <CompleteDate>2024-04-28T14:49:56.0051866+03:00</CompleteDate>
     <Deliverables>אתר הבניה נקי אין פסולת בנייה</Deliverables>
     <Remarks>Remarks for נקיון אתר הבנייה</Remarks>
     <EngineerId>314385243</EngineerId>
@@ -327,13 +327,13 @@
     <Id>19</Id>
     <Description>נקיון הבנין מהבניה</Description>
     <Alias>נקיון הבנין והדירות</Alias>
-    <CreatedAtDate>2024-01-02T00:48:22.6420969+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-01-07T14:49:56.0102065+02:00</CreatedAtDate>
     <RequiredEffort>PT0S</RequiredEffort>
     <IsMilestone>false</IsMilestone>
-    <StartDate>2024-04-26T00:48:22.6420988+03:00</StartDate>
-    <ScheduledDate>2024-04-27T00:48:22.6420996+03:00</ScheduledDate>
-    <DeadlineDate>2024-04-28T00:48:22.6420998+03:00</DeadlineDate>
-    <CompleteDate>2024-04-29T00:48:22.6421001+03:00</CompleteDate>
+    <StartDate>2024-05-01T14:49:56.010214+03:00</StartDate>
+    <ScheduledDate>2024-05-02T14:49:56.0102152+03:00</ScheduledDate>
+    <DeadlineDate>2024-05-03T14:49:56.0102156+03:00</DeadlineDate>
+    <CompleteDate>2024-05-04T14:49:56.010216+03:00</CompleteDate>
     <Deliverables>הבנין נקי</Deliverables>
     <Remarks>Remarks for נקיון הבנין והדירות</Remarks>
     <EngineerId>314258965</EngineerId>
@@ -344,13 +344,13 @@
     <Id>20</Id>
     <Description>יפוי האתר על ידי גינון</Description>
     <Alias>גינון</Alias>
-    <CreatedAtDate>2024-01-02T00:48:22.6495053+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-01-07T14:49:56.0169841+02:00</CreatedAtDate>
     <RequiredEffort>PT0S</RequiredEffort>
     <IsMilestone>false</IsMilestone>
-    <StartDate>2024-05-02T00:48:22.6495072+03:00</StartDate>
-    <ScheduledDate>2024-05-03T00:48:22.6495077+03:00</ScheduledDate>
-    <DeadlineDate>2024-05-04T00:48:22.6495079+03:00</DeadlineDate>
-    <CompleteDate>2024-05-05T00:48:22.6495083+03:00</CompleteDate>
+    <StartDate>2024-05-07T14:49:56.0169904+03:00</StartDate>
+    <ScheduledDate>2024-05-08T14:49:56.0169913+03:00</ScheduledDate>
+    <DeadlineDate>2024-05-09T14:49:56.0169916+03:00</DeadlineDate>
+    <CompleteDate>2024-05-10T14:49:56.0169919+03:00</CompleteDate>
     <Deliverables>האתר יפה ומושקע חיצונית בעזרת גינון ונקיון</Deliverables>
     <Remarks>Remarks for גינון</Remarks>
     <EngineerId>324385243</EngineerId>
@@ -361,13 +361,13 @@
     <Id>21</Id>
     <Description>השגת תעודת איכלוס לאחר עברת כל הבדיקות</Description>
     <Alias>טופס 4</Alias>
-    <CreatedAtDate>2024-01-02T00:48:22.657037+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-01-07T14:49:56.0222565+02:00</CreatedAtDate>
     <RequiredEffort>PT0S</RequiredEffort>
     <IsMilestone>false</IsMilestone>
-    <StartDate>2024-05-08T00:48:22.6570389+03:00</StartDate>
-    <ScheduledDate>2024-05-09T00:48:22.6570394+03:00</ScheduledDate>
-    <DeadlineDate>2024-05-10T00:48:22.6570396+03:00</DeadlineDate>
-    <CompleteDate>2024-05-11T00:48:22.6570398+03:00</CompleteDate>
+    <StartDate>2024-05-13T14:49:56.0222596+03:00</StartDate>
+    <ScheduledDate>2024-05-14T14:49:56.0222605+03:00</ScheduledDate>
+    <DeadlineDate>2024-05-15T14:49:56.0222608+03:00</DeadlineDate>
+    <CompleteDate>2024-05-16T14:49:56.0222611+03:00</CompleteDate>
     <Deliverables>הבנין מוכן לאכלוס</Deliverables>
     <Remarks>Remarks for טופס 4</Remarks>
     <EngineerId>324258965</EngineerId>
@@ -378,13 +378,13 @@
     <Id>22</Id>
     <Description>מסירת הבנין והדירות לבעלים</Description>
     <Alias>מסירת מפתחות</Alias>
-    <CreatedAtDate>2024-01-02T00:48:22.6703569+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-01-07T14:49:56.0285717+02:00</CreatedAtDate>
     <RequiredEffort>PT0S</RequiredEffort>
     <IsMilestone>false</IsMilestone>
-    <StartDate>2024-05-14T00:48:22.6703591+03:00</StartDate>
-    <ScheduledDate>2024-05-15T00:48:22.6703597+03:00</ScheduledDate>
-    <DeadlineDate>2024-05-16T00:48:22.67036+03:00</DeadlineDate>
-    <CompleteDate>2024-05-17T00:48:22.6703603+03:00</CompleteDate>
+    <StartDate>2024-05-19T14:49:56.0285751+03:00</StartDate>
+    <ScheduledDate>2024-05-20T14:49:56.028576+03:00</ScheduledDate>
+    <DeadlineDate>2024-05-21T14:49:56.0285762+03:00</DeadlineDate>
+    <CompleteDate>2024-05-22T14:49:56.0285765+03:00</CompleteDate>
     <Deliverables>הדירות בידי הבעלים</Deliverables>
     <Remarks>Remarks for מסירת מפתחות</Remarks>
     <EngineerId>322258965</EngineerId>
