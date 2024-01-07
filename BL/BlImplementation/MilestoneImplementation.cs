@@ -125,7 +125,7 @@ internal class MilestoneImplementation : IMilestone
             DeadlineDate = DalApi.Factory.Get.endDateProject
 
 
-    };
+        };
 
         try
         {
@@ -160,6 +160,7 @@ internal class MilestoneImplementation : IMilestone
 
         DO.Task endTask = _dal.Task.Read(task => task.Alias == "End")!;
         DO.Task startTask = _dal.Task.Read(task => task.Alias == "Start")!;
+
         setNameOfMilestone();
         SetDeadLineDateForTask(endTask, startTask);
         SetScheduledDateForTask(startTask, endTask);
