@@ -183,7 +183,10 @@ internal class MilestoneImplementation : IMilestone
 
             }
         }
-
+        SetScheduledDateForTask();
+        SetDeadLineDateForTask();
+        setStatusOfTask();
+        setNameOfTask();
     }
 
     /// <summary>
@@ -291,6 +294,10 @@ internal class MilestoneImplementation : IMilestone
        
     }
 
+    private void SetScheduledDateForTask()
+    {
+       
+    }
     private void SetDeadLineDateForTask()
     {
         //Stop condition
@@ -315,5 +322,15 @@ internal class MilestoneImplementation : IMilestone
         //        _dal.Task.Update(new DO.Task(currentTask.IdNumberTask, currentTask.Alias, currentTask.Description, currentTask.CreatedAtDate, currentTask.RequiredEffortTime, currentTask.Milestone, currentTask.Product, currentTask.Notes, currentTask.Level, currentTask.idEngineer, currentTask.StartDate, currentTask.scheduleDate, deadlineTime, null));
         //    SetDeadLineDateForTask(taskId, idOfStartMilestone, dependenciesList);//A call in recursion to each of the tasks in the list to calculate its completion time according to the algorithm
         //}
+    }
+
+    private void setStatusOfTask()
+    {
+
+    }
+
+    private void setNameOfTask()
+    {
+
     }
 }
