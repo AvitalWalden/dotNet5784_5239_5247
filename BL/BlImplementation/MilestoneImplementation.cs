@@ -46,10 +46,10 @@ internal class MilestoneImplementation : IMilestone
             DO.Task doTaskOfMilestone =
             new DO.Task
             {
-                Id = 0, // השמה של מזהה המשימה התלויה
-                Description = $"Milestone for Task {index}", // תיאור אוטומטי
-                Alias = $"M{index}", // קיצור אוטומטי
-                CreatedAtDate = DateTime.Now, // זמן יצירה
+                Id = 0, 
+                Description = $"Milestone for Task {index}",
+                Alias = $"M{index}", 
+                CreatedAtDate = DateTime.Now, 
                 RequiredEffort = TimeSpan.Zero,
                 IsMilestone = true
             };
@@ -161,9 +161,13 @@ internal class MilestoneImplementation : IMilestone
         DO.Task endTask = _dal.Task.Read(task => task.Alias == "End")!;
         DO.Task startTask = _dal.Task.Read(task => task.Alias == "Start")!;
 
-        setNameOfMilestone();
         SetDeadLineDateForTask(endTask, startTask);
-        SetScheduledDateForTask(startTask, endTask);
+
+        DO.Task endTask1 = _dal.Task.Read(task => task.Alias == "End")!;
+        DO.Task startTask1 = _dal.Task.Read(task => task.Alias == "Start")!;
+
+        SetScheduledDateForTask(startTask1, endTask1);
+        setNameOfMilestone();
     }
 
     /// <summary>
@@ -375,35 +379,38 @@ internal class MilestoneImplementation : IMilestone
         var milstoneList = _dal.Task.ReadAll(task => task.IsMilestone).Where(t => t != null).ToList();
         foreach (var milstone in milstoneList)
         {
-            var dependencies = _dal.Dependency.ReadAll(task => task.DependentTask == milstone!.Id)
+            if (milstone!.Alias != "End" && milstone.Alias != "Start")
+            {
+                var dependencies = _dal.Dependency.ReadAll(task => task.DependentTask == milstone!.Id)
                                               .Where(t => t != null)
                                               .Select(dep => dep?.DependsOnTask)
                                               .ToList();
-            newAlias = "";
-            foreach (var dependency in dependencies)
-            {
-                if (dependency != null)
+                newAlias = "";
+                foreach (var dependency in dependencies)
                 {
-                    DO.Task task = _dal.Task.Read((int)dependency)!;
-                    newAlias = newAlias + ", " + task.Alias;
+                    if (dependency != null)
+                    {
+                        DO.Task task = _dal.Task.Read((int)dependency)!;
+                        newAlias = newAlias + ", " + task.Alias;
+                    }
                 }
+                _dal.Task.Update(
+                   new DO.Task
+                   (milstone!.Id,
+                       milstone.Description,
+                       newAlias,
+                       milstone.CreatedAtDate,
+                       milstone.RequiredEffort,
+                       milstone.IsMilestone,
+                       milstone.StartDate,
+                       milstone.ScheduledDate,
+                       milstone.DeadlineDate,
+                       milstone.CompleteDate,
+                       milstone.Deliverables,
+                       milstone.Remarks,
+                       milstone.EngineerId,
+                       milstone.ComplexityLevel));
             }
-            _dal.Task.Update(
-               new DO.Task
-               (milstone!.Id,
-                   milstone.Description,
-                   newAlias,
-                   milstone.CreatedAtDate,
-                   milstone.RequiredEffort,
-                   milstone.IsMilestone,
-                   milstone.StartDate,
-                   milstone.ScheduledDate,
-                   milstone.DeadlineDate,
-                   milstone.CompleteDate,
-                   milstone.Deliverables,
-                   milstone.Remarks,
-                   milstone.EngineerId,
-                   milstone.ComplexityLevel));
         }
     }
 }
