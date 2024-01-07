@@ -14,15 +14,7 @@ internal class Program
         string description = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
         Console.WriteLine("Enter an alias of the task");
         string alias = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
-        //// Console.WriteLine("Enter task Created task date");
-        Console.WriteLine("Enter status of stak:");
-        Console.WriteLine("For Unscheduled press 0");
-        Console.WriteLine("For Scheduled press 1");
-        Console.WriteLine("For OnTrack press 2");
-        Console.WriteLine("For InJeopardy press 3");
-        Console.WriteLine("For Done press 4");
-        string? chooseStatusBeforeParse = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
-        BO.Status.TryParse(chooseStatusBeforeParse, out BO.Status status);
+        BO.Status status = BO.Status.Unscheduled;
         Console.WriteLine("To add a dependency to a task, press 1");
         Console.WriteLine("Exit Press 0");
         string? chooseString = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
@@ -30,7 +22,7 @@ internal class Program
         List<BO.TaskInList>? tasks = new List<BO.TaskInList>();
         while (choose != 0)
         {
-            Console.WriteLine("Enter id of the task that dependency on this task");
+            Console.WriteLine("Enter the ID of all tasks that this task depends on");
             string? stringId = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
             int.TryParse(stringId, out int idDependency);
             BO.Task task = s_bl.Task.Read(idDependency) ?? throw new BO.BlDoesNotExistException($"Task with ID={idDependency} not exists");
@@ -46,24 +38,6 @@ internal class Program
             chooseString = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
             int.TryParse(chooseString, out choose);
         }
-        Console.WriteLine("Enter id of milestone in task");
-        string? chooseIdMilstoneBeforeParse = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
-        int.TryParse(chooseIdMilstoneBeforeParse, out int idMilstone);
-        //Console.WriteLine("Enter scheduled startDate date");
-        //string? chooseScheduledStartDateBeforeParse = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
-        //DateTime.TryParse(chooseScheduledStartDateBeforeParse, out DateTime scheduledStartDate);
-        //Console.WriteLine("Enter task start date");
-        //string? choosestartDateBeforeParse = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
-        //DateTime.TryParse(choosestartDateBeforeParse, out DateTime startDate);
-        //Console.WriteLine("Enter task forecast date");
-        //string? chooseforecastDateBeforeParse = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
-        //DateTime.TryParse(chooseforecastDateBeforeParse, out DateTime forecastDate);
-        //Console.WriteLine("Enter task deadline date");
-        //string? chooseDeadlineDateBeforeParse = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
-        //DateTime.TryParse(chooseDeadlineDateBeforeParse, out DateTime deadlineDate);
-        //Console.WriteLine("Enter task complete date");
-        //string? choosecompleteDateBeforeParse = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
-        //DateTime.TryParse(choosecompleteDateBeforeParse, out DateTime completeDate);
         Console.WriteLine("Enter product deliverables of the task");
         string? deliverables = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
         Console.WriteLine("Enter remarks of the task");
@@ -88,11 +62,7 @@ internal class Program
             CreatedAtDate = createdAt,
             Status = status,
             Dependencies = tasks,
-            Milestone = new BO.MilestoneInTask()
-            {
-                Id = idMilstone,
-                Alias = s_bl.Task.Read(idMilstone)?.Alias!
-            },
+            Milestone = null,
             ScheduledStartDate = null,
             StartDate = null,
             ForecastDate = null,
@@ -141,7 +111,6 @@ internal class Program
         {
             alias = updateTask.Alias;
         }
-        //// Console.WriteLine("Enter task Created task date");
         Console.WriteLine("Enter status of stak:");
         Console.WriteLine("For Unscheduled press 0");
         Console.WriteLine("For Scheduled press 1");
@@ -161,7 +130,7 @@ internal class Program
         List<BO.TaskInList>? tasks = new List<BO.TaskInList>();
         while (choose != 0)
         {
-            Console.WriteLine("Enter id of the task that dependency on this task");
+            Console.WriteLine("Enter the ID of all tasks that this task depends on");
             string? stringId = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
             int.TryParse(stringId, out int idDependency);
             BO.Task task = s_bl.Task.Read(idDependency) ?? throw new BO.BlDoesNotExistException($"Task with ID={idDependency} not exists");
@@ -177,27 +146,9 @@ internal class Program
             choose1 = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
             int.TryParse(choose1, out choose);
         }
-        if (choose == 0)
+        if (tasks.Count == 0)
         {
             tasks = updateTask.Dependencies;
-        }
-        //Console.WriteLine("Enter id of milestone in task");
-        //string? idMilstoneBeforeParse = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
-        //int.TryParse(idMilstoneBeforeParse, out int idMilstone);
-        //if (idMilstoneBeforeParse == "" || idMilstoneBeforeParse == null)
-        //{
-        //    idMilstone = updateTask.Milestone!.Id;
-        //}
-        Console.WriteLine("Enter baseline startDate date");
-        string? baselineDate1 = Console.ReadLine();
-        DateTime? baselinedDate;
-        if (baselineDate1 == "" || baselineDate1 == null) //If not update the complete date.
-        {
-            baselinedDate = updateTask.ScheduledStartDate;
-        }
-        else
-        {
-            baselinedDate = DateTime.Parse(baselineDate1);
         }
         Console.WriteLine("Enter task start date");
         string? startDate1 = Console.ReadLine();
@@ -209,28 +160,6 @@ internal class Program
         else
         {
             startDate = DateTime.Parse(startDate1);
-        }
-        Console.WriteLine("Enter task forecast date");
-        string? forecastDate1 = Console.ReadLine();
-        DateTime? forecastDate;
-        if (forecastDate1 == "" || forecastDate1 == null) //If not update the complete date.
-        {
-            forecastDate = updateTask.ForecastDate;
-        }
-        else
-        {
-            forecastDate = DateTime.Parse(forecastDate1);
-        }
-        Console.WriteLine("Enter task deadline date");
-        string? deadlineDate1 = Console.ReadLine();
-        DateTime? deadlineDate;
-        if (deadlineDate1 == "" || deadlineDate1 == null) //If not update the forecast date.
-        {
-            deadlineDate = updateTask.DeadlineDate;
-        }
-        else
-        {
-            deadlineDate = DateTime.Parse(deadlineDate1);
         }
         Console.WriteLine("Enter task complete date");
         string? completeDate1 = Console.ReadLine();
@@ -284,10 +213,10 @@ internal class Program
             Status = status,
             Dependencies = tasks,
             Milestone = updateTask.Milestone,
-            ScheduledStartDate = baselinedDate,
+            ScheduledStartDate = null,
             StartDate = startDate,
-            ForecastDate = forecastDate,
-            DeadlineDate = deadlineDate,
+            ForecastDate = null,
+            DeadlineDate = null,
             CompleteDate = completeDate,
             Deliverables = deliverables,
             Remarks = remarks,
@@ -307,7 +236,6 @@ internal class Program
             Console.WriteLine(ex);
         }
     }
-
 
     /// <summary>
     /// The function read all the task.
@@ -437,9 +365,6 @@ internal class Program
         int level = int.Parse(Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect"));
         Console.WriteLine("Enter the engineer's cost");
         double cost = double.Parse(Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect"));
-        //Console.WriteLine("Enter the id's task of this engineer");
-        //string? chooseBeforeParse = Console.ReadLine();
-        //int.TryParse(chooseBeforeParse, out int idOfTask);
         BO.Engineer newEngineer = new BO.Engineer()
         {
             Id = id,
@@ -447,11 +372,7 @@ internal class Program
             Email = email,
             Level = (BO.EngineerExperience)level,
             Cost = cost,
-            //Task = new BO.TaskInEngineer()
-            //{
-            //    Id = idOfTask,
-            //    Alias = s_bl.Task.Read(idOfTask)?.Alias!
-            //}
+            Task = null
         };
         Console.WriteLine(s_bl.Engineer.Create(newEngineer));
     }
@@ -506,21 +427,7 @@ internal class Program
             cost = (double)updateEngineer.Cost;
         }
         Console.WriteLine("Enter if the engineer is active or not(Y/N)");
-        string? activeBeforeParse = Console.ReadLine();
-        double.TryParse(levelBeforeParse, out double active);
-        //if (activeBeforeParse == null || activeBeforeParse == "") //If not update the cost.
-        //{
-        //    active = updateEngineer.Active;
-        //}
-        //else
-        //{
-        //    if (active1 == "Y")
-        //        active = true;
-        //    else active = false;
-        //}
-        //Console.WriteLine("Enter the id's task of this engineer");
-        //string? chooseBeforeParse = Console.ReadLine();
-        //int.TryParse(chooseBeforeParse, out int idOfTask);
+     
         BO.Engineer newEngineer = new BO.Engineer()
         {
             Id = id,
@@ -528,11 +435,7 @@ internal class Program
             Email = email,
             Level = (BO.EngineerExperience)level,
             Cost = cost,
-            //Task = new BO.TaskInEngineer()
-            //{
-            //    Id = idOfTask,
-            //    Alias = s_bl?.Task.Read(idOfTask)?.Alias!
-            //}
+            Task = null
         };
         try
         {
@@ -676,7 +579,7 @@ internal class Program
     {
         Console.WriteLine("Enter the task's id");
         int id = int.Parse(Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect"));
-        if (s_bl.Task.Read(id) != null)
+        if (s_bl.Milestone.Read(id) != null)
         {
             Console.WriteLine(s_bl.Task.Read(id));
         }
@@ -684,7 +587,7 @@ internal class Program
         {
             throw new BO.BlDoesNotExistException($"Task with ID={id} not exists");
         }
-        BO.Task updateTask = s_bl.Task.Read(id)!;
+        BO.Milestone updateTask = s_bl.Milestone.Read(id)!;
         Console.WriteLine("Enter a description of the task");
         string description = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
         if (description == "" || description == null)
@@ -708,15 +611,15 @@ internal class Program
             Id = updateTask.Id,
             Description = description,
             Alias = alias,
-            CreatedAtDate = DateTime.Now,
-            Status = null,
-            StartDate = null,
-            ForecastDate = null,
-            DeadlineDate = null,
-            CompleteDate = null,
-            CompletionPercentage = null,
+            CreatedAtDate = updateTask.CreatedAtDate,
+            Status = updateTask.Status,
+            StartDate = updateTask.StartDate,
+            ForecastDate = updateTask.ForecastDate,
+            DeadlineDate = updateTask.DeadlineDate,
+            CompleteDate = updateTask.CompleteDate,
+            CompletionPercentage = updateTask.CompletionPercentage,
             Remarks = remarks,
-            Dependencies = null
+            Dependencies = updateTask.Dependencies
         };
         s_bl!.Milestone.Update(newMilestone);
     }
@@ -738,9 +641,6 @@ internal class Program
             {
                 switch (ch)
                 {
-                    //case 'a': // Create a new milestone.
-                    //    CreateMilestone();
-                    //    break;
                     case 'a': // Read a milestone by ID.
                         Console.WriteLine("Enter a milstone ID");
                         int idMilestone = int.Parse(Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect"));
@@ -754,7 +654,6 @@ internal class Program
                         break;
                 }
                 Console.WriteLine();
-                //Console.WriteLine("To add a task press a");
                 Console.WriteLine("To read a task press a");
                 Console.WriteLine("To update a milestone press b");
                 Console.WriteLine("To exit press f");
@@ -768,6 +667,7 @@ internal class Program
         }
 
     }
+
     /// <summary>
     /// Main function
     /// </summary>
