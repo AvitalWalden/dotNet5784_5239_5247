@@ -100,10 +100,10 @@ public static class Initialization
                 DateTime.Now,
                 TimeSpan.Zero,
                 false, // Milestone 
-                DateTime.Now.AddDays(i * 5).AddDays(i + 1), // Start Date 
-                DateTime.Now.AddDays(i * 5).AddDays(i + 2), // ScheduledDate date
-                DateTime.Now.AddDays(i * 5).AddDays(i + 3), // DeadLine date
-                DateTime.Now.AddDays(i * 5).AddDays(i + 4), // Complete date
+                null, // Start Date 
+                null, // ScheduledDate date
+                null, // DeadLine date
+                null, // Complete date
                 detailsTask[i].Item3,
                 "Remarks for " + detailsTask[i].Item2,
                 allEngineer[i]!.Id,
@@ -127,7 +127,7 @@ public static class Initialization
             (1 ,0), (2 ,0), (3 ,0), (4 ,3), (4 ,1), (4 ,2), (5 ,4), (6 ,5),
             (7 ,6), (8 ,7), (9 ,8), (10 ,9), (11 ,9), (12 ,9), (13 ,11), (14 ,11),
             (15 ,10), (15 ,11), (19 ,18), (20 ,19), (21 ,20), (21 ,17), (21 ,16), (21 ,15),
-            (21 ,14), (21 ,13), (21 ,12), (22 ,21)
+            (21 ,14), (21 ,12), (22 ,21)
         };
 
         foreach (var dependencyTuple in dependencies)

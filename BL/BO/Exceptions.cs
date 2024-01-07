@@ -14,6 +14,12 @@ public class BlNullPropertyException : Exception
 }
 
 [Serializable]
+public class BlPlanningOfProjectTimesException : Exception
+{
+    public BlPlanningOfProjectTimesException(string? message) : base(message) { }
+}
+
+[Serializable]
 public class BlAlreadyExistsException : Exception
 {
     public BlAlreadyExistsException(string? message) : base(message) { }

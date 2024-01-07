@@ -1,5 +1,8 @@
 ﻿using BlApi;
 using BO;
+using DalApi;
+using DO;
+using System.Threading.Tasks;
 
 namespace BlImplementation;
 
@@ -99,9 +102,9 @@ internal class MilestoneImplementation : IMilestone
 
         DO.Task projectStartMilestone = new DO.Task
         {
-            Id = 0, // השמה של מזהה המשימה התלויה
-            Description = $"start milestone", // תיאור אוטומטי
-            Alias = $"Start", // קיצור אוטומטי
+            Id = 0, 
+            Description = $"start milestone",
+            Alias = $"Start",
             CreatedAtDate = DateTime.Now,
             RequiredEffort = null,
             IsMilestone = true
@@ -113,12 +116,12 @@ internal class MilestoneImplementation : IMilestone
          .Select(task => task!.Id)
          .ToList();
 
-        DO.Task projectEneMilestone = new DO.Task
+        DO.Task projectEndMilestone = new DO.Task
         {
-            Id = 0, // השמה של מזהה המשימה התלויה
-            Description = $"end milestone", // תיאור אוטומטי
-            Alias = $"End", // קיצור אוטומטי
-            CreatedAtDate = DateTime.Now, // זמן יצירה
+            Id = 0,
+            Description = $"end milestone",
+            Alias = $"End",
+            CreatedAtDate = DateTime.Now,
             RequiredEffort = null,
             IsMilestone = true
         };
@@ -126,7 +129,7 @@ internal class MilestoneImplementation : IMilestone
         try
         {
             int startMilestoneId = _dal.Task.Create(projectStartMilestone);
-            int endMilestoneId = _dal.Task.Create(projectEneMilestone);
+            int endMilestoneId = _dal.Task.Create(projectEndMilestone);
 
             foreach (var task in independentOnTasks)
             {
@@ -164,29 +167,58 @@ internal class MilestoneImplementation : IMilestone
             }
             else
             {
-                //scheduledDate = _dal.Task.ReadAll(task => _dal.Dependency.ReadAll().Any(dependency => dependency?.DependentTask == task.Id && dependency.DependsOnTask == milstone.Id)).Min(t => t!.ScheduledDate!);
                 scheduledDate = _dal.Task.ReadAll(task => _dal.Dependency.ReadAll().Any(dependency => dependency?.DependentTask == milstone.Id && dependency.DependsOnTask == task.Id)).Min(t => t!.ScheduledDate!);
 
             }
+            _dal.Task.Update(
+                  new DO.Task
+                  (milstone.Id,
+                  milstone.Description,
+                  milstone.Alias,
+                  milstone.CreatedAtDate,
+                  milstone.RequiredEffort,
+                  milstone.IsMilestone,
+                  milstone.StartDate,
+                  scheduledDate,
+                  milstone.DeadlineDate,
+                  milstone.CompleteDate,
+                  milstone.Deliverables,
+                  milstone.Remarks,
+                  milstone.EngineerId,
+                  milstone.ComplexityLevel));
         }
-        DateTime? DeadlineDate;
+        DateTime? deadlineDate;
         foreach (var milstone in milstoneList)
         {
             if (milstone!.Alias == "End")
             {
-                DeadlineDate = DalApi.Factory.Get.endDateProject;
+                deadlineDate = DalApi.Factory.Get.endDateProject;
             }
             else
             {
-                //DeadlineDate = _dal.Task.ReadAll(task => _dal.Dependency.ReadAll().Any(dependency => dependency?.DependentTask == task.Id && dependency.DependsOnTask == milstone.Id)).Max(t => t!.DeadlineDate);
-                DeadlineDate = _dal.Task.ReadAll(task => _dal.Dependency.ReadAll().Any(dependency => dependency?.DependentTask == milstone.Id && dependency.DependsOnTask == task.Id)).Max(t => t!.DeadlineDate);
+                deadlineDate = _dal.Task.ReadAll(task => _dal.Dependency.ReadAll().Any(dependency => dependency?.DependentTask == milstone.Id && dependency.DependsOnTask == task.Id)).Max(t => t!.DeadlineDate);
 
             }
+            _dal.Task.Update(
+                 new DO.Task
+                 (milstone.Id,
+                 milstone.Description,
+                 milstone.Alias,
+                 milstone.CreatedAtDate,
+                 milstone.RequiredEffort,
+                 milstone.IsMilestone,
+                 milstone.StartDate,
+                 milstone.ScheduledDate,
+                 deadlineDate,
+                 milstone.CompleteDate,
+                 milstone.Deliverables,
+                 milstone.Remarks,
+                 milstone.EngineerId,
+                 milstone.ComplexityLevel));
         }
-        SetScheduledDateForTask();
-        SetDeadLineDateForTask();
-        setStatusOfTask();
-        setNameOfTask();
+        SetDeadLineDateForTask(projectEndMilestone, projectStartMilestone);
+        SetScheduledDateForTask(projectStartMilestone, projectEndMilestone);
+        setNameOfMilestone();
     }
 
     /// <summary>
@@ -294,42 +326,94 @@ internal class MilestoneImplementation : IMilestone
        
     }
 
-    private void SetScheduledDateForTask()
+    /// <summary>
+    /// A function that calculates for each task its start date according to calculations of all the dates in the project
+    /// </summary>
+    private void SetScheduledDateForTask(DO.Task startTask, DO.Task endTask)
     {
-       
+        if (endTask.Id == endTask.Id)
+            return;
+
+        var allDependencies = _dal.Dependency
+           .ReadAll()
+           .Where(dependency => dependency != null);
+
+        var DependentTaskList = allDependencies.Where(dep => dep?.DependsOnTask == startTask.Id)
+          .Select(dep => dep?.DependentTask).ToList();
+
+        foreach (int? taskId in DependentTaskList)
+        {
+            DO.Task? currentTask = _dal.Task.Read(taskId ?? throw new BO.BlNullPropertyException("id Of Task can't be null"));
+            DateTime? ScheduleTime = startTask.ScheduledDate + startTask.RequiredEffort;
+            if (startTask.DeadlineDate + currentTask!.RequiredEffort > currentTask.DeadlineDate)
+                throw new BO.BlPlanningOfProjectTimesException($"According to the date restrictions, the task {taskId} does not have time to be completed in its entirety");
+            _dal.Task.Update(
+                  new DO.Task
+                  (currentTask.Id,
+                  currentTask.Description,
+                  currentTask.Alias,
+                  currentTask.CreatedAtDate,
+                  currentTask.RequiredEffort,
+                  currentTask.IsMilestone,
+                  currentTask.StartDate,
+                  ScheduleTime,
+                  currentTask.DeadlineDate,
+                  currentTask.CompleteDate,
+                  currentTask.Deliverables,
+                  currentTask.Remarks,
+                  currentTask.EngineerId,
+                  currentTask.ComplexityLevel));
+            SetScheduledDateForTask(currentTask, endTask);
+
+        }
     }
-    private void SetDeadLineDateForTask()
+
+    /// <summary>
+    /// A function that calculates completion times for each of the tasks in the project
+    /// </summary>
+    private void SetDeadLineDateForTask(DO.Task endTask, DO.Task startTask)
     {
-        //Stop condition
-        //if (idOfTask == idOfStartMilestone)
-        //    return;
-        ////The data of current checked task
-        //DO.Task? dependentTask = _dal.Task.Read(idOfTask ?? throw new BO.BlNullPropertyException("id Of Task can't be null"));
+        if (endTask.Id == startTask.Id)
+            return;
 
-        //var DependsOnTaskList = dependenciesList.Where(dep => dep?.DependentTask == idOfTask)
-        //    .Select(dep => dep?.DependsOnTask).ToList();
-        //foreach (int? taskId in DependsOnTaskList)
-        //{
-        //    DO.Task currentTask = _dal.Task.Read(taskId) ?? throw new BO.BlNullPropertyException("id Of Task can't be null");
-        //    DateTime? deadlineTime = dependentTask.LastEndDate - dependentTask.RequiredEffortTime;
-        //    //If there is a milestone that depends on 2 tasks, determining its start time according to the longer time of the 2 tasks
-        //    if (currentTask.Milestone == true && (currentTask.LastEndDate > deadlineTime || currentTask is null))
-        //    {
-        //        _dal.Task.Update(new DO.Task(currentTask.IdNumberTask, currentTask.Alias, currentTask.Description, currentTask.CreatedAtDate, currentTask.RequiredEffortTime, currentTask.Milestone, currentTask.Product, currentTask.Notes, currentTask.Level, currentTask.idEngineer, currentTask.StartDate, currentTask.scheduleDate, deadlineTime, null));
+        var allDependencies = _dal.Dependency
+            .ReadAll()
+            .Where(dependency => dependency != null);
 
-        //    }
-        //    else
-        //        _dal.Task.Update(new DO.Task(currentTask.IdNumberTask, currentTask.Alias, currentTask.Description, currentTask.CreatedAtDate, currentTask.RequiredEffortTime, currentTask.Milestone, currentTask.Product, currentTask.Notes, currentTask.Level, currentTask.idEngineer, currentTask.StartDate, currentTask.scheduleDate, deadlineTime, null));
-        //    SetDeadLineDateForTask(taskId, idOfStartMilestone, dependenciesList);//A call in recursion to each of the tasks in the list to calculate its completion time according to the algorithm
-        //}
+        var DependsOnTaskList = allDependencies.Where(dep => dep?.DependentTask == endTask.Id)
+            .Select(dep => dep?.DependsOnTask).ToList();
+
+       foreach (var dep in DependsOnTaskList) 
+       {
+            //calling the pending task
+            DO.Task currentTask = _dal.Task.Read(endTask.Id) ?? throw new BO.BlNullPropertyException("id Of Task can't be null");
+            // task completion time - how long it takes = the completion time depends
+            DateTime? deadlineTime = endTask.DeadlineDate - endTask.RequiredEffort;
+
+           _dal.Task.Update(
+                   new DO.Task
+                   (currentTask.Id,
+                   currentTask.Description,
+                   currentTask.Alias,
+                   currentTask.CreatedAtDate,
+                   currentTask.RequiredEffort,
+                   currentTask.IsMilestone,
+                   currentTask.StartDate,
+                   currentTask.ScheduledDate,
+                   deadlineTime,
+                   currentTask.CompleteDate,
+                   currentTask.Deliverables,
+                   currentTask.Remarks,
+                   currentTask.EngineerId,
+                   currentTask.ComplexityLevel));
+
+            //A call in recursion to each of the tasks in the list to calculate its completion time according to the algorithm
+            SetDeadLineDateForTask(currentTask, startTask);
+
+        }
     }
 
-    private void setStatusOfTask()
-    {
-
-    }
-
-    private void setNameOfTask()
+    private void setNameOfMilestone()
     {
 
     }
