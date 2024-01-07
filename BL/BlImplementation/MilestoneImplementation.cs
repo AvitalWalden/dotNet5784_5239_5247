@@ -50,7 +50,7 @@ internal class MilestoneImplementation : IMilestone
                 Description = $"Milestone for Task {index}", // תיאור אוטומטי
                 Alias = $"M{index}", // קיצור אוטומטי
                 CreatedAtDate = DateTime.Now, // זמן יצירה
-                RequiredEffort = null,
+                RequiredEffort = TimeSpan.Zero,
                 IsMilestone = true
             };
 
@@ -102,7 +102,7 @@ internal class MilestoneImplementation : IMilestone
             Description = $"start milestone",
             Alias = $"Start",
             CreatedAtDate = DateTime.Now,
-            RequiredEffort = null,
+            RequiredEffort = TimeSpan.Zero,
             IsMilestone = true
         };
 
@@ -118,7 +118,7 @@ internal class MilestoneImplementation : IMilestone
             Description = $"end milestone",
             Alias = $"End",
             CreatedAtDate = DateTime.Now,
-            RequiredEffort = null,
+            RequiredEffort = TimeSpan.Zero,
             IsMilestone = true
         };
 
@@ -424,8 +424,9 @@ internal class MilestoneImplementation : IMilestone
                    currentTask.EngineerId,
                    currentTask.ComplexityLevel));
 
+            DO.Task newEndTask = _dal.Task.Read(currentTask.Id) ?? throw new BO.BlNullPropertyException("id Of Task can't be null");
             //A call in recursion to each of the tasks in the list to calculate its completion time according to the algorithm
-            SetDeadLineDateForTask(currentTask, startTask);
+            SetDeadLineDateForTask(newEndTask, startTask);
 
         }
     }
