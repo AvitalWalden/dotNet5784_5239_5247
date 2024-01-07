@@ -120,14 +120,13 @@ internal class TaskImplementation : ITask
         return new BO.Task()
         {
             Id = doTask.Id,
-            Alias = doTask.Alias,
             Description = doTask.Description,
+            Alias = doTask.Alias,
             CreatedAtDate = doTask.CreatedAtDate,
             Status = BO.Tools.CalculateStatusOfTask(doTask),
             Dependencies = tasksList,
             Milestone = milestone,
             ScheduledStartDate = doTask.ScheduledDate,
-            //ScheduledStartDate = doTask.ScheduledDate,
             StartDate = doTask.StartDate,
             ForecastDate = doTask.StartDate + doTask.RequiredEffort,
             DeadlineDate = doTask.DeadlineDate,
@@ -192,8 +191,8 @@ internal class TaskImplementation : ITask
             return new BO.Task
             {
                 Id = doTask.Id,
-                Alias = doTask.Alias,
                 Description = doTask.Description,
+                Alias = doTask.Alias,
                 CreatedAtDate = doTask.CreatedAtDate,
                 Status = BO.Tools.CalculateStatusOfTask(doTask),
                 Dependencies = tasksList,
@@ -268,8 +267,8 @@ internal class TaskImplementation : ITask
         DO.Task doTask = new DO.Task
         (
             boTask.Id,
-            boTask.Alias,
             boTask.Description,
+            boTask.Alias,
             boTask.CreatedAtDate,
             boTask.RequiredEffortTime,
             false,

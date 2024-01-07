@@ -153,7 +153,7 @@ internal class MilestoneImplementation : IMilestone
         _dal.Dependency.ReadAll().ToList().ForEach(d => _dal.Dependency.Delete(d!.Id));
         dependencies.ToList().ForEach(d => _dal.Dependency.Create(d));
 
-        var milstoneList = _dal.Task.ReadAll(task => task.IsMilestone).Where(t => t != null).ToList();
+        var milstoneList = _dal.Task.ReadAll(task => task.IsMilestone).Where(task => task != null).ToList();
         DateTime? scheduledDate;
         foreach (var milstone in milstoneList)
         {
@@ -345,7 +345,8 @@ internal class MilestoneImplementation : IMilestone
             DateTime? ScheduleTime = startTask.ScheduledDate + startTask.RequiredEffort;
             if (startTask.DeadlineDate + currentTask!.RequiredEffort > currentTask.DeadlineDate)
                 throw new BO.BlPlanningOfProjectTimesException($"According to the date restrictions, the task {taskId} does not have time to be completed in its entirety");
-            _dal.Task.Update(
+
+                    _dal.Task.Update(
                   new DO.Task
                   (currentTask.Id,
                   currentTask.Description,
@@ -361,7 +362,9 @@ internal class MilestoneImplementation : IMilestone
                   currentTask.Remarks,
                   currentTask.EngineerId,
                   currentTask.ComplexityLevel));
-            SetScheduledDateForTask(currentTask, endTask);
+
+            DO.Task newEndTask = _dal.Task.Read(currentTask.Id) ?? throw new BO.BlNullPropertyException("id Of Task can't be null");
+            SetScheduledDateForTask(newEndTask, endTask);
             
         }
     }
@@ -388,7 +391,9 @@ internal class MilestoneImplementation : IMilestone
             // task completion time - how long it takes = the completion time depends
             DateTime? deadlineTime = endTask.DeadlineDate - endTask.RequiredEffort;
 
-           _dal.Task.Update(
+            if(currentTask.DeadlineDate > deadlineTime)
+            {
+                _dal.Task.Update(
                    new DO.Task
                    (currentTask.Id,
                    currentTask.Description,
@@ -404,7 +409,7 @@ internal class MilestoneImplementation : IMilestone
                    currentTask.Remarks,
                    currentTask.EngineerId,
                    currentTask.ComplexityLevel));
-
+            }
             DO.Task newEndTask = _dal.Task.Read(currentTask.Id) ?? throw new BO.BlNullPropertyException("id Of Task can't be null");
             //A call in recursion to each of the tasks in the list to calculate its completion time according to the algorithm
             SetDeadLineDateForTask(newEndTask, startTask);
