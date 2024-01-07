@@ -1,7 +1,4 @@
 ﻿using BlApi;
-using BO;
-using DalApi;
-using DO;
 using System.Threading.Tasks;
 
 namespace BlImplementation;
@@ -16,7 +13,6 @@ internal class MilestoneImplementation : IMilestone
     /// <exception cref="BO.BlFailedToCreateMilestone"></exception>
     public void Create()
     {
-        
         var dependenciesForDistinct = _dal.Dependency.ReadAll()
             .OrderBy(dep => dep?.DependsOnTask)
             .GroupBy(dep => dep?.DependentTask, dep => dep?.DependsOnTask,
@@ -24,7 +20,7 @@ internal class MilestoneImplementation : IMilestone
             .ToList();
 
         var distinctDependencies = dependenciesForDistinct;
-        for (var j = 0; j < dependenciesForDistinct.Count(); j++)//מחיקת כפלויות
+        for (var j = 0; j < dependenciesForDistinct.Count(); j++)
         {
             var distinct = from d in dependenciesForDistinct
                            where d.TaskId != dependenciesForDistinct[j].TaskId && d.Dependencies.SequenceEqual(dependenciesForDistinct[j].Dependencies)
@@ -216,9 +212,11 @@ internal class MilestoneImplementation : IMilestone
                  milstone.EngineerId,
                  milstone.ComplexityLevel));
         }
-        SetDeadLineDateForTask(projectEndMilestone, projectStartMilestone);
-        SetScheduledDateForTask(projectStartMilestone, projectEndMilestone);
+        DO.Task endTask = _dal.Task.Read(task => task.Alias == "End")!;
+        DO.Task startTask = _dal.Task.Read(task => task.Alias == "Start")!;
         setNameOfMilestone();
+        SetDeadLineDateForTask(endTask, startTask);
+        SetScheduledDateForTask(startTask, endTask);
     }
 
     /// <summary>
@@ -246,7 +244,7 @@ internal class MilestoneImplementation : IMilestone
                 Id = task!.Id,
                 Description = task.Description,
                 Alias = task.Alias,
-                Status = Tools.CalculateStatusOfTask(task)
+                Status = BO.Tools.CalculateStatusOfTask(task)
             }).ToList();
 
             return new BO.Milestone()
@@ -255,7 +253,7 @@ internal class MilestoneImplementation : IMilestone
                 Description = doTaskMilestone.Description,
                 Alias = doTaskMilestone.Alias,
                 CreatedAtDate = doTaskMilestone.CreatedAtDate,
-                Status = Tools.CalculateStatusOfTask(doTaskMilestone),
+                Status = BO.Tools.CalculateStatusOfTask(doTaskMilestone),
                 ForecastDate = doTaskMilestone.ScheduledDate,
                 DeadlineDate = doTaskMilestone.DeadlineDate,
                 CompleteDate = doTaskMilestone.CompleteDate,
@@ -331,7 +329,7 @@ internal class MilestoneImplementation : IMilestone
     /// </summary>
     private void SetScheduledDateForTask(DO.Task startTask, DO.Task endTask)
     {
-        if (endTask.Id == endTask.Id)
+        if (startTask.Id == endTask.Id)
             return;
 
         var allDependencies = _dal.Dependency
@@ -413,8 +411,44 @@ internal class MilestoneImplementation : IMilestone
         }
     }
 
+    /// <summary>
+    /// We will update the automatic initial nicknames of the milestones to meaningful names, according to the names of the tasks.
+    /// </summary>
     private void setNameOfMilestone()
     {
-
+        string newAlias = "";
+        var milstoneList = _dal.Task.ReadAll(task => task.IsMilestone).Where(t => t != null).ToList();
+        foreach (var milstone in milstoneList)
+        {
+            var dependencies = _dal.Dependency.ReadAll(task => task.DependentTask == milstone!.Id)
+                                              .Where(t => t != null)
+                                              .Select(dep => dep?.DependsOnTask)
+                                              .ToList();
+            newAlias = "";
+            foreach (var dependency in dependencies)
+            {
+                if(dependency != null)
+                {
+                    DO.Task task = _dal.Task.Read((int)dependency)!;
+                    newAlias = newAlias + ", " + task.Alias;
+                }
+            }
+            _dal.Task.Update(
+               new DO.Task
+               (   milstone!.Id,
+                   milstone.Description,
+                   newAlias,
+                   milstone.CreatedAtDate,
+                   milstone.RequiredEffort,
+                   milstone.IsMilestone,
+                   milstone.StartDate,
+                   milstone.ScheduledDate,
+                   milstone.DeadlineDate,
+                   milstone.CompleteDate,
+                   milstone.Deliverables,
+                   milstone.Remarks,
+                   milstone.EngineerId,
+                   milstone.ComplexityLevel));
+        }
     }
 }
