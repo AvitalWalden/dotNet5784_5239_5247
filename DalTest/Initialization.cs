@@ -98,7 +98,7 @@ public static class Initialization
                 detailsTask[i].Item1,
                 detailsTask[i].Item2,
                 DateTime.Now,
-                TimeSpan.Zero,
+                TimeSpan.FromDays(1+i),
                 false, // Milestone 
                 null, // Start Date 
                 null, // ScheduledDate date

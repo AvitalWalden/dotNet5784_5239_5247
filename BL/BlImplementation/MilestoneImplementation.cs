@@ -345,7 +345,9 @@ internal class MilestoneImplementation : IMilestone
             DateTime? ScheduleTime = startTask.ScheduledDate + startTask.RequiredEffort;
             if (startTask.DeadlineDate + currentTask!.RequiredEffort > currentTask.DeadlineDate)
                 throw new BO.BlPlanningOfProjectTimesException($"According to the date restrictions, the task {taskId} does not have time to be completed in its entirety");
-            _dal.Task.Update(
+
+            if (currentTask.IsMilestone && (currentTask.ScheduledDate is null || currentTask.ScheduledDate < ScheduleTime))
+                _dal.Task.Update(
                   new DO.Task
                   (currentTask.Id,
                   currentTask.Description,
@@ -361,8 +363,25 @@ internal class MilestoneImplementation : IMilestone
                   currentTask.Remarks,
                   currentTask.EngineerId,
                   currentTask.ComplexityLevel));
+            else
+                _dal.Task.Update(
+                 new DO.Task
+                 (currentTask.Id,
+                 currentTask.Description,
+                 currentTask.Alias,
+                 currentTask.CreatedAtDate,
+                 currentTask.RequiredEffort,
+                 currentTask.IsMilestone,
+                 currentTask.StartDate,
+                 ScheduleTime,
+                 currentTask.DeadlineDate,
+                 currentTask.CompleteDate,
+                 currentTask.Deliverables,
+                 currentTask.Remarks,
+                 currentTask.EngineerId,
+                 currentTask.ComplexityLevel));
             SetScheduledDateForTask(currentTask, endTask);
-
+            
         }
     }
 

@@ -1,4 +1,5 @@
 ﻿using DalApi;
+using DO;
 
 internal class Program
 {
@@ -38,6 +39,8 @@ internal class Program
             chooseString = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
             int.TryParse(chooseString, out choose);
         }
+        Console.WriteLine("Enter required effort time to the tast");
+        TimeSpan requiredEffort = TimeSpan.Parse(Console.ReadLine() ?? throw new DalInvalidEnteredValue("The entered value is incorrect"));
         Console.WriteLine("Enter product deliverables of the task");
         string? deliverables = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
         Console.WriteLine("Enter remarks of the task");
@@ -62,6 +65,7 @@ internal class Program
             CreatedAtDate = createdAt,
             Status = status,
             Dependencies = tasks,
+            RequiredEffortTime = requiredEffort,
             Milestone = null,
             ScheduledStartDate = null,
             StartDate = null,
@@ -212,6 +216,7 @@ internal class Program
             CreatedAtDate = createdAt,
             Status = status,
             Dependencies = tasks,
+            RequiredEffortTime = updateTask.RequiredEffortTime,
             Milestone = updateTask.Milestone,
             ScheduledStartDate = null,
             StartDate = startDate,

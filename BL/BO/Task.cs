@@ -9,9 +9,9 @@ public class Task
     public required string Description { get; set; }
     public DateTime CreatedAtDate { get; set; }
     public Status? Status { get; set; } 
-    public List<TaskInList>? Dependencies { get; set; } 
-    public MilestoneInTask? Milestone { get; set; } 
-    //public DateTime? BaselineStartDate { get; set; } //תאריך התחלה בסיסי - לא ברור מה איתו!!!
+    public List<TaskInList>? Dependencies { get; set; }
+    public TimeSpan? RequiredEffortTime { get; set; }
+    public MilestoneInTask? Milestone { get; set; }
     public DateTime? ScheduledStartDate { get; set; } //the planned start date - תאריך התחלה משוער
     public DateTime? StartDate { get; set; } //the real start date - תאריך התחלה בפועל
     public DateTime? ForecastDate { get; set; } //תאריך חישוב מתוכנן, תאריך משוער לסיום

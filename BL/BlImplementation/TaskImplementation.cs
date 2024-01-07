@@ -27,11 +27,6 @@ internal class TaskImplementation : ITask
         {
             throw new BO.BlInvalidValue("Task description cannot be empty or null");
         }
-        TimeSpan? requiredEffort = null;
-        if (boTask.StartDate != null || boTask.CompleteDate != null)
-        {
-            requiredEffort = (TimeSpan)(boTask.StartDate! - boTask.CompleteDate!);
-        }
         var task = _dal.Task.Read(task => task.EngineerId == boTask.Engineer?.Id && BO.Tools.CalculateStatusOfTask(task) != BO.Status.Done);
         if (task != null)
         {
@@ -43,7 +38,7 @@ internal class TaskImplementation : ITask
             boTask.Description,
             boTask.Alias,
             boTask.CreatedAtDate,
-            requiredEffort,
+            boTask.RequiredEffortTime,
             false,
             boTask.StartDate,
             boTask.ScheduledStartDate,
@@ -202,10 +197,10 @@ internal class TaskImplementation : ITask
                 CreatedAtDate = doTask.CreatedAtDate,
                 Status = BO.Tools.CalculateStatusOfTask(doTask),
                 Dependencies = tasksList,
+                RequiredEffortTime = doTask.RequiredEffort,
                 Milestone = milestone,
                 ScheduledStartDate = doTask.ScheduledDate,
                 StartDate = doTask.StartDate,
-                //ScheduledStartDate = doTask.ScheduledDate,
                 ForecastDate = doTask.StartDate + doTask.RequiredEffort,
                 DeadlineDate = doTask.DeadlineDate,
                 CompleteDate = doTask.CompleteDate,
@@ -276,7 +271,7 @@ internal class TaskImplementation : ITask
             boTask.Alias,
             boTask.Description,
             boTask.CreatedAtDate,
-            requiredEffort,
+            boTask.RequiredEffortTime,
             false,
             boTask.StartDate,
             boTask.ScheduledStartDate,
