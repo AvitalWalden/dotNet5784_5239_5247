@@ -24,7 +24,7 @@ internal class MilestoneImplementation : IMilestone
         {
             var distinct = from d in dependenciesForDistinct
                            where d.TaskId != dependenciesForDistinct[j].TaskId && d.Dependencies.SequenceEqual(dependenciesForDistinct[j].Dependencies)
-                        select d.TaskId;
+                           select d.TaskId;
             if (distinct.Count() >= 1)
             {
                 distinctDependencies.Remove(distinctDependencies[j]);
@@ -80,7 +80,7 @@ internal class MilestoneImplementation : IMilestone
                         });
                     }
                 }
-               
+
                 index++;
             }
             catch (DO.DalAlreadyExistsException ex)
@@ -98,12 +98,14 @@ internal class MilestoneImplementation : IMilestone
 
         DO.Task projectStartMilestone = new DO.Task
         {
-            Id = 0, 
+            Id = 0,
             Description = $"start milestone",
             Alias = $"Start",
             CreatedAtDate = DateTime.Now,
             RequiredEffort = TimeSpan.Zero,
-            IsMilestone = true
+            IsMilestone = true,
+            ScheduledDate = DateTime.Now,
+
         };
 
         //משימות ששום משימה לא תלויה בהן
@@ -119,8 +121,11 @@ internal class MilestoneImplementation : IMilestone
             Alias = $"End",
             CreatedAtDate = DateTime.Now,
             RequiredEffort = TimeSpan.Zero,
-            IsMilestone = true
-        };
+            IsMilestone = true,
+            DeadlineDate = DalApi.Factory.Get.endDateProject
+
+
+    };
 
         try
         {
@@ -153,65 +158,6 @@ internal class MilestoneImplementation : IMilestone
         _dal.Dependency.ReadAll().ToList().ForEach(d => _dal.Dependency.Delete(d!.Id));
         dependencies.ToList().ForEach(d => _dal.Dependency.Create(d));
 
-        var milstoneList = _dal.Task.ReadAll(task => task.IsMilestone).Where(t => t != null).ToList();
-        DateTime? scheduledDate;
-        foreach (var milstone in milstoneList)
-        {
-            if (milstone!.Alias == "Start")
-            {
-                scheduledDate = DateTime.Now;
-            }
-            else
-            {
-                scheduledDate = _dal.Task.ReadAll(task => _dal.Dependency.ReadAll().Any(dependency => dependency?.DependentTask == milstone.Id && dependency.DependsOnTask == task.Id)).Min(t => t!.ScheduledDate!);
-
-            }
-            _dal.Task.Update(
-                  new DO.Task
-                  (milstone.Id,
-                  milstone.Description,
-                  milstone.Alias,
-                  milstone.CreatedAtDate,
-                  milstone.RequiredEffort,
-                  milstone.IsMilestone,
-                  milstone.StartDate,
-                  scheduledDate,
-                  milstone.DeadlineDate,
-                  milstone.CompleteDate,
-                  milstone.Deliverables,
-                  milstone.Remarks,
-                  milstone.EngineerId,
-                  milstone.ComplexityLevel));
-        }
-        DateTime? deadlineDate;
-        foreach (var milstone in milstoneList)
-        {
-            if (milstone!.Alias == "End")
-            {
-                deadlineDate = DalApi.Factory.Get.endDateProject;
-            }
-            else
-            {
-                deadlineDate = _dal.Task.ReadAll(task => _dal.Dependency.ReadAll().Any(dependency => dependency?.DependentTask == milstone.Id && dependency.DependsOnTask == task.Id)).Max(t => t!.DeadlineDate);
-
-            }
-            _dal.Task.Update(
-                 new DO.Task
-                 (milstone.Id,
-                 milstone.Description,
-                 milstone.Alias,
-                 milstone.CreatedAtDate,
-                 milstone.RequiredEffort,
-                 milstone.IsMilestone,
-                 milstone.StartDate,
-                 milstone.ScheduledDate,
-                 deadlineDate,
-                 milstone.CompleteDate,
-                 milstone.Deliverables,
-                 milstone.Remarks,
-                 milstone.EngineerId,
-                 milstone.ComplexityLevel));
-        }
         DO.Task endTask = _dal.Task.Read(task => task.Alias == "End")!;
         DO.Task startTask = _dal.Task.Read(task => task.Alias == "Start")!;
         setNameOfMilestone();
@@ -295,33 +241,33 @@ internal class MilestoneImplementation : IMilestone
         }
         else
         {
-           DO.Task doMilestone = new DO.Task
-           (
-               boMilestone.Id,
-               boMilestone.Description,
-               boMilestone.Alias,
-               task.CreatedAtDate,
-               task.RequiredEffort,
-               task.IsMilestone,
-               task.StartDate,
-               task.ScheduledDate,
-               task.DeadlineDate,
-               task.CompleteDate,
-               task.Deliverables,
-               boMilestone.Remarks,
-               task.EngineerId,
-               task.ComplexityLevel
-           );
-           try
-           {
-               _dal.Task.Update(doMilestone);
-           }
-           catch (DO.DalDoesNotExistException)
-           {
-               throw new BO.BlDoesNotExistException($"Task with ID={boMilestone.Id} does not exist");
-           }
+            DO.Task doMilestone = new DO.Task
+            (
+                boMilestone.Id,
+                boMilestone.Description,
+                boMilestone.Alias,
+                task.CreatedAtDate,
+                task.RequiredEffort,
+                task.IsMilestone,
+                task.StartDate,
+                task.ScheduledDate,
+                task.DeadlineDate,
+                task.CompleteDate,
+                task.Deliverables,
+                boMilestone.Remarks,
+                task.EngineerId,
+                task.ComplexityLevel
+            );
+            try
+            {
+                _dal.Task.Update(doMilestone);
+            }
+            catch (DO.DalDoesNotExistException)
+            {
+                throw new BO.BlDoesNotExistException($"Task with ID={boMilestone.Id} does not exist");
+            }
         }
-       
+
     }
 
     /// <summary>
@@ -346,24 +292,8 @@ internal class MilestoneImplementation : IMilestone
             if (startTask.DeadlineDate + currentTask!.RequiredEffort > currentTask.DeadlineDate)
                 throw new BO.BlPlanningOfProjectTimesException($"According to the date restrictions, the task {taskId} does not have time to be completed in its entirety");
 
-            if (currentTask.IsMilestone && (currentTask.ScheduledDate is null || currentTask.ScheduledDate < ScheduleTime))
-                _dal.Task.Update(
-                  new DO.Task
-                  (currentTask.Id,
-                  currentTask.Description,
-                  currentTask.Alias,
-                  currentTask.CreatedAtDate,
-                  currentTask.RequiredEffort,
-                  currentTask.IsMilestone,
-                  currentTask.StartDate,
-                  ScheduleTime,
-                  currentTask.DeadlineDate,
-                  currentTask.CompleteDate,
-                  currentTask.Deliverables,
-                  currentTask.Remarks,
-                  currentTask.EngineerId,
-                  currentTask.ComplexityLevel));
-            else
+            if (currentTask.ScheduledDate == null || currentTask.ScheduledDate < ScheduleTime)
+            {
                 _dal.Task.Update(
                  new DO.Task
                  (currentTask.Id,
@@ -380,8 +310,10 @@ internal class MilestoneImplementation : IMilestone
                  currentTask.Remarks,
                  currentTask.EngineerId,
                  currentTask.ComplexityLevel));
-            SetScheduledDateForTask(currentTask, endTask);
-            
+            }
+            DO.Task newEndTask = _dal.Task.Read(currentTask.Id) ?? throw new BO.BlNullPropertyException("id Of Task can't be null");
+            SetScheduledDateForTask(newEndTask, endTask);
+
         }
     }
 
@@ -400,29 +332,31 @@ internal class MilestoneImplementation : IMilestone
         var DependsOnTaskList = allDependencies.Where(dep => dep?.DependentTask == endTask.Id)
             .Select(dep => dep?.DependsOnTask).ToList();
 
-       foreach (var dep in DependsOnTaskList) 
-       {
+        foreach (var dep in DependsOnTaskList)
+        {
             //calling the pending task
             DO.Task currentTask = _dal.Task.Read(dep!.Value) ?? throw new BO.BlNullPropertyException("id Of Task can't be null");
             // task completion time - how long it takes = the completion time depends
             DateTime? deadlineTime = endTask.DeadlineDate - endTask.RequiredEffort;
-
-           _dal.Task.Update(
-                   new DO.Task
-                   (currentTask.Id,
-                   currentTask.Description,
-                   currentTask.Alias,
-                   currentTask.CreatedAtDate,
-                   currentTask.RequiredEffort,
-                   currentTask.IsMilestone,
-                   currentTask.StartDate,
-                   currentTask.ScheduledDate,
-                   deadlineTime,
-                   currentTask.CompleteDate,
-                   currentTask.Deliverables,
-                   currentTask.Remarks,
-                   currentTask.EngineerId,
-                   currentTask.ComplexityLevel));
+            if (currentTask.DeadlineDate == null || currentTask.DeadlineDate > deadlineTime)
+            {
+                _dal.Task.Update(
+                  new DO.Task
+                  (currentTask.Id,
+                  currentTask.Description,
+                  currentTask.Alias,
+                  currentTask.CreatedAtDate,
+                  currentTask.RequiredEffort,
+                  currentTask.IsMilestone,
+                  currentTask.StartDate,
+                  currentTask.ScheduledDate,
+                  deadlineTime,
+                  currentTask.CompleteDate,
+                  currentTask.Deliverables,
+                  currentTask.Remarks,
+                  currentTask.EngineerId,
+                  currentTask.ComplexityLevel));
+            }
 
             DO.Task newEndTask = _dal.Task.Read(currentTask.Id) ?? throw new BO.BlNullPropertyException("id Of Task can't be null");
             //A call in recursion to each of the tasks in the list to calculate its completion time according to the algorithm
@@ -447,7 +381,7 @@ internal class MilestoneImplementation : IMilestone
             newAlias = "";
             foreach (var dependency in dependencies)
             {
-                if(dependency != null)
+                if (dependency != null)
                 {
                     DO.Task task = _dal.Task.Read((int)dependency)!;
                     newAlias = newAlias + ", " + task.Alias;
@@ -455,7 +389,7 @@ internal class MilestoneImplementation : IMilestone
             }
             _dal.Task.Update(
                new DO.Task
-               (   milstone!.Id,
+               (milstone!.Id,
                    milstone.Description,
                    newAlias,
                    milstone.CreatedAtDate,
