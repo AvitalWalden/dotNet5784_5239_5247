@@ -29,7 +29,7 @@ public static class Tools
                 valueString = value.ToString()!;
             }
 
-            return $"{property.Name}: {valueString}";
+            return $"{property.Name} : {valueString} ";
         }));
 
         return result;
@@ -57,7 +57,6 @@ public static class Tools
     {
         DalApi.Factory.Get.endDateProject = endDate;
         DalApi.Factory.Get.startDateProject = startDate;
-
     }
 
     public static List<BO.TaskInList> CalculateTaskInList(int id)

@@ -586,7 +586,7 @@ internal class Program
         int id = int.Parse(Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect"));
         if (s_bl.Milestone.Read(id) != null)
         {
-            Console.WriteLine(s_bl.Task.Read(id));
+            Console.WriteLine(s_bl.Milestone.Read(id));
         }
         else
         {
