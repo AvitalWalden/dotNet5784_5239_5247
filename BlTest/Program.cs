@@ -663,8 +663,9 @@ internal class Program
                         break;
                 }
                 Console.WriteLine();
-                Console.WriteLine("To read a task press a");
+                Console.WriteLine("To read a milstone press a");
                 Console.WriteLine("To update a milestone press b");
+                Console.WriteLine("To create a project schedule press c");
                 Console.WriteLine("To exit press f");
                 ch = char.Parse(Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect"));
             }
