@@ -1,4 +1,5 @@
 ﻿using BlApi;
+using BO;
 using System.Xml.Linq;
 
 namespace BlImplementation;
@@ -254,6 +255,21 @@ internal class TaskImplementation : ITask
         {
             throw new BO.EngineerIsAlreadyBusy("Engineer is already busy");
         }
+        if (boTask.Milestone == null)
+        {
+            foreach (var item in _dal.Dependency.ReadAll(d => d.DependentTask == boTask.Id).Where(d=>d!=null))
+            {
+                _dal.Dependency.Delete(item!.Id);
+            }
+            if (boTask.Dependencies != null)
+            {
+                foreach (TaskInList doDependency in boTask.Dependencies)
+                {
+                    DO.Dependency doDepend = new DO.Dependency(0, boTask.Id, doDependency.Id);
+                    int idDependency = _dal.Dependency.Create(doDepend);
+                }
+            }
+        }
         DO.Task doTask = new DO.Task
         (
             boTask.Id,
@@ -271,19 +287,6 @@ internal class TaskImplementation : ITask
             boTask.Engineer?.Id,
             (DO.EngineerExperience)boTask.ComplexityLevel
         );
-
-        //if (boTask.Milestone != null)
-        //{
-        //    if (boTask.Dependencies != null)
-        //    {
-        //        foreach (BO.TaskInList doDependency in boTask.Dependencies)
-        //        {
-        //            if(_dal.Dependency.Read(doDependency.Id) != null)
-        //            DO.Dependency doDepend = new DO.Dependency(0, boTask.Id, doDependency.Id);
-        //            int idDependency = _dal.Dependency.Create(doDepend);
-        //        }
-        //    }
-        //}
 
         try
         {
