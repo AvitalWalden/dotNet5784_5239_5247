@@ -384,7 +384,7 @@ internal class MilestoneImplementation : IMilestone
        foreach (var dep in DependsOnTaskList) 
        {
             //calling the pending task
-            DO.Task currentTask = _dal.Task.Read(endTask.Id) ?? throw new BO.BlNullPropertyException("id Of Task can't be null");
+            DO.Task currentTask = _dal.Task.Read(dep!.Value) ?? throw new BO.BlNullPropertyException("id Of Task can't be null");
             // task completion time - how long it takes = the completion time depends
             DateTime? deadlineTime = endTask.DeadlineDate - endTask.RequiredEffort;
 
