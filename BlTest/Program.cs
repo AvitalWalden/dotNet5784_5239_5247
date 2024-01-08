@@ -634,10 +634,9 @@ internal class Program
     /// <exception cref="BO.BlInvalidEnteredValue">The entered value is incorrect</exception>
     public static void Milestones()
     {
-        
         Console.WriteLine("To read a milstone press a");
         Console.WriteLine("To update a milestone press b");
-        Console.WriteLine("To create a project schedule press c");
+        //Console.WriteLine("To create a project schedule press c");
         Console.WriteLine("To exit press f");
         char ch = char.Parse(Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect"));
         try
@@ -646,9 +645,9 @@ internal class Program
             {
                 switch (ch)
                 {
-                    case 'c': // Read a milestone by ID.
-                        s_bl.Milestone.Create();
-                        break;
+                    //case 'c': // Read a milestone by ID.
+                    //    s_bl.Milestone.Create();
+                    //    break;
                     case 'a': // Read a milestone by ID.
                         Console.WriteLine("Enter a milstone ID");
                         int idMilestone = int.Parse(Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect"));
@@ -664,7 +663,7 @@ internal class Program
                 Console.WriteLine();
                 Console.WriteLine("To read a milstone press a");
                 Console.WriteLine("To update a milestone press b");
-                Console.WriteLine("To create a project schedule press c");
+                //Console.WriteLine("To create a project schedule press c");
                 Console.WriteLine("To exit press f");
                 ch = char.Parse(Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect"));
             }
@@ -700,6 +699,27 @@ internal class Program
             Factory.Get.Reset();
             DalTest.Initialization.Do();
         }
+        Console.WriteLine("Add all engineers");
+        try
+        {
+            Engineers();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex);
+        }
+        Console.WriteLine();
+        Console.WriteLine("Add all tasks");
+        try
+        {
+            Tasks();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex);
+        }
+        s_bl.Milestone.Create();
+        Console.WriteLine();
         Console.WriteLine("For a task press 1");
         Console.WriteLine("For an engineer press 2");
         Console.WriteLine("For milestone between tasks press 3");

@@ -109,7 +109,6 @@ internal class MilestoneImplementation : IMilestone
 
         };
 
-        //משימות ששום משימה לא תלויה בהן
         var independentTasks = _dal.Task.ReadAll()
          .Where(task => !dependencies.Any(d => d.DependsOnTask == task!.Id))
          .Select(task => task!.Id)
@@ -162,12 +161,12 @@ internal class MilestoneImplementation : IMilestone
         DO.Task endTask = _dal.Task.Read(task => task.Alias == "End")!;
         DO.Task startTask = _dal.Task.Read(task => task.Alias == "Start")!;
 
-        SetDeadLineDateForTask(endTask, startTask);
+        setDeadLineDateForTask(endTask, startTask);
 
         DO.Task endTask1 = _dal.Task.Read(task => task.Alias == "End")!;
         DO.Task startTask1 = _dal.Task.Read(task => task.Alias == "Start")!;
 
-        SetScheduledDateForTask(startTask1, endTask1);
+        setScheduledDateForTask(startTask1, endTask1);
         setNameOfMilestone();
     }
 
@@ -279,7 +278,7 @@ internal class MilestoneImplementation : IMilestone
     /// <summary>
     /// A function that calculates for each task its start date according to calculations of all the dates in the project
     /// </summary>
-    private void SetScheduledDateForTask(DO.Task startTask, DO.Task endTask)
+    private void setScheduledDateForTask(DO.Task startTask, DO.Task endTask)
     {
         if (startTask.Id == endTask.Id)
             return;
@@ -318,7 +317,7 @@ internal class MilestoneImplementation : IMilestone
                  currentTask.ComplexityLevel));
             }
             DO.Task newEndTask = _dal.Task.Read(currentTask.Id) ?? throw new BO.BlNullPropertyException("id Of Task can't be null");
-            SetScheduledDateForTask(newEndTask, endTask);
+            setScheduledDateForTask(newEndTask, endTask);
 
         }
     }
@@ -326,7 +325,7 @@ internal class MilestoneImplementation : IMilestone
     /// <summary>
     /// A function that calculates completion times for each of the tasks in the project
     /// </summary>
-    private void SetDeadLineDateForTask(DO.Task endTask, DO.Task startTask)
+    private void setDeadLineDateForTask(DO.Task endTask, DO.Task startTask)
     {
         if (endTask.Id == startTask.Id)
             return;
@@ -366,7 +365,7 @@ internal class MilestoneImplementation : IMilestone
 
             DO.Task newEndTask = _dal.Task.Read(currentTask.Id) ?? throw new BO.BlNullPropertyException("id Of Task can't be null");
             //A call in recursion to each of the tasks in the list to calculate its completion time according to the algorithm
-            SetDeadLineDateForTask(newEndTask, startTask);
+            setDeadLineDateForTask(newEndTask, startTask);
 
         }
     }
