@@ -638,8 +638,6 @@ namespace DalTest
 
         static void Main(string[] args)
         {
-
-            //Initialization.Do(s_dal); //stage 2
             Console.WriteLine("For create Initial data press 0");
             Console.WriteLine("For a task press 1");
             Console.WriteLine("For an engineer press 2");
@@ -658,10 +656,7 @@ namespace DalTest
                                     string? ans = Console.ReadLine() ?? throw new FormatException("Wrong input"); //stage 3
                                     if (ans == "Y") //stage 3
                                     {
-                                         s_dal.Reset();
-                                        //Initialization.Do(s_dal); //stage 2
                                         Initialization.Do(); //stage 4
-
                                     }
                                 }
                                 break;

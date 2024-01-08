@@ -696,7 +696,7 @@ internal class Program
         string? ans = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
         if (ans == "Y")
         {
-            Factory.Get.Reset();
+            
             DalTest.Initialization.Do();
         }
         Console.WriteLine("Add all engineers");

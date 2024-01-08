@@ -144,7 +144,7 @@ public static class Initialization
     }
     public static void Do()
     {
-        //s_dal = dal ?? throw new NullReferenceException("DAL object can not be null!"); //stage 2
+        Factory.Get.Reset();
         s_dal = DalApi.Factory.Get; //stage 4
         createEngineers();
         createTasks();
