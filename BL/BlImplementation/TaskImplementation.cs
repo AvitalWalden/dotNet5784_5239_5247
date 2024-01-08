@@ -125,6 +125,7 @@ internal class TaskImplementation : ITask
             CreatedAtDate = doTask.CreatedAtDate,
             Status = BO.Tools.CalculateStatusOfTask(doTask),
             Dependencies = tasksList,
+            RequiredEffortTime = doTask.RequiredEffort,
             Milestone = milestone,
             ScheduledStartDate = doTask.ScheduledDate,
             StartDate = doTask.StartDate,

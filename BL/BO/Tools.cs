@@ -7,6 +7,9 @@ namespace BO;
 
 public static class Tools
 {
+    /// <summary>
+    /// function that print the object
+    /// </summary>
     public static string ToStringProperty<T>(this T obj)
     {
         PropertyInfo[] properties = typeof(T).GetProperties();
@@ -29,11 +32,17 @@ public static class Tools
                 valueString = value.ToString()!;
             }
 
-            return $"{property.Name}: {valueString}";
+            return $" {property.Name}: {valueString}";
         }));
 
         return result;
     }
+
+    /// <summary>
+    /// calculate the status of the task
+    /// </summary>
+    /// <param name="doTask">the task to calculate</param>
+    /// <returns></returns>
     public static BO.Status CalculateStatusOfTask(DO.Task doTask)
     {
         if (doTask.StartDate == null && doTask.DeadlineDate == null)
@@ -60,6 +69,11 @@ public static class Tools
 
     }
 
+    /// <summary>
+    /// Calculate TaskInList for the task with tjis id
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns>the dependencies of this task</returns>
     public static List<BO.TaskInList> CalculateTaskInList(int id)
     {
         DalApi.IDal _dal = DalApi.Factory.Get;
