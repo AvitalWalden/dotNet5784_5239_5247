@@ -22,8 +22,9 @@ internal class TaskImplementation : ITask
     {
         //מחיקה מה לעשות בBO אם כאן עושים את זה
         Task? taskToDelete = Read(id);
-        if (Config.startDateProject >= DateTime.Now)
-            throw new DalDeletionImpossible("Task cannot be deleted because the project alredy began");
+        var isMilstone = ReadAll(task => task.IsMilestone);
+        if (isMilstone.Count() > 0)
+            throw new DalDeletionImpossible("Task cannot be deleted because the project already began");
         if (taskToDelete is not null)
         {
             for (int i = 0; i < DataSource.Dependencies.Count; i++)
@@ -46,31 +47,6 @@ internal class TaskImplementation : ITask
         {
             throw new Exception($"Task with ID={id} not exists");
         }
-
-        ///שאי אפשר למחוק ככה עשינו
-        //Task? taskToDelete = Read(id);
-        //if (taskToDelete is not null)
-        //{
-        //    if (DataSource.Dependencies.Any(dependency => dependency?.DependsOnTask == id))
-        //        throw new DalDeletionImpossible($"Task with ID={id} cannot be deleted");
-
-        //    DataSource.Dependencies.RemoveAll(dependency => dependency?.DependentTask == id);
-        //    DataSource.Tasks.Remove(taskToDelete);
-        //}
-        //else
-        //{
-        //    throw new DalDoesNotExistException($"Task with ID={id} does not exist");
-        //}
-
-
-        ///ACTVE
-        //Task? taskToDelete = Read(id);
-        //if (taskToDelete is not null)
-        //{
-        //    taskToDelete.Active = false;
-        //}
-        // Throw an exception if the task cannot be deleted
-        //   throw new DalDeletionImpossible($"Task with ID={id} cannot be deleted");
     }
 
     //Reads task object by filter function

@@ -36,7 +36,8 @@ internal class TaskImplementation : ITask
         DO.Task? task = lst.FirstOrDefault(task => task?.Id == id);
         if (task is null)
             throw new DalDoesNotExistException($"Task with ID={id} is not exist");
-        if (Config.startDateProject >= DateTime.Now)
+        var isMilstone = lst.FirstOrDefault(task => task.IsMilestone);
+        if (isMilstone != null)
             throw new DalDeletionImpossible("Task cannot be deleted because the project already began");
         foreach (var dep in lstDependency)
         {
