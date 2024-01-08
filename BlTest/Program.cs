@@ -1,4 +1,5 @@
-﻿using DalApi;
+﻿using BO;
+using DalApi;
 using DO;
 
 internal class Program
@@ -69,7 +70,6 @@ internal class Program
             Milestone = null,
             ScheduledStartDate = null,
             StartDate = null,
-            ForecastDate = null,
             DeadlineDate = null,
             CompleteDate = null,
             Deliverables = deliverables,
@@ -220,7 +220,6 @@ internal class Program
             Milestone = updateTask.Milestone,
             ScheduledStartDate = null,
             StartDate = startDate,
-            ForecastDate = null,
             DeadlineDate = null,
             CompleteDate = completeDate,
             Deliverables = deliverables,
@@ -635,10 +634,9 @@ internal class Program
     /// <exception cref="BO.BlInvalidEnteredValue">The entered value is incorrect</exception>
     public static void Milestones()
     {
-        
         Console.WriteLine("To read a milstone press a");
         Console.WriteLine("To update a milestone press b");
-        Console.WriteLine("To create a project schedule press c");
+        //Console.WriteLine("To create a project schedule press c");
         Console.WriteLine("To exit press f");
         char ch = char.Parse(Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect"));
         try
@@ -647,9 +645,9 @@ internal class Program
             {
                 switch (ch)
                 {
-                    case 'c': // Read a milestone by ID.
-                        s_bl.Milestone.Create();
-                        break;
+                    //case 'c': // Read a milestone by ID.
+                    //    s_bl.Milestone.Create();
+                    //    break;
                     case 'a': // Read a milestone by ID.
                         Console.WriteLine("Enter a milstone ID");
                         int idMilestone = int.Parse(Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect"));
@@ -665,7 +663,7 @@ internal class Program
                 Console.WriteLine();
                 Console.WriteLine("To read a milstone press a");
                 Console.WriteLine("To update a milestone press b");
-                Console.WriteLine("To create a project schedule press c");
+                //Console.WriteLine("To create a project schedule press c");
                 Console.WriteLine("To exit press f");
                 ch = char.Parse(Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect"));
             }
@@ -684,13 +682,44 @@ internal class Program
     /// <exception cref="FormatException">wronginput</exception>
     public static void Main(string[] args)
     {
+        Console.WriteLine("Enter the project start date (yyyy-MM-ddTHH:mm:ss):");
+        string? startDateString = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+        DateTime.TryParse(startDateString, out DateTime startDate);
+        Console.WriteLine("Enter the project end date (yyyy-MM-ddTHH:mm:ss):");
+        string? endDateString = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
+        DateTime.TryParse(endDateString, out DateTime endDate);
+        if (startDateString != "" && endDateString != "")
+        {
+            Tools.SetProjectDates(startDate, endDate);
+        }
         Console.WriteLine("Would you like to create Initial data? (Y/N)");
-        string? ans = Console.ReadLine() ?? throw new FormatException("Wrong input");
+        string? ans = Console.ReadLine() ?? throw new BO.BlInvalidEnteredValue("The entered value is incorrect");
         if (ans == "Y")
         {
             Factory.Get.Reset();
             DalTest.Initialization.Do();
         }
+        Console.WriteLine("Add all engineers");
+        try
+        {
+            Engineers();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex);
+        }
+        Console.WriteLine();
+        Console.WriteLine("Add all tasks");
+        try
+        {
+            Tasks();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex);
+        }
+        s_bl.Milestone.Create();
+        Console.WriteLine();
         Console.WriteLine("For a task press 1");
         Console.WriteLine("For an engineer press 2");
         Console.WriteLine("For milestone between tasks press 3");

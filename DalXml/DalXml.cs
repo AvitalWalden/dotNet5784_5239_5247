@@ -34,13 +34,13 @@ sealed internal class DalXml : IDal
     {
         get
         {
-            var value = XDocument.Load(@"..\xml\data-config.xml").Root?.Element("startProject")?.Value;
+            var value = XDocument.Load(@"..\xml\data-config.xml").Root?.Element("startDateProject")?.Value;
             return string.IsNullOrEmpty(value) ? null : DateTime.Parse(value);
         }
         set
         {
             var xDocument = XDocument.Load(@"..\xml\data-config.xml");
-            xDocument.Root?.Element("startProject")?.SetValue(value?.ToString("yyyy-MM-ddTHH:mm:ss")!);
+            xDocument.Root?.Element("startDateProject")?.SetValue(value?.ToString("yyyy-MM-ddTHH:mm:ss")!);
             xDocument.Save(@"..\xml\data-config.xml");
         }
 

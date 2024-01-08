@@ -49,17 +49,18 @@ internal class TaskImplementation : ITask
             boTask.Engineer?.Id,
             (DO.EngineerExperience)boTask.ComplexityLevel
         );
-        if (boTask.Dependencies != null)
-        {
-            foreach (BO.TaskInList doDependency in boTask.Dependencies)
-            {
-                DO.Dependency doDepend = new DO.Dependency(0, boTask.Id, doDependency.Id);
-                int idDependency = _dal.Dependency.Create(doDepend);
-            }
-        }
+       
         try
         {
             int idTask = _dal.Task.Create(doTask);
+            if (boTask.Dependencies != null)
+            {
+                foreach (BO.TaskInList doDependency in boTask.Dependencies)
+                {
+                    DO.Dependency doDepend = new DO.Dependency(0, idTask, doDependency.Id);
+                    int idDependency = _dal.Dependency.Create(doDepend);
+                }
+            }
             return idTask;
         }
         catch (DO.DalAlreadyExistsException ex)
@@ -125,10 +126,10 @@ internal class TaskImplementation : ITask
             CreatedAtDate = doTask.CreatedAtDate,
             Status = BO.Tools.CalculateStatusOfTask(doTask),
             Dependencies = tasksList,
+            RequiredEffortTime = doTask.RequiredEffort,
             Milestone = milestone,
             ScheduledStartDate = doTask.ScheduledDate,
             StartDate = doTask.StartDate,
-            ForecastDate = doTask.StartDate + doTask.RequiredEffort,
             DeadlineDate = doTask.DeadlineDate,
             CompleteDate = doTask.CompleteDate,
             Deliverables = doTask.Deliverables,
@@ -200,7 +201,6 @@ internal class TaskImplementation : ITask
                 Milestone = milestone,
                 ScheduledStartDate = doTask.ScheduledDate,
                 StartDate = doTask.StartDate,
-                ForecastDate = doTask.StartDate + doTask.RequiredEffort,
                 DeadlineDate = doTask.DeadlineDate,
                 CompleteDate = doTask.CompleteDate,
                 Deliverables = doTask.Deliverables,

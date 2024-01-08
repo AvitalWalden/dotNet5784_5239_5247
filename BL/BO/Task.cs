@@ -14,12 +14,10 @@ public class Task
     public MilestoneInTask? Milestone { get; set; }
     public DateTime? ScheduledStartDate { get; set; } //the planned start date - תאריך התחלה משוער
     public DateTime? StartDate { get; set; } //the real start date - תאריך התחלה בפועל
-    public DateTime? ForecastDate { get; set; } //תאריך חישוב מתוכנן, תאריך משוער לסיום
     public DateTime? DeadlineDate { get; set; } //the latest complete date - תאריך אחרון לסיום
     public DateTime? CompleteDate { get; set; } //real completion date - תאריך סיום בפועל
     public string? Deliverables { get; set; } 
     public string? Remarks { get; set; }
-    // public Tuple<int, string>? Engineer { get; set; }
     public EngineerInTask? Engineer { get; set; }
     public EngineerExperience ComplexityLevel { get; set; }
     public override string ToString() => this.ToStringProperty();

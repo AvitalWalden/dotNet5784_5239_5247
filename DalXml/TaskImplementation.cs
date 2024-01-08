@@ -32,12 +32,13 @@ internal class TaskImplementation : ITask
     public void Delete(int id)
     {
         List<Dependency> lstDependency = XMLTools.LoadListFromXMLSerializer<Dependency>("dependencies");
-        List<Task> lst = XMLTools.LoadListFromXMLSerializer<Task>("tasks");
-        Task? task = lst.FirstOrDefault(task => task?.Id == id);
+        List<DO.Task> lst = XMLTools.LoadListFromXMLSerializer<DO.Task>("tasks");
+        DO.Task? task = lst.FirstOrDefault(task => task?.Id == id);
         if (task is null)
-            throw new DalDoesNotExistException($"Task with ID={id} is not exists");
-        if (Config.startDateProject >= DateTime.Now)
-            throw new DalDeletionImpossible("Task cannot be deleted because the project alredy began");
+            throw new DalDoesNotExistException($"Task with ID={id} is not exist");
+        var isMilstone = lst.FirstOrDefault(task => task.IsMilestone);
+        if (isMilstone != null)
+            throw new DalDeletionImpossible("Task cannot be deleted because the project already began");
         foreach (var dep in lstDependency)
         {
             if (dep.DependsOnTask == id)
@@ -45,16 +46,12 @@ internal class TaskImplementation : ITask
                 throw new Exception($"Task with ID ={id} cannot be deleted");
             }
         }
-        foreach (var dep in lstDependency)
-        {
-            if (dep.DependentTask == id)
-            {
-                lstDependency.Remove(dep);
-            }
-        }
+        lstDependency.RemoveAll(dep => dep.DependentTask == id);
         lst.Remove(task);
-        XMLTools.SaveListToXMLSerializer<Task>(lst, "tasks");
+        XMLTools.SaveListToXMLSerializer<DO.Task>(lst, "tasks");
+        XMLTools.SaveListToXMLSerializer<DO.Dependency>(lstDependency, "dependencies");
     }
+
 
     /// <summary>
     /// Method to read an task using a custom filter
