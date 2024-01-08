@@ -375,12 +375,28 @@
     <Active>true</Active>
   </Task>
   <Task>
-    <Id>22</Id>
-    <Description>מסירת הבנין והדירות לבעלים</Description>
-    <Alias>מסירת מפתחות</Alias>
-    <CreatedAtDate>2024-01-08T20:23:07.0600916+02:00</CreatedAtDate>
-    <RequiredEffort>P1D</RequiredEffort>
-    <IsMilestone>false</IsMilestone>
+    <Id>24</Id>
+    <Description>Milestone for Task 2</Description>
+    <Alias>, מימון, רכישת הנכס, אישורים לפרויקט הבנייה</Alias>
+    <CreatedAtDate>2024-01-08T00:40:52.044347+02:00</CreatedAtDate>
+    <RequiredEffort>PT0S</RequiredEffort>
+    <IsMilestone>true</IsMilestone>
+    <StartDate xsi:nil="true" />
+    <ScheduledDate>2024-01-10T00:40:52.0925273+02:00</ScheduledDate>
+    <DeadlineDate>2024-06-21T00:00:00</DeadlineDate>
+    <CompleteDate xsi:nil="true" />
+    <Remarks>wowwww</Remarks>
+    <EngineerId xsi:nil="true" />
+    <ComplexityLevel>Beginner</ComplexityLevel>
+    <Active>true</Active>
+  </Task>
+  <Task>
+    <Id>35</Id>
+    <Description>Milestone for Task 13</Description>
+    <Alias>, נקיון הבנין והדירות</Alias>
+    <CreatedAtDate>2024-01-08T12:56:49.6939126+02:00</CreatedAtDate>
+    <RequiredEffort>PT0S</RequiredEffort>
+    <IsMilestone>true</IsMilestone>
     <StartDate xsi:nil="true" />
     <ScheduledDate xsi:nil="true" />
     <DeadlineDate xsi:nil="true" />

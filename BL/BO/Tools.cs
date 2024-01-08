@@ -66,7 +66,6 @@ public static class Tools
     {
         DalApi.Factory.Get.endDateProject = endDate;
         DalApi.Factory.Get.startDateProject = startDate;
-
     }
 
     /// <summary>

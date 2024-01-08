@@ -33,13 +33,6 @@ internal class EngineerImplementation : IEngineer
         {
             throw new DalDoesNotExistException($"Engineer with ID={id} not exists");
         }
-        //Engineer? engneerToDelete = Read(id);
-        //if (engneerToDelete is not null)
-        //{
-        //    engneerToDelete.Active = false;
-        //}
-        // Throw an exception if the engineer cannot be deleted
-      //throw new DalDeletionImpossible($"Engineer with ID={id} cannot be deleted");
     }
 
     //Reads engineer object by filter function
