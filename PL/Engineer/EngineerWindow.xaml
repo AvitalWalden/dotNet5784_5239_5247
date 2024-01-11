@@ -1,12 +1,26 @@
 ﻿<Window x:Class="PL.Engineer.EngineerWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:PL.Engineer"
         mc:Ignorable="d"
-        Title="EngineerWindow" Height="450" Width="800">
+        Title="EngineerWindow" Height="450" Width="800"
+        DataContext="{Binding CurrentEngineer, RelativeSource={RelativeSource Self}, Mode=TwoWay}">
+
     <Grid>
-        
+        <Label Content="Id" HorizontalAlignment="Left" Margin="303,73,0,0" VerticalAlignment="Top" Width="42"/>
+        <Label Content="Name" HorizontalAlignment="Left" Margin="303,116,0,0" VerticalAlignment="Top"/>
+        <Label Content="Email" HorizontalAlignment="Left" Margin="303,168,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.153,0.348" Width="75"/>
+        <Label Content="Level" HorizontalAlignment="Left" Margin="303,217,0,0" VerticalAlignment="Top" Width="75"/>
+        <Label Content="Cost" HorizontalAlignment="Left" Margin="303,276,0,0" VerticalAlignment="Top" RenderTransformOrigin="-3.789,3.784" Width="42"/>
+        <TextBox Text="{Binding Id, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" HorizontalAlignment="Left" Margin="437,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" HorizontalAlignment="Left" Margin="437,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox Text="{Binding Email, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" HorizontalAlignment="Left" Margin="437,172,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.482,-0.677"/>
+        <TextBox Text="{Binding Cost, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" HorizontalAlignment="Left" Margin="437,280,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <ComboBox ItemsSource="{Binding Source={StaticResource EngineerExperienceCollectionKey}}"
+                  SelectedValue="{Binding Level, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" HorizontalAlignment="Left" Margin="437,214,0,0" VerticalAlignment="Top" Width="120"/>
+        <!--add or update engineer-->
+        <Button Content="" HorizontalAlignment="Center" Margin="0,353,0,0" VerticalAlignment="Top" Height="38" Width="80"/>
+
     </Grid>
 </Window>

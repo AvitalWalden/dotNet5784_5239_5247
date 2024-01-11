@@ -32,7 +32,7 @@ public record Task
     string? Deliverables = null,
     string? Remarks = null,
     int? EngineerId = null,
-    EngineerExperience ComplexityLevel = EngineerExperience.Beginner,
+    EngineerExperience ComplexityLevel = EngineerExperience.None,
     bool Active = true
 )
 {

@@ -23,7 +23,9 @@
             <!-- label for comboBox -->
             <Label Content="Label" Grid.Column="0" HorizontalAlignment="Left" Margin="33,0,0,0" VerticalAlignment="Center"/>
             <!-- engineer expererience collection-->
-            <ComboBox ItemsSource="{Binding Source={StaticResource EngineerExperienceCollectionKey}}" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+            <ComboBox ItemsSource="{Binding Source={StaticResource EngineerExperienceCollectionKey}}" 
+                      SelectedValue="{Binding Experience, Mode=TwoWay}"
+                      Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectionChanged="ComboBox_SelectionExperience"/>
         </Grid>
         <ListView Margin="5" Grid.Row="1" ItemsSource="{Binding EngineerList}">
             <ListView.View>
