@@ -26,7 +26,7 @@ namespace PL
             InitializeComponent();
         }
 
-        private void BtnEngineer_Click(object sender, RoutedEventArgs e)
+        private void BtnEngineers_Click(object sender, RoutedEventArgs e)
         {
             new EngineerListWindow().Show();
         }
