@@ -45,7 +45,7 @@ namespace PL.Engineer
                         engineer = s_bl.Engineer.Read(Id)!;
 
                 }
-                catch (BO.BlAlreadyExistsException ex)
+                catch (Exception ex)
                 {
                     MessageBox.Show(ex.ToString());
                 }
@@ -62,9 +62,9 @@ namespace PL.Engineer
         public static readonly DependencyProperty CurrentEngineerProperty =
             DependencyProperty.Register("CurrentEngineer", typeof(ObservableCollection<BO.Engineer>), typeof(EngineerWindow), new PropertyMetadata(null));
 
-        private void ButtonAddEngineer_Click(object sender, RoutedEventArgs e)
+        private void ButtonAddOrUpdateEngineer_Click(object sender, RoutedEventArgs e)
         {
-            if(false)
+            if (false)
             {
                 BO.Engineer engineer = CurrentEngineer[0];
                 try
@@ -74,7 +74,7 @@ namespace PL.Engineer
                     this.Close();
 
                 }
-                catch (BO.BlAlreadyExistsException ex)
+                catch (Exception ex)
                 {
                     MessageBox.Show("Operation failed :(, " + ex.ToString());
                 }
@@ -89,12 +89,12 @@ namespace PL.Engineer
                     this.Close();
 
                 }
-                catch (BO.BlAlreadyExistsException ex)
+                catch (Exception ex)
                 {
                     MessageBox.Show("Operation failed :(, " + ex.ToString());
                 }
             }
-            
+
         }
     }
 }

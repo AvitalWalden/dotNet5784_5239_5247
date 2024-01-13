@@ -27,7 +27,7 @@
                       SelectedValue="{Binding Experience, Mode=TwoWay}"
                       Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectionChanged="ComboBox_SelectionExperience"/>
         </Grid>
-        <ListView Margin="5" Grid.Row="1" ItemsSource="{Binding EngineerList}">
+        <ListView Margin="5" Grid.Row="1" ItemsSource="{Binding EngineerList}" SelectionChanged="Update_Engineer">
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>

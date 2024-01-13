@@ -20,7 +20,7 @@
         <ComboBox ItemsSource="{Binding Source={StaticResource EngineerExperienceCollectionKey}}"
                   SelectedValue="{Binding Level, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" HorizontalAlignment="Left" Margin="437,214,0,0" VerticalAlignment="Top" Width="120"/>
         <!--add or update engineer-->
-        <Button Content="{Binding Id, Mode=OneTime, Converter={StaticResource ConverIdToContentKey}}" HorizontalAlignment="Center" Margin="0,353,0,0" VerticalAlignment="Top" Height="38" Width="80" Click="ButtonAddEngineer_Click"/>
+        <Button Content="{Binding Id, Mode=OneTime, Converter={StaticResource ConverIdToContentKey}}" HorizontalAlignment="Center" Margin="0,353,0,0" VerticalAlignment="Top" Height="38" Width="80" Click="ButtonAddOrUpdateEngineer_Click"/>
 
     </Grid>
 </Window>
