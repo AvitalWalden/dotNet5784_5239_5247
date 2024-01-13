@@ -26,12 +26,7 @@ namespace PL
             InitializeComponent();
         }
 
-        private void BtnEngineers_Click(object sender, RoutedEventArgs e)
-        {
-            new EngineerListWindow().Show();
-        }
-
-        private void BttnInitDB_Click(object sender, RoutedEventArgs e)
+        private void BtnInitDB_Click(object sender, RoutedEventArgs e)
         {
             MessageBoxResult result = MessageBox.Show("האם אתה בטוח שברצונך לבצע את האתחול?", "אישור אתחול", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
@@ -39,6 +34,11 @@ namespace PL
             {
                 DalTest.Initialization.Do();
             }
+        }
+
+        private void BtnEngineer_Click(object sender, RoutedEventArgs e)
+        {
+            new EngineerListWindow().Show();
         }
     }
 }

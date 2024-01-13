@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DO;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -61,5 +62,39 @@ namespace PL.Engineer
         public static readonly DependencyProperty CurrentEngineerProperty =
             DependencyProperty.Register("CurrentEngineer", typeof(ObservableCollection<BO.Engineer>), typeof(EngineerWindow), new PropertyMetadata(null));
 
+        private void ButtonAddEngineer_Click(object sender, RoutedEventArgs e)
+        {
+            if(false)
+            {
+                BO.Engineer engineer = CurrentEngineer[0];
+                try
+                {
+                    s_bl.Engineer.Create(engineer);
+                    MessageBox.Show("engineer created successfully");
+                    this.Close();
+
+                }
+                catch (BO.BlAlreadyExistsException ex)
+                {
+                    MessageBox.Show("Operation failed :(, " + ex.ToString());
+                }
+            }
+            else
+            {
+                BO.Engineer engineer = CurrentEngineer[0];
+                try
+                {
+                    s_bl.Engineer.Update(engineer);
+                    MessageBox.Show("engineer updated successfully");
+                    this.Close();
+
+                }
+                catch (BO.BlAlreadyExistsException ex)
+                {
+                    MessageBox.Show("Operation failed :(, " + ex.ToString());
+                }
+            }
+            
+        }
     }
 }

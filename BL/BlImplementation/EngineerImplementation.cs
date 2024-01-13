@@ -1,5 +1,4 @@
 ﻿using BlApi;
-using BO;
 
 namespace BlImplementation;
 
@@ -74,7 +73,7 @@ internal class EngineerImplementation : IEngineer
         if (doEngineer == null)
             throw new BO.BlDoesNotExistException($"Engineer with ID={id} does Not exist");
 
-        DO.Task? task = _dal.Task.ReadAll().FirstOrDefault(task => task?.EngineerId == id && Tools.CalculateStatusOfTask(task) != BO.Status.Done);
+        DO.Task? task = _dal.Task.ReadAll().FirstOrDefault(task => task?.EngineerId == id && BO.Tools.CalculateStatusOfTask(task) != BO.Status.Done);
         BO.TaskInEngineer? taskInEngineer;
         if (task == null)
         {
