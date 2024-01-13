@@ -19,10 +19,15 @@ namespace PL.Engineer
     /// <summary>
     /// Interaction logic for EngineerWindow.xaml
     /// </summary>
+    public enum ActionType
+    {
+        Create,
+        Update
+    }
     public partial class EngineerWindow : Window
     {
         static readonly BlApi.IBl s_bl = BlApi.Factory.Get();
-
+        public ActionType CurrentAction { get; private set; }
         public EngineerWindow(int Id = 0)
         {
             InitializeComponent();
@@ -33,10 +38,12 @@ namespace PL.Engineer
                 Email = "",
                 Level = BO.EngineerExperience.None
             };
+            CurrentAction = ActionType.Create;
             if (Id != 0)
             {
                 try
                 {
+                    CurrentAction = ActionType.Update;
                     if (s_bl.Engineer.Read(Id) == null)
                     {
                         throw new BO.BlAlreadyExistsException("This engineer does not exit");
@@ -64,7 +71,7 @@ namespace PL.Engineer
 
         private void ButtonAddOrUpdateEngineer_Click(object sender, RoutedEventArgs e)
         {
-            if (false)
+            if (CurrentAction == ActionType.Create)
             {
                 BO.Engineer engineer = CurrentEngineer[0];
                 try

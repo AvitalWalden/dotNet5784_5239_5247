@@ -51,7 +51,7 @@ namespace PL.Engineer
             new EngineerWindow().ShowDialog();
         }
 
-        private void Update_Engineer(object sender, SelectionChangedEventArgs e)
+        private void ListView_engineerToUpdate(object sender, SelectionChangedEventArgs e)
         {
             BO.Engineer? engineer = (sender as ListView)?.SelectedItem as BO.Engineer;
             new EngineerWindow(engineer!.Id).ShowDialog();
