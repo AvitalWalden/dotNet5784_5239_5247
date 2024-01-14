@@ -8,11 +8,11 @@
         DataContext="{Binding CurrentEngineer, RelativeSource={RelativeSource Self}, Mode=TwoWay}">
 
     <Grid>
-        <Label Content="Id" HorizontalAlignment="Left" Margin="303,73,0,0" VerticalAlignment="Top" Width="42"/>
-        <Label Content="Name" HorizontalAlignment="Left" Margin="303,116,0,0" VerticalAlignment="Top"/>
-        <Label Content="Email" HorizontalAlignment="Left" Margin="303,168,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.153,0.348" Width="75"/>
-        <Label Content="Level" HorizontalAlignment="Left" Margin="303,217,0,0" VerticalAlignment="Top" Width="75"/>
-        <Label Content="Cost" HorizontalAlignment="Left" Margin="303,276,0,0" VerticalAlignment="Top" RenderTransformOrigin="-3.789,3.784" Width="42"/>
+        <Label Content="Id" Margin="300,50,0,0"   Style="{StaticResource myLabelStyle}"/>
+        <Label Content="Name"  Margin="300,100,0,0"  Style="{StaticResource myLabelStyle}"/>
+        <Label Content="Email" Margin="300,150,0,0"  Style="{StaticResource myLabelStyle}"/>
+        <Label Content="Level" Margin="300,200,0,0"  Style="{StaticResource myLabelStyle}"/>
+        <Label Content="Cost" Margin="300,250,0,0" Style="{StaticResource myLabelStyle}"/>
         <TextBox Text="{Binding Id, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" HorizontalAlignment="Left" Margin="437,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" HorizontalAlignment="Left" Margin="437,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox Text="{Binding Email, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" HorizontalAlignment="Left" Margin="437,172,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.482,-0.677"/>
