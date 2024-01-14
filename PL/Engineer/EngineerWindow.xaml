@@ -8,15 +8,15 @@
         DataContext="{Binding CurrentEngineer, RelativeSource={RelativeSource Self}, Mode=TwoWay}">
 
     <Grid>
-        <Label Content="Id" Margin="300,50,0,0"   Style="{StaticResource myLabelStyle}"/>
-        <Label Content="Name"  Margin="300,100,0,0"  Style="{StaticResource myLabelStyle}"/>
-        <Label Content="Email" Margin="300,150,0,0"  Style="{StaticResource myLabelStyle}"/>
-        <Label Content="Level" Margin="300,200,0,0"  Style="{StaticResource myLabelStyle}"/>
-        <Label Content="Cost" Margin="300,250,0,0" Style="{StaticResource myLabelStyle}"/>
+        <Label Content="Id" Margin="300,50,0,0"/>
+        <Label Content="Name"  Margin="300,100,0,0"/>
+        <Label Content="Email" Margin="300,150,0,0"/>
+        <Label Content="Level" Margin="300,200,0,0"/>
+        <Label Content="Cost" Margin="300,250,0,0"/>
         <TextBox Text="{Binding Id, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" HorizontalAlignment="Left" Margin="437,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" HorizontalAlignment="Left" Margin="437,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox Text="{Binding Email, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" HorizontalAlignment="Left" Margin="437,172,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.482,-0.677"/>
-        <TextBox Text="{Binding Cost, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" HorizontalAlignment="Left" Margin="437,280,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox Text="{Binding Cost, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" HorizontalAlignment="Left" Margin="463,254,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <ComboBox ItemsSource="{Binding Source={StaticResource EngineerExperienceCollectionKey}}"
                   SelectedValue="{Binding Level, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" HorizontalAlignment="Left" Margin="437,214,0,0" VerticalAlignment="Top" Width="120"/>
         <!--add or update engineer-->
