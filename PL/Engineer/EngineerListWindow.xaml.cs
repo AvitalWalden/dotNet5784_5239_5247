@@ -21,12 +21,14 @@ namespace PL.Engineer
     public partial class EngineerListWindow : Window
     {
         static readonly BlApi.IBl s_bl = BlApi.Factory.Get();
+        //ObservableCollection<BO.Engineer> list;
+        
         public EngineerListWindow()
         {
             InitializeComponent();
             var temp = s_bl?.Engineer.ReadAll();
             EngineerList = temp == null ? new() : new(temp!);
-
+            //list = new ObservableCollection<BO.Engineer>(temp);
         }
 
         public ObservableCollection<BO.Engineer> EngineerList
