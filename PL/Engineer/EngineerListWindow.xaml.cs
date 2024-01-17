@@ -57,6 +57,11 @@ namespace PL.Engineer
         {
             BO.Engineer? engineer = (sender as ListView)?.SelectedItem as BO.Engineer;
             new EngineerWindow(engineer!.Id).ShowDialog();
+            var updatedEngineers = s_bl?.Engineer.ReadAll();
+            EngineerList = updatedEngineers == null ? new() : new(updatedEngineers!);
+
+            //// עדכון תצוגת ה-ListView
+            //ListView.UpdateLayout(Loaded);
         }
     }
 }

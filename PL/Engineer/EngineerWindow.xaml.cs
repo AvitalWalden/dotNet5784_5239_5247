@@ -1,4 +1,5 @@
-﻿using DO;
+﻿using BO;
+using DO;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -52,10 +53,11 @@ namespace PL.Engineer
                         engineer = s_bl.Engineer.Read(Id)!;
 
                 }
-                catch (Exception ex)
+                catch (BlAlreadyExistsException ex)
                 {
-                    MessageBox.Show(ex.ToString());
+                    MessageBox.Show(ex.Message, "error in create engineer", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
+
             }
             CurrentEngineer = new ObservableCollection<BO.Engineer> { engineer };
         }
@@ -81,9 +83,9 @@ namespace PL.Engineer
                     this.Close();
 
                 }
-                catch (Exception ex)
+                catch (BlInvalidValue ex)
                 {
-                    MessageBox.Show("Operation failed :(, " + ex.ToString());
+                    MessageBox.Show(ex.Message, "error in create engineer", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             else
@@ -96,9 +98,9 @@ namespace PL.Engineer
                     this.Close();
 
                 }
-                catch (Exception ex)
+                catch (BlInvalidValue ex)
                 {
-                    MessageBox.Show("Operation failed :(, " + ex.ToString());
+                    MessageBox.Show(ex.Message, "error in update engineer", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
 
