@@ -21,18 +21,42 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <!-- label for comboBox -->
-            <Label Content="Engineer experience" Grid.Column="0" HorizontalAlignment="Left" Margin="33,0,0,0" VerticalAlignment="Center"/>
+            <Label Content="Engineer experience" Grid.Column="0" Margin="33,0,0,0" VerticalAlignment="Center" Width="238"/>
             <!-- engineer expererience collection-->
             <ComboBox ItemsSource="{Binding Source={StaticResource EngineerExperienceCollectionKey}}" 
                       SelectedValue="{Binding Experience, Mode=TwoWay}"
                       Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectionChanged="ComboBox_SelectionExperience"/>
         </Grid>
         <ListView Margin="5" Grid.Row="1" ItemsSource="{Binding EngineerList}" SelectionChanged="ListView_engineerToUpdate">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn/>
-                </GridView>
-            </ListView.View>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <Border BorderBrush="Black" BorderThickness="0,0,0,1" Margin="0,0,0,10">
+                            <TextBlock Text="{Binding Name}" FontWeight="Bold" FontSize="16" />
+                        </Border>
+                        <TextBlock>
+                    <Run FontWeight="Bold" Text="Id: " />
+                    <Run Text="{Binding Id}" />
+                        </TextBlock>
+                        <!--<TextBlock>
+                    <Run FontWeight="Bold" Text="Name: " />
+                    <Run Text="{Binding Name}" />
+                        </TextBlock>-->
+                        <TextBlock>
+                    <Run FontWeight="Bold" Text="Email: " />
+                    <Run Text="{Binding Email}" />
+                        </TextBlock>
+                        <TextBlock>
+                    <Run FontWeight="Bold" Text="Level: " />
+                    <Run Text="{Binding Level}" />
+                        </TextBlock>
+                        <TextBlock>
+                    <Run FontWeight="Bold" Text="Cost: " />
+                    <Run Text="{Binding Cost}" />
+                        </TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
         </ListView>
         <Button Content="Add" Grid.Row="2" HorizontalAlignment="Center" Height="50" Width="100" Click="BtnAddEngineer_Click"/>
     </Grid>
