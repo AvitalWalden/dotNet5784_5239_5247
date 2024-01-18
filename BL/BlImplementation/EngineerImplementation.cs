@@ -38,7 +38,7 @@ internal class EngineerImplementation : IEngineer
             int idStud = _dal.Engineer.Create(doEngineer);
             return idStud;
         }
-        catch (BO.BlAlreadyExistsException ex)
+        catch (DO.DalAlreadyExistsException ex)
         {
             throw new BO.BlAlreadyExistsException($"Engineer with ID={boEngineer.Id} already exists", ex);
         }

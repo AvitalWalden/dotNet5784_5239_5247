@@ -31,11 +31,5 @@
             <Setter Property="VerticalAlignment" Value="Top" />
             <Setter Property="Height" Value="30"/>
         </Style>
-        <Style TargetType="ComboBox" BasedOn="{StaticResource commonStyle}">
-            <Setter Property="HorizontalAlignment" Value="Left" />
-            <Setter Property="Background" Value="White" />
-            <Setter Property="VerticalAlignment" Value="Top" />
-            <Setter Property="Height" Value="30"/>
-        </Style>
     </Application.Resources>
 </Application>

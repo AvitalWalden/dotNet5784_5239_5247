@@ -10,7 +10,7 @@
         <!-- list of engineer-->
         <Button Content="Handle Engineer" HorizontalAlignment="Left" Margin="460,0,0,0" VerticalAlignment="Center" Click="BtnEngineer_Click" Height="42" Width="141"/>
         <!-- Database initialization-->
-        <Button Content="Init DB" HorizontalAlignment="Left" Margin="259,0,0,0" VerticalAlignment="Center" Click="BtnInitDB_Click" Height="42" Width="61"/>
+        <Button Content="Init DB" HorizontalAlignment="Left" Margin="259,0,0,0" VerticalAlignment="Center" Click="BtnInitDB_Click" Height="42" Width="141"/>
 
     </Grid>
 </Window>

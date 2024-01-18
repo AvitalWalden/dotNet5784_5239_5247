@@ -21,14 +21,14 @@ namespace PL.Engineer
     public partial class EngineerListWindow : Window
     {
         static readonly BlApi.IBl s_bl = BlApi.Factory.Get();
-        //ObservableCollection<BO.Engineer> list;
         
         public EngineerListWindow()
         {
             InitializeComponent();
             var temp = s_bl?.Engineer.ReadAll();
             EngineerList = temp == null ? new() : new(temp!);
-            //list = new ObservableCollection<BO.Engineer>(temp);
+            Activated += EngineerListWindow_Activated;
+
         }
 
         public ObservableCollection<BO.Engineer> EngineerList
@@ -48,20 +48,34 @@ namespace PL.Engineer
             EngineerList = temp == null ? new() : new(temp!);//!
         }
 
+        /// <summary>
+        /// Add engineer to the DB
+        /// </summary>
         private void BtnAddEngineer_Click(object sender, RoutedEventArgs e)
         {
             new EngineerWindow().ShowDialog();
         }
 
+
+        /// <summary>
+        /// update a engineer
+        /// </summary>
         private void ListView_engineerToUpdate(object sender, SelectionChangedEventArgs e)
         {
-            BO.Engineer? engineer = (sender as ListView)?.SelectedItem as BO.Engineer;
-            new EngineerWindow(engineer!.Id).ShowDialog();
+            BO.Engineer? engineerInList = (sender as ListView)?.SelectedItem as BO.Engineer;
+            if (engineerInList != null)
+                new EngineerWindow(engineerInList.Id).ShowDialog();
+        }
+
+        /// <summary>
+        /// refresh the list view
+        /// </summary>
+        private void EngineerListWindow_Activated(object? sender, EventArgs e)
+        {
+            var temp = s_bl?.Engineer.ReadAll();
+            EngineerList = (temp == null) ? new() : new(temp!);
             var updatedEngineers = s_bl?.Engineer.ReadAll();
             EngineerList = updatedEngineers == null ? new() : new(updatedEngineers!);
-
-            //// עדכון תצוגת ה-ListView
-            //ListView.UpdateLayout(Loaded);
         }
     }
 }

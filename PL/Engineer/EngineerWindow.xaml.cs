@@ -71,6 +71,11 @@ namespace PL.Engineer
         public static readonly DependencyProperty CurrentEngineerProperty =
             DependencyProperty.Register("CurrentEngineer", typeof(ObservableCollection<BO.Engineer>), typeof(EngineerWindow), new PropertyMetadata(null));
 
+
+
+        /// <summary>
+        /// add or update engineer
+        /// </summary>
         private void ButtonAddOrUpdateEngineer_Click(object sender, RoutedEventArgs e)
         {
             if (CurrentAction == ActionType.Create)
@@ -79,11 +84,15 @@ namespace PL.Engineer
                 try
                 {
                     s_bl.Engineer.Create(engineer);
-                    MessageBox.Show("engineer created successfully");
+                    MessageBox.Show("engineer created successfully", "create engineer", MessageBoxButton.OK, MessageBoxImage.Information);
                     this.Close();
 
                 }
                 catch (BlInvalidValue ex)
+                {
+                    MessageBox.Show(ex.Message, "error in create engineer", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch(BlAlreadyExistsException ex)
                 {
                     MessageBox.Show(ex.Message, "error in create engineer", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
@@ -94,7 +103,7 @@ namespace PL.Engineer
                 try
                 {
                     s_bl.Engineer.Update(engineer);
-                    MessageBox.Show("engineer updated successfully");
+                    MessageBox.Show("engineer updated successfully","update engineer", MessageBoxButton.OK, MessageBoxImage.Information);
                     this.Close();
 
                 }
