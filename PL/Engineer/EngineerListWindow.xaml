@@ -21,7 +21,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <!-- label for comboBox -->
-            <Label Content="Label" Grid.Column="0" HorizontalAlignment="Left" Margin="33,0,0,0" VerticalAlignment="Center"/>
+            <Label Content="Engineer experience" Grid.Column="0" HorizontalAlignment="Left" Margin="33,0,0,0" VerticalAlignment="Center"/>
             <!-- engineer expererience collection-->
             <ComboBox ItemsSource="{Binding Source={StaticResource EngineerExperienceCollectionKey}}" 
                       SelectedValue="{Binding Experience, Mode=TwoWay}"
