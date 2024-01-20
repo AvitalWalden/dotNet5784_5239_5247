@@ -9,7 +9,7 @@
         <local:ConvertIdToContent x:Key="ConverIdToContentKey"/>
         <Style x:Key="commonStyle" TargetType="Control">
             <Setter Property="FontSize" Value="15" />
-            <Setter Property="FontFamily" Value="Consolas" />
+            <Setter Property="FontFamily" Value="Roboto" />
             <Setter Property="Width" Value="150"/>
         </Style>
         <Style TargetType="Label" BasedOn="{StaticResource commonStyle}" >
