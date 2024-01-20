@@ -8,9 +8,10 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <!-- list of engineer-->
-        <Button Content="Handle Engineer" HorizontalAlignment="Left" Margin="460,0,0,0" VerticalAlignment="Center" Click="BtnEngineer_Click" Height="42" Width="141"/>
+        <Button Content="Handle Engineer" HorizontalAlignment="Left" Margin="483,36,0,0" Click="BtnEngineer_Click" Height="42" Width="141" Background="White"/>
         <!-- Database initialization-->
-        <Button Content="Init DB" HorizontalAlignment="Left" Margin="259,0,0,0" VerticalAlignment="Center" Click="BtnInitDB_Click" Height="42" Width="141"/>
+        <Button Content="Init DB" HorizontalAlignment="Left" Margin="174,36,0,0" Click="BtnInitDB_Click" Height="42" Width="141" Background="White" RenderTransformOrigin="0.467,-0.976"/>
+        <Image HorizontalAlignment="Center" Height="321" Margin="0,103,0,0" VerticalAlignment="Top" Width="584" Source="/9167.jpg"/>
 
     </Grid>
 </Window>

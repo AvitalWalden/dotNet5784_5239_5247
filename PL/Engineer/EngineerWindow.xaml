@@ -20,5 +20,6 @@
                   SelectedValue="{Binding Level, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  Margin="400,200,0,0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top" Height="30" Width="150"/>
         <!--add or update engineer-->
         <Button Content="{Binding Id, Mode=OneTime, Converter={StaticResource ConverIdToContentKey}}" Click="ButtonAddOrUpdateEngineer_Click" Margin="0,320,0,0" />
+        <Image HorizontalAlignment="Left" Height="147" Margin="18,267,0,0" VerticalAlignment="Top" Width="263" Source="/9167.jpg"/>
     </Grid>
 </Window>
