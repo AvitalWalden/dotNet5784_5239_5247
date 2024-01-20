@@ -30,7 +30,7 @@
         <ListView Margin="5" Grid.Row="1" ItemsSource="{Binding EngineerList}" SelectionChanged="ListView_engineerToUpdate">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel>
+                    <StackPanel Margin="0,0,0,10">
                         <Border BorderBrush="Black" BorderThickness="0,0,0,1" Margin="0,0,0,10">
                             <TextBlock Text="{Binding Name}" FontWeight="Bold" FontSize="16" />
                         </Border>
