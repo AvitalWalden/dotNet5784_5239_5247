@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PL.Engineer"
         mc:Ignorable="d"
         Title="EngineerListWindow" Height="640" Width="800"
-        DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}">
+        DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}" Activated="EngineerListWindow_Activated">
     <!--Extrnal Grid-->
     <Grid Margin="0,0,0,6">
         <Grid.RowDefinitions>

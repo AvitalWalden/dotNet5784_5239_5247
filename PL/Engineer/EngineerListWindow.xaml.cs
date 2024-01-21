@@ -27,8 +27,6 @@ namespace PL.Engineer
             InitializeComponent();
             var temp = s_bl?.Engineer.ReadAll();
             EngineerList = temp == null ? new() : new(temp!);
-            Activated += EngineerListWindow_Activated;
-
         }
 
         public ObservableCollection<BO.Engineer> EngineerList
@@ -70,7 +68,7 @@ namespace PL.Engineer
         /// <summary>
         /// refresh the list view
         /// </summary>
-        private void EngineerListWindow_Activated(object? sender, EventArgs e)
+        private void EngineerListWindow_Activated(object sender, EventArgs e)
         {
             var temp = s_bl?.Engineer.ReadAll();
             EngineerList = (temp == null) ? new() : new(temp!);
