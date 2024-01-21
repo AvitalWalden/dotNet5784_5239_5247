@@ -20,7 +20,6 @@ internal class TaskImplementation : ITask
     // This method is used to delete a Task by ID
     public void Delete(int id)
     {
-        //מחיקה מה לעשות בBO אם כאן עושים את זה
         Task? taskToDelete = Read(id);
         var isMilstone = ReadAll(task => task.IsMilestone);
         if (isMilstone.Count() > 0)
