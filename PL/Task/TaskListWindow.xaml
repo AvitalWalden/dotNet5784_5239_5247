@@ -5,8 +5,81 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL.Task"
         mc:Ignorable="d"
-        Title="TaskListWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="TaskListWindow" Height="600" Width="800">
+    <Grid Margin="0,0,0,6">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="500*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <!--Internal, Upper Grid-->
+        <Grid HorizontalAlignment="Stretch" Height="auto" Grid.Row="0" VerticalAlignment="Stretch" Width="auto">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <!-- label for comboBox -->
+            <Label Content="Engineer's task experience:" Grid.Column="0" Margin="33,0,0,0" VerticalAlignment="Center" Width="287"/>
+            <!-- engineer expererience collection-->
+            <ComboBox ItemsSource="{Binding Source={StaticResource EngineerExperienceCollectionKey}}" 
+                   SelectedValue="{Binding ComplexityLevel, Mode=TwoWay}"
+                   Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectionChanged="ComboBox_SelectionExperience"/>
+        </Grid>
+        <ListView Margin="5" Grid.Row="1" ItemsSource="{Binding TaskList}" MouseDoubleClick="ListView_taskToUpdate">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Margin="0,0,0,10">
+                        <Border BorderBrush="Black" BorderThickness="0,0,0,1" Margin="0,0,0,10">
+                            <TextBlock Text="{Binding Alias}" FontWeight="Bold" FontSize="16" />
+                        </Border>
+                        <TextBlock>
+                 <Run FontWeight="Bold" Text="Id: " />
+                 <Run Text="{Binding Id}" />
+                        </TextBlock>
+                        <TextBlock>
+                 <Run FontWeight="Bold" Text="Description: " />
+                 <Run Text="{Binding Description}" />
+                        </TextBlock>
+                        <TextBlock>
+                 <Run FontWeight="Bold" Text="CreatedAtDate: " />
+                 <Run Text="{Binding CreatedAtDate}" />
+                        </TextBlock>
+                        <TextBlock>
+                 <Run FontWeight="Bold" Text="RequiredEffortTime: " />
+                 <Run Text="{Binding RequiredEffortTime}" />
+                        </TextBlock>
+                        <TextBlock>
+                 <Run FontWeight="Bold" Text="ScheduledStartDate: " />
+                 <Run Text="{Binding ScheduledStartDate}" />
+                        </TextBlock>
+                        <TextBlock>
+                 <Run FontWeight="Bold" Text="StartDate: " />
+                 <Run Text="{Binding StartDate}" />
+                        </TextBlock>
+                        <TextBlock>
+                 <Run FontWeight="Bold" Text="DeadlineDate: " />
+                 <Run Text="{Binding DeadlineDate}" />
+                        </TextBlock>
+                        <TextBlock>
+                 <Run FontWeight="Bold" Text="CompleteDate: " />
+                 <Run Text="{Binding CompleteDate}" />
+                        </TextBlock>
+                        <TextBlock>
+                 <Run FontWeight="Bold" Text="Deliverables: " />
+                 <Run Text="{Binding Deliverables}" />
+                        </TextBlock>
+                        <TextBlock>
+                 <Run FontWeight="Bold" Text="Remarks: " />
+                 <Run Text="{Binding Remarks}" />
+                        </TextBlock>
+                        <TextBlock>
+                 <Run FontWeight="Bold" Text="ComplexityLevel: " />
+                 <Run Text="{Binding ComplexityLevel}" />
+                        </TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Button Content="Add" Grid.Row="2" HorizontalAlignment="Center" Height="50" Width="100" Click="BtnAddTask_Click"/>
     </Grid>
 </Window>
