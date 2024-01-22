@@ -5,8 +5,32 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL.Task"
         mc:Ignorable="d"
-        Title="TaskWindow" Height="450" Width="800">
+        Title="TaskWindow" Height="600" Width="800">
     <Grid>
-        
+        <Label Content="Id" Margin="300,20,0,0"/>
+        <Label Content="Alias"  Margin="300,50,0,0"/>
+        <Label Content="Description" Margin="300,80,0,0"/>
+        <Label Content="CreatedAtDate" Margin="300,110,0,0"/>
+        <Label Content="Status" Margin="300,140,0,0"/>
+        <Label Content="Dependencies" Margin="300,170,0,0"/>
+        <Label Content="RequiredEffortTime" Margin="300,200,0,0"/>
+        <Label Content="Milestone" Margin="300,230,0,0"/>
+        <Label Content="ScheduledStartDate" Margin="300,260,0,0"/>
+        <Label Content="StartDate" Margin="300,290,0,0"/>
+        <Label Content="DeadlineDate" Margin="300,320,0,0"/>
+        <Label Content="CompleteDate" Margin="300,350,0,0"/>
+        <Label Content="Deliverables" Margin="300,380,0,0"/>
+        <Label Content="Remarks" Margin="300,410,0,0"/>
+        <Label Content="Engineer" Margin="300,440,0,0"/>
+        <Label Content="ComplexityLevel" Margin="300,470,0,0" Width="170"/>
+        <TextBox Text="{Binding Id, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" IsEnabled="{Binding Path=Id, Mode=OneTime, Converter={StaticResource ConvertIdToIsEnableKey}}" Margin="484,30,0,0" MaxLength="9" PreviewKeyDown="IdOrCost_PreviewKeyDown"/>
+        <TextBox Text="{Binding Alias, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Margin="484,80,0,0"/>
+        <TextBox Text="{Binding Description, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Margin="484,130,0,0"/>
+        <TextBox Text="{Binding CreatedAtDate, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Margin="484,230,0,0"/>
+        <ComboBox ItemsSource="{Binding Source={StaticResource EngineerExperienceCollectionKey}}"
+           SelectedValue="{Binding Level, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  Margin="484,180,0,0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top" Height="30" Width="150"/>
+        <!--add or update engineer-->
+        <Button Content="{Binding Id, Mode=OneTime, Converter={StaticResource ConverIdToContentKey}}" Margin="0,509,0,0" RenderTransformOrigin="0.51,4.471" Click="ButtonAddOrUpdateTask_Click"/>
+
     </Grid>
 </Window>
