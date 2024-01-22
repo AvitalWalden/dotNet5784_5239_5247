@@ -5,6 +5,7 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <local:EngineerExperienceCollection x:Key="EngineerExperienceCollectionKey" />
+        <local:StatusCollection x:Key="StatusCollectionKey" />
         <local:ConvertIdToIsEnable x:Key="ConvertIdToIsEnableKey"/>
         <local:ConvertIdToContent x:Key="ConverIdToContentKey"/>
         
@@ -14,8 +15,7 @@
             <Setter Property="Width" Value="150"/>
         </Style>
         <Style TargetType="Label" BasedOn="{StaticResource commonStyle}" >
-            <Setter Property="FontSize" Value="20"/>
-            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="15"/>
             <Setter Property="VerticalAlignment" Value="Top"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
         </Style>
@@ -30,7 +30,7 @@
             <Setter Property="HorizontalAlignment" Value="Left" />
             <Setter Property="TextWrapping" Value="Wrap" />
             <Setter Property="VerticalAlignment" Value="Top" />
-            <Setter Property="Height" Value="30"/>
+            <Setter Property="Height" Value="25"/>
         </Style>
     </Application.Resources>
 </Application>

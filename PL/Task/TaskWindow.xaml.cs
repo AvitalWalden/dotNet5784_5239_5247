@@ -41,6 +41,7 @@ namespace PL.Task
                 Description = "",
                 Alias = "",
                 CreatedAtDate = DateTime.Now,
+                Status = BO.Status.Unscheduled
             };
             CurrentAction = ActionType.Create;
             if (Id != 0)
