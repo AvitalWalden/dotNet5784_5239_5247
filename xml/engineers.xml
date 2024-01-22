@@ -181,15 +181,7 @@
     <Name>Tali Rubin</Name>
     <Email>Chaim@gmail.com</Email>
     <Level>Competent</Level>
-    <Cost>250</Cost>
-    <Active>true</Active>
-  </Engineer>
-  <Engineer>
-    <Id>234567654</Id>
-    <Name>c</Name>
-    <Email>c@gmail.com</Email>
-    <Level>Competent</Level>
-    <Cost>128</Cost>
+    <Cost>230</Cost>
     <Active>true</Active>
   </Engineer>
 </ArrayOfEngineer>

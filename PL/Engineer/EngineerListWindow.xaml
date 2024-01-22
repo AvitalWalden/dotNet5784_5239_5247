@@ -9,13 +9,17 @@
         DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}" Activated="EngineerListWindow_Activated">
     <!--Extrnal Grid-->
     <Grid Margin="0,0,0,6">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="417*"/>
+            <ColumnDefinition Width="383*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="40*"/>
             <RowDefinition Height="500*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <!--Internal, Upper Grid-->
-        <Grid HorizontalAlignment="Stretch" Height="auto" Grid.Row="0" VerticalAlignment="Stretch" Width="auto">
+        <Grid Height="auto" Grid.Row="0" Width="auto" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -27,7 +31,7 @@
                       SelectedValue="{Binding Experience, Mode=TwoWay}"
                       Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectionChanged="ComboBox_SelectionExperience"/>
         </Grid>
-        <ListView Margin="5" Grid.Row="1" ItemsSource="{Binding EngineerList}" MouseDoubleClick="ListView_engineerToUpdate">
+        <ListView Margin="5,5,5,5" Grid.Row="1" ItemsSource="{Binding EngineerList}" MouseDoubleClick="ListView_engineerToUpdate" Grid.ColumnSpan="2">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Margin="0,0,0,10">
@@ -58,6 +62,6 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Button Content="Add" Grid.Row="2" HorizontalAlignment="Center" Height="50" Width="100" Click="BtnAddEngineer_Click"/>
+        <Button Content="Add" Grid.Row="2" HorizontalAlignment="Left" Height="50" Width="100" Click="BtnAddEngineer_Click" Grid.ColumnSpan="2" Margin="350,0,0,0" VerticalAlignment="Center"/>
     </Grid>
 </Window>

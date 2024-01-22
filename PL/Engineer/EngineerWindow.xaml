@@ -12,7 +12,7 @@
         <Label Content="Email" Margin="300,119,0,0"/>
         <Label Content="Level" Margin="300,169,0,0"/>
         <Label Content="Cost" Margin="300,219,0,0"/>
-        <Label Content="Task" Margin="300,269,0,0"/>
+        <Label Content="Task" Margin="300,269,0,0" Visibility="{Binding Id, Mode=OneTime, Converter={StaticResource ConvertIdVisibilityKey}}"/>
         <TextBox Text="{Binding Id, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" IsEnabled="{Binding Path=Id, Mode=OneTime, Converter={StaticResource ConvertIdToIsEnableKey}}" Margin="400,19,0,0" MaxLength="9" PreviewKeyDown="IdOrCost_PreviewKeyDown"/>
         <TextBox Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Margin="400,69,0,0"/>
         <TextBox Text="{Binding Email, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Margin="400,119,0,0"/>
@@ -23,15 +23,9 @@
         <Button Content="{Binding Id, Mode=OneTime, Converter={StaticResource ConverIdToContentKey}}" Click="ButtonAddOrUpdateEngineer_Click" Margin="0,362,0,0"/>
         <!--image-->
         <Image HorizontalAlignment="Left" Height="147" Margin="18,267,0,0" VerticalAlignment="Top" Width="263" Source="/9167.jpg"/>
-        <ListBox ItemsSource="{Binding Task, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Margin="400,267,164,94" SelectionMode="Multiple">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel>
-                        <TextBox Text="{Binding Id, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" />
-                        <TextBox Text="{Binding Alias, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" />
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+        <!--task to this engineer-->
+        <TextBox TextWrapping="Wrap" Visibility="{Binding Path=Id, Mode=OneTime, Converter={StaticResource ConvertIdVisibilityKey}}"
+         Text="{Binding Task.Alias, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"
+         Margin="400,267,0,0" IsEnabled="False"/>
     </Grid>
 </Window>

@@ -7,7 +7,8 @@
         <local:EngineerExperienceCollection x:Key="EngineerExperienceCollectionKey" />
         <local:ConvertIdToIsEnable x:Key="ConvertIdToIsEnableKey"/>
         <local:ConvertIdToContent x:Key="ConverIdToContentKey"/>
-        
+        <local:ConvertIdVisibility x:Key="ConvertIdVisibilityKey"/>
+
         <Style x:Key="commonStyle" TargetType="Control">
             <Setter Property="FontSize" Value="15" />
             <Setter Property="FontFamily" Value="Roboto" />

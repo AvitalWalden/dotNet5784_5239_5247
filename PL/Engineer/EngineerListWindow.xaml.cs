@@ -62,8 +62,8 @@ namespace PL.Engineer
         {
             var temp = s_bl?.Engineer.ReadAll();
             EngineerList = (temp == null) ? new() : new(temp!);
-            var updatedEngineers = s_bl?.Engineer.ReadAll();
-            EngineerList = updatedEngineers == null ? new() : new(updatedEngineers!);
+            var updatedEngineer = s_bl?.Engineer.ReadAll();
+            EngineerList = updatedEngineer == null ? new() : new(updatedEngineer!);
         }
 
         /// <summary>
