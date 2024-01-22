@@ -8,10 +8,12 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <!-- list of engineer-->
-        <Button Content="Handle Engineer" HorizontalAlignment="Left" Margin="483,36,0,0" Click="BtnEngineer_Click" Height="42" Width="141" Background="#FFFFC9C9"/>
+        <Button Content="Handle Engineer" HorizontalAlignment="Left" Margin="587,36,0,0" Click="BtnEngineer_Click" Height="42" Width="141" />
         <!-- Database initialization-->
-        <Button Content="Init DB" HorizontalAlignment="Left" Margin="174,36,0,0" Click="BtnInitDB_Click" Height="42" Width="141" Background="#FFFFC9C9" RenderTransformOrigin="0.467,-0.976"/>
+        <Button Content="Init DB" HorizontalAlignment="Left" Margin="93,36,0,0" Click="BtnInitDB_Click" Height="42" Width="141" RenderTransformOrigin="0.467,-0.976"/>
         <Image HorizontalAlignment="Center" Height="321" Margin="0,103,0,0" VerticalAlignment="Top" Width="584" Source="/9167.jpg"/>
+        <!-- list of task-->
+        <Button Content="Handle Task" Margin="0,36,0,0" Height="42" Width="140" RenderTransformOrigin="0.467,-0.976"/>
 
     </Grid>
 </Window>

@@ -7,6 +7,7 @@
         <local:EngineerExperienceCollection x:Key="EngineerExperienceCollectionKey" />
         <local:ConvertIdToIsEnable x:Key="ConvertIdToIsEnableKey"/>
         <local:ConvertIdToContent x:Key="ConverIdToContentKey"/>
+        
         <Style x:Key="commonStyle" TargetType="Control">
             <Setter Property="FontSize" Value="15" />
             <Setter Property="FontFamily" Value="Roboto" />
@@ -19,7 +20,7 @@
             <Setter Property="HorizontalAlignment" Value="Left"/>
         </Style>
         <Style TargetType="Button" BasedOn="{StaticResource commonStyle}">
-            <Setter Property="Background" Value="White"/>
+            <Setter Property="Background" Value="#FFFFC9C9"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="VerticalAlignment" Value="Top" />
             <Setter Property="Height" Value="40"/>
