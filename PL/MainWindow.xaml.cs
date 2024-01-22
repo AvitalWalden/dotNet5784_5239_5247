@@ -1,4 +1,5 @@
 ﻿using PL.Engineer;
+using PL.Task;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,7 +29,7 @@ namespace PL
 
         private void BtnInitDB_Click(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult result = MessageBox.Show("האם אתה בטוח שברצונך לבצע את האתחול?", "אישור אתחול", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            MessageBoxResult result = MessageBox.Show("Are you sure you want to reboot?", "boot confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
             if (result == MessageBoxResult.Yes)
             {
@@ -36,9 +37,14 @@ namespace PL
             }
         }
 
-        private void BtnEngineer_Click(object sender, RoutedEventArgs e)
+        private void BtnEngineers_Click(object sender, RoutedEventArgs e)
         {
             new EngineerListWindow().Show();
+        }
+
+        private void BtnTasks_Click(object sender, RoutedEventArgs e)
+        {
+            new TaskListWindow().Show();
         }
     }
 }

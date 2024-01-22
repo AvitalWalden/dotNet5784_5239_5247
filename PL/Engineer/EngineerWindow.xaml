@@ -23,12 +23,12 @@
         <Button Content="{Binding Id, Mode=OneTime, Converter={StaticResource ConverIdToContentKey}}" Click="ButtonAddOrUpdateEngineer_Click" Margin="0,362,0,0"/>
         <!--image-->
         <Image HorizontalAlignment="Left" Height="147" Margin="18,267,0,0" VerticalAlignment="Top" Width="263" Source="/9167.jpg"/>
-        <ListBox ItemsSource="{Binding Task, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Margin="400,267,250,94" SelectionMode="Multiple">
+        <ListBox ItemsSource="{Binding Task, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Margin="400,267,164,94" SelectionMode="Multiple">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
-                        <TextBox Text="{Binding Id, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Margin="400,300,0,0"/>
-                        <TextBox Text="{Binding Alias, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Margin="400,500,0,0"/>
+                        <TextBox Text="{Binding Id, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" />
+                        <TextBox Text="{Binding Alias, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" />
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
