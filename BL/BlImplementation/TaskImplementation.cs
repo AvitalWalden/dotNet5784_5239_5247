@@ -1,5 +1,4 @@
 ﻿using BlApi;
-using BO;
 using System.Xml.Linq;
 
 namespace BlImplementation;
@@ -257,7 +256,7 @@ internal class TaskImplementation : ITask
             }
             if (boTask.Dependencies != null)
             {
-                foreach (TaskInList doDependency in boTask.Dependencies)
+                foreach (BO.TaskInList doDependency in boTask.Dependencies)
                 {
                     DO.Dependency doDepend = new DO.Dependency(0, boTask.Id, doDependency.Id);
                     int idDependency = _dal.Dependency.Create(doDepend);
@@ -308,6 +307,4 @@ internal class TaskImplementation : ITask
             throw new BO.BlDoesNotExistException(ex.Message, ex);
         }
     }
-
-
 }
