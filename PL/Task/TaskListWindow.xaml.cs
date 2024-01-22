@@ -75,7 +75,9 @@ namespace PL.Task
         {
             BO.Task? taskInList = (sender as ListView)?.SelectedItem as BO.Task;
             if (taskInList != null)
-                new EngineerWindow(taskInList.Id).ShowDialog();
+                new TaskWindow().ShowDialog();
+
+            //new TaskWindow(taskInList.Id).ShowDialog();
         }
     }
 }
