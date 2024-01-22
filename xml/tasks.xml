@@ -4,7 +4,7 @@
     <Id>0</Id>
     <Description>תכנון הבנייה על פי ייעוד ודרישות הבנין</Description>
     <Alias>ארגון ותכנון הבניה</Alias>
-    <CreatedAtDate>2024-01-16T16:02:18.6586997+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-01-22T12:56:48.0295135+02:00</CreatedAtDate>
     <RequiredEffort>P1D</RequiredEffort>
     <IsMilestone>false</IsMilestone>
     <StartDate xsi:nil="true" />
@@ -21,7 +21,7 @@
     <Id>1</Id>
     <Description>הבטחת מימון פרויקט הבניה</Description>
     <Alias>מימון</Alias>
-    <CreatedAtDate>2024-01-16T16:02:18.6645127+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-01-22T12:56:48.0376188+02:00</CreatedAtDate>
     <RequiredEffort>P1D</RequiredEffort>
     <IsMilestone>false</IsMilestone>
     <StartDate xsi:nil="true" />
@@ -38,7 +38,7 @@
     <Id>2</Id>
     <Description>רכישת הקרקע</Description>
     <Alias>רכישת הנכס</Alias>
-    <CreatedAtDate>2024-01-16T16:02:18.6666642+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-01-22T12:56:48.039523+02:00</CreatedAtDate>
     <RequiredEffort>P1D</RequiredEffort>
     <IsMilestone>false</IsMilestone>
     <StartDate xsi:nil="true" />
@@ -55,7 +55,7 @@
     <Id>3</Id>
     <Description>בקשת אישורים נחוצים לצורך הבנייה</Description>
     <Alias>אישורים לפרויקט הבנייה</Alias>
-    <CreatedAtDate>2024-01-16T16:02:18.6683766+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-01-22T12:56:48.0410843+02:00</CreatedAtDate>
     <RequiredEffort>P1D</RequiredEffort>
     <IsMilestone>false</IsMilestone>
     <StartDate xsi:nil="true" />
@@ -72,7 +72,7 @@
     <Id>4</Id>
     <Description>פגישות עם האדריכל או צוות העיצוב ליצירת תוכנית עבודה</Description>
     <Alias>עיצוב</Alias>
-    <CreatedAtDate>2024-01-16T16:02:18.6699649+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-01-22T12:56:48.042606+02:00</CreatedAtDate>
     <RequiredEffort>P1D</RequiredEffort>
     <IsMilestone>false</IsMilestone>
     <StartDate xsi:nil="true" />
@@ -89,7 +89,7 @@
     <Id>5</Id>
     <Description>התחלת הכנת האתר על ידי פינוי המקום</Description>
     <Alias>פינוי האתר</Alias>
-    <CreatedAtDate>2024-01-16T16:02:18.6722631+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-01-22T12:56:48.0440691+02:00</CreatedAtDate>
     <RequiredEffort>P1D</RequiredEffort>
     <IsMilestone>false</IsMilestone>
     <StartDate xsi:nil="true" />
@@ -106,7 +106,7 @@
     <Id>6</Id>
     <Description>דירוג הקרקע והכנתה לבניה</Description>
     <Alias>דירוג</Alias>
-    <CreatedAtDate>2024-01-16T16:02:18.6738097+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-01-22T12:56:48.0455704+02:00</CreatedAtDate>
     <RequiredEffort>P1D</RequiredEffort>
     <IsMilestone>false</IsMilestone>
     <StartDate xsi:nil="true" />
@@ -123,7 +123,7 @@
     <Id>7</Id>
     <Description>חפירת הקרקע</Description>
     <Alias>חפירות</Alias>
-    <CreatedAtDate>2024-01-16T16:02:18.6758931+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-01-22T12:56:48.0471325+02:00</CreatedAtDate>
     <RequiredEffort>P1D</RequiredEffort>
     <IsMilestone>false</IsMilestone>
     <StartDate xsi:nil="true" />
@@ -140,7 +140,7 @@
     <Id>8</Id>
     <Description>יצירת מתווה סימון</Description>
     <Alias>מדידות</Alias>
-    <CreatedAtDate>2024-01-16T16:02:18.6777357+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-01-22T12:56:48.0492079+02:00</CreatedAtDate>
     <RequiredEffort>P1D</RequiredEffort>
     <IsMilestone>false</IsMilestone>
     <StartDate xsi:nil="true" />
@@ -157,7 +157,7 @@
     <Id>9</Id>
     <Description>יציקת השלד של המבנה</Description>
     <Alias>יציקות</Alias>
-    <CreatedAtDate>2024-01-16T16:02:18.6795977+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-01-22T12:56:48.0517928+02:00</CreatedAtDate>
     <RequiredEffort>P1D</RequiredEffort>
     <IsMilestone>false</IsMilestone>
     <StartDate xsi:nil="true" />
@@ -174,7 +174,7 @@
     <Id>10</Id>
     <Description>בנית קירות חוץ</Description>
     <Alias>קירות בנין חיצוניות</Alias>
-    <CreatedAtDate>2024-01-16T16:02:18.6813591+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-01-22T12:56:48.0535781+02:00</CreatedAtDate>
     <RequiredEffort>P1D</RequiredEffort>
     <IsMilestone>false</IsMilestone>
     <StartDate xsi:nil="true" />
@@ -191,7 +191,7 @@
     <Id>11</Id>
     <Description>בנית קירות פנים</Description>
     <Alias>קירות בנין פנימיות</Alias>
-    <CreatedAtDate>2024-01-16T16:02:18.6831406+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-01-22T12:56:48.0553668+02:00</CreatedAtDate>
     <RequiredEffort>P1D</RequiredEffort>
     <IsMilestone>false</IsMilestone>
     <StartDate xsi:nil="true" />
@@ -208,7 +208,7 @@
     <Id>12</Id>
     <Description>בנית מערכות בנין</Description>
     <Alias>מערכות בנין</Alias>
-    <CreatedAtDate>2024-01-16T16:02:18.6849972+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-01-22T12:56:48.0573635+02:00</CreatedAtDate>
     <RequiredEffort>P1D</RequiredEffort>
     <IsMilestone>false</IsMilestone>
     <StartDate xsi:nil="true" />
@@ -225,7 +225,7 @@
     <Id>13</Id>
     <Description>טיוח הקירות</Description>
     <Alias>טיוח קירות</Alias>
-    <CreatedAtDate>2024-01-16T16:02:18.6868403+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-01-22T12:56:48.0592802+02:00</CreatedAtDate>
     <RequiredEffort>P1D</RequiredEffort>
     <IsMilestone>false</IsMilestone>
     <StartDate xsi:nil="true" />
@@ -242,7 +242,7 @@
     <Id>14</Id>
     <Description>ריצוף הבנין והדירות</Description>
     <Alias>ריצוף</Alias>
-    <CreatedAtDate>2024-01-16T16:02:18.6886498+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-01-22T12:56:48.061078+02:00</CreatedAtDate>
     <RequiredEffort>P1D</RequiredEffort>
     <IsMilestone>false</IsMilestone>
     <StartDate xsi:nil="true" />
@@ -259,7 +259,7 @@
     <Id>15</Id>
     <Description>התקנת פתחים חלונות ודלתות</Description>
     <Alias>התקנת הפתחים</Alias>
-    <CreatedAtDate>2024-01-16T16:02:18.6904058+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-01-22T12:56:48.0628994+02:00</CreatedAtDate>
     <RequiredEffort>P1D</RequiredEffort>
     <IsMilestone>false</IsMilestone>
     <StartDate xsi:nil="true" />
@@ -276,7 +276,7 @@
     <Id>16</Id>
     <Description>התקנת כלי עזר נחוצים</Description>
     <Alias>כלי עזר לבנין</Alias>
-    <CreatedAtDate>2024-01-16T16:02:18.6921734+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-01-22T12:56:48.0651968+02:00</CreatedAtDate>
     <RequiredEffort>P1D</RequiredEffort>
     <IsMilestone>false</IsMilestone>
     <StartDate xsi:nil="true" />
@@ -293,7 +293,7 @@
     <Id>17</Id>
     <Description>בדיקות כדי להבטיח עמידה בקודי בניה ובתקנות</Description>
     <Alias>בדיקות</Alias>
-    <CreatedAtDate>2024-01-16T16:02:18.6940805+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-01-22T12:56:48.0672935+02:00</CreatedAtDate>
     <RequiredEffort>P1D</RequiredEffort>
     <IsMilestone>false</IsMilestone>
     <StartDate xsi:nil="true" />
@@ -310,7 +310,7 @@
     <Id>18</Id>
     <Description>נקיון יסוד של האתר בניה</Description>
     <Alias>נקיון אתר הבנייה</Alias>
-    <CreatedAtDate>2024-01-16T16:02:18.695978+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-01-22T12:56:48.069445+02:00</CreatedAtDate>
     <RequiredEffort>P1D</RequiredEffort>
     <IsMilestone>false</IsMilestone>
     <StartDate xsi:nil="true" />
@@ -327,7 +327,7 @@
     <Id>19</Id>
     <Description>נקיון הבנין מהבניה</Description>
     <Alias>נקיון הבנין והדירות</Alias>
-    <CreatedAtDate>2024-01-16T16:02:18.6980532+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-01-22T12:56:48.071555+02:00</CreatedAtDate>
     <RequiredEffort>P1D</RequiredEffort>
     <IsMilestone>false</IsMilestone>
     <StartDate xsi:nil="true" />
@@ -344,7 +344,7 @@
     <Id>20</Id>
     <Description>יפוי האתר על ידי גינון</Description>
     <Alias>גינון</Alias>
-    <CreatedAtDate>2024-01-16T16:02:18.7001224+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-01-22T12:56:48.0737543+02:00</CreatedAtDate>
     <RequiredEffort>P1D</RequiredEffort>
     <IsMilestone>false</IsMilestone>
     <StartDate xsi:nil="true" />
@@ -361,7 +361,7 @@
     <Id>21</Id>
     <Description>השגת תעודת איכלוס לאחר עברת כל הבדיקות</Description>
     <Alias>טופס 4</Alias>
-    <CreatedAtDate>2024-01-16T16:02:18.7023804+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-01-22T12:56:48.0758949+02:00</CreatedAtDate>
     <RequiredEffort>P1D</RequiredEffort>
     <IsMilestone>false</IsMilestone>
     <StartDate xsi:nil="true" />
@@ -378,7 +378,7 @@
     <Id>22</Id>
     <Description>מסירת הבנין והדירות לבעלים</Description>
     <Alias>מסירת מפתחות</Alias>
-    <CreatedAtDate>2024-01-16T16:02:18.704584+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-01-22T12:56:48.0781247+02:00</CreatedAtDate>
     <RequiredEffort>P1D</RequiredEffort>
     <IsMilestone>false</IsMilestone>
     <StartDate xsi:nil="true" />

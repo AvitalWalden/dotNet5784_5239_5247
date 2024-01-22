@@ -27,7 +27,7 @@
                       SelectedValue="{Binding Experience, Mode=TwoWay}"
                       Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectionChanged="ComboBox_SelectionExperience"/>
         </Grid>
-        <ListView Margin="5" Grid.Row="1" ItemsSource="{Binding EngineerList}" SelectionChanged="ListView_engineerToUpdate" MouseEnter="ListView_MouseEnter">
+        <ListView Margin="5" Grid.Row="1" ItemsSource="{Binding EngineerList}" MouseDoubleClick="ListView_engineerToUpdate">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Margin="0,0,0,10">

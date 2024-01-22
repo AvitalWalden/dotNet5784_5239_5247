@@ -38,12 +38,13 @@ namespace PL.Engineer
         public static readonly DependencyProperty EngineerListProperty =
             DependencyProperty.Register("EngineerList", typeof(ObservableCollection<BO.Engineer>), typeof(EngineerListWindow), new PropertyMetadata(null));
         public BO.EngineerExperience Experience { get; set; } = BO.EngineerExperience.None;
+
         private void ComboBox_SelectionExperience(object sender, SelectionChangedEventArgs e)
         {
             var temp = Experience == BO.EngineerExperience.None ?
                                         s_bl?.Engineer.ReadAll() :
                                         s_bl?.Engineer.ReadAll(item => item.Level == Experience);
-            EngineerList = temp == null ? new() : new(temp!);//!
+            EngineerList = temp == null ? new() : new(temp!);
         }
 
         /// <summary>
@@ -52,17 +53,6 @@ namespace PL.Engineer
         private void BtnAddEngineer_Click(object sender, RoutedEventArgs e)
         {
             new EngineerWindow().ShowDialog();
-        }
-
-
-        /// <summary>
-        /// update a engineer
-        /// </summary>
-        private void ListView_engineerToUpdate(object sender, SelectionChangedEventArgs e)
-        {
-            BO.Engineer? engineerInList = (sender as ListView)?.SelectedItem as BO.Engineer;
-            if (engineerInList != null)
-                new EngineerWindow(engineerInList.Id).ShowDialog();
         }
 
         /// <summary>
@@ -74,6 +64,16 @@ namespace PL.Engineer
             EngineerList = (temp == null) ? new() : new(temp!);
             var updatedEngineers = s_bl?.Engineer.ReadAll();
             EngineerList = updatedEngineers == null ? new() : new(updatedEngineers!);
+        }
+
+        /// <summary>
+        /// update a engineer
+        /// </summary>
+        private void ListView_engineerToUpdate(object sender, MouseButtonEventArgs e)
+        {
+            BO.Engineer? engineerInList = (sender as ListView)?.SelectedItem as BO.Engineer;
+            if (engineerInList != null)
+                new EngineerWindow(engineerInList.Id).ShowDialog();
         }
     }
 }

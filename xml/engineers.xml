@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfEngineer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Engineer>
+    <Id>214385247</Id>
+    <Name>Michal Walden</Name>
+    <Email>michal@gmail.com</Email>
+    <Level>Expert</Level>
+    <Cost>450</Cost>
+    <Active>true</Active>
+  </Engineer>
+  <Engineer>
     <Id>214385239</Id>
     <Name>Avital Choen</Name>
     <Email>avital@gmail.com</Email>
@@ -173,23 +181,15 @@
     <Name>Tali Rubin</Name>
     <Email>Chaim@gmail.com</Email>
     <Level>Competent</Level>
-    <Cost>230</Cost>
+    <Cost>250</Cost>
     <Active>true</Active>
   </Engineer>
   <Engineer>
-    <Id>214385247</Id>
-    <Name>Michal Walden</Name>
-    <Email>michalW@gmail.com</Email>
-    <Level>Expert</Level>
-    <Cost>450</Cost>
-    <Active>true</Active>
-  </Engineer>
-  <Engineer>
-    <Id>121212121</Id>
-    <Name>Davidi Dan</Name>
-    <Email>D@gmail.com</Email>
-    <Level>None</Level>
-    <Cost>150</Cost>
+    <Id>234567654</Id>
+    <Name>c</Name>
+    <Email>c@gmail.com</Email>
+    <Level>Competent</Level>
+    <Cost>128</Cost>
     <Active>true</Active>
   </Engineer>
 </ArrayOfEngineer>
