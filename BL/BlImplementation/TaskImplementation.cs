@@ -24,12 +24,12 @@ internal class TaskImplementation : ITask
         }
         if (string.IsNullOrWhiteSpace(boTask.Alias))
         {
-            throw new BO.BlInvalidValue("Task description cannot be empty or null");
+            throw new BO.BlInvalidValue("Task Alias cannot be empty or null");
         }
         var task = _dal.Task.Read(task => task.EngineerId == boTask.Engineer?.Id && BO.Tools.CalculateStatusOfTask(task) != BO.Status.Done);
-        if (task != null)
+        if (task != null && task.Id!= boTask.Id)
         {
-            throw new BO.EngineerIsAlreadyBusy("Engineer is already busy");
+            throw new BO.BlEngineerIsAlreadyBusy("Engineer is already busy");
         }
         DO.Task doTask = new DO.Task
         (
@@ -246,7 +246,7 @@ internal class TaskImplementation : ITask
         var task = _dal.Task.Read(task => task.EngineerId == boTask.Engineer?.Id && BO.Tools.CalculateStatusOfTask(task) != BO.Status.Done);
         if (task != null && task.Id != boTask.Id)
         {
-            throw new BO.EngineerIsAlreadyBusy("Engineer is already busy");
+            throw new BO.BlEngineerIsAlreadyBusy("Engineer is already busy");
         }
         if (boTask.Milestone == null)
         {
