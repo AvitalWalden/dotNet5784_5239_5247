@@ -8,41 +8,41 @@
         Title="TaskWindow" Height="800" Width="800"
         DataContext="{Binding CurrentTask, RelativeSource={RelativeSource Self}, Mode=TwoWay}">
     <Grid>
-        <Label Content="Id" Margin="300,20,0,0"/>
-        <Label Content="Alias"  Margin="300,50,0,0"/>
-        <Label Content="Description" Margin="300,80,0,0"/>
-        <Label Content="CreatedAtDate" Margin="300,110,0,0"/>
-        <Label Content="Status" Margin="300,140,0,0"/>
-        <Label Content="Dependencies" Margin="300,170,0,0"/>
-        <Label Content="RequiredEffortTime" Margin="300,200,0,0" Width="208"/>
-        <Label Content="Milestone" Margin="300,230,0,0"/>
-        <Label Content="ScheduledStartDate" Margin="300,283,0,0"/>
-        <Label Content="StartDate" Margin="310,355,0,0"/>
-        <Label Content="DeadlineDate" Margin="300,429,0,0"/>
-        <Label Content="CompleteDate" Margin="300,499,0,0"/>
-        <Label Content="Deliverables" Margin="300,542,0,0"/>
-        <Label Content="Remarks" Margin="300,579,0,0"/>
-        <Label Content="Engineer" Margin="300,613,0,0"/>
-        <Label Content="ComplexityLevel" Margin="300,648,0,0" Width="170"/>
-        <TextBox Text="{Binding Id, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Width="160" IsEnabled="{Binding Path=Id, Mode=OneTime, Converter={StaticResource ConvertIdToIsEnableKey}}" Margin="484,20,0,0" MaxLength="9" PreviewKeyDown="IdOrCost_PreviewKeyDown"/>
-        <TextBox Text="{Binding Alias, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Margin="484,50,0,0"  Width="160"/>
-        <TextBox Text="{Binding Description, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Margin="484,80,0,0"  Width="160"/>
-        <DatePicker SelectedDate="{Binding CreatedAtDate, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Margin="484,110,156,644"  Width="160"/>
-        <ComboBox ItemsSource="{Binding Source={StaticResource StatusCollectionKey}}" SelectedValue="{Binding Level, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  Margin="484,140,0,0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top" Height="25" Width="160"/>
-        <TextBox Text="{Binding Dependencies, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Margin="484,170,0,0"  Width="160"/>
-        <TextBox Text="{Binding RequiredEffortTime, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Margin="484,200,0,0"  Width="160"/>
-        <TextBox Text="{Binding Milestone, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Margin="484,230,0,0"  Width="160"/>
-        <DatePicker SelectedDate="{Binding ScheduledStartDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="484,266,156,456"/>
-        <DatePicker SelectedDate="{Binding StartDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="484,333,156,380"/>
-        <DatePicker SelectedDate="{Binding DeadlineDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="484,409,156,308"/>
-        <DatePicker SelectedDate="{Binding CompleteDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="484,481,156,240" RenderTransformOrigin="0.332,2.735"/>
-        <TextBox Text="{Binding Deliverables, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Margin="484,549,0,0"  Width="160" Height="25"/>
-        <TextBox Text="{Binding Remarks, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Margin="484,581,0,0"  Width="160" Height="25"/>
-        <TextBox Text="{Binding Engineer, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Margin="484,612,0,0"  Width="160" />
+        <Label Content="Id" Margin="55,30,0,0"/>
+        <Label Content="Alias"  Margin="55,70,0,0"/>
+        <Label Content="Description" Margin="55,110,0,0"/>
+        <Label Content="CreatedAtDate" Margin="55,150,0,0"/>
+        <Label Content="Status" Margin="55,190,0,0"/>
+        <Label Content="Dependencies" Margin="55,230,0,0"/>
+        <Label Content="RequiredEffortTime" Margin="55,270,0,0" Width="208"/>
+        <Label Content="Milestone" Margin="55,310,0,0"/>
+        <Label Content="ScheduledStartDate" Margin="55,350,0,0"/>
+        <Label Content="StartDate" Margin="55,390,0,0"/>
+        <Label Content="DeadlineDate" Margin="55,430,0,0"/>
+        <Label Content="CompleteDate" Margin="55,470,0,0"/>
+        <Label Content="Deliverables" Margin="55,510,0,0"/>
+        <Label Content="Remarks" Margin="55,550,0,0"/>
+        <Label Content="Engineer" Margin="55,590,0,0"/>
+        <Label Content="ComplexityLevel" Margin="55,630,0,0" Width="170"/>
+        <TextBox Text="{Binding Id, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Width="250" IsEnabled="{Binding Path=Id, Mode=OneTime, Converter={StaticResource ConvertIdToIsEnableKey}}" Margin="210,30,0,0" MaxLength="9" PreviewKeyDown="IdOrCost_PreviewKeyDown" Height="28"/>
+        <TextBox Text="{Binding Alias, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}"  Margin="210,70,0,0"  Width="250"/>
+        <TextBox Text="{Binding Description, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Margin="210,110,0,0"  Width="250"/>
+        <DatePicker SelectedDate="{Binding CreatedAtDate, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Margin="210,150,340,599"  Width="250"/>
+        <ComboBox ItemsSource="{Binding Source={StaticResource StatusCollectionKey}}" SelectedValue="{Binding Level, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="210,190,0,0"  Width="250" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top" Height="25" />
+        <TextBox Text="{Binding Dependencies, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Margin="210,230,0,0"  Width="250"/>
+        <TextBox Text="{Binding RequiredEffortTime, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Margin="210,270,0,0"  Width="250"/>
+        <TextBox Text="{Binding Milestone, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}"  Margin="210,310,0,0"  Width="250"/>
+        <DatePicker SelectedDate="{Binding ScheduledStartDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="210,350,340,399"  Width="250"/>
+        <DatePicker SelectedDate="{Binding StartDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="210,390,340,359"  Width="250"/>
+        <DatePicker SelectedDate="{Binding DeadlineDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="210,430,340,319"  Width="250"/>
+        <DatePicker SelectedDate="{Binding CompleteDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="210,470,340,279"  Width="250"/>
+        <TextBox Text="{Binding Deliverables, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}"  Margin="210,510,0,0"  Width="250"/>
+        <TextBox Text="{Binding Remarks, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Margin="210,550,0,0"  Width="250"/>
+        <TextBox Text="{Binding Engineer, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Margin="210,590,0,0"  Width="250" />
         <ComboBox ItemsSource="{Binding Source={StaticResource EngineerExperienceCollectionKey}}" 
-           SelectedValue="{Binding Level, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  Margin="484,648,0,0" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top" Height="25" Width="160" RenderTransformOrigin="0.511,-0.734"/>
+           SelectedValue="{Binding Level, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="210,630,0,0"  Width="250" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top"/>
         <!--add or update task-->
-        <Button Content="{Binding Id, Mode=OneTime, Converter={StaticResource ConverIdToContentKey}}" Click="ButtonAddOrUpdateTask_Click" Margin="0,706,0,0"/>
+        <Button Content="{Binding Id, Mode=OneTime, Converter={StaticResource ConverIdToContentKey}}" Click="ButtonAddOrUpdateTask_Click" Margin="646,695,0,0" HorizontalAlignment="Left" Height="58" Width="103"/>
 
     </Grid>
 </Window>
