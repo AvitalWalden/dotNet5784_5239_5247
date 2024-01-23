@@ -9,6 +9,7 @@
         <local:ConvertIdToIsEnable x:Key="ConvertIdToIsEnableKey"/>
         <local:ConvertIdToContent x:Key="ConverIdToContentKey"/>
         <local:ConvertIdVisibility x:Key="ConvertIdVisibilityKey"/>
+        <local:ConvertIdVisibilityInUpdate x:Key="ConvertIdVisibilityInUpdateKey"/>
 
         <Style x:Key="commonStyle" TargetType="Control">
             <Setter Property="FontSize" Value="15" />

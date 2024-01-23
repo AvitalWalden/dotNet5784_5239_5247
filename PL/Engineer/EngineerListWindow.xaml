@@ -42,10 +42,6 @@
                     <Run FontWeight="Bold" Text="Id: " />
                     <Run Text="{Binding Id}" />
                         </TextBlock>
-                        <!--<TextBlock>
-                    <Run FontWeight="Bold" Text="Name: " />
-                    <Run Text="{Binding Name}" />
-                        </TextBlock>-->
                         <TextBlock>
                     <Run FontWeight="Bold" Text="Email: " />
                     <Run Text="{Binding Email}" />

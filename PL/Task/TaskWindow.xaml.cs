@@ -87,7 +87,7 @@ namespace PL.Task
                     this.Close();
 
                 }
-                catch (BlEngineerIsAlreadyBusy ex)
+                catch (BO.BlEngineerIsAlreadyBusy ex)
                 {
                     MessageBox.Show(ex.Message, "error in create task", MessageBoxButton.OK, MessageBoxImage.Error);
                 }

@@ -52,6 +52,19 @@ class ConvertIdVisibility : IValueConverter
 
 }
 
+class ConvertIdVisibilityInUpdate : IValueConverter
+{
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        return (int)value == 0 ? "Visible" : "Hidden";
+    }
+
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        return (string)value == "Hidden" ? 0 : 1;
+    }
+
+}
 
 
 

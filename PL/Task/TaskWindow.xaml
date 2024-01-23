@@ -23,17 +23,33 @@
         <Label Content="Deliverables" Margin="55,474,0,0"/>
         <Label Content="Remarks" Margin="55,514,0,0"/>
         <Label Content="Engineer" Margin="55,554,0,0"/>
-        <Label Content="ComplexityLevel" Margin="55,594,0,0" Width="170"/>
+        <Label Content="ComplexityLevel" Margin="55,604,0,0" Width="170" RenderTransformOrigin="0.494,1.605"/>
         <TextBox Text="{Binding Id, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Width="250" IsEnabled="False" Margin="210,30,0,0" MaxLength="9" PreviewKeyDown="IdOrCost_PreviewKeyDown" />
         <TextBox Text="{Binding Alias, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}"  Margin="210,70,0,0"  Width="250"/>
         <TextBox Text="{Binding Description, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Margin="210,110,0,0"  Width="250"/>
         <DatePicker SelectedDate="{Binding CreatedAtDate, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Margin="210,140,0,0"  HorizontalAlignment="Left" VerticalAlignment="Top" Height="35" Width="250"/>
         <ComboBox ItemsSource="{Binding  Source={StaticResource StatusCollectionKey}}" SelectedValue="{Binding Status, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="210,190,0,0"  Width="250" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top" Height="25" />
         <StackPanel Orientation="Vertical" Margin="484,230,38,320">
-            <ListView ItemsSource="{Binding Dependencies}"/>
-
+            <ListView ItemsSource="{Binding Dependencies, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Height="0"/>
+            <TextBlock>
+                <Run FontWeight="Bold" Text="Id: " />
+                <Run Text="{Binding Id}" />
+            </TextBlock>
+            <TextBlock>
+                <Run FontWeight="Bold" Text="Alias: " />
+                 <Run Text="{Binding Alias}" />
+            </TextBlock>
+            <TextBlock>
+                <Run FontWeight="Bold" Text="Description: " />
+                <Run Text="{Binding Description}" />
+            </TextBlock>
+            <TextBlock>
+                <Run FontWeight="Bold" Text="Status: " />
+                <Run Text="{Binding Status}" />
+            </TextBlock>
             <Button Content="Add dependency" Height="30" Width="126"/>
         </StackPanel>
+
         <!--<TextBox Text="{Binding Dependencies, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Margin="210,230,0,0"  Width="250"/>-->
         <TextBox Text="{Binding RequiredEffortTime, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Margin="210,234,0,0"  Width="250"/>
         <TextBox Text="{Binding Milestone, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}"  Margin="210,274,0,0"  Width="250"/>
@@ -43,9 +59,22 @@
         <DatePicker SelectedDate="{Binding CompleteDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  Margin="210,434,0,0"  HorizontalAlignment="Left" VerticalAlignment="Top" Height="35" Width="250"/>
         <TextBox Text="{Binding Deliverables, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}"  Margin="210,474,0,0"  Width="250"/>
         <TextBox Text="{Binding Remarks, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Margin="210,514,0,0"  Width="250"/>
-        <TextBox Text="{Binding Engineer, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Margin="210,554,0,0"  Width="250" />
-        <ComboBox ItemsSource="{Binding Source={StaticResource EngineerExperienceCollectionKey}}" 
-           SelectedValue="{Binding ComplexityLevel, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="210,594,0,0"  Width="250" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top"/>
+        <StackPanel Orientation="Vertical" Margin="210,544,340,90"  Width="250" Visibility="{Binding Id, Mode=OneTime, Converter={StaticResource ConvertIdVisibilityKey}}">
+            <ListView ItemsSource="{Binding Engineer, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Height="0"/>
+            <TextBlock>
+                 <Run FontWeight="Bold" Text="Id: " />
+                 <Run Text="{Binding Id}" />
+            </TextBlock>
+            <TextBlock>
+                 <Run FontWeight="Bold" Text="Name: " />
+                 <Run Text="{Binding Name}" />
+            </TextBlock>
+        </StackPanel>
+        <ComboBox ItemsSource="{Binding Source={StaticResource EngineerExperienceCollectionKey}}" Visibility="{Binding Id, Mode=OneTime, Converter={StaticResource ConvertIdVisibilityInUpdateKey}}"
+           SelectedValue="{Binding ComplexityLevel, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top" Margin="210,554,0,0"  Width="250"/>
+        <!--<TextBox Text="{Binding Engineer, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Margin="210,554,0,0"  Width="250" />-->
+        <ComboBox ItemsSource="{Binding Source={StaticResource EngineerExperienceCollectionKey}}"
+           SelectedValue="{Binding ComplexityLevel, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="210,608,0,0"  Width="250" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top"/>
         <!--add or update task-->
         <Button Content="{Binding Id, Mode=OneTime, Converter={StaticResource ConverIdToContentKey}}" Click="ButtonAddOrUpdateTask_Click" Margin="633,594,0,0" HorizontalAlignment="Left" Height="58" Width="103"/>
 
