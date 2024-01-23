@@ -39,13 +39,13 @@ namespace PL.Task
         public static readonly DependencyProperty TaskListProperty =
             DependencyProperty.Register("TaskList", typeof(ObservableCollection<BO.Task>), typeof(TaskListWindow), new PropertyMetadata(null));
 
-        public BO.EngineerExperience Experience { get; set; } = BO.EngineerExperience.None;
+        public BO.Status StatusOfTask { get; set; } = BO.Status.Unscheduled;
 
         private void ComboBox_SelectionExperience(object sender, SelectionChangedEventArgs e)
         {
-            var temp = Experience == BO.EngineerExperience.None ?
+            var temp = StatusOfTask == BO.Status.Unscheduled ?
                                         s_bl?.Task.ReadAll() :
-                                        s_bl?.Task.ReadAll(item => item.ComplexityLevel == Experience);
+                                        s_bl?.Task.ReadAll(item => item.Status == StatusOfTask);
             TaskList = temp == null ? new() : new(temp!);
         }
 
