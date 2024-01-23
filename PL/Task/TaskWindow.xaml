@@ -24,7 +24,7 @@
         <Label Content="Remarks" Margin="300,579,0,0"/>
         <Label Content="Engineer" Margin="300,613,0,0"/>
         <Label Content="ComplexityLevel" Margin="300,648,0,0" Width="170"/>
-        <TextBox Text="{Binding Id, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Width="160" IsEnabled="{Binding Path=Id, Mode=OneTime, Converter={StaticResource ConvertIdToIsEnableKey}}" Margin="484,20,0,0" MaxLength="9" PreviewKeyDown="IdOrCost_PreviewKeyDown"/>
+        <TextBox Text="{Binding Id, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Width="160" IsEnabled="False" Margin="484,20,0,0" MaxLength="9" PreviewKeyDown="IdOrCost_PreviewKeyDown"/>
         <TextBox Text="{Binding Alias, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Margin="484,50,0,0"  Width="160"/>
         <TextBox Text="{Binding Description, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Margin="484,80,0,0"  Width="160"/>
         <DatePicker SelectedDate="{Binding CreatedAtDate, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Margin="484,110,156,644"  Width="160"/>
