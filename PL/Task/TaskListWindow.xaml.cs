@@ -23,10 +23,10 @@ namespace PL.Task
     {
         static readonly BlApi.IBl s_bl = BlApi.Factory.Get();
 
-        public TaskListWindow()
+        public TaskListWindow(Func<BO.Task, bool>? filter = null)
         {
             InitializeComponent();
-            var temp = s_bl?.Task.ReadAll();
+            var temp = s_bl?.Task.ReadAll(filter);
             TaskList = temp == null ? new() : new(temp!);
         }
 

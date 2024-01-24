@@ -42,9 +42,9 @@ namespace PL
             new EngineerListWindow().Show();
         }
 
-        private void BtnTasks_Click(object sender, RoutedEventArgs e)
+        private void BtnAdmin_Click(object sender, RoutedEventArgs e)
         {
-            new TaskListWindow().Show();
+            new AdminWindow().Show();
         }
     }
 }

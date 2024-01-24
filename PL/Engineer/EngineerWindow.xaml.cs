@@ -1,5 +1,6 @@
 ﻿using BO;
 using DO;
+using PL.Task;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -138,6 +139,19 @@ namespace PL.Engineer
                             //forbid letters and signs (#,$, %, ...)
             e.Handled = true; //ignore this key. mark event as handled, will not be routed to other controls
             return;
+        }
+
+        private void BtnCurrentTask_Click(object sender, RoutedEventArgs e)
+        {
+            if(CurrentEngineer[0].Task != null)
+            {
+                new TaskWindow(CurrentEngineer[0].Task!.Id).Show();
+            }
+        }
+
+        private void BtnTask_Click(object sender, RoutedEventArgs e)
+        {
+            new TaskListWindow().Show();
         }
     }
 }
