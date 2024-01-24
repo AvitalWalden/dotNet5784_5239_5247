@@ -21,7 +21,7 @@ namespace PL.Engineer
     public partial class EngineerListWindow : Window
     {
         static readonly BlApi.IBl s_bl = BlApi.Factory.Get();
-        
+
         public EngineerListWindow()
         {
             InitializeComponent();
@@ -75,5 +75,6 @@ namespace PL.Engineer
             if (engineerInList != null)
                 new EngineerWindow(engineerInList.Id).ShowDialog();
         }
+
     }
 }
