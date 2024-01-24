@@ -10,7 +10,7 @@ internal static class DataSource
     internal static class Config
     {
          
-        internal const int startTaskId = 1;// A constant numeric field (const) that receives an initial value for a running number - startTaskId: the smallest identifying number.
+        internal const int startTaskId = 0;// A constant numeric field (const) that receives an initial value for a running number - startTaskId: the smallest identifying number.
         private static int nextTaskId = startTaskId;// A static numeric field that will receive as an initial value the previous fixed field.
         internal static int NextTaskId { get => nextTaskId++; }//A property with get that advances the private field automatically, by a number greater than the previous one by 1.
 

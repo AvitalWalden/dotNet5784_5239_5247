@@ -14,7 +14,7 @@ class ConvertIdToContent : IValueConverter
   
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return (int)value == 0 ? "Add" : "Update";
+            return (int)value == 0 || (int)value == -1 ? "Add" : "Update";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
@@ -28,7 +28,7 @@ class ConvertIdToIsEnable : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        return (int)value == 0 ? true : false;
+        return (int)value == 0 || (int)value == -1 ? true : false;
     }
 
     public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
@@ -42,7 +42,7 @@ class ConvertIdVisibility : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        return (int)value == 0 ? "Hidden" : "Visible";
+        return (int)value == 0 || (int)value == -1 ? "Hidden" : "Visible";
     }
 
     public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
@@ -56,7 +56,7 @@ class ConvertIdVisibilityInUpdate : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        return (int)value == 0 ? "Visible" : "Hidden";
+        return (int)value == 0 || (int)value == -1 ? "Visible" : "Hidden";
     }
 
     public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

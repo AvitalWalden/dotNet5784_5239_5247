@@ -1,21 +1,13 @@
 ﻿using BlApi;
 using BO;
-using DO;
 using PL.Engineer;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+
 
 namespace PL.Task
 {
@@ -32,9 +24,12 @@ namespace PL.Task
         static readonly BlApi.IBl s_bl = BlApi.Factory.Get();
         public ActionType CurrentAction { get; private set; }
 
-        public TaskWindow(int Id = 0)
+        public TaskWindow(int Id = -1)
         {
             InitializeComponent();
+            //var temp = s_bl?.Engineer.ReadAll();
+            //EngineerList = temp == null ? new() : new(temp!);
+
             BO.Task task = new BO.Task()
             {
                 Id = 0,
@@ -44,12 +39,12 @@ namespace PL.Task
                 Status = BO.Status.Unscheduled
             };
             CurrentAction = ActionType.Create;
-            if (Id != 0)
+            if (Id != -1)
             {
                 try
                 {
                     CurrentAction = ActionType.Update;
-                    if (s_bl.Task.Read(Id) == null)
+                    if (s_bl?.Task.Read(Id) == null)
                     {
                         throw new BO.BlAlreadyExistsException("This task does not exit");
                     }
@@ -64,7 +59,9 @@ namespace PL.Task
 
             }
             CurrentTask = new ObservableCollection<BO.Task> { task };
+            //LoadEngineers();
         }
+
 
         public ObservableCollection<BO.Task> CurrentTask
         {
@@ -74,6 +71,15 @@ namespace PL.Task
 
         public static readonly DependencyProperty CurrentTaskProperty =
             DependencyProperty.Register("CurrentTask", typeof(ObservableCollection<BO.Task>), typeof(TaskWindow), new PropertyMetadata(null));
+
+        //public ObservableCollection<BO.Engineer> EngineerList
+        //{
+        //    get { return (ObservableCollection<BO.Engineer>)GetValue(EngineerListProperty); }
+        //    set { SetValue(EngineerListProperty, value); }
+        //}
+
+        //public static readonly DependencyProperty EngineerListProperty =
+        //    DependencyProperty.Register("EngineerList", typeof(ObservableCollection<BO.Engineer>), typeof(EngineerListWindow), new PropertyMetadata(null));
 
         private void ButtonAddOrUpdateTask_Click(object sender, RoutedEventArgs e)
         {
@@ -141,6 +147,5 @@ namespace PL.Task
             e.Handled = true; //ignore this key. mark event as handled, will not be routed to other controls
             return;
         }
-
     }
 }
