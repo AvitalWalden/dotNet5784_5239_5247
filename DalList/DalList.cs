@@ -19,11 +19,6 @@ sealed internal class DalList : IDal
 
     public IEngineer Engineer => new EngineerImplementation();
 
-
-    //public DateTime? startDateProject => DataSource.Config.startDateProject;
-
-    //public DateTime? endDateProject => DataSource.Config.endDateProject;
-
     public DateTime? startDateProject { get => DataSource.Config.startDateProject; set => DataSource.Config.startDateProject = value; }
     public DateTime? endDateProject { get => DataSource.Config.endDateProject; set => DataSource.Config.endDateProject = value; }
 

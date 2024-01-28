@@ -22,7 +22,7 @@
             <!-- label for comboBox -->
             <Label Content="Statu's task:" Grid.Column="0" Margin="33,0,0,0" VerticalAlignment="Center" Width="287"/>
             <!-- task expererience collection-->
-            <ComboBox ItemsSource="{Binding Source={StaticResource StatusCollectionKey}}" 
+            <ComboBox ItemsSource="{Binding Source={StaticResource StatusCollectionKey}}"
                    SelectedValue="{Binding StatusOfTask, Mode=TwoWay}"
                    Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectionChanged="ComboBox_SelectionExperience"/>
         </Grid>

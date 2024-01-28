@@ -13,7 +13,7 @@
         <Label Content="Description" Margin="55,110,0,0"/>
         <Label Content="CreatedAtDate" Margin="55,150,0,0"/>
         <Label Content="Status" Margin="55,190,0,0"/>
-        <Label Content="Dependencies" Margin="484,176,0,0"/>
+        <Label Content="Dependencies" Margin="497,39,0,0"/>
         <Label Content="RequiredEffortTime" Margin="55,234,0,0" Width="208"/>
         <Label Content="Milestone" Margin="55,274,0,0"/>
         <Label Content="ScheduledStartDate" Margin="55,314,0,0"/>
@@ -29,26 +29,27 @@
         <TextBox Text="{Binding Description, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Margin="210,110,0,0"  Width="250"/>
         <DatePicker SelectedDate="{Binding CreatedAtDate, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Margin="210,140,0,0"  HorizontalAlignment="Left" VerticalAlignment="Top" Height="35" Width="250"/>
         <ComboBox ItemsSource="{Binding  Source={StaticResource StatusCollectionKey}}" SelectedValue="{Binding Status, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="210,190,0,0"  Width="250" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top" Height="25" />
-        <StackPanel Orientation="Vertical" Margin="484,210,38,320">
+        <StackPanel Orientation="Vertical" Margin="497,73,25,457">
             <ListView ItemsSource="{Binding Dependencies}" Height="100"/>
 
-            <Button Content="Add dependency" Height="30" Width="126"/>
+            <Button Content="Add dependency" Height="30" Width="126" Click="Btn_addDependencyClick"/>
         </StackPanel>
         <!--<TextBox Text="{Binding Dependencies, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Margin="210,230,0,0"  Width="250"/>-->
         <TextBox Text="{Binding RequiredEffortTime, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Margin="210,234,0,0"  Width="250"/>
-        <TextBox Text="{Binding Milestone, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}"  Margin="210,274,0,0"  Width="250"/>
+        <TextBox Text="{Binding Milestone.Id, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}"  Margin="290,274,0,0"  Width="170"/>
+        <TextBox Text="{Binding Milestone.Name, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}"  Margin="210,274,0,0"  Width="62"/>
         <DatePicker SelectedDate="{Binding ScheduledStartDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  Margin="210,314,0,0"  HorizontalAlignment="Left" VerticalAlignment="Top" Height="35" Width="250"/>
         <DatePicker SelectedDate="{Binding StartDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  Margin="210,354,0,0"  HorizontalAlignment="Left" VerticalAlignment="Top" Height="35" Width="250"/>
         <DatePicker SelectedDate="{Binding DeadlineDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  Margin="210,394,0,0"  HorizontalAlignment="Left" VerticalAlignment="Top" Height="35" Width="250"/>
         <DatePicker SelectedDate="{Binding CompleteDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  Margin="210,434,0,0"  HorizontalAlignment="Left" VerticalAlignment="Top" Height="35" Width="250"/>
         <TextBox Text="{Binding Deliverables, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}"  Margin="210,474,0,0"  Width="250"/>
         <TextBox Text="{Binding Remarks, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Margin="210,514,0,0"  Width="250"/>
-        <ComboBox ItemsSource="{Binding EngineerList}"
+        <ComboBox ItemsSource="{Binding EngineerList}" 
           DisplayMemberPath="Name" 
           SelectedValuePath="Id"
-          SelectedValue="{Binding CurrentTask[0].Engineer.Id, Mode=TwoWay}" Margin="542,467,0,185"
+          SelectedValue="{Binding CurrentTask[0].Engineer.Id, Mode=TwoWay}" 
+          Margin="484,412,38,165"
         />
-
         <TextBox Text="{Binding Engineer.Id, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Margin="210,554,0,0"  Width="125" />
         <TextBox Text="{Binding Engineer.Name, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Margin="349,554,0,0"  Width="111" />
         <ComboBox ItemsSource="{Binding Source={StaticResource EngineerExperienceCollectionKey}}"

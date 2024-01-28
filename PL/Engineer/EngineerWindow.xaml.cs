@@ -151,7 +151,7 @@ namespace PL.Engineer
 
         private void BtnTask_Click(object sender, RoutedEventArgs e)
         {
-            new TaskListWindow().Show();
+            new TaskListWindow((task)=>task.Engineer == null).Show();
         }
     }
 }

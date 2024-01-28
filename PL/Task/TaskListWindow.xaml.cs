@@ -8,11 +8,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace PL.Task
 {
@@ -64,8 +60,8 @@ namespace PL.Task
         {
             var temp = s_bl?.Task.ReadAll();
             TaskList = (temp == null) ? new() : new(temp!);
-            var updatedTask = s_bl?.Task.ReadAll();
-            TaskList = updatedTask == null ? new() : new(updatedTask!);
+            //var updatedTask = s_bl?.Task.ReadAll();
+            //TaskList = updatedTask == null ? new() : new(updatedTask!);
         }
 
         /// <summary>

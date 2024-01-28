@@ -1,23 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfTask xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Task>
-    <Id>0</Id>
-    <Description>תכנון הבנייה על פי ייעוד ודרישות הבנין</Description>
-    <Alias>ארגון ותכנון הבניה</Alias>
-    <CreatedAtDate>2024-01-24T17:38:09.7940032+02:00</CreatedAtDate>
-    <RequiredEffort>P1D</RequiredEffort>
-    <IsMilestone>false</IsMilestone>
-    <StartDate xsi:nil="true" />
-    <ScheduledDate xsi:nil="true" />
-    <DeadlineDate xsi:nil="true" />
-    <CompleteDate xsi:nil="true" />
-    <Deliverables>תכנון הבניה הושלם</Deliverables>
-    <Remarks>Remarks for ארגון ותכנון הבניה</Remarks>
-    <EngineerId>214385247</EngineerId>
-    <ComplexityLevel>Expert</ComplexityLevel>
-    <Active>true</Active>
-  </Task>
-  <Task>
     <Id>1</Id>
     <Description>הבטחת מימון פרויקט הבניה</Description>
     <Alias>מימון</Alias>
@@ -389,6 +372,23 @@
     <Remarks>Remarks for מסירת מפתחות</Remarks>
     <EngineerId>322258965</EngineerId>
     <ComplexityLevel>Competent</ComplexityLevel>
+    <Active>true</Active>
+  </Task>
+  <Task>
+    <Id>0</Id>
+    <Description>תכנון הבנייה על פי ייעוד ודרישות הבנין</Description>
+    <Alias>ארגון ותכנון הבניה</Alias>
+    <CreatedAtDate>2024-01-24T17:38:09.7940032+02:00</CreatedAtDate>
+    <RequiredEffort>P2D</RequiredEffort>
+    <IsMilestone>false</IsMilestone>
+    <StartDate xsi:nil="true" />
+    <ScheduledDate xsi:nil="true" />
+    <DeadlineDate xsi:nil="true" />
+    <CompleteDate xsi:nil="true" />
+    <Deliverables>תכנון הבניה הושלם</Deliverables>
+    <Remarks>Remarks for ארגון ותכנון הבניה</Remarks>
+    <EngineerId>214385247</EngineerId>
+    <ComplexityLevel>Expert</ComplexityLevel>
     <Active>true</Active>
   </Task>
 </ArrayOfTask>
