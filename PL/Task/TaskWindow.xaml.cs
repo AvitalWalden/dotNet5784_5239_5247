@@ -78,11 +78,6 @@ namespace PL.Task
             get { return (ObservableCollection<BO.Engineer>)GetValue(EngineerListProperty); }
             set { SetValue(EngineerListProperty, value); }
         }
-         public ObservableCollection<BO.Engineer> EngineerList
-        {
-            get { return (ObservableCollection<BO.Engineer>)GetValue(EngineerListProperty); }
-            set { SetValue(EngineerListProperty, value); }
-        }
 
         public static readonly DependencyProperty EngineerListProperty =
             DependencyProperty.Register("EngineerList", typeof(ObservableCollection<BO.Engineer>), typeof(TaskWindow), new PropertyMetadata(null));
