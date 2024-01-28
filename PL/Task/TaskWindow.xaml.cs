@@ -27,6 +27,9 @@ namespace PL.Task
         public TaskWindow(int Id = -1)
         {
             InitializeComponent();
+            //var temp = s_bl?.Engineer.ReadAll();
+            //EngineerList = temp == null ? new() : new(temp!);
+
             BO.Task task = new BO.Task()
             {
                 Id = 0,
@@ -56,8 +59,8 @@ namespace PL.Task
 
             }
             CurrentTask = new ObservableCollection<BO.Task> { task };
-            var temp = s_bl?.Engineer.ReadAll();
-            EngineerList = temp == null ? new() : new(temp!);
+            var engineers = s_bl?.Engineer.ReadAll();
+            EngineerList = engineers == null ? new ObservableCollection<BO.Engineer>() : new ObservableCollection<BO.Engineer>(engineers!);
         }
 
 
@@ -71,6 +74,11 @@ namespace PL.Task
             DependencyProperty.Register("CurrentTask", typeof(ObservableCollection<BO.Task>), typeof(TaskWindow), new PropertyMetadata(null));
 
         public ObservableCollection<BO.Engineer> EngineerList
+        {
+            get { return (ObservableCollection<BO.Engineer>)GetValue(EngineerListProperty); }
+            set { SetValue(EngineerListProperty, value); }
+        }
+         public ObservableCollection<BO.Engineer> EngineerList
         {
             get { return (ObservableCollection<BO.Engineer>)GetValue(EngineerListProperty); }
             set { SetValue(EngineerListProperty, value); }
