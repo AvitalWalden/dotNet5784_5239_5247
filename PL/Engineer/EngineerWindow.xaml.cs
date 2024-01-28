@@ -93,7 +93,7 @@ namespace PL.Engineer
                 {
                     MessageBox.Show(ex.Message, "error in create engineer", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
-                catch(BlAlreadyExistsException ex)
+                catch (BlAlreadyExistsException ex)
                 {
                     MessageBox.Show(ex.Message, "error in create engineer", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
@@ -104,7 +104,7 @@ namespace PL.Engineer
                 try
                 {
                     s_bl.Engineer.Update(engineer);
-                    MessageBox.Show("engineer updated successfully","update engineer", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("engineer updated successfully", "update engineer", MessageBoxButton.OK, MessageBoxImage.Information);
                     this.Close();
 
                 }
@@ -143,7 +143,7 @@ namespace PL.Engineer
 
         private void BtnCurrentTask_Click(object sender, RoutedEventArgs e)
         {
-            if(CurrentEngineer[0].Task != null)
+            if (CurrentEngineer[0].Task != null)
             {
                 new TaskWindow(CurrentEngineer[0].Task!.Id).Show();
             }
@@ -151,7 +151,8 @@ namespace PL.Engineer
 
         private void BtnTask_Click(object sender, RoutedEventArgs e)
         {
-            new TaskListWindow((task)=>task.Engineer == null).Show();
+            new TaskListWindow().Show();
         }
     }
 }
+
