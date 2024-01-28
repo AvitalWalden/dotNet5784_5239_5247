@@ -30,23 +30,23 @@
         <DatePicker SelectedDate="{Binding CreatedAtDate, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Margin="210,140,0,0"  HorizontalAlignment="Left" VerticalAlignment="Top" Height="35" Width="250"/>
         <ComboBox ItemsSource="{Binding  Source={StaticResource StatusCollectionKey}}" SelectedValue="{Binding Status, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="210,190,0,0"  Width="250" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top" Height="25" />
         <StackPanel Orientation="Vertical" Margin="484,210,38,320">
-            <ListView ItemsSource="{Binding Dependencies}" Height="100"/>
 
-            <Button Content="Add dependency" Height="30" Width="126"/>
+            <ListView ItemsSource="{Binding Dependencies}" Height="100"/>
+            <Button Content="Add dependency" Height="30" Width="126" RenderTransformOrigin="0.522,3.325"/>
         </StackPanel>
         <!--<TextBox Text="{Binding Dependencies, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Margin="210,230,0,0"  Width="250"/>-->
         <TextBox Text="{Binding RequiredEffortTime, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Margin="210,234,0,0"  Width="250"/>
         <TextBox Text="{Binding Milestone, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}"  Margin="210,274,0,0"  Width="250"/>
-        <DatePicker SelectedDate="{Binding ScheduledStartDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  Margin="210,314,0,0"  HorizontalAlignment="Left" VerticalAlignment="Top" Height="35" Width="250"/>
+        <DatePicker SelectedDate="{Binding ScheduledStartDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  Margin="210,314,0,0"  HorizontalAlignment="Left" VerticalAlignment="Top" Height="35" Width="250" IsEnabled="False"/>
         <DatePicker SelectedDate="{Binding StartDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  Margin="210,354,0,0"  HorizontalAlignment="Left" VerticalAlignment="Top" Height="35" Width="250"/>
-        <DatePicker SelectedDate="{Binding DeadlineDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  Margin="210,394,0,0"  HorizontalAlignment="Left" VerticalAlignment="Top" Height="35" Width="250"/>
+        <DatePicker SelectedDate="{Binding DeadlineDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  Margin="210,394,0,0"  HorizontalAlignment="Left" VerticalAlignment="Top" Height="35" Width="250" IsEnabled="False"/>
         <DatePicker SelectedDate="{Binding CompleteDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  Margin="210,434,0,0"  HorizontalAlignment="Left" VerticalAlignment="Top" Height="35" Width="250"/>
         <TextBox Text="{Binding Deliverables, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}"  Margin="210,474,0,0"  Width="250"/>
         <TextBox Text="{Binding Remarks, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Margin="210,514,0,0"  Width="250"/>
-        <ComboBox ItemsSource="{Binding EngineerList}"
+        <ComboBox ItemsSource="{Binding EngineerList }"
           DisplayMemberPath="Name" 
           SelectedValuePath="Id"
-          SelectedValue="{Binding CurrentTask[0].Engineer.Id, Mode=TwoWay}" Margin="542,467,0,185"
+          SelectedValue="{Binding CurrentTask[0].Engineer.Id, Mode=TwoWay}" Margin="484,554,58,102" RenderTransformOrigin="0.502,0.344"
         />
 
         <TextBox Text="{Binding Engineer.Id, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Margin="210,554,0,0"  Width="125" />

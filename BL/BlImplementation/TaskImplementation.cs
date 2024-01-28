@@ -239,7 +239,7 @@ internal class TaskImplementation : ITask
             throw new BO.BlInvalidValue("Task description cannot be empty or null");
         }
         TimeSpan? requiredEffort = null;
-        if (boTask.StartDate != null || boTask.CompleteDate != null)
+        if (boTask.StartDate != null && boTask.CompleteDate != null)
         {
             requiredEffort = (TimeSpan)(boTask.StartDate! - boTask.CompleteDate!);
         }

@@ -381,13 +381,30 @@
     <CreatedAtDate>2024-01-24T17:38:10.0221075+02:00</CreatedAtDate>
     <RequiredEffort>P1D</RequiredEffort>
     <IsMilestone>false</IsMilestone>
-    <StartDate xsi:nil="true" />
+    <StartDate>2024-01-24T00:00:00</StartDate>
     <ScheduledDate xsi:nil="true" />
     <DeadlineDate xsi:nil="true" />
     <CompleteDate xsi:nil="true" />
     <Deliverables>הדירות בידי הבעלים</Deliverables>
     <Remarks>Remarks for מסירת מפתחות</Remarks>
     <EngineerId>322258965</EngineerId>
+    <ComplexityLevel>Competent</ComplexityLevel>
+    <Active>true</Active>
+  </Task>
+  <Task>
+    <Id>23</Id>
+    <Description>A</Description>
+    <Alias>BBB</Alias>
+    <CreatedAtDate>2024-01-24T20:20:53.2025772+02:00</CreatedAtDate>
+    <RequiredEffort>P1D</RequiredEffort>
+    <IsMilestone>false</IsMilestone>
+    <StartDate>2024-01-19T00:00:00</StartDate>
+    <ScheduledDate xsi:nil="true" />
+    <DeadlineDate xsi:nil="true" />
+    <CompleteDate xsi:nil="true" />
+    <Deliverables>A</Deliverables>
+    <Remarks>A</Remarks>
+    <EngineerId xsi:nil="true" />
     <ComplexityLevel>Competent</ComplexityLevel>
     <Active>true</Active>
   </Task>
