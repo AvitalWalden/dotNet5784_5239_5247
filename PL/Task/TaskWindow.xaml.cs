@@ -19,16 +19,44 @@ namespace PL.Task
         Create,
         Update
     }
+
+    public class TaskWindowViewModel : DependencyObject
+    {
+        public ObservableCollection<BO.Task> CurrentTask
+        {
+            get { return (ObservableCollection<BO.Task>)GetValue(CurrentTaskProperty); }
+            set { SetValue(CurrentTaskProperty, value); }
+        }
+
+        public static readonly DependencyProperty CurrentTaskProperty =
+            DependencyProperty.Register("CurrentTask", typeof(ObservableCollection<BO.Task>), typeof(TaskWindowViewModel), new PropertyMetadata(null));
+
+        public ObservableCollection<BO.Engineer> EngineerList
+        {
+            get { return (ObservableCollection<BO.Engineer>)GetValue(EngineerListProperty); }
+            set { SetValue(EngineerListProperty, value); }
+        }
+
+        public static readonly DependencyProperty EngineerListProperty =
+            DependencyProperty.Register("EngineerList", typeof(ObservableCollection<BO.Engineer>), typeof(TaskWindowViewModel), new PropertyMetadata(null));
+    }
+
     public partial class TaskWindow : Window
     {
         static readonly BlApi.IBl s_bl = BlApi.Factory.Get();
         public ActionType CurrentAction { get; private set; }
 
+        private TaskWindowViewModel viewModel;
+
         public TaskWindow(int Id = -1)
         {
             InitializeComponent();
-            //var temp = s_bl?.Engineer.ReadAll();
-            //EngineerList = temp == null ? new() : new(temp!);
+
+            // Initialize ViewModel
+            viewModel = new TaskWindowViewModel();
+
+            // Set DataContext
+            DataContext = viewModel;
 
             BO.Task task = new BO.Task()
             {
@@ -49,7 +77,9 @@ namespace PL.Task
                         throw new BO.BlAlreadyExistsException("This task does not exit");
                     }
                     else
+                    { 
                         task = s_bl.Task.Read(Id)!;
+                    }
 
                 }
                 catch (BlAlreadyExistsException ex)
@@ -58,35 +88,16 @@ namespace PL.Task
                 }
 
             }
-            CurrentTask = new ObservableCollection<BO.Task> { task };
+            viewModel.CurrentTask = new ObservableCollection<BO.Task> { task };
             var engineers = s_bl?.Engineer.ReadAll();
-            EngineerList = engineers == null ? new ObservableCollection<BO.Engineer>() : new ObservableCollection<BO.Engineer>(engineers!);
+            viewModel.EngineerList = engineers == null ? new ObservableCollection<BO.Engineer>() : new ObservableCollection<BO.Engineer>(engineers!);
         }
-
-
-        public ObservableCollection<BO.Task> CurrentTask
-        {
-            get { return (ObservableCollection<BO.Task>)GetValue(CurrentTaskProperty); }
-            set { SetValue(CurrentTaskProperty, value); }
-        }
-
-        public static readonly DependencyProperty CurrentTaskProperty =
-            DependencyProperty.Register("CurrentTask", typeof(ObservableCollection<BO.Task>), typeof(TaskWindow), new PropertyMetadata(null));
-
-        public ObservableCollection<BO.Engineer> EngineerList
-        {
-            get { return (ObservableCollection<BO.Engineer>)GetValue(EngineerListProperty); }
-            set { SetValue(EngineerListProperty, value); }
-        }
-
-        public static readonly DependencyProperty EngineerListProperty =
-            DependencyProperty.Register("EngineerList", typeof(ObservableCollection<BO.Engineer>), typeof(TaskWindow), new PropertyMetadata(null));
 
         private void ButtonAddOrUpdateTask_Click(object sender, RoutedEventArgs e)
         {
             if (CurrentAction == ActionType.Create)
             {
-                BO.Task task = CurrentTask[0];
+                BO.Task task = viewModel.CurrentTask[0];
                 try
                 {
                     s_bl.Task.Create(task);
@@ -109,7 +120,7 @@ namespace PL.Task
             }
             else
             {
-                BO.Task task = CurrentTask[0];
+                BO.Task task = viewModel.CurrentTask[0];
                 try
                 {
                     s_bl.Task.Update(task);
