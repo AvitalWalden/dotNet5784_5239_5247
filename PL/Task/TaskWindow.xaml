@@ -36,7 +36,7 @@
         </StackPanel>
         <!--<TextBox Text="{Binding Dependencies, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Margin="210,230,0,0"  Width="250"/>-->
         <TextBox Text="{Binding CurrentTask[0].RequiredEffortTime, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Margin="210,234,0,0"  Width="250"/>
-        <TextBox Text="{Binding CurrentTask[0].Milestone.Id, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}"  Margin="290,274,0,0"  Width="170"/>
+        <TextBox Text="{Binding CurrentTask[0].Milestone.Id, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}"  Margin="277,274,0,0"  Width="183"/>
         <TextBox Text="{Binding CurrentTask[0].Milestone.Alias, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}"  Margin="210,274,0,0"  Width="62"/>
         <DatePicker SelectedDate="{Binding CurrentTask[0].ScheduledStartDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  Margin="210,314,0,0"  HorizontalAlignment="Left" VerticalAlignment="Top" Height="35" Width="250" IsEnabled="False"/>
         <DatePicker SelectedDate="{Binding CurrentTask[0].StartDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  Margin="210,354,0,0"  HorizontalAlignment="Left" VerticalAlignment="Top" Height="35" Width="250"/>

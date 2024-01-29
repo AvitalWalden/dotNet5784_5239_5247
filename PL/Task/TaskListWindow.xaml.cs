@@ -18,11 +18,13 @@ namespace PL.Task
     public partial class TaskListWindow : Window
     {
         static readonly BlApi.IBl s_bl = BlApi.Factory.Get();
+        private Func<BO.Task, bool>? _filter;
 
         public TaskListWindow(Func<BO.Task, bool>? filter = null)
         {
             InitializeComponent();
-            var temp = s_bl?.Task.ReadAll(filter);
+            _filter = filter;
+            var temp = s_bl?.Task.ReadAll(_filter);
             TaskList = temp == null ? new() : new(temp!);
         }
 
@@ -40,8 +42,8 @@ namespace PL.Task
         private void ComboBox_SelectionExperience(object sender, SelectionChangedEventArgs e)
         {
             var temp = StatusOfTask == BO.Status.Unscheduled ?
-                                        s_bl?.Task.ReadAll() :
-                                        s_bl?.Task.ReadAll(item => item.Status == StatusOfTask);
+                                        _filter == null ? s_bl?.Task.ReadAll() : s_bl?.Task.ReadAll(_filter) :
+                                        _filter == null ? s_bl?.Task.ReadAll(item => item.Status == StatusOfTask) : s_bl?.Task.ReadAll(item => item.Status == StatusOfTask).Where(_filter!);
             TaskList = temp == null ? new() : new(temp!);
         }
 
@@ -58,10 +60,8 @@ namespace PL.Task
         /// </summary>
         private void TaskListWindow_Activated(object sender, EventArgs e)
         {
-            var temp = s_bl?.Task.ReadAll();
-            TaskList = (temp == null) ? new() : new(temp!);
-            //var updatedTask = s_bl?.Task.ReadAll();
-            //TaskList = updatedTask == null ? new() : new(updatedTask!);
+            var temp = _filter == null ? s_bl?.Task.ReadAll() : s_bl?.Task.ReadAll(_filter);
+            TaskList = temp == null ? new() : new(temp!);
         }
 
         /// <summary>
