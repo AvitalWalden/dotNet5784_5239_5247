@@ -23,14 +23,14 @@ namespace PL.Task
 
     public class TaskWindowViewModel : DependencyObject
     {
-        public ObservableCollection<BO.Task> CurrentTask
+        public BO.Task CurrentTask
         {
-            get { return (ObservableCollection<BO.Task>)GetValue(CurrentTaskProperty); }
+            get { return (BO.Task)GetValue(CurrentTaskProperty); }
             set { SetValue(CurrentTaskProperty, value); }
         }
 
         public static readonly DependencyProperty CurrentTaskProperty =
-            DependencyProperty.Register("CurrentTask", typeof(ObservableCollection<BO.Task>), typeof(TaskWindowViewModel), new PropertyMetadata(null));
+            DependencyProperty.Register("CurrentTask", typeof(BO.Task), typeof(TaskWindowViewModel), new PropertyMetadata(null));
 
         public ObservableCollection<BO.Engineer> EngineerList
         {
@@ -89,7 +89,7 @@ namespace PL.Task
                         throw new BO.BlAlreadyExistsException("This task does not exit");
                     }
                     else
-                    { 
+                    {
                         task = s_bl.Task.Read(Id)!;
                     }
 
@@ -100,7 +100,24 @@ namespace PL.Task
                 }
 
             }
-            viewModel.CurrentTask = new ObservableCollection<BO.Task> { task };
+            viewModel.CurrentTask = new BO.Task() {
+                Id = task.Id,
+                Alias = task.Alias,
+                Description = task.Description,
+                Engineer = task.Engineer,
+                CompleteDate = task.CompleteDate,
+                ComplexityLevel = task.ComplexityLevel,
+                CreatedAtDate = task.CreatedAtDate,
+                Status = task.Status,
+                DeadlineDate = task.DeadlineDate,
+                Deliverables = task.Deliverables,
+                Dependencies = task.Dependencies,
+                Milestone = task.Milestone,
+                Remarks = task.Remarks,
+                RequiredEffortTime = task.RequiredEffortTime,
+                ScheduledStartDate  = task.ScheduledStartDate,
+                StartDate = task.StartDate
+            };
             var engineers = s_bl?.Engineer.ReadAll();
             viewModel.EngineerList = engineers == null ? new ObservableCollection<BO.Engineer>() : new ObservableCollection<BO.Engineer>(engineers!);
             var dependendies = s_bl?.Task.ReadAll().Select(task =>
@@ -113,7 +130,7 @@ namespace PL.Task
                     Description = task.Description,
                     Status = task.Status
                 };
-            }).Where(t => t!=null);
+            }).Where(t => t != null);
             viewModel.Dependencies = dependendies == null ? new ObservableCollection<BO.TaskInList>() : new ObservableCollection<BO.TaskInList>(dependendies!);
         }
 
@@ -121,7 +138,7 @@ namespace PL.Task
         {
             if (CurrentAction == ActionType.Create)
             {
-                BO.Task task = viewModel.CurrentTask[0];
+                BO.Task task = viewModel.CurrentTask;
                 try
                 {
                     s_bl.Task.Create(task);
@@ -144,7 +161,7 @@ namespace PL.Task
             }
             else
             {
-                BO.Task task = viewModel.CurrentTask[0];
+                BO.Task task = viewModel.CurrentTask;
                 try
                 {
                     s_bl.Task.Update(task);
@@ -192,16 +209,19 @@ namespace PL.Task
 
             if (result == MessageBoxResult.Yes)
             {
-                if (viewModel.CurrentTask[0].Dependencies == null)
-                    viewModel.CurrentTask[0].Dependencies = new List<TaskInList>();
+                if (viewModel.CurrentTask.Dependencies == null)
+                    viewModel.CurrentTask.Dependencies = new List<TaskInList>();
 
-                viewModel.CurrentTask[0].Dependencies!.Add(new BO.TaskInList()
+                if (dependencyTask != null)
                 {
-                    Id = dependencyTask!.Id,
-                    Alias = dependencyTask.Alias,
-                    Description = dependencyTask.Description,
-                    Status = dependencyTask.Status
-                });
+                    viewModel.CurrentTask.Dependencies!.Add(new BO.TaskInList()
+                    {
+                        Id = dependencyTask.Id,
+                        Alias = dependencyTask.Alias,
+                        Description = dependencyTask.Description,
+                        Status = dependencyTask.Status
+                    });
+                }
             }
         }
     }
