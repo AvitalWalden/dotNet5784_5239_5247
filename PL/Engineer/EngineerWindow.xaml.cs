@@ -60,17 +60,24 @@ namespace PL.Engineer
                 }
 
             }
-            CurrentEngineer = new ObservableCollection<BO.Engineer> { engineer };
+            CurrentEngineer = new BO.Engineer() { 
+            Email = engineer.Email,
+            Cost = engineer.Cost,
+            Id = engineer.Id,
+            Level = engineer.Level,
+            Name = engineer.Name,
+            Task = engineer.Task
+            };
         }
 
-        public ObservableCollection<BO.Engineer> CurrentEngineer
+        public BO.Engineer CurrentEngineer
         {
-            get { return (ObservableCollection<BO.Engineer>)GetValue(CurrentEngineerProperty); }
+            get { return (BO.Engineer)GetValue(CurrentEngineerProperty); }
             set { SetValue(CurrentEngineerProperty, value); }
         }
 
         public static readonly DependencyProperty CurrentEngineerProperty =
-            DependencyProperty.Register("CurrentEngineer", typeof(ObservableCollection<BO.Engineer>), typeof(EngineerWindow), new PropertyMetadata(null));
+            DependencyProperty.Register("CurrentEngineer", typeof(BO.Engineer), typeof(EngineerWindow), new PropertyMetadata(null));
 
 
 
@@ -81,7 +88,7 @@ namespace PL.Engineer
         {
             if (CurrentAction == ActionType.Create)
             {
-                BO.Engineer engineer = CurrentEngineer[0];
+                BO.Engineer engineer = CurrentEngineer;
                 try
                 {
                     s_bl.Engineer.Create(engineer);
@@ -100,7 +107,7 @@ namespace PL.Engineer
             }
             else
             {
-                BO.Engineer engineer = CurrentEngineer[0];
+                BO.Engineer engineer = CurrentEngineer;
                 try
                 {
                     s_bl.Engineer.Update(engineer);
@@ -143,9 +150,9 @@ namespace PL.Engineer
 
         private void BtnCurrentTask_Click(object sender, RoutedEventArgs e)
         {
-            if (CurrentEngineer[0].Task != null)
+            if (CurrentEngineer.Task != null)
             {
-                new TaskWindow(CurrentEngineer[0].Task!.Id).Show();
+                new TaskWindow(CurrentEngineer.Task!.Id).Show();
             }
         }
 
