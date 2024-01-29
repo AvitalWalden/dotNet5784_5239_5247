@@ -18,23 +18,6 @@
     <Active>true</Active>
   </Task>
   <Task>
-    <Id>1</Id>
-    <Description>הבטחת מימון פרויקט הבניה</Description>
-    <Alias>מימון</Alias>
-    <CreatedAtDate>2024-01-28T16:33:03.0120931+02:00</CreatedAtDate>
-    <RequiredEffort>P1D</RequiredEffort>
-    <IsMilestone>false</IsMilestone>
-    <StartDate xsi:nil="true" />
-    <ScheduledDate xsi:nil="true" />
-    <DeadlineDate xsi:nil="true" />
-    <CompleteDate xsi:nil="true" />
-    <Deliverables>מימון או מימון התחלתי לפרויקט הבניה</Deliverables>
-    <Remarks>Remarks for מימון</Remarks>
-    <EngineerId>214385239</EngineerId>
-    <ComplexityLevel>Proficient</ComplexityLevel>
-    <Active>true</Active>
-  </Task>
-  <Task>
     <Id>2</Id>
     <Description>רכישת הקרקע</Description>
     <Alias>רכישת הנכס</Alias>
@@ -389,6 +372,23 @@
     <Remarks>Remarks for מסירת מפתחות</Remarks>
     <EngineerId>322258965</EngineerId>
     <ComplexityLevel>Competent</ComplexityLevel>
+    <Active>true</Active>
+  </Task>
+  <Task>
+    <Id>1</Id>
+    <Description>הבטחת מימון פרויקט הבניה</Description>
+    <Alias>מימון</Alias>
+    <CreatedAtDate>2024-01-28T16:33:03.0120931+02:00</CreatedAtDate>
+    <RequiredEffort>P1D</RequiredEffort>
+    <IsMilestone>false</IsMilestone>
+    <StartDate xsi:nil="true" />
+    <ScheduledDate xsi:nil="true" />
+    <DeadlineDate xsi:nil="true" />
+    <CompleteDate xsi:nil="true" />
+    <Deliverables>מימון או מימון התחלתי לפרויקט הבניה</Deliverables>
+    <Remarks>Remarks for מימון</Remarks>
+    <EngineerId>214385239</EngineerId>
+    <ComplexityLevel>Proficient</ComplexityLevel>
     <Active>true</Active>
   </Task>
 </ArrayOfTask>

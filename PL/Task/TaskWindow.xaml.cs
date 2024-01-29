@@ -4,6 +4,7 @@ using PL.Engineer;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -39,6 +40,17 @@ namespace PL.Task
 
         public static readonly DependencyProperty EngineerListProperty =
             DependencyProperty.Register("EngineerList", typeof(ObservableCollection<BO.Engineer>), typeof(TaskWindowViewModel), new PropertyMetadata(null));
+
+
+        public ObservableCollection<BO.TaskInList> Dependencies
+        {
+            get { return (ObservableCollection<BO.TaskInList>)GetValue(DependenciesProperty); }
+            set { SetValue(DependenciesProperty, value); }
+        }
+
+        public static readonly DependencyProperty DependenciesProperty =
+            DependencyProperty.Register("Dependencies", typeof(ObservableCollection<BO.TaskInList>), typeof(TaskWindowViewModel), new PropertyMetadata(null));
+
     }
 
     public partial class TaskWindow : Window
@@ -82,7 +94,7 @@ namespace PL.Task
                     }
 
                 }
-                catch (BlAlreadyExistsException ex)
+                catch (BO.BlAlreadyExistsException ex)
                 {
                     MessageBox.Show(ex.Message, "error in create task", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
@@ -91,6 +103,18 @@ namespace PL.Task
             viewModel.CurrentTask = new ObservableCollection<BO.Task> { task };
             var engineers = s_bl?.Engineer.ReadAll();
             viewModel.EngineerList = engineers == null ? new ObservableCollection<BO.Engineer>() : new ObservableCollection<BO.Engineer>(engineers!);
+            var dependendies = s_bl?.Task.ReadAll().Select(task =>
+            {
+                if (task == null) { return null; }
+                return new BO.TaskInList()
+                {
+                    Id = task.Id,
+                    Alias = task.Alias,
+                    Description = task.Description,
+                    Status = task.Status
+                };
+            }).Where(t => t!=null);
+            viewModel.Dependencies = dependendies == null ? new ObservableCollection<BO.TaskInList>() : new ObservableCollection<BO.TaskInList>(dependendies!);
         }
 
         private void ButtonAddOrUpdateTask_Click(object sender, RoutedEventArgs e)
@@ -109,11 +133,11 @@ namespace PL.Task
                 {
                     MessageBox.Show(ex.Message, "error in create task", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
-                catch (BlInvalidValue ex)
+                catch (BO.BlInvalidValue ex)
                 {
                     MessageBox.Show(ex.Message, "error in create task", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
-                catch (BlAlreadyExistsException ex)
+                catch (BO.BlAlreadyExistsException ex)
                 {
                     MessageBox.Show(ex.Message, "error in create task", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
@@ -128,7 +152,7 @@ namespace PL.Task
                     this.Close();
 
                 }
-                catch (BlInvalidValue ex)
+                catch (BO.BlInvalidValue ex)
                 {
                     MessageBox.Show(ex.Message, "error in update task", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
@@ -160,9 +184,25 @@ namespace PL.Task
             return;
         }
 
-        private void Btn_addDependencyClick(object sender, RoutedEventArgs e)
+        private void ComboBox_AddDependency(object sender, SelectionChangedEventArgs e)
         {
-            new TaskListWindow().Show();
+            BO.TaskInList? dependencyTask = (sender as ComboBox)?.SelectedItem as BO.TaskInList;
+
+            MessageBoxResult result = MessageBox.Show("Do you want to add the selected item?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+            if (result == MessageBoxResult.Yes)
+            {
+                if (viewModel.CurrentTask[0].Dependencies == null)
+                    viewModel.CurrentTask[0].Dependencies = new List<TaskInList>();
+
+                viewModel.CurrentTask[0].Dependencies!.Add(new BO.TaskInList()
+                {
+                    Id = dependencyTask!.Id,
+                    Alias = dependencyTask.Alias,
+                    Description = dependencyTask.Description,
+                    Status = dependencyTask.Status
+                });
+            }
         }
     }
 }
