@@ -30,7 +30,7 @@
         <DatePicker SelectedDate="{Binding CurrentTask.CreatedAtDate, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Margin="210,140,0,0"  HorizontalAlignment="Left" VerticalAlignment="Top" Height="35" Width="250"/>
         <ComboBox ItemsSource="{Binding  Source={StaticResource StatusCollectionKey}}" SelectedValue="{Binding CurrentTask.Status, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="210,190,0,0"  Width="250" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top" Height="25" />
         <StackPanel Orientation="Vertical" Margin="497,73,29,422">
-            <ListView ItemsSource="{Binding CurrentTask.Dependencies}" Height="100"/>
+            <ListView ItemsSource="{Binding CurrentTask.Dependencies, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Height="100" MouseDoubleClick="ListViewDeleteDependency_MouseDoubleClick" DataContextChanged="ListView_DataContextChanged" />
             <Label Content="choose dependencies"  Width="170"/>
             <ComboBox
                 ItemsSource="{Binding Dependencies}"
@@ -53,11 +53,11 @@
         <ComboBox ItemsSource="{Binding EngineerList}"
           DisplayMemberPath="Name" 
           SelectedValuePath="Id"
-          SelectedValue="{Binding CurrentTask.Engineer.Id, Mode=TwoWay}" Margin="201,592,0,0" RenderTransformOrigin="0.502,0.344" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top" Width="250" Height="25"
+          SelectedValue="{Binding CurrentTask.Engineer.Id, Mode=TwoWay}" Margin="210,592,0,0" RenderTransformOrigin="0.502,0.344" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top" Width="250" Height="25"
          Visibility="{Binding CurrentTask.Id, Mode=OneTime, Converter={StaticResource ConvertIdVisibilityKey}}"/>
-        <TextBox Text="{Binding CurrentTask.Engineer.Id, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Margin="201,554,0,0"  Width="250"/>
+        <TextBox Text="{Binding CurrentTask.Engineer.Id, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Margin="210,554,0,0"  Width="250"/>
         <ComboBox ItemsSource="{Binding Source={StaticResource EngineerExperienceCollectionKey}}"
-           SelectedValue="{Binding CurrentTask.ComplexityLevel, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="201,630,0,0"  Width="250" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top"/>
+           SelectedValue="{Binding CurrentTask.ComplexityLevel, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="210,630,0,0"  Width="250" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top"/>
         <!--add or update task-->
         <Button Content="{Binding CurrentTask.Id, Mode=OneTime, Converter={StaticResource ConverIdToContentKey}}" Click="ButtonAddOrUpdateTask_Click" Margin="633,594,0,0" HorizontalAlignment="Left" Height="58" Width="103"/>
     </Grid>

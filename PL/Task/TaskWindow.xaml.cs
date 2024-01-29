@@ -214,15 +214,33 @@ namespace PL.Task
 
                 if (dependencyTask != null)
                 {
-                    viewModel.CurrentTask.Dependencies!.Add(new BO.TaskInList()
-                    {
-                        Id = dependencyTask.Id,
-                        Alias = dependencyTask.Alias,
-                        Description = dependencyTask.Description,
-                        Status = dependencyTask.Status
-                    });
+                    //viewModel.CurrentTask.Dependencies!.Add(new BO.TaskInList()
+                    //{
+                    //    Id = dependencyTask.Id,
+                    //    Alias = dependencyTask.Alias,
+                    //    Description = dependencyTask.Description,
+                    //    Status = dependencyTask.Status
+                    //});
+                    viewModel.CurrentTask.Dependencies.Add(dependencyTask!);
+
                 }
             }
+        }
+
+        private void ListViewDeleteDependency_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (sender is ListBox listBox && listBox.SelectedItem != null)
+            {
+                MessageBoxResult result = MessageBox.Show("Do you want to delete the selected item?", "Confirmation", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    viewModel.CurrentTask.Dependencies!.Remove((BO.TaskInList)listBox.SelectedItem);
+                    viewModel.CurrentTask.Dependencies = new List<BO.TaskInList>(viewModel.CurrentTask.Dependencies);
+                }
+                listBox.SelectedItem = null;
+            }
+
         }
     }
 }
