@@ -58,10 +58,30 @@
         <TextBox Text="{Binding CurrentTask.Description, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}"  Width="250" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center"/>
         <DatePicker SelectedDate="{Binding CurrentTask.CreatedAtDate, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}"  HorizontalAlignment="Left" VerticalAlignment="Center" Height="35" Width="250" Grid.Row="3" Grid.Column="1"/>
         <ComboBox ItemsSource="{Binding  Source={StaticResource StatusCollectionKey}}" SelectedValue="{Binding CurrentTask.Status, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  Width="250" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top" Height="24" Grid.Column="1" Grid.Row="4" Margin="0,8,0,0" />
-        <StackPanel Orientation="Vertical" Grid.RowSpan="2" Grid.Row="16" Margin="294,9,77,24" Grid.ColumnSpan="2">
-            <ListView ItemsSource="{Binding CurrentTask.Dependencies, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Height="84" MouseDoubleClick="ListViewDeleteDependency_MouseDoubleClick" Width="220"  />
-
-        </StackPanel>
+        <ListView Grid.Row="16" Margin="3,0,99,10" ItemsSource="{Binding TasksList, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" MouseDoubleClick="ListViewDeleteDependency_MouseDoubleClick" Grid.Column="1">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Margin="0,0,0,10">
+                        <TextBlock>
+<Run FontWeight="Bold" Text="Id: " />
+<Run Text="{Binding Id}" />
+                        </TextBlock>
+                        <TextBlock>
+<Run FontWeight="Bold" Text="Description: " />
+<Run Text="{Binding Description}" />
+                        </TextBlock>
+                        <TextBlock>
+<Run FontWeight="Bold" Text="Alias: " />
+<Run Text="{Binding Alias}" />
+                        </TextBlock>
+                        <TextBlock>
+<Run FontWeight="Bold" Text="Status: " />
+<Run Text="{Binding Status}" />
+                        </TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
         <Label Content="choose dependencies" Margin="210,7,0,0" Grid.Row="17"/>
         <ComboBox
             ItemsSource="{Binding Dependencies}"

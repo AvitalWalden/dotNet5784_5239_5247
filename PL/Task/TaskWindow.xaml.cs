@@ -51,6 +51,15 @@ namespace PL.Task
         public static readonly DependencyProperty DependenciesProperty =
             DependencyProperty.Register("Dependencies", typeof(ObservableCollection<BO.TaskInList>), typeof(TaskWindowViewModel), new PropertyMetadata(null));
 
+        public ObservableCollection<BO.TaskInList> TasksList
+        {
+            get { return (ObservableCollection<BO.TaskInList>)GetValue(TasksListProperty); }
+            set { SetValue(TasksListProperty, value); }
+        }
+
+        public static readonly DependencyProperty TasksListProperty =
+            DependencyProperty.Register("TasksList", typeof(ObservableCollection<BO.TaskInList>), typeof(TaskWindow), new PropertyMetadata(null));
+
     }
 
     public partial class TaskWindow : Window
@@ -130,8 +139,10 @@ namespace PL.Task
                     Description = task.Description,
                     Status = task.Status
                 };
-            }).Where(t => t != null);
+            }).Where(t => t != null).ToList();
             viewModel.Dependencies = dependendies == null ? new ObservableCollection<BO.TaskInList>() : new ObservableCollection<BO.TaskInList>(dependendies!);
+            viewModel.TasksList = viewModel.CurrentTask.Dependencies != null ? new ObservableCollection<BO.TaskInList>(viewModel.CurrentTask.Dependencies) : new ObservableCollection<BO.TaskInList>();
+
         }
 
         private void ButtonAddOrUpdateTask_Click(object sender, RoutedEventArgs e)
@@ -214,14 +225,9 @@ namespace PL.Task
 
                 if (dependencyTask != null)
                 {
-                    //viewModel.CurrentTask.Dependencies!.Add(new BO.TaskInList()
-                    //{
-                    //    Id = dependencyTask.Id,
-                    //    Alias = dependencyTask.Alias,
-                    //    Description = dependencyTask.Description,
-                    //    Status = dependencyTask.Status
-                    //});
+ 
                     viewModel.CurrentTask.Dependencies.Add(dependencyTask!);
+                    viewModel.TasksList = new ObservableCollection<TaskInList>(viewModel.CurrentTask.Dependencies);
 
                 }
             }
@@ -236,7 +242,8 @@ namespace PL.Task
                 if (result == MessageBoxResult.Yes)
                 {
                     viewModel.CurrentTask.Dependencies!.Remove((BO.TaskInList)listBox.SelectedItem);
-                    viewModel.CurrentTask.Dependencies = new List<BO.TaskInList>(viewModel.CurrentTask.Dependencies);
+                    viewModel.TasksList = new ObservableCollection<BO.TaskInList>(viewModel.CurrentTask.Dependencies);
+
                 }
                 listBox.SelectedItem = null;
             }
