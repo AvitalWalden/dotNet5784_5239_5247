@@ -58,25 +58,25 @@
         <TextBox Text="{Binding CurrentTask.Description, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}"  Width="250" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center"/>
         <DatePicker SelectedDate="{Binding CurrentTask.CreatedAtDate, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}"  HorizontalAlignment="Left" VerticalAlignment="Center" Height="35" Width="250" Grid.Row="3" Grid.Column="1"/>
         <ComboBox ItemsSource="{Binding  Source={StaticResource StatusCollectionKey}}" SelectedValue="{Binding CurrentTask.Status, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  Width="250" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top" Height="24" Grid.Column="1" Grid.Row="4" Margin="0,8,0,0" />
-        <ListView Grid.Row="16" Margin="3,0,99,10" ItemsSource="{Binding TasksList, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" MouseDoubleClick="ListViewDeleteDependency_MouseDoubleClick" Grid.Column="1">
+        <ListView Grid.Row="16" Margin="0,0,170,47" ItemsSource="{Binding TasksList, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" SelectionMode="Single" MouseDoubleClick="ListViewDeleteDependency_MouseDoubleClick" Grid.Column="1" Grid.RowSpan="2">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Margin="0,0,0,10">
                         <TextBlock>
-<Run FontWeight="Bold" Text="Id: " />
-<Run Text="{Binding Id}" />
+                            <Run FontWeight="Bold" Text="Id: " />
+                            <Run Text="{Binding Id}" />
                         </TextBlock>
                         <TextBlock>
-<Run FontWeight="Bold" Text="Description: " />
-<Run Text="{Binding Description}" />
+                            <Run FontWeight="Bold" Text="Description: " />
+                            <Run Text="{Binding Description}" />
                         </TextBlock>
                         <TextBlock>
-<Run FontWeight="Bold" Text="Alias: " />
-<Run Text="{Binding Alias}" />
+                            <Run FontWeight="Bold" Text="Alias: " />
+                            <Run Text="{Binding Alias}" />
                         </TextBlock>
                         <TextBlock>
-<Run FontWeight="Bold" Text="Status: " />
-<Run Text="{Binding Status}" />
+                            <Run FontWeight="Bold" Text="Status: " />
+                            <Run Text="{Binding Status}" />
                         </TextBlock>
                     </StackPanel>
                 </DataTemplate>
@@ -89,7 +89,6 @@
             SelectedValuePath="Id"
             Background="White"
             SelectionChanged="ComboBox_AddDependency" RenderTransformOrigin="0.502,0.344" HorizontalAlignment="Left" VerticalAlignment="Center" Width="250" Height="25" Grid.Row="17" Grid.Column="1"/>
-        <!--<TextBox Text="{Binding Dependencies, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Margin="210,230,0,0"  Width="250"/>-->
         <TextBox Text="{Binding CurrentTask.RequiredEffortTime, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}"  Width="250" Grid.Column="1" Grid.Row="5" VerticalAlignment="Center"/>
         <TextBox Text="{Binding CurrentTask.Milestone.Id, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}"  Margin="67,0,0,0"  Width="183" Grid.Column="1" Grid.Row="6" VerticalAlignment="Center"/>
         <TextBox Text="{Binding CurrentTask.Milestone.Alias, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}"  Width="62" Grid.Row="6" Grid.Column="1" VerticalAlignment="Center"/>

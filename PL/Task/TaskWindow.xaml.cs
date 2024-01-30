@@ -9,7 +9,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-
 namespace PL.Task
 {
     /// <summary>
@@ -142,7 +141,6 @@ namespace PL.Task
             }).Where(t => t != null).ToList();
             viewModel.Dependencies = dependendies == null ? new ObservableCollection<BO.TaskInList>() : new ObservableCollection<BO.TaskInList>(dependendies!);
             viewModel.TasksList = viewModel.CurrentTask.Dependencies != null ? new ObservableCollection<BO.TaskInList>(viewModel.CurrentTask.Dependencies) : new ObservableCollection<BO.TaskInList>();
-
         }
 
         private void ButtonAddOrUpdateTask_Click(object sender, RoutedEventArgs e)
@@ -225,10 +223,8 @@ namespace PL.Task
 
                 if (dependencyTask != null)
                 {
- 
                     viewModel.CurrentTask.Dependencies.Add(dependencyTask!);
-                    viewModel.TasksList = new ObservableCollection<TaskInList>(viewModel.CurrentTask.Dependencies);
-
+                    viewModel.TasksList.Add(dependencyTask!);
                 }
             }
         }
@@ -242,12 +238,10 @@ namespace PL.Task
                 if (result == MessageBoxResult.Yes)
                 {
                     viewModel.CurrentTask.Dependencies!.Remove((BO.TaskInList)listBox.SelectedItem);
-                    viewModel.TasksList = new ObservableCollection<BO.TaskInList>(viewModel.CurrentTask.Dependencies);
-
+                    viewModel.TasksList.Remove((BO.TaskInList)listBox.SelectedItem);
                 }
                 listBox.SelectedItem = null;
             }
-
         }
     }
 }
