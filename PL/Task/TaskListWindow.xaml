@@ -46,7 +46,7 @@
                  <Run Text="{Binding Alias}" />
                         </TextBlock>
                         <TextBlock>
-                 <Run FontWeight="Bold" Text="RequiredEffortTime: " />
+                 <Run FontWeight="Bold" Text="Status: " />
                  <Run Text="{Binding Status}" />
                         </TextBlock>
                     </StackPanel>
