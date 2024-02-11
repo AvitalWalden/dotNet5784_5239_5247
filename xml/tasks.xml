@@ -35,23 +35,6 @@
     <Active>true</Active>
   </Task>
   <Task>
-    <Id>2</Id>
-    <Description>רכישת הקרקע</Description>
-    <Alias>רכישת הנכס</Alias>
-    <CreatedAtDate>2024-01-29T21:59:36.6582824+02:00</CreatedAtDate>
-    <RequiredEffort>P1D</RequiredEffort>
-    <IsMilestone>false</IsMilestone>
-    <StartDate xsi:nil="true" />
-    <ScheduledDate xsi:nil="true" />
-    <DeadlineDate xsi:nil="true" />
-    <CompleteDate xsi:nil="true" />
-    <Deliverables>קרקע בבעלות החברה לקראת תחילת עבודות בניה במקום</Deliverables>
-    <Remarks>Remarks for רכישת הנכס</Remarks>
-    <EngineerId>16438046</EngineerId>
-    <ComplexityLevel>Competent</ComplexityLevel>
-    <Active>true</Active>
-  </Task>
-  <Task>
     <Id>3</Id>
     <Description>בקשת אישורים נחוצים לצורך הבנייה</Description>
     <Alias>אישורים לפרויקט הבנייה</Alias>
@@ -388,6 +371,23 @@
     <Deliverables>הדירות בידי הבעלים</Deliverables>
     <Remarks>Remarks for מסירת מפתחות</Remarks>
     <EngineerId>322258965</EngineerId>
+    <ComplexityLevel>Competent</ComplexityLevel>
+    <Active>true</Active>
+  </Task>
+  <Task>
+    <Id>2</Id>
+    <Description>רכישת הקרקע</Description>
+    <Alias>רכישת הנכס</Alias>
+    <CreatedAtDate>2024-01-29T21:59:36.6582824+02:00</CreatedAtDate>
+    <RequiredEffort>P1D</RequiredEffort>
+    <IsMilestone>false</IsMilestone>
+    <StartDate xsi:nil="true" />
+    <ScheduledDate xsi:nil="true" />
+    <DeadlineDate xsi:nil="true" />
+    <CompleteDate xsi:nil="true" />
+    <Deliverables>קרקע בבעלות החברה לקראת תחילת עבודות בניה במקום</Deliverables>
+    <Remarks>Remarks for רכישת הנכס</Remarks>
+    <EngineerId>16438046</EngineerId>
     <ComplexityLevel>Competent</ComplexityLevel>
     <Active>true</Active>
   </Task>
