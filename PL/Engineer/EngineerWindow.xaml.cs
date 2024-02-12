@@ -147,6 +147,9 @@ namespace PL.Engineer
             return;
         }
 
+        /// <summary>
+        /// function that gives the current task of the engineer.
+        /// </summary>
         private void BtnCurrentTask_Click(object sender, RoutedEventArgs e)
         {
             if (CurrentEngineer.Task != null)
@@ -154,11 +157,6 @@ namespace PL.Engineer
                 new TaskWindow(CurrentEngineer.Task!.Id).Show();
             }
         }
-
-        //private void BtnTask_Click(object sender, RoutedEventArgs e)
-        //{
-        //    new TaskListWindow((task) => task.Engineer == null).Show();
-        //}
     }
 }
 

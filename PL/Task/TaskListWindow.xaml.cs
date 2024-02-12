@@ -18,13 +18,12 @@ namespace PL.Task
     public partial class TaskListWindow : Window
     {
         static readonly BlApi.IBl s_bl = BlApi.Factory.Get();
-        private Func<BO.Task, bool>? _filter;
 
         public TaskListWindow()
         {
             InitializeComponent();
             //_filter = filter;
-            var temp = s_bl?.Task.ReadAll(_filter);
+            var temp = s_bl?.Task.ReadAll();
             TaskList = temp == null ? new() : new(temp!);
         }
 

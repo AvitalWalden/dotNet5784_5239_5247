@@ -28,8 +28,6 @@
             <RowDefinition Height="2.5*"/>
 
             <RowDefinition Height="1.5*"/>
-
-
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -57,7 +55,7 @@
         <TextBox Text="{Binding CurrentTask.Description, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}"  Width="250" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center"/>
         <DatePicker SelectedDate="{Binding CurrentTask.CreatedAtDate, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}"  HorizontalAlignment="Left" VerticalAlignment="Center" Height="35" Width="250" Grid.Row="3" Grid.Column="1"/>
         <ComboBox ItemsSource="{Binding  Source={StaticResource StatusCollectionKey}}" SelectedValue="{Binding CurrentTask.Status, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  Width="250" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top" Height="24" Grid.Column="1" Grid.Row="4" Margin="0,8,0,0" IsEnabled="False"/>
-        <ListView Grid.Row="16" Margin="3,10,167,10" ItemsSource="{Binding TasksList, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" SelectionMode="Single" MouseDoubleClick="ListViewDeleteDependency_MouseDoubleClick" Grid.Column="1">
+        <ListView Grid.Row="15" Margin="418,10,172,10" MaxWidth="400" ItemsSource="{Binding TasksList, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" SelectionMode="Single" MouseDoubleClick="ListViewDeleteDependency_MouseDoubleClick" Grid.ColumnSpan="2">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Margin="0,0,0,10">
@@ -81,7 +79,9 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Label Content="Choose dependencies to add" Margin="210,10,0,0" Grid.Row="15" Width="208"/>
+        <!-- dependencies of the task-->
+        <Label Content="Choose dependencies:" Margin="210,5,0,0" Grid.Row="16"/>
+        <!-- all the dependencies-->
         <ComboBox
             ItemsSource="{Binding Dependencies}"
             DisplayMemberPath="Alias" 
@@ -89,8 +89,6 @@
             Background="White"
             SelectionChanged="ComboBox_AddDependency" RenderTransformOrigin="0.502,0.344" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="25" Grid.Row="15" Grid.Column="1" Margin="0,8,0,0"/>
         <TextBox Text="{Binding CurrentTask.RequiredEffortTime, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}"  Width="250" Grid.Column="1" Grid.Row="5" VerticalAlignment="Center"/>
-        <!--<TextBox Text="{Binding CurrentTask.Milestone.Id, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}"  Margin="67,0,0,0"  Width="183" Grid.Column="1" Grid.Row="6" VerticalAlignment="Center"/>-->
-        <!--<TextBox Text="{Binding CurrentTask.Milestone.Alias, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}"  Width="62" Grid.Row="6" Grid.Column="1" VerticalAlignment="Center"/>-->
         <DatePicker SelectedDate="{Binding CurrentTask.ScheduledStartDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  HorizontalAlignment="Left" VerticalAlignment="Center" Height="35" Width="250" IsEnabled="False" Grid.Column="1" Grid.Row="6"/>
         <DatePicker SelectedDate="{Binding CurrentTask.StartDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  HorizontalAlignment="Left" VerticalAlignment="Top" Height="35" Width="250" Grid.Column="1" Grid.Row="7" Margin="0,4,0,0"/>
         <DatePicker SelectedDate="{Binding CurrentTask.DeadlineDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  HorizontalAlignment="Left" VerticalAlignment="Center" Height="35" Width="250" IsEnabled="False" Grid.Column="1" Grid.Row="8"/>
@@ -103,9 +101,9 @@
           SelectedValuePath="Id"
           SelectedValue="{Binding CurrentTask.Engineer.Id, Mode=TwoWay}" RenderTransformOrigin="0.502,0.344" HorizontalAlignment="Left" Background="White" VerticalAlignment="Center" Width="250" Height="25"
          Visibility="{Binding CurrentTask.Id, Mode=OneTime, Converter={StaticResource ConvertIdVisibilityKey}}" Grid.Column="1" Grid.Row="14"/>
-        <TextBox Text="{Binding CurrentTask.Engineer.Id, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}"  Width="250" Grid.Column="1" Grid.Row="12" VerticalAlignment="Center"/>
+        <TextBox Text="{Binding CurrentTask.Engineer.Id, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}"  Width="250" Grid.Column="1" Grid.Row="13" VerticalAlignment="Center"/>
         <ComboBox ItemsSource="{Binding Source={StaticResource EngineerExperienceCollectionKey}}"
-           SelectedValue="{Binding CurrentTask.ComplexityLevel, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  Width="250" HorizontalAlignment="Left" Background="White" VerticalAlignment="Center" Height="28" Grid.Row="13" Grid.Column="1"/>
+           SelectedValue="{Binding CurrentTask.ComplexityLevel, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Width="250" HorizontalAlignment="Left" Background="White" VerticalAlignment="Center" Height="28" Grid.Row="12" Grid.Column="1"/>
         <!--add or update task-->
         <Button Content="{Binding CurrentTask.Id, Mode=OneTime, Converter={StaticResource ConverIdToContentKey}}" Click="ButtonAddOrUpdateTask_Click" Height="37" Width="178" Grid.Row="18" Grid.Column="2" VerticalAlignment="Center"/>
     </Grid>

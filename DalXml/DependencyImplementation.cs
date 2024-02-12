@@ -170,7 +170,7 @@ internal class DependencyImplementation : IDependency
         }
         string configFile = "data-config";
         XElement configElement = XMLTools.LoadListFromXMLElement(configFile);
-        configElement.Element("NextDependencyId")?.SetValue("0");
+        configElement.Element("NextDependencyId")?.SetValue("1");
         XMLTools.SaveListToXMLElement(configElement, configFile);
     }
 }

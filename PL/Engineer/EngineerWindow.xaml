@@ -46,10 +46,10 @@
         <Label Content="Task Name:" Margin="250,0,0,0" Grid.Column="0" Visibility="{Binding Id, Mode=OneTime, Converter={StaticResource ConvertIdVisibilityKey}}" Height="31" Grid.Row="6" VerticalAlignment="Center"/>
         <TextBox TextWrapping="Wrap" Visibility="{Binding Path=Id, Mode=OneTime, Converter={StaticResource ConvertIdVisibilityKey}}"
           Text="{Binding Task.Alias, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  
-          Grid.Column="1" Grid.Row="6" IsEnabled="False" VerticalAlignment="Center"/>
+          Grid.Column="1" Grid.Row="6" IsEnabled="False" Margin="0,17,0,0"/>
         <!--current task-->
-        <Button Content="more details" Margin="213,10,0,0" HorizontalAlignment="Left" Height="36" Width="116" Click="BtnCurrentTask_Click" Grid.Row="6"
-                 Visibility="{Binding Path=Id, Mode=OneTime, Converter={StaticResource ConvertIdVisibilityKey}}" Grid.Column="1"/>
+        <Button Content="more details" Margin="231,0,0,0" HorizontalAlignment="Left" Height="25" Width="109" Click="BtnCurrentTask_Click" Grid.Row="6"
+                 Visibility="{Binding Path=Id, Mode=OneTime, Converter={StaticResource ConvertIdVisibilityKey}}" Grid.Column="1" VerticalAlignment="Center"/>
         <!--All Task -->
         <!--<Button Content="Tasks" Margin="213,0,0,0" HorizontalAlignment="Left" Height="25" Width="116" Click="BtnTask_Click" Grid.Row="6" Grid.Column="1" VerticalAlignment="Center"
                 Visibility="{Binding Path=Id, Mode=OneTime, Converter={StaticResource ConvertIdVisibilityKey}}"/>-->
