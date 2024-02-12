@@ -144,10 +144,15 @@ public static class Initialization
     }
     public static void Do()
     {
-        Factory.Get.Reset();
+        Reset();
         s_dal = DalApi.Factory.Get; //stage 4
         createEngineers();
         createTasks();
         createDependencies();
+    }
+
+    public static void Reset()
+    {
+        Factory.Get.Reset();
     }
 }

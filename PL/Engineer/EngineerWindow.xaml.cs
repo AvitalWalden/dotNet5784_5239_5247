@@ -58,7 +58,6 @@ namespace PL.Engineer
                 {
                     MessageBox.Show(ex.Message, "error in create engineer", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
-
             }
             CurrentEngineer = new BO.Engineer() { 
             Email = engineer.Email,

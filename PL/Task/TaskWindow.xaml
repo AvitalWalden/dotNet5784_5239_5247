@@ -57,7 +57,7 @@
         <TextBox Text="{Binding CurrentTask.Alias, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}"  Width="250" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center"/>
         <TextBox Text="{Binding CurrentTask.Description, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}"  Width="250" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center"/>
         <DatePicker SelectedDate="{Binding CurrentTask.CreatedAtDate, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}"  HorizontalAlignment="Left" VerticalAlignment="Center" Height="35" Width="250" Grid.Row="3" Grid.Column="1"/>
-        <ComboBox ItemsSource="{Binding  Source={StaticResource StatusCollectionKey}}" SelectedValue="{Binding CurrentTask.Status, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  Width="250" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top" Height="24" Grid.Column="1" Grid.Row="4" Margin="0,8,0,0" />
+        <ComboBox ItemsSource="{Binding  Source={StaticResource StatusCollectionKey}}" SelectedValue="{Binding CurrentTask.Status, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  Width="250" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top" Height="24" Grid.Column="1" Grid.Row="4" Margin="0,8,0,0" IsEnabled="False"/>
         <ListView Grid.Row="16" Margin="0,0,170,47" ItemsSource="{Binding TasksList, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" SelectionMode="Single" MouseDoubleClick="ListViewDeleteDependency_MouseDoubleClick" Grid.Column="1" Grid.RowSpan="2">
             <ListView.ItemTemplate>
                 <DataTemplate>

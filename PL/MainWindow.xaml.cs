@@ -1,4 +1,5 @@
-﻿using PL.Engineer;
+﻿using BO;
+using PL.Engineer;
 using PL.Task;
 using System;
 using System.Collections.Generic;
@@ -39,7 +40,22 @@ namespace PL
 
         private void BtnEngineers_Click(object sender, RoutedEventArgs e)
         {
-            new EngineerListWindow().Show();
+            string engineerIdInput = Microsoft.VisualBasic.Interaction.InputBox("Enter an ID number", "engineer");
+            if (!string.IsNullOrEmpty(engineerIdInput))
+            {
+                try
+                {
+                    new EngineerWindow(int.Parse(engineerIdInput)).Show();
+                }
+                catch (BlDoesNotExistException ex)
+                {
+                    MessageBox.Show(ex.Message, "error in search engineer", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
         }
 
         private void BtnAdmin_Click(object sender, RoutedEventArgs e)
