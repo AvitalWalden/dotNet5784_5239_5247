@@ -22,6 +22,9 @@ namespace PL.Task
 
     public class TaskWindowViewModel : DependencyObject
     {
+        /// <summary>
+        /// the current task
+        /// </summary>
         public BO.Task CurrentTask
         {
             get { return (BO.Task)GetValue(CurrentTaskProperty); }
@@ -31,6 +34,9 @@ namespace PL.Task
         public static readonly DependencyProperty CurrentTaskProperty =
             DependencyProperty.Register("CurrentTask", typeof(BO.Task), typeof(TaskWindowViewModel), new PropertyMetadata(null));
 
+        /// <summary>
+        /// list of engineers.
+        /// </summary>
         public ObservableCollection<BO.Engineer> EngineerList
         {
             get { return (ObservableCollection<BO.Engineer>)GetValue(EngineerListProperty); }
@@ -40,7 +46,9 @@ namespace PL.Task
         public static readonly DependencyProperty EngineerListProperty =
             DependencyProperty.Register("EngineerList", typeof(ObservableCollection<BO.Engineer>), typeof(TaskWindowViewModel), new PropertyMetadata(null));
 
-
+        /// <summary>
+        /// dependencies
+        /// </summary>
         public ObservableCollection<BO.TaskInList> Dependencies
         {
             get { return (ObservableCollection<BO.TaskInList>)GetValue(DependenciesProperty); }
@@ -84,7 +92,18 @@ namespace PL.Task
                 Description = "",
                 Alias = "",
                 CreatedAtDate = DateTime.Now,
-                Status = BO.Status.Unscheduled
+                Status = BO.Status.Unscheduled,
+                //Engineer = null,
+                //CompleteDate = null,
+                //ComplexityLevel = EngineerExperience.None,
+                //DeadlineDate = null,
+                //Deliverables = null,
+                //Dependencies =      null,
+                //Milestone = null,
+                //Remarks =   null,
+                //RequiredEffortTime = null,
+                //ScheduledStartDate = null,
+                //StartDate = null
             };
             CurrentAction = ActionType.Create;
             if (Id != -1)
@@ -143,6 +162,9 @@ namespace PL.Task
             viewModel.TasksList = viewModel.CurrentTask.Dependencies != null ? new ObservableCollection<BO.TaskInList>(viewModel.CurrentTask.Dependencies) : new ObservableCollection<BO.TaskInList>();
         }
 
+        /// <summary>
+        /// function that add or update engineer.
+        /// </summary>
         private void ButtonAddOrUpdateTask_Click(object sender, RoutedEventArgs e)
         {
             if (CurrentAction == ActionType.Create)
@@ -194,6 +216,10 @@ namespace PL.Task
             }
         }
 
+
+        /// <summary>
+        /// A function that checks the correctness of an identity card, and price, etc. 
+        /// </summary>
         private void IdOrCost_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             TextBox? text = sender as TextBox;
@@ -219,6 +245,10 @@ namespace PL.Task
             return;
         }
 
+
+        /// <summary>
+        /// A function that adds a dependency to an assignment.
+        /// </summary>
         private void ComboBox_AddDependency(object sender, SelectionChangedEventArgs e)
         {
             BO.TaskInList? dependencyTask = (sender as ComboBox)?.SelectedItem as BO.TaskInList;
@@ -238,6 +268,9 @@ namespace PL.Task
             }
         }
 
+        /// <summary>
+        /// delete a dependency to the task.
+        /// </summary>
         private void ListViewDeleteDependency_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (sender is ListBox listBox && listBox.SelectedItem != null)
