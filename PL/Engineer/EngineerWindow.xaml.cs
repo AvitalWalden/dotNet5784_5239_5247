@@ -155,10 +155,10 @@ namespace PL.Engineer
             }
         }
 
-        private void BtnTask_Click(object sender, RoutedEventArgs e)
-        {
-            new TaskListWindow((task) => task.Engineer == null).Show();
-        }
+        //private void BtnTask_Click(object sender, RoutedEventArgs e)
+        //{
+        //    new TaskListWindow((task) => task.Engineer == null).Show();
+        //}
     }
 }
 

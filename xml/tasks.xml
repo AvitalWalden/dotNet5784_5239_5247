@@ -18,20 +18,37 @@
     <Active>true</Active>
   </Task>
   <Task>
-    <Id>2</Id>
-    <Description>רכישת הקרקע</Description>
-    <Alias>רכישת הנכס</Alias>
-    <CreatedAtDate>2024-02-11T16:58:39.2251942+02:00</CreatedAtDate>
+    <Id>1</Id>
+    <Description>הבטחת מימון פרויקט הבניה</Description>
+    <Alias>מימון</Alias>
+    <CreatedAtDate>2024-01-29T21:59:36.6463229+02:00</CreatedAtDate>
     <RequiredEffort>P1D</RequiredEffort>
     <IsMilestone>false</IsMilestone>
     <StartDate xsi:nil="true" />
     <ScheduledDate xsi:nil="true" />
     <DeadlineDate xsi:nil="true" />
     <CompleteDate xsi:nil="true" />
-    <Deliverables>קרקע בבעלות החברה לקראת תחילת עבודות בניה במקום</Deliverables>
-    <Remarks>Remarks for רכישת הנכס</Remarks>
-    <EngineerId>16438046</EngineerId>
-    <ComplexityLevel>Competent</ComplexityLevel>
+    <Deliverables>מימון או מימון התחלתי לפרויקט הבניה</Deliverables>
+    <Remarks>Remarks for מימון</Remarks>
+    <EngineerId>214385239</EngineerId>
+    <ComplexityLevel>Proficient</ComplexityLevel>
+    <Active>true</Active>
+  </Task>
+  <Task>
+    <Id>3</Id>
+    <Description>בקשת אישורים נחוצים לצורך הבנייה</Description>
+    <Alias>אישורים לפרויקט הבנייה</Alias>
+    <CreatedAtDate>2024-01-29T21:59:36.6709048+02:00</CreatedAtDate>
+    <RequiredEffort>P1D</RequiredEffort>
+    <IsMilestone>false</IsMilestone>
+    <StartDate xsi:nil="true" />
+    <ScheduledDate xsi:nil="true" />
+    <DeadlineDate xsi:nil="true" />
+    <CompleteDate xsi:nil="true" />
+    <Deliverables>קבלת האישורים הנחוצים לבניה</Deliverables>
+    <Remarks>Remarks for אישורים לפרויקט הבנייה</Remarks>
+    <EngineerId>344165165</EngineerId>
+    <ComplexityLevel>AdvancedBeginner</ComplexityLevel>
     <Active>true</Active>
   </Task>
   <Task>
@@ -358,53 +375,20 @@
     <Active>true</Active>
   </Task>
   <Task>
-    <Id>23</Id>
-    <Description>וברכה</Description>
-    <Alias>שלום</Alias>
-    <CreatedAtDate>2024-02-11T17:01:32.3867251+02:00</CreatedAtDate>
-    <RequiredEffort>P23D</RequiredEffort>
-    <IsMilestone>false</IsMilestone>
-    <StartDate>2024-02-08T00:00:00</StartDate>
-    <ScheduledDate xsi:nil="true" />
-    <DeadlineDate xsi:nil="true" />
-    <CompleteDate>2024-02-29T00:00:00</CompleteDate>
-    <Deliverables>WOW</Deliverables>
-    <EngineerId xsi:nil="true" />
-    <ComplexityLevel>AdvancedBeginner</ComplexityLevel>
-    <Active>true</Active>
-  </Task>
-  <Task>
-    <Id>1</Id>
-    <Description>הבטחת מימון פרויקט הבניה</Description>
-    <Alias>מימון</Alias>
-    <CreatedAtDate>2024-02-11T16:58:39.22339+02:00</CreatedAtDate>
+    <Id>2</Id>
+    <Description>רכישת הקרקע</Description>
+    <Alias>רכישת הנכס</Alias>
+    <CreatedAtDate>2024-01-29T21:59:36.6582824+02:00</CreatedAtDate>
     <RequiredEffort>P1D</RequiredEffort>
     <IsMilestone>false</IsMilestone>
-    <StartDate>2024-02-28T00:00:00</StartDate>
+    <StartDate xsi:nil="true" />
     <ScheduledDate xsi:nil="true" />
     <DeadlineDate xsi:nil="true" />
-    <CompleteDate>2024-02-29T00:00:00</CompleteDate>
-    <Deliverables>מימון או מימון התחלתי לפרויקט הבניה</Deliverables>
-    <Remarks>Remarks for מימון</Remarks>
-    <EngineerId>214385239</EngineerId>
-    <ComplexityLevel>Proficient</ComplexityLevel>
-    <Active>true</Active>
-  </Task>
-  <Task>
-    <Id>3</Id>
-    <Description>בקשת אישורים נחוצים לצורך הבנייה</Description>
-    <Alias>אישורים לפרויקט הבנייה</Alias>
-    <CreatedAtDate>2024-02-11T16:58:39.2274779+02:00</CreatedAtDate>
-    <RequiredEffort>P1D</RequiredEffort>
-    <IsMilestone>false</IsMilestone>
-    <StartDate>2024-02-02T00:00:00</StartDate>
-    <ScheduledDate xsi:nil="true" />
-    <DeadlineDate xsi:nil="true" />
-    <CompleteDate>2024-02-27T00:00:00</CompleteDate>
-    <Deliverables>קבלת האישורים הנחוצים לבניה</Deliverables>
-    <Remarks>Remarks for אישורים לפרויקט הבנייה</Remarks>
-    <EngineerId>344165165</EngineerId>
-    <ComplexityLevel>AdvancedBeginner</ComplexityLevel>
+    <CompleteDate xsi:nil="true" />
+    <Deliverables>קרקע בבעלות החברה לקראת תחילת עבודות בניה במקום</Deliverables>
+    <Remarks>Remarks for רכישת הנכס</Remarks>
+    <EngineerId>16438046</EngineerId>
+    <ComplexityLevel>Competent</ComplexityLevel>
     <Active>true</Active>
   </Task>
 </ArrayOfTask>

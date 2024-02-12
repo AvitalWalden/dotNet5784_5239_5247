@@ -178,10 +178,19 @@ namespace PL.Task
                     this.Close();
 
                 }
+                catch (BO.BlEngineerIsAlreadyBusy ex)
+                {
+                    MessageBox.Show(ex.Message, "error in create task", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (BO.BlAlreadyExistsException ex)
+                {
+                    MessageBox.Show(ex.Message, "error in create task", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
                 catch (BO.BlInvalidValue ex)
                 {
                     MessageBox.Show(ex.Message, "error in update task", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
+
             }
         }
 
