@@ -241,9 +241,13 @@ internal class TaskImplementation : ITask
         {
             throw new BO.BlInvalidValue("Task ID must be a positive number");
         }
+        if (string.IsNullOrWhiteSpace(boTask.Alias))
+        {
+            throw new BO.BlInvalidValue("Task alias cannot be empty or null");
+        }
         if (string.IsNullOrWhiteSpace(boTask.Description))
         {
-            throw new BO.BlInvalidValue("Task description cannot be empty or null");
+            throw new BO.BlInvalidValue("Task Description cannot be empty or null");
         }
         TimeSpan? requiredEffort = null;
         if (boTask.StartDate != null && boTask.CompleteDate != null)
