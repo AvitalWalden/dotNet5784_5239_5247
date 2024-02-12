@@ -38,3 +38,10 @@ public class DalXMLFileLoadCreateException : Exception // Exception from XmlTool
 {
     public DalXMLFileLoadCreateException(string? message) : base(message) { }
 }
+
+[Serializable]
+public class DalEngineerDoesNotExit : Exception
+{
+    public DalEngineerDoesNotExit(string? message) : base(message) { }
+    public DalEngineerDoesNotExit(string message, Exception innerException) : base(message, innerException) { }
+}

@@ -66,3 +66,11 @@ public class BlEngineerIsAlreadyBusy : Exception
     public BlEngineerIsAlreadyBusy(string? message) : base(message) { }
     public BlEngineerIsAlreadyBusy(string message, Exception innerException) : base(message, innerException) { }
 }
+
+[Serializable]
+public class BlEngineerDoesNotExit : Exception
+{
+    public BlEngineerDoesNotExit(string? message) : base(message) { }
+    public BlEngineerDoesNotExit(string message, Exception innerException) : base(message, innerException) { }
+}
+

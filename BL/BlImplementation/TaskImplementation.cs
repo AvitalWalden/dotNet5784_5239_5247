@@ -17,7 +17,6 @@ internal class TaskImplementation : ITask
     /// <exception cref="BO.BlAlreadyExistsException">error</exception>
     public int Create(BO.Task boTask)
     {
-
         if (boTask.Id < 0)
         {
             throw new BO.BlInvalidValue("Task ID must be a positive number");
@@ -30,6 +29,10 @@ internal class TaskImplementation : ITask
         if (task != null && task.Id!= boTask.Id)
         {
             throw new BO.BlEngineerIsAlreadyBusy("Engineer is already busy");
+        }
+        if (boTask.Engineer != null && _dal.Engineer.Read(boTask.Engineer!.Id) == null)
+        {
+            throw new BO.BlEngineerDoesNotExit("There is no engineer with such an ID");
         }
         DO.Task doTask = new DO.Task
         (
@@ -230,6 +233,10 @@ internal class TaskImplementation : ITask
     /// <exception cref="BO.BlAlreadyExistsException">error</exception>
     public void Update(BO.Task boTask)
     {
+        if (boTask.Engineer != null && _dal.Engineer.Read(boTask.Engineer!.Id) == null)
+        {
+            throw new BO.BlEngineerDoesNotExit("There is no engineer with such an ID");
+        }
         if (boTask.Id < 0)
         {
             throw new BO.BlInvalidValue("Task ID must be a positive number");

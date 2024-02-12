@@ -54,7 +54,7 @@ public static class Tools
         if (doTask.StartDate != null && doTask.CompleteDate != null && doTask.CompleteDate <= doTask.ScheduledDate)
             return BO.Status.OnTrack;
 
-        if (doTask.StartDate != null && doTask.CompleteDate != null && doTask.CompleteDate > doTask.ScheduledDate)
+        if (doTask.StartDate != null && doTask.CompleteDate != null && doTask.CompleteDate > doTask.DeadlineDate)
             return BO.Status.InJeopardy;
         if (doTask.StartDate != null && doTask.CompleteDate != null && doTask.CompleteDate < DateTime.Now)
             return BO.Status.Done;

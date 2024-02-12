@@ -1,5 +1,5 @@
 ﻿using BlApi;
-using BO;
+using DalApi;
 using PL.Engineer;
 using System;
 using System.Collections.Generic;
@@ -59,6 +59,7 @@ namespace PL.Task
         public static readonly DependencyProperty TasksListProperty =
             DependencyProperty.Register("TasksList", typeof(ObservableCollection<BO.TaskInList>), typeof(TaskWindow), new PropertyMetadata(null));
 
+        
     }
 
     public partial class TaskWindow : Window
@@ -167,6 +168,10 @@ namespace PL.Task
                 {
                     MessageBox.Show(ex.Message, "error in create task", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
+                catch (BO.BlEngineerDoesNotExit ex)
+                {
+                    MessageBox.Show(ex.Message, "There is no engineer with such an ID", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
             else
             {
@@ -189,6 +194,10 @@ namespace PL.Task
                 catch (BO.BlInvalidValue ex)
                 {
                     MessageBox.Show(ex.Message, "error in update task", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (BO.BlEngineerDoesNotExit ex)
+                {
+                    MessageBox.Show(ex.Message, "There is no engineer with such an ID", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
 
             }
@@ -228,7 +237,7 @@ namespace PL.Task
             if (result == MessageBoxResult.Yes)
             {
                 if (viewModel.CurrentTask.Dependencies == null)
-                    viewModel.CurrentTask.Dependencies = new List<TaskInList>();
+                    viewModel.CurrentTask.Dependencies = new List<BO.TaskInList>();
 
                 if (dependencyTask != null)
                 {

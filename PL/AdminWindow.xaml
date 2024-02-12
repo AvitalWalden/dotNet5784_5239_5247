@@ -7,9 +7,9 @@
         mc:Ignorable="d"
         Title="AdminWindow" Height="450" Width="800">
     <Grid>
-        <Button Content="Handle Engineer" Margin="257,192,0,0" Click="BtnEngineer_Click" Width="120" HorizontalAlignment="Left" RenderTransformOrigin="0.853,0.85"/>
-        <Button Content="Handle Task" Margin="422,192,0,0" HorizontalAlignment="Left" Click="BtnTask_Click" Width="120" RenderTransformOrigin="0.036,0.296"/>
-        <Button Content="Reset" Margin="577,192,0,0" HorizontalAlignment="Left" Click="BtnReset_Click" Width="120" RenderTransformOrigin="0.036,0.296"/>
+        <Button Content="Handle Engineer" Margin="139,177,0,0" Click="BtnEngineer_Click" Width="120" HorizontalAlignment="Left" RenderTransformOrigin="0.853,0.85"/>
+        <Button Content="Handle Task" Margin="354,177,0,0" HorizontalAlignment="Left" Click="BtnTask_Click" Width="120" RenderTransformOrigin="0.036,0.296"/>
+        <Button Content="Reset" Margin="567,177,0,0" HorizontalAlignment="Left" Click="BtnReset_Click" Width="120" RenderTransformOrigin="0.036,0.296"/>
 
     </Grid>
 </Window>
