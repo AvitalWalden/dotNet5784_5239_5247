@@ -26,38 +26,34 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="2.5*"/>
-
             <RowDefinition Height="1.5*"/>
-
-
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
 
         </Grid.ColumnDefinitions>
-        <Label Content="Id" Margin="210,10,0,0" Grid.Column="0" VerticalAlignment="Center" RenderTransformOrigin="1.274,0.593" Width="210"/>
-        <Label Content="Alias"  Margin="210,10,0,0" Height="26" Grid.Row="1" VerticalAlignment="Center" Width="210"/>
-        <Label Content="Description" Margin="210,10,0,0" Height="27" Grid.Row="2" VerticalAlignment="Center" Width="210"/>
-        <Label Content="CreatedAtDate" Margin="210,10,0,0" Height="28" Grid.Row="3" VerticalAlignment="Center" Width="210"/>
-        <Label Content="Status" Margin="210,10,0,0" Height="24" Grid.Row="4" Width="210"/>
-        <Label Content="Dependencies" Height="29" Grid.Row="16" Margin="210,10,0,0" Width="208"/>
-        <Label Content="RequiredEffortTime" Margin="210,10,0,0" Width="210" Height="29" Grid.Row="5" VerticalAlignment="Center"/>
-        <!--<Label Content="Milestone" Margin="210,0,0,0" Height="25" Grid.Row="6" VerticalAlignment="Center" Width="210"/>-->
-        <Label Content="ScheduledStartDate" Margin="210,10,0,0" Height="27" Grid.Row="6" RenderTransformOrigin="0.478,0.73" Width="210"/>
-        <Label Content="StartDate" Margin="210,10,0,0" Height="32" Grid.Row="7" Width="210"/>
-        <Label Content="DeadlineDate" Margin="210,10,0,0" Height="27" Grid.Row="8" VerticalAlignment="Center" Width="210"/>
-        <Label Content="CompleteDate" Margin="210,10,0,0" Height="26" Grid.Row="9" Width="210"/>
-        <Label Content="Deliverables" Margin="210,10,0,0" Height="29" Grid.Row="10" Width="210"/>
-        <Label Content="Remarks" Margin="210,10,0,0" Height="32" Grid.Row="11" Width="210"/>
+        <Label Content="Id:" Margin="210,10,0,0" Grid.Column="0" VerticalAlignment="Center" RenderTransformOrigin="1.274,0.593" Width="210"/>
+        <Label Content="Alias:"  Margin="210,10,0,0" Height="26" Grid.Row="1" VerticalAlignment="Center" Width="210"/>
+        <Label Content="Description:" Margin="210,10,0,0" Height="27" Grid.Row="2" VerticalAlignment="Center" Width="210"/>
+        <Label Content="Created At Date:" Margin="210,10,0,0" Height="28" Grid.Row="3" VerticalAlignment="Center" Width="210"/>
+        <Label Content="Status:" Margin="210,10,0,0" Height="24" Grid.Row="4" Width="210"/>
+        <Label Content="Dependencies:" Height="29" Grid.Row="16" Margin="210,10,0,0" Width="208"/>
+        <Label Content="Required Effort Time:" Margin="210,10,0,0" Width="210" Height="29" Grid.Row="5" VerticalAlignment="Center"/>
+        <Label Content="Scheduled Start Date:" Margin="210,10,0,0" Height="27" Grid.Row="6" RenderTransformOrigin="0.478,0.73" Width="210"/>
+        <Label Content="Start Date:" Margin="210,10,0,0" Height="32" Grid.Row="7" Width="210"/>
+        <Label Content="Deadline Date:" Margin="210,10,0,0" Height="27" Grid.Row="8" VerticalAlignment="Center" Width="210"/>
+        <Label Content="Complete Date:" Margin="210,10,0,0" Height="26" Grid.Row="9" Width="210"/>
+        <Label Content="Deliverables:" Margin="210,10,0,0" Height="29" Grid.Row="10" Width="210"/>
+        <Label Content="Remarks:" Margin="210,10,0,0" Height="32" Grid.Row="11" Width="210"/>
         <Label Content="Engineer Id:" Margin="210,10,0,0" Height="27" Grid.Row="12" Width="210"/>
-        <Label Content="ComplexityLevel" Margin="210,10,0,0" Width="208" Height="34" Grid.Row="13"/>
+        <Label Content="Complexity Level:" Margin="210,10,0,0" Width="208" Height="34" Grid.Row="13"/>
         <TextBox Text="{Binding CurrentTask.Id, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Width="250" IsEnabled="False" MaxLength="9" PreviewKeyDown="IdOrCost_PreviewKeyDown" Grid.Column="1" VerticalAlignment="Center" />
         <TextBox Text="{Binding CurrentTask.Alias, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}"  Width="250" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center"/>
         <TextBox Text="{Binding CurrentTask.Description, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}"  Width="250" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center"/>
         <DatePicker SelectedDate="{Binding CurrentTask.CreatedAtDate, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}"  HorizontalAlignment="Left" VerticalAlignment="Center" Height="35" Width="250" Grid.Row="3" Grid.Column="1"/>
         <ComboBox ItemsSource="{Binding  Source={StaticResource StatusCollectionKey}}" SelectedValue="{Binding CurrentTask.Status, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  Width="250" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top" Height="24" Grid.Column="1" Grid.Row="4" Margin="0,8,0,0" IsEnabled="False"/>
-        <ListView Grid.Row="16" Margin="418,10,172,10" ItemsSource="{Binding TasksList, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" SelectionMode="Single" MouseDoubleClick="ListViewDeleteDependency_MouseDoubleClick" Grid.ColumnSpan="2">
+        <ListView Grid.Row="16" MaxWidth="400" Margin="418,10,172,10" ItemsSource="{Binding TasksList, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" SelectionMode="Single" MouseDoubleClick="ListViewDeleteDependency_MouseDoubleClick" Grid.ColumnSpan="2">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Margin="0,0,0,10">
@@ -81,7 +77,7 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Label Content="Choose dependencies to add" Margin="210,0,0,0" Grid.Row="15" VerticalAlignment="Center" Width="205"/>
+        <Label Content="Choose dependencies to add:" Margin="210,0,0,0" Grid.Row="15" VerticalAlignment="Center" Width="205"/>
         <ComboBox
             ItemsSource="{Binding Dependencies}"
             DisplayMemberPath="Alias" 
@@ -89,8 +85,6 @@
             Background="White"
             SelectionChanged="ComboBox_AddDependency" RenderTransformOrigin="0.502,0.344" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="25" Grid.Row="15" Grid.Column="1" Margin="0,7,0,0"/>
         <TextBox Text="{Binding CurrentTask.RequiredEffortTime, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}"  Width="250" Grid.Column="1" Grid.Row="5" VerticalAlignment="Center"/>
-        <!--<TextBox Text="{Binding CurrentTask.Milestone.Id, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}"  Margin="67,0,0,0"  Width="183" Grid.Column="1" Grid.Row="6" VerticalAlignment="Center"/>-->
-        <!--<TextBox Text="{Binding CurrentTask.Milestone.Alias, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}"  Width="62" Grid.Row="6" Grid.Column="1" VerticalAlignment="Center"/>-->
         <DatePicker SelectedDate="{Binding CurrentTask.ScheduledStartDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  HorizontalAlignment="Left" VerticalAlignment="Center" Height="35" Width="250" IsEnabled="False" Grid.Column="1" Grid.Row="6"/>
         <DatePicker SelectedDate="{Binding CurrentTask.StartDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  HorizontalAlignment="Left" VerticalAlignment="Top" Height="35" Width="250" Grid.Column="1" Grid.Row="7" Margin="0,4,0,0"/>
         <DatePicker SelectedDate="{Binding CurrentTask.DeadlineDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  HorizontalAlignment="Left" VerticalAlignment="Center" Height="35" Width="250" IsEnabled="False" Grid.Column="1" Grid.Row="8"/>

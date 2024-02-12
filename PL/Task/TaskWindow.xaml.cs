@@ -94,17 +94,7 @@ namespace PL.Task
                 Alias = "",
                 CreatedAtDate = DateTime.Now,
                 Status = BO.Status.Unscheduled,
-                //Engineer = null,
-                //CompleteDate = null,
-                //ComplexityLevel = EngineerExperience.None,
-                //DeadlineDate = null,
-                //Deliverables = null,
-                //Dependencies =      null,
-                //Milestone = null,
-                //Remarks =   null,
-                //RequiredEffortTime = null,
-                //ScheduledStartDate = null,
-                //StartDate = null
+                Engineer = new BO.EngineerInTask() { Name=Name},
             };
             CurrentAction = ActionType.Create;
             if (Id != -1)
