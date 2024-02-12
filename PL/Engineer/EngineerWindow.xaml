@@ -34,7 +34,7 @@
         <ComboBox ItemsSource="{Binding Source={StaticResource EngineerExperienceCollectionKey}}"
                   SelectedValue="{Binding Level, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Left" Background="White" VerticalAlignment="Center" Height="30" Width="150"/>
         <!--add or update engineer-->
-        <Button Content="{Binding Id, Mode=OneTime, Converter={StaticResource ConverIdToContentKey}}" Click="ButtonAddOrUpdateEngineer_Click" Margin="295,6,0,0" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="7"/>
+        <Button Content="{Binding Id, Mode=OneTime, Converter={StaticResource ConverIdToContentKey}}" Click="ButtonAddOrUpdateEngineer_Click" Margin="352,10,0,0" HorizontalAlignment="Left" Grid.Row="7" RenderTransformOrigin="0.3,0.545" Grid.ColumnSpan="2" Height="30" Width="148"/>
         <!--image-->
         <!--<Image HorizontalAlignment="Left" Height="147" Margin="0,40,0,0" VerticalAlignment="Top" Width="263" Source="/9167.jpg" Grid.RowSpan="3" Grid.Row="5"/>-->
         <!--task to this engineer-->
@@ -48,10 +48,10 @@
           Text="{Binding Task.Alias, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  
           Grid.Column="1" Grid.Row="6" IsEnabled="False" VerticalAlignment="Center"/>
         <!--current task-->
-        <Button Content="more details" Margin="213,40,0,0" HorizontalAlignment="Left" Height="25" Width="116" Click="BtnCurrentTask_Click" Grid.Column="1" Grid.Row="5" Grid.RowSpan="2"
-                 Visibility="{Binding Path=Id, Mode=OneTime, Converter={StaticResource ConvertIdVisibilityKey}}"/>
+        <Button Content="more details" Margin="213,10,0,0" HorizontalAlignment="Left" Height="36" Width="116" Click="BtnCurrentTask_Click" Grid.Row="6"
+                 Visibility="{Binding Path=Id, Mode=OneTime, Converter={StaticResource ConvertIdVisibilityKey}}" Grid.Column="1"/>
         <!--All Task -->
-        <Button Content="Tasks" Margin="213,0,0,0" HorizontalAlignment="Left" Height="25" Width="116" Click="BtnTask_Click" Grid.Row="6" Grid.Column="1" VerticalAlignment="Center"
-                Visibility="{Binding Path=Id, Mode=OneTime, Converter={StaticResource ConvertIdVisibilityKey}}"/>
+        <!--<Button Content="Tasks" Margin="213,0,0,0" HorizontalAlignment="Left" Height="25" Width="116" Click="BtnTask_Click" Grid.Row="6" Grid.Column="1" VerticalAlignment="Center"
+                Visibility="{Binding Path=Id, Mode=OneTime, Converter={StaticResource ConvertIdVisibilityKey}}"/>-->
     </Grid>
 </Window>
