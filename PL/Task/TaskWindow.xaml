@@ -84,7 +84,7 @@
             SelectedValuePath="Id"
             Background="White"
             SelectionChanged="ComboBox_AddDependency" RenderTransformOrigin="0.502,0.344" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="25" Grid.Row="15" Grid.Column="1" Margin="0,7,0,0"/>
-        <TextBox Text="{Binding CurrentTask.RequiredEffortTime, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}"  Width="250" Grid.Column="1" Grid.Row="5" VerticalAlignment="Center"/>
+        <TextBox Text="{Binding CurrentTask.RequiredEffortTime, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}"  Width="250" Grid.Column="1" Grid.Row="5" VerticalAlignment="Center" PreviewKeyDown="IdOrCost_PreviewKeyDown"/>
         <DatePicker SelectedDate="{Binding CurrentTask.ScheduledStartDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  HorizontalAlignment="Left" VerticalAlignment="Center" Height="35" Width="250" IsEnabled="False" Grid.Column="1" Grid.Row="6"/>
         <DatePicker SelectedDate="{Binding CurrentTask.StartDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  HorizontalAlignment="Left" VerticalAlignment="Top" Height="35" Width="250" Grid.Column="1" Grid.Row="7" Margin="0,4,0,0"/>
         <DatePicker SelectedDate="{Binding CurrentTask.DeadlineDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  HorizontalAlignment="Left" VerticalAlignment="Center" Height="35" Width="250" IsEnabled="False" Grid.Column="1" Grid.Row="8"/>
