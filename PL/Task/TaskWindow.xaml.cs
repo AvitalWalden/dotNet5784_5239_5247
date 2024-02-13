@@ -94,7 +94,7 @@ namespace PL.Task
                 Alias = "",
                 CreatedAtDate = DateTime.Now,
                 Status = BO.Status.Unscheduled,
-                Engineer = new BO.EngineerInTask() { Name=Name, Id=0},
+                Engineer = new BO.EngineerInTask() { Name="", Id=0},
             };
             CurrentAction = ActionType.Create;
             if (Id != -1)

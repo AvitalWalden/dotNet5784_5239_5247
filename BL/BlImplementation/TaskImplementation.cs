@@ -82,7 +82,6 @@ internal class TaskImplementation : ITask
         DO.Task? doTask = _dal.Task.Read(id);
         if (doTask == null)
             throw new BO.BlDoesNotExistException($"Task with ID={id} does Not exist");
-
         DO.Engineer? eng = _dal.Engineer.ReadAll().FirstOrDefault(engineer => engineer?.Id == doTask.EngineerId);
         BO.EngineerInTask? engineer = null;
         if (eng != null)
@@ -93,7 +92,14 @@ internal class TaskImplementation : ITask
                 Name = eng.Name
             };
         }
-
+        if (doTask.EngineerId == 0)
+        {
+            engineer = new BO.EngineerInTask()
+            {
+                Id = 0,
+                Name = ""
+            };
+        }
         List<BO.TaskInList>? tasksList = null;
         BO.MilestoneInTask? milestone = null;
 
