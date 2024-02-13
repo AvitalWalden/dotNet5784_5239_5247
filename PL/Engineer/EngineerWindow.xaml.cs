@@ -58,6 +58,10 @@ namespace PL.Engineer
                 {
                     MessageBox.Show(ex.Message, "error in create engineer", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
             CurrentEngineer = new BO.Engineer() { 
             Email = engineer.Email,
@@ -103,6 +107,10 @@ namespace PL.Engineer
                 {
                     MessageBox.Show(ex.Message, "error in create engineer", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
             else
             {
@@ -117,6 +125,10 @@ namespace PL.Engineer
                 catch (BlInvalidValue ex)
                 {
                     MessageBox.Show(ex.Message, "error in update engineer", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
 

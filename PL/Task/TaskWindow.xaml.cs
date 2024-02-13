@@ -1,4 +1,5 @@
 ﻿using BlApi;
+using BO;
 using DalApi;
 using PL.Engineer;
 using System;
@@ -116,6 +117,10 @@ namespace PL.Task
                 {
                     MessageBox.Show(ex.Message, "error in create task", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
 
             }
             viewModel.CurrentTask = new BO.Task() {
@@ -184,6 +189,10 @@ namespace PL.Task
                 {
                     MessageBox.Show(ex.Message, "There is no engineer with such an ID", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
             else
             {
@@ -210,6 +219,10 @@ namespace PL.Task
                 catch (BO.BlEngineerDoesNotExit ex)
                 {
                     MessageBox.Show(ex.Message, "There is no engineer with such an ID", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
 
             }
