@@ -176,12 +176,4 @@
     <Cost>230</Cost>
     <Active>true</Active>
   </Engineer>
-  <Engineer>
-    <Id>214385239</Id>
-    <Name>Avital Choen</Name>
-    <Email>avitalC@gmail.com</Email>
-    <Level>Expert</Level>
-    <Cost>399.9</Cost>
-    <Active>true</Active>
-  </Engineer>
 </ArrayOfEngineer>
