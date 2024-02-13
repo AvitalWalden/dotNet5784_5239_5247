@@ -25,14 +25,14 @@ internal class TaskImplementation : ITask
         {
             throw new BO.BlInvalidValue("Task Alias cannot be empty or null");
         }
+        if (boTask.Engineer != null && boTask.Engineer.Id != 0 && _dal.Engineer.Read(boTask.Engineer!.Id) == null)
+        {
+            throw new BO.BlEngineerDoesNotExit("There is no engineer with such an ID");
+        }
         var task = _dal.Task.Read(task => task.EngineerId == boTask.Engineer?.Id && BO.Tools.CalculateStatusOfTask(task) != BO.Status.Done);
         if (task != null && task.Id!= boTask.Id)
         {
             throw new BO.BlEngineerIsAlreadyBusy("Engineer is already busy");
-        }
-        if (boTask.Engineer != null && _dal.Engineer.Read(boTask.Engineer!.Id) == null)
-        {
-            throw new BO.BlEngineerDoesNotExit("There is no engineer with such an ID");
         }
         DO.Task doTask = new DO.Task
         (
