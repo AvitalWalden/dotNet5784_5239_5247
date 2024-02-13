@@ -7,13 +7,20 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/image.jpg"/>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
         <!-- list of engineer-->
-        <Button Content="Engineer" HorizontalAlignment="Left" Margin="587,36,0,0" Click="BtnEngineers_Click" Height="42" Width="141" />
+        <Button Content="Engineer" Margin="0,52,0,0" Click="BtnEngineers_Click" Height="42" Width="140" Background="{x:Null}" Grid.Column="1" />
         <!-- Database initialization-->
-        <Button Content="Init DB" HorizontalAlignment="Left" Margin="93,36,0,0" Click="BtnInitDB_Click" Height="42" Width="141" RenderTransformOrigin="0.467,-0.976"/>
-        <Image HorizontalAlignment="Center" Height="321" Margin="0,103,0,0" VerticalAlignment="Top" Width="584" Source="/9167.jpg"/>
+        <Button Content="Init DB" Margin="0,52,0,0" Click="BtnInitDB_Click" Height="42" Width="141" RenderTransformOrigin="0.467,-0.976" Background="{x:Null}"/>
         <!-- list of task-->
-        <Button Content="Admin" Margin="347,36,0,0" Height="42" Width="140" RenderTransformOrigin="0.467,-0.976" HorizontalAlignment="Left" Click="BtnAdmin_Click"/>
+        <Button Grid.Column="2" Content="Admin" Margin="0,52,0,0" Height="42" Width="140" RenderTransformOrigin="0.467,-0.976" Click="BtnAdmin_Click" Background="{x:Null}"/>
 
     </Grid>
 </Window>

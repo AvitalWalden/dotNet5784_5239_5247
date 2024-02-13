@@ -7,9 +7,17 @@
         mc:Ignorable="d"
         Title="AdminWindow" Height="450" Width="800">
     <Grid>
-        <Button Content="Handle Engineer" Margin="201,0,0,0" Click="BtnEngineer_Click" Width="120" HorizontalAlignment="Left" RenderTransformOrigin="0.853,0.85" VerticalAlignment="Center"/>
-        <Button Content="Handle Task" Margin="366,0,0,0" HorizontalAlignment="Left" Click="BtnTask_Click" Width="120" RenderTransformOrigin="0.036,0.296" VerticalAlignment="Center"/>
-        <Button Content="Reset" Margin="521,0,0,0" HorizontalAlignment="Left" Click="BtnReset_Click" Width="120" RenderTransformOrigin="0.036,0.296" VerticalAlignment="Center"/>
+        <Grid.Background>
+            <ImageBrush ImageSource="/image.jpg" Stretch="UniformToFill"/>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
+        <Button Content="Handle Engineer" Margin="0,82,0,0" Click="BtnEngineer_Click" Width="120" Background="{x:Null}"/>
+        <Button Grid.Column="1" Content="Handle Task" Margin="0,82,0,0" Click="BtnTask_Click" Width="120" Background="{x:Null}"/>
+        <Button Grid.Column="2" Content="Reset" Margin="0,82,0,0" Click="BtnReset_Click" Width="120" Background="{x:Null}"/>
     </Grid>
 </Window>
