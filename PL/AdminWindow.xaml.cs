@@ -1,4 +1,5 @@
 ﻿using PL.Engineer;
+using PL.Milestone;
 using PL.Task;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,8 @@ namespace PL
     /// </summary>
     public partial class AdminWindow : Window
     {
+        static readonly BlApi.IBl s_bl = BlApi.Factory.Get();
+
         public AdminWindow()
         {
             InitializeComponent();
@@ -42,7 +45,7 @@ namespace PL
 
         private void BtnMilstone_Click(object sender, RoutedEventArgs e)
         {
-            
+            new MilestoneWindow().Show();
         }
     }
 }

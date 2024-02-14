@@ -269,6 +269,11 @@ namespace PL.Task
 
             if (result == MessageBoxResult.Yes)
             {
+                if (viewModel.CurrentTask.Milestone != null)
+                {
+                    MessageBox.Show("It is not possible to change dependencies after the project has been created", "Confirmation");
+                    return;
+                }
                 if (viewModel.CurrentTask.Dependencies == null)
                     viewModel.CurrentTask.Dependencies = new List<BO.TaskInList>();
 
@@ -291,8 +296,16 @@ namespace PL.Task
 
                 if (result == MessageBoxResult.Yes)
                 {
-                    viewModel.CurrentTask.Dependencies!.Remove((BO.TaskInList)listBox.SelectedItem);
-                    viewModel.TasksList.Remove((BO.TaskInList)listBox.SelectedItem);
+                    if (viewModel.CurrentTask.Milestone != null)
+                    {
+                        MessageBox.Show("It is not possible to change dependencies after the project has been created", "Confirmation");
+                    }
+                    else
+                    {
+                        viewModel.CurrentTask.Dependencies!.Remove((BO.TaskInList)listBox.SelectedItem);
+                        viewModel.TasksList.Remove((BO.TaskInList)listBox.SelectedItem);
+                    }
+                   
                 }
                 listBox.SelectedItem = null;
             }

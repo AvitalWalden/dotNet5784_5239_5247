@@ -9,6 +9,14 @@
     <Active>true</Active>
   </Engineer>
   <Engineer>
+    <Id>214385239</Id>
+    <Name>Avital Choen</Name>
+    <Email>avital@gmail.com</Email>
+    <Level>Proficient</Level>
+    <Cost>399.99</Cost>
+    <Active>true</Active>
+  </Engineer>
+  <Engineer>
     <Id>16438046</Id>
     <Name>David Tov</Name>
     <Email>david@gmail.com</Email>
@@ -174,14 +182,6 @@
     <Email>Chaim@gmail.com</Email>
     <Level>Competent</Level>
     <Cost>230</Cost>
-    <Active>true</Active>
-  </Engineer>
-  <Engineer>
-    <Id>214385239</Id>
-    <Name>Avital</Name>
-    <Email>Avital@gmail.com</Email>
-    <Level>AdvancedBeginner</Level>
-    <Cost>123</Cost>
     <Active>true</Active>
   </Engineer>
 </ArrayOfEngineer>

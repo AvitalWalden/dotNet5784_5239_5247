@@ -14,6 +14,7 @@ public interface IMilestone
     /// <param name="id">id of milestone that should be returned</param>
     /// <returns></returns>
     public BO.Milestone? Read(int id);
+    public IEnumerable<BO.Task?> ReadAll(Func<BO.Task, bool>? filter = null);
     /// <summary>
     /// Updates milestone details
     /// </summary>
