@@ -219,6 +219,83 @@ internal class MilestoneImplementation : IMilestone
         }
     }
 
+    public IEnumerable<BO.Task?> ReadAll(Func<BO.Task, bool>? filter = null)
+    {
+
+        IEnumerable<BO.Task?> readAllTask = _dal.Task.ReadAll((task) => task.IsMilestone == true).Select(doTask =>
+        {
+            if (doTask == null)
+            {
+                return null;
+            }
+            DO.Engineer? eng = _dal.Engineer.ReadAll().FirstOrDefault(engineer => engineer?.Id == doTask.EngineerId);
+            BO.EngineerInTask? engineer = null;
+            if (eng != null)
+            {
+                engineer = new BO.EngineerInTask()
+                {
+                    Id = eng.Id,
+                    Name = eng.Name
+                };
+            }
+            List<BO.TaskInList>? tasksList = null;
+            BO.MilestoneInTask? milestone = null;
+
+            DO.Dependency? checkMilestone = _dal.Dependency.Read(dependency => dependency.DependsOnTask == doTask.Id);
+            if (checkMilestone != null)
+            {
+                int milestoneId = checkMilestone.DependentTask;
+                DO.Task? milestoneAsATask = _dal.Task.Read(task => task.Id == milestoneId && task.IsMilestone);
+                if (milestoneAsATask != null)
+                {
+                    string aliasOfMilestone = milestoneAsATask.Alias;
+                    milestone = new BO.MilestoneInTask()
+                    {
+                        Id = milestoneId,
+                        Alias = aliasOfMilestone
+                    };
+                }
+                else
+                {
+                    tasksList = BO.Tools.CalculateTaskInList(doTask.Id);
+                }
+            }
+            else
+            {
+                tasksList = BO.Tools.CalculateTaskInList(doTask.Id);
+            }
+            return new BO.Task
+            {
+                Id = doTask.Id,
+                Description = doTask.Description,
+                Alias = doTask.Alias,
+                CreatedAtDate = doTask.CreatedAtDate,
+                Status = BO.Tools.CalculateStatusOfTask(doTask),
+                Dependencies = tasksList,
+                RequiredEffortTime = doTask.RequiredEffort,
+                Milestone = milestone,
+                ScheduledStartDate = doTask.ScheduledDate,
+                StartDate = doTask.StartDate,
+                DeadlineDate = doTask.DeadlineDate,
+                CompleteDate = doTask.CompleteDate,
+                Deliverables = doTask.Deliverables,
+                Remarks = doTask.Remarks,
+                Engineer = engineer,
+                ComplexityLevel = (BO.EngineerExperience)doTask.ComplexityLevel,
+            };
+
+
+        }).Where(task => task != null).ToList(); // We will use WHERE to filter and drop the tasks that are NULL
+
+        if (filter != null)
+        {
+            IEnumerable<BO.Task> readAllTaskFilter = from item in readAllTask
+                                                     where filter(item)
+                                                     select item;
+            return readAllTaskFilter;
+        }
+        return readAllTask;
+    }
     /// <summary>
     ///  Updates milestone details
     /// </summary>

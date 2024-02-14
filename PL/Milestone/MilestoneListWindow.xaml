@@ -1,0 +1,58 @@
+﻿<Window x:Class="PL.Milestone.MilestoneListWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL.Milestone"
+        mc:Ignorable="d"
+        Title="MilestoneListWindow" Height="450" Width="800"
+        DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}" Activated="MilestoneListWindow_Activated">
+    <Grid Margin="0,0,0,6">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="691*"/>
+            <ColumnDefinition Width="109*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="500*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <!--Internal, Upper Grid-->
+        <Grid Height="auto" Grid.Row="0" Width="auto" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <!-- label for comboBox -->
+            <Label Content="Milestone:" Grid.Column="0" Margin="33,0,0,0" VerticalAlignment="Center" Width="287"/>
+        </Grid>
+        <!-- list of all tasks -->
+        <ListView Margin="5,5,5,5" Grid.Row="1" ItemsSource="{Binding MilestoneList}" Grid.ColumnSpan="2" >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Margin="0,0,0,10">
+                        <Border BorderBrush="Black" BorderThickness="0,0,0,1" Margin="0,0,0,10">
+                            <TextBlock Text="{Binding Alias}" FontWeight="Bold" FontSize="16" />
+                        </Border>
+                        <TextBlock>
+             <Run FontWeight="Bold" Text="Id: " />
+             <Run Text="{Binding Id}" />
+                        </TextBlock>
+                        <TextBlock>
+             <Run FontWeight="Bold" Text="Description: " />
+             <Run Text="{Binding Description}" />
+                        </TextBlock>
+                        <TextBlock>
+             <Run FontWeight="Bold" Text="Alias: " />
+             <Run Text="{Binding Alias}" />
+                        </TextBlock>
+                        <TextBlock>
+             <Run FontWeight="Bold" Text="Status: " />
+             <Run Text="{Binding Status}" />
+                        </TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Window>

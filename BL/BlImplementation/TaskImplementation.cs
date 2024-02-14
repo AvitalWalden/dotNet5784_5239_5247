@@ -155,7 +155,7 @@ internal class TaskImplementation : ITask
     public IEnumerable<BO.Task?> ReadAll(Func<BO.Task, bool>? filter = null)
     {
 
-        IEnumerable<BO.Task?> readAllTask = _dal.Task.ReadAll().Select(doTask =>
+        IEnumerable<BO.Task?> readAllTask = _dal.Task.ReadAll((task)=> task.IsMilestone==false).Select(doTask =>
         {
             if (doTask == null)
             {
