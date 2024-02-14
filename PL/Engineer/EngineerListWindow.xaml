@@ -58,6 +58,13 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Button Content="Add" Grid.Row="2" HorizontalAlignment="Left" Height="50" Width="100" Click="BtnAddEngineer_Click" Grid.ColumnSpan="2" Margin="350,0,0,0" VerticalAlignment="Center"/>
+        <Button Content="Add" Grid.Row="2" HorizontalAlignment="Left" Height="50" Width="100" Click="BtnAddEngineer_Click" Grid.ColumnSpan="2" Margin="350,0,0,0" VerticalAlignment="Center">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFE07979" Offset="1"/>
+                    <GradientStop Color="#FF62D6E3" Offset="0.033"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
     </Grid>
 </Window>
