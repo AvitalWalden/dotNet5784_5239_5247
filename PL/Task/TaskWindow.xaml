@@ -26,6 +26,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="2.5*"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="1.5*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -106,6 +107,8 @@
         <TextBox Text="{Binding CurrentTask.Engineer.Id, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}"  Width="250" Grid.Column="1" Grid.Row="12" VerticalAlignment="Center" MaxLength="9" PreviewKeyDown="IdOrCost_PreviewKeyDown"/>
         <ComboBox ItemsSource="{Binding Source={StaticResource EngineerExperienceCollectionKey}}"
            SelectedValue="{Binding CurrentTask.ComplexityLevel, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  Width="250" HorizontalAlignment="Left" Background="White" VerticalAlignment="Center" Height="28" Grid.Row="13" Grid.Column="1"/>
+        <Label Content="Milstone id:" Margin="208,0,0,0" Width="208" Height="34" Grid.Row="17" VerticalAlignment="Center"/>
+        <TextBox Text="{Binding CurrentTask.Milestone.Id, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Width="250" IsEnabled="False" MaxLength="9" PreviewKeyDown="IdOrCost_PreviewKeyDown" Grid.Column="1" Grid.Row="17" Margin="0,12,0,0"/>
         <!--add or update task-->
         <Button Content="{Binding CurrentTask.Id, Mode=OneTime, Converter={StaticResource ConverIdToContentKey}}" Click="ButtonAddOrUpdateTask_Click" Height="37" Width="178" Grid.Row="18" Grid.Column="2" VerticalAlignment="Center">
             <Button.Background>

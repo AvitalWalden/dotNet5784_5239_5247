@@ -21,6 +21,6 @@
         <Button Grid.Column="1" Content="Handle Task" Margin="0,82,0,0" Click="BtnTask_Click" Width="120" Background="{x:Null}"/>
         <Button Grid.Column="2" Content="Reset" Margin="0,82,0,0" Click="BtnReset_Click" Width="120" Background="{x:Null}"/>
         <!-- milstone -->
-        <Button Grid.Column="3" Content="Milstone" Margin="0,76,0,0" Height="42" Width="140" RenderTransformOrigin="0.467,-0.976" Click="BtnMilstone_Click" Background="{x:Null}"/>
+        <Button Grid.Column="3" Content="Milstone" Margin="0,82,0,0" Width="120" RenderTransformOrigin="0.467,-0.976" Click="BtnMilstone_Click" Background="{x:Null}"/>
     </Grid>
 </Window>

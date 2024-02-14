@@ -42,7 +42,9 @@ namespace PL
 
         private void BtnMilstone_Click(object sender, RoutedEventArgs e)
         {
-            
+            DateTime projectStartDate = DateTime.Parse(Microsoft.VisualBasic.Interaction.InputBox("Enter the project start date", "engineer"));
+            DateTime projectEndDate = DateTime.Parse(Microsoft.VisualBasic.Interaction.InputBox("Enter the project end date", "engineer"));
+
         }
     }
 }
