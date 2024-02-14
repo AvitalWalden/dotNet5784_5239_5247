@@ -22,21 +22,24 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
+        <!-- id of engineer -->
         <Label Content="Id:" Margin="250,0,0,0" Grid.Column="0" VerticalAlignment="Center"/>
         <TextBox Text="{Binding Id, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" IsEnabled="{Binding Path=Id, Mode=OneTime, Converter={StaticResource ConvertIdToIsEnableKey}}" Grid.Column="1" MaxLength="9" PreviewKeyDown="IdOrCost_PreviewKeyDown" VerticalAlignment="Center"/>
+        <!-- name of engineer -->
         <Label Content="Name:"  Margin="250,0,0,0" Grid.Column="0" Height="25" Grid.Row="1" VerticalAlignment="Center"/>
         <TextBox Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center"/>
+        <!-- email of engineer -->
         <Label Content="Email:" Margin="250,0,0,0" Grid.Column="0" Grid.Row="2" VerticalAlignment="Center"/>
         <TextBox Text="{Binding Email, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center"/>
+        <!-- cost of engineer -->
         <Label Content="Cost:" Margin="250,0,0,0" Grid.Column="0" Height="25" Grid.Row="3" VerticalAlignment="Center"/>
         <TextBox Text="{Binding Cost, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Grid.Column="1" Grid.Row="3" PreviewKeyDown="IdOrCost_PreviewKeyDown" VerticalAlignment="Center"/>
+        <!-- level of engineer -->
         <Label Content="Level:" Margin="250,0,0,0" Grid.Column="0" Height="30" Grid.Row="4" VerticalAlignment="Center"/>
         <ComboBox ItemsSource="{Binding Source={StaticResource EngineerExperienceCollectionKey}}"
                   SelectedValue="{Binding Level, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Left" Background="White" VerticalAlignment="Center" Height="30" Width="150"/>
         <!--add or update engineer-->
         <Button Content="{Binding Id, Mode=OneTime, Converter={StaticResource ConverIdToContentKey}}" Click="ButtonAddOrUpdateEngineer_Click" Margin="352,10,0,0" HorizontalAlignment="Left" Grid.Row="7" RenderTransformOrigin="0.3,0.545" Grid.ColumnSpan="2" Height="30" Width="148"/>
-        <!--image-->
-        <!--<Image HorizontalAlignment="Left" Height="147" Margin="0,40,0,0" VerticalAlignment="Top" Width="263" Source="/9167.jpg" Grid.RowSpan="3" Grid.Row="5"/>-->
         <!--task to this engineer-->
         <Label Content="Task Id:" Margin="250,0,0,0" VerticalAlignment="Center" Grid.Column="0" Visibility="{Binding Id, Mode=OneTime, Converter={StaticResource ConvertIdVisibilityKey}}" Height="32" Grid.Row="5"/>
         <TextBox TextWrapping="Wrap" Visibility="{Binding Path=Id, Mode=OneTime, Converter={StaticResource ConvertIdVisibilityKey}}" Grid.Column="1" Grid.Row="5" VerticalAlignment="Center"
@@ -49,9 +52,13 @@
           Grid.Column="1" Grid.Row="6" IsEnabled="False" Margin="0,17,0,0"/>
         <!--current task-->
         <Button Content="more details" Margin="231,0,0,0" HorizontalAlignment="Left" Height="25" Width="109" Click="BtnCurrentTask_Click" Grid.Row="6"
-                 Visibility="{Binding Path=Id, Mode=OneTime, Converter={StaticResource ConvertIdVisibilityKey}}" Grid.Column="1" VerticalAlignment="Center"/>
-        <!--All Task -->
-        <!--<Button Content="Tasks" Margin="213,0,0,0" HorizontalAlignment="Left" Height="25" Width="116" Click="BtnTask_Click" Grid.Row="6" Grid.Column="1" VerticalAlignment="Center"
-                Visibility="{Binding Path=Id, Mode=OneTime, Converter={StaticResource ConvertIdVisibilityKey}}"/>-->
+                 Visibility="{Binding Path=Id, Mode=OneTime, Converter={StaticResource ConvertIdVisibilityKey}}" Grid.Column="1" VerticalAlignment="Center">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFE07979" Offset="1"/>
+                    <GradientStop Color="#FF62D6E3" Offset="0.033"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
     </Grid>
 </Window>

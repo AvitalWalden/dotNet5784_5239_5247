@@ -33,6 +33,8 @@
             <ColumnDefinition Width="*"/>
 
         </Grid.ColumnDefinitions>
+
+        <!-- all the datails of the current task -->
         <Label Content="Id:" Margin="210,10,0,0" Grid.Column="0" VerticalAlignment="Center" RenderTransformOrigin="1.274,0.593" Width="210"/>
         <Label Content="Alias:"  Margin="210,10,0,0" Height="26" Grid.Row="1" VerticalAlignment="Center" Width="210"/>
         <Label Content="Description:" Margin="210,10,0,0" Height="27" Grid.Row="2" VerticalAlignment="Center" Width="210"/>
@@ -53,6 +55,7 @@
         <TextBox Text="{Binding CurrentTask.Description, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}"  Width="250" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center"/>
         <DatePicker SelectedDate="{Binding CurrentTask.CreatedAtDate, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}"  HorizontalAlignment="Left" VerticalAlignment="Center" Height="35" Width="250" Grid.Row="3" Grid.Column="1"/>
         <ComboBox ItemsSource="{Binding  Source={StaticResource StatusCollectionKey}}" SelectedValue="{Binding CurrentTask.Status, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  Width="250" HorizontalAlignment="Left" Background="White" VerticalAlignment="Top" Height="24" Grid.Column="1" Grid.Row="4" Margin="0,8,0,0" IsEnabled="False"/>
+        <!-- list of all the dependencies for this task -->
         <ListView Grid.Row="16" MaxWidth="400" Margin="418,10,172,10" ItemsSource="{Binding TasksList, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" SelectionMode="Single" MouseDoubleClick="ListViewDeleteDependency_MouseDoubleClick" Grid.ColumnSpan="2">
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -78,6 +81,7 @@
             </ListView.ItemTemplate>
         </ListView>
         <Label Content="Choose dependencies to add:" Margin="210,0,0,0" Grid.Row="15" VerticalAlignment="Center" Width="205"/>
+        <!-- combobox of the alias of all dependencies-->
         <ComboBox
             ItemsSource="{Binding Dependencies}"
             DisplayMemberPath="Alias" 
@@ -92,15 +96,24 @@
         <TextBox Text="{Binding CurrentTask.Deliverables, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}"  Width="250" Grid.Column="1" Grid.Row="10" VerticalAlignment="Center"/>
         <TextBox Text="{Binding CurrentTask.Remarks, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}"  Width="250" Grid.Column="1" Grid.Row="11" VerticalAlignment="Center"/>
         <Label Content="Engineer Name:" Margin="210,10,0,0" Visibility="{Binding CurrentTask.Id, Mode=OneTime, Converter={StaticResource ConvertIdVisibilityKey}}" Height="32" Grid.Row="14" Width="212" VerticalAlignment="Center" Grid.ColumnSpan="2"/>
+        <!-- name of all engineers -->
         <ComboBox ItemsSource="{Binding EngineerList}"
           DisplayMemberPath="Name" 
           SelectedValuePath="Id"
           SelectedValue="{Binding CurrentTask.Engineer.Id, Mode=TwoWay}" RenderTransformOrigin="0.502,0.344" HorizontalAlignment="Left" Background="White" VerticalAlignment="Center" Width="250" Height="25"
          Visibility="{Binding CurrentTask.Id, Mode=OneTime, Converter={StaticResource ConvertIdVisibilityKey}}" Grid.Column="1" Grid.Row="14"/>
+        <!-- id of engineer -->
         <TextBox Text="{Binding CurrentTask.Engineer.Id, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}"  Width="250" Grid.Column="1" Grid.Row="12" VerticalAlignment="Center" MaxLength="9" PreviewKeyDown="IdOrCost_PreviewKeyDown"/>
         <ComboBox ItemsSource="{Binding Source={StaticResource EngineerExperienceCollectionKey}}"
            SelectedValue="{Binding CurrentTask.ComplexityLevel, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  Width="250" HorizontalAlignment="Left" Background="White" VerticalAlignment="Center" Height="28" Grid.Row="13" Grid.Column="1"/>
         <!--add or update task-->
-        <Button Content="{Binding CurrentTask.Id, Mode=OneTime, Converter={StaticResource ConverIdToContentKey}}" Click="ButtonAddOrUpdateTask_Click" Height="37" Width="178" Grid.Row="18" Grid.Column="2" VerticalAlignment="Center"/>
+        <Button Content="{Binding CurrentTask.Id, Mode=OneTime, Converter={StaticResource ConverIdToContentKey}}" Click="ButtonAddOrUpdateTask_Click" Height="37" Width="178" Grid.Row="18" Grid.Column="2" VerticalAlignment="Center">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFE07979" Offset="1"/>
+                    <GradientStop Color="#FF62D6E3" Offset="0.033"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
     </Grid>
 </Window>

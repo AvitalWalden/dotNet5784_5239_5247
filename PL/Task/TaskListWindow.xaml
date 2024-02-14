@@ -26,6 +26,7 @@
                    SelectedValue="{Binding StatusOfTask, Mode=TwoWay}"
                    Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectionChanged="ComboBox_SelectionExperience"/>
         </Grid>
+        <!-- list of all tasks -->
         <ListView Margin="5" Grid.Row="1" ItemsSource="{Binding TaskList}" MouseDoubleClick="ListView_taskToUpdate">
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -53,6 +54,13 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Button Content="Add" Grid.Row="2" HorizontalAlignment="Center" Height="50" Width="100" Click="BtnAddTask_Click"/>
+        <Button Content="Add" Grid.Row="2" HorizontalAlignment="Center" Height="50" Width="100" Click="BtnAddTask_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFE07979" Offset="1"/>
+                    <GradientStop Color="#FF62D6E3" Offset="0.033"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
     </Grid>
 </Window>
