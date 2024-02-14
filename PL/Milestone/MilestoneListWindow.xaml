@@ -46,10 +46,7 @@
              <Run FontWeight="Bold" Text="Alias: " />
              <Run Text="{Binding Alias}" />
                         </TextBlock>
-                        <TextBlock>
-             <Run FontWeight="Bold" Text="Status: " />
-             <Run Text="{Binding Status}" />
-                        </TextBlock>
+               
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
