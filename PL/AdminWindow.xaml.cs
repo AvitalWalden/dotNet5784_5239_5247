@@ -39,5 +39,10 @@ namespace PL
                 DalTest.Initialization.Reset();
             }
         }
+
+        private void BtnMilstone_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
     }
 }
